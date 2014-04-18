@@ -1,0 +1,65 @@
+========== MVP ============
+IN PROGRESS:
+
+Add phpass for password storing... See: https://phpbestpractices.org/
+Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
+Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email
+Print formatting
+Payment/Donation for usage
+Tracking free trial period... enforcement of end of trial period
+Database Backup and Restore process
+Forgot password process.... generate temp password & email..... Force password change when using temp password
+Frequency logic.... For example, when completing a "Monthly" tasks do we add another
+Add Content on Login and Registration Page
+Build Test Cases
+Dynamic congratulations messages for completed tasks... integrated with Tostr
+Show completed items... is this going to be a performance problem?  Should they be protected?
+Feedback form... or Forum...
+Import Todos - Think this may be critical for folks to start using the app
+Export Todos - Should this be part of premium?   MVP?
+HTTPS - Need:  Certificate, Business Name,
+
+BIZ STUFF
+ - Setup LLC... Needed in advance of domain name, SSL setup, terms & conditions etc
+ - Terms and Conditions?   Privacy Agreement? I think they're needed
+ - Select URL/Domain:  TodoTiger?  TodoTurtle?
+
+
+========== Nice to Have ============
+Change order of group tabs   (SETTINGS)
+Ability to add Note with long text.....
+Move Login/Register/AddGroup to Directives?
+Config setting at user level (ie - show completed items for X days)
+Delete a Todo?
+Add todo by sending email
+Kudos for completing most todos
+Android App
+IOS App
+Move session handling to dynamoDB on AWS
+Add the ability to specify priority (maybe: Tags, DueDate, Frequency) in quick add (for example... New Todo|03/31/2014|Once)
+Forum?
+
+========== DONE ============
+Group Add trigger scope to redo the ng-repeat
+Store/Retrieve DueDate... mm/dd/yy...
+Toastr popups for completed todos
+TodoGroup Rename        (SETTINGS)
+TodoGroup Add New       (SETTINGS)
+Store/Retrieve DueDate... variations (ie. mm/dd, mm/dd/yyyy, next Tuesday, Tue, April 1st, April 1, 4/1)... Not needed with DatePicker
+TodoGroup Remove/Delete (SETTINGS)
+Spacing on columns
+Fix sorting in the Todo list so that rows sort after update is made (done... wrong field names in the filter)
+Sort Priority - 9 is the highest and add description to the priority.name
+Deploy on AWS
+Home Page content
+Register/Sign-up New User
+Pass back due_dt from the update service and refresh the scope (so "Mon" becomes 3/31/2014)
+Settings.. Hide Todo Groups in NavBar... Show/Refresh when Exiting. --- Implemented by removing additional controller... so the setting page now inherits from the group controller in the NAV
+Trigger refresh of TodoGroups in Nav when changes are made in Settings  --- Implemented by removing additional controller... so the setting page now inherits from the group controller in the NAV
+Change Password         (SETTINGS)
+space out the change password fields on successful password change...
+store database connection in session.... NOT POSSIBLE... "do not store any objects in session"
+Move Todos between Groups (SETTINGS)
+
+========== CANCELED ============
+DatePicker for DueDate - HORRIBLE performance with long lists and angular
