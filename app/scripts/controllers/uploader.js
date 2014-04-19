@@ -31,7 +31,8 @@ angular.module('todoApp')
           $rootScope.$broadcast('fileAdded', file.files[0].name);
         },
         clear: function () {
-          _files = [];
+          //TODO: Uncomment
+          //_files = [];
         },
         files: function () {
           var fileNames = [];
@@ -44,7 +45,8 @@ angular.module('todoApp')
           $.each(_files, function (index, file) {
             file.submit();
           });
-          this.clear();
+          //TODO: uncomment this.. only commented it to test
+          //this.clear();
         },
         setProgress: function (percentage) {
           $rootScope.$broadcast('uploadProgress', percentage);
