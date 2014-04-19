@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="86e13eda-f552-4432-b750-06bfa432e5bd" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/todo.php" afterPath="$PROJECT_DIR$/app/todo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/functions.php" afterPath="$PROJECT_DIR$/app/functions.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/upload.php" afterPath="$PROJECT_DIR$/app/upload.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/uploader.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/uploader.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="todo.iws" />
@@ -30,41 +27,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="113" column="0" selection-start="5579" selection-end="5579" vertical-scroll-proportion="-6.1355934" vertical-offset="2463" max-vertical-offset="2975">
-              <folding>
-                <marker date="1397833493094" expanded="true" signature="271:5577" placeholder="..." />
-                <marker date="1397833493094" expanded="true" signature="884:5569" placeholder="..." />
-                <marker date="1397833493094" expanded="true" signature="3760:4182" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="uploader.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="uploader.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="59" column="40" selection-start="1699" selection-end="1699" vertical-scroll-proportion="0.3323442" vertical-offset="1363" max-vertical-offset="2075">
+            <state line="59" column="40" selection-start="1699" selection-end="1699" vertical-scroll-proportion="-4.48" vertical-offset="1363" max-vertical-offset="2075">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="upload.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="upload.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/upload.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="44" column="42" selection-start="1166" selection-end="1166" vertical-scroll-proportion="-7.0" vertical-offset="925" max-vertical-offset="2025">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="todo.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/todo.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="62" column="13" selection-start="1301" selection-end="1341" vertical-scroll-proportion="-7.16" vertical-offset="1371" max-vertical-offset="3075">
+            <state line="49" column="60" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.48161122" vertical-offset="950" max-vertical-offset="2150">
               <folding />
             </state>
           </provider>
@@ -73,54 +48,16 @@
       <file leaf-file-name="functions.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="302" column="0" selection-start="10399" selection-end="10399" vertical-scroll-proportion="0.0" vertical-offset="7050" max-vertical-offset="7800">
+            <state line="273" column="12" selection-start="9569" selection-end="9574" vertical-scroll-proportion="-7.28" vertical-offset="6643" max-vertical-offset="7875">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/db.php">
+      <file leaf-file-name="todo.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/todo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="7" selection-end="29" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1925">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="import.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/import.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="53" selection-start="259" selection-end="259" vertical-scroll-proportion="-4.4117646" vertical-offset="0" max-vertical-offset="750">
-              <folding>
-                <element signature="n#style#0;n#div#0;n#div#3;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/settings.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="74" column="71" selection-start="3258" selection-end="3258" vertical-scroll-proportion="-8.088235" vertical-offset="1575" max-vertical-offset="2225">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sitespecific.css" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/styles/sitespecific.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="80" column="1" selection-start="1883" selection-end="1883" vertical-scroll-proportion="0.0" vertical-offset="1479" max-vertical-offset="2150">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../todoclone/app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="60" selection-start="702" selection-end="756" vertical-scroll-proportion="-5.7352943" vertical-offset="180" max-vertical-offset="3850">
+            <state line="99" column="17" selection-start="2352" selection-end="2352" vertical-scroll-proportion="0.0" vertical-offset="2264" max-vertical-offset="3075">
               <folding />
             </state>
           </provider>
@@ -314,13 +251,18 @@
       <created>1397831100819</created>
       <updated>1397831100819</updated>
     </task>
+    <task id="LOCAL-00001" summary="X">
+      <created>1397914641848</created>
+      <updated>1397914641849</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3295082" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -345,10 +287,13 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <option name="LAST_COMMIT_MESSAGE" value="" />
+    <MESSAGE value="X" />
+    <option name="LAST_COMMIT_MESSAGE" value="X" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -379,9 +324,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state line="113" column="0" selection-start="5579" selection-end="5579" vertical-scroll-proportion="-6.1355934" vertical-offset="2463" max-vertical-offset="2975">
           <folding>
-            <marker date="1397833493094" expanded="true" signature="271:5577" placeholder="..." />
-            <marker date="1397833493094" expanded="true" signature="884:5569" placeholder="..." />
-            <marker date="1397833493094" expanded="true" signature="3760:4182" placeholder="..." />
+            <marker date="1397833493094" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1397833493094" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1397833493094" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -416,30 +361,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="59" column="40" selection-start="1699" selection-end="1699" vertical-scroll-proportion="-4.48" vertical-offset="1363" max-vertical-offset="2075">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="302" column="0" selection-start="10399" selection-end="10399" vertical-scroll-proportion="0.0" vertical-offset="7050" max-vertical-offset="7800">
+        <state line="273" column="12" selection-start="9569" selection-end="9574" vertical-scroll-proportion="-7.28" vertical-offset="6643" max-vertical-offset="7875">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/todo.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="62" column="13" selection-start="1301" selection-end="1341" vertical-scroll-proportion="-7.16" vertical-offset="1371" max-vertical-offset="3075">
+        <state line="99" column="17" selection-start="2352" selection-end="2352" vertical-scroll-proportion="0.0" vertical-offset="2264" max-vertical-offset="3075">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/upload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="42" selection-start="1166" selection-end="1166" vertical-scroll-proportion="-7.0" vertical-offset="925" max-vertical-offset="2025">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="59" column="40" selection-start="1699" selection-end="1699" vertical-scroll-proportion="0.3323442" vertical-offset="1363" max-vertical-offset="2075">
+        <state line="49" column="60" selection-start="1535" selection-end="1535" vertical-scroll-proportion="0.48161122" vertical-offset="950" max-vertical-offset="2150">
           <folding />
         </state>
       </provider>

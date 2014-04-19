@@ -12,8 +12,6 @@ if(isset($_SESSION['authenticated'])){
     return;
 }
 
-
-
 $json = json_encode($result);
 echo $json;
 
@@ -26,7 +24,8 @@ function processRequest(){
      die ('invalid customer id');
   }
   $array = readUploadedFileIntoArray();
-  ##var_dump($array);
+  // TODO: Add a batch ID to keep track of groups of uploaded txn.. to allow for delete
+  // TODO: Capture stats: # Uploaded by Group, # Errors, etc
   $dbh = createDatabaseConnection();
   $header = NULL;
   foreach ($array as $fields){
@@ -37,12 +36,22 @@ function processRequest(){
         $result = processUploadedTodo($dbh, $fields, $customer_id);
       }
   }
+  return $result;
 }
 #################################################################
 function processUploadedTodo($dbh, $fields, $customer_id){
     ##var_dump($fields);
     list($status, $error_msg, $group_id) = getGroupIdUsingName($dbh, $fields[0], $customer_id);
-    echo "$status, $error_msg, $group_id";
+    #echo "$status, $error_msg, $group_id";
+    $request_data->activegroup = $group_id;
+    $request_data->taskName = $fields[1];
+    $request_data->due_dt = $fields[2];
+    $request_data->tags = $fields[3];
+    // TODO: Upload Frequency and Priority... Decode Both...
+    #var_dump($request_data);
+    $result = addTodo($dbh, $request_data, $customer_id);
+    return $result;
+
 }
 
 #################################################################
@@ -52,12 +61,8 @@ function getGroupIdUsingName($dbh, $groupName, $customer_id){
     $result = getGroups($dbh, $customer_id);
     $groupId = 0;
     foreach ($result as $fields){
-      #########var_dump($fields);
-      #########var_dump($fields{'group_name'});
       $groupNmFromDB = $fields{'group_name'};
-      #########echo "comparing: $groupName to $groupNmFromDB";
       if(strtolower($groupName) == strtolower($groupNmFromDB)) {
-          ########echo "found match!";
           $groupId = $fields{'group_id'};
       }
     }

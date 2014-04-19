@@ -138,6 +138,8 @@ function  updateTodo($dbh, $request_data, $customer_id){
 
 ###################################
 function  addTodo($dbh, $request_data, $customer_id){
+
+  #### TODO pull priority, frequency, due_dt from request.. if not available.. default them.
   $priority_cd = 5;
   $frequency_cd = 1;
   $status_cd = 0;
@@ -269,6 +271,7 @@ function doDateStuff($date_string){
 function readUploadedFileIntoArray(){
     $csv = array();
 
+    // TODO: sanitize the data read from teh file
     // check there are no errors
     if(0 == $_FILES['file']['error']){
         $name = $_FILES['file']['name'];
