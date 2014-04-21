@@ -74,7 +74,7 @@ angular.module('todoApp')
               $scope.loggedIn = 1;
               todoFactory.setLoginStatus(1);
               $scope.$broadcast('LoggedIn', []);
-              $('#myModalRegister').modal('hide');
+              //$('#myModalRegister').modal('hide');
               todoFactory.msgSuccess(data.msg);
               $location.path( '/todolist' );
             }

@@ -1,4 +1,6 @@
 'use strict';
+/*global $:false */
+/*jshint unused: false */
 
 angular.module('todoApp')
   .controller('FileUploadCtrl',
@@ -45,8 +47,7 @@ angular.module('todoApp')
           $.each(_files, function (index, file) {
             file.submit();
           });
-          //TODO: uncomment this.. only commented it to test
-          //this.clear();
+          this.clear();
         },
         setProgress: function (percentage) {
           $rootScope.$broadcast('uploadProgress', percentage);

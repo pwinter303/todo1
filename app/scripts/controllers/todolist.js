@@ -118,33 +118,3 @@ angular.module('todoApp')
   };
 });
 
-
-//var MyCtrl = [ '$scope', '$upload', function($scope, todoFactory, $upload) {
-//  $scope.onFileSelect = function($files) {
-//    //$files: an array of files selected, each file has name, size, and type.
-//    for (var i = 0; i < $files.length; i++) {
-//      var $file = $files[i];
-//      todoFactory.uploadFile($file).then(function(data){
-//        if (data){
-//          todoFactory.msgSuccess('Uploaded');
-//        }
-//      });
-//    }
-//  };
-//}];
-
-var MyCtrl = [ '$scope', '$upload', function($scope, $upload) {
-  $scope.onFileSelect = function($files) {
-    //$files: an array of files selected, each file has name, size, and type.
-    for (var i = 0; i < $files.length; i++) {
-      var $file = $files[i];
-      $upload.upload({
-        url: 'upload.php',
-        file: $file
-      }).then(function(data, status, headers, config) {
-          // file is uploaded successfully
-          console.log(data);
-        });
-    }
-  }
-}];

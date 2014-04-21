@@ -27,26 +27,34 @@ function processRequest(){
   // TODO: Add a batch ID to keep track of groups of uploaded txn.. to allow for delete
   // TODO: Capture stats: # Uploaded by Group, # Errors, etc
   $dbh = createDatabaseConnection();
+  $groups = getGroups($dbh, $customer_id);
+
   $header = NULL;
   foreach ($array as $fields){
       ### skip the first row since its a header
       if (!$header){
         $header = $fields;
       } else {
-        $result = processUploadedTodo($dbh, $fields, $customer_id);
+        $result = processUploadedTodo($dbh, $fields, $customer_id, $groups);
       }
   }
   return $result;
 }
 #################################################################
-function processUploadedTodo($dbh, $fields, $customer_id){
+function processUploadedTodo($dbh, $fields, $customer_id, $groups){
     ##var_dump($fields);
-    list($status, $error_msg, $group_id) = getGroupIdUsingName($dbh, $fields[0], $customer_id);
-    #echo "$status, $error_msg, $group_id";
+    // TODO: Store Group_Name and Group_id to eliminate calls to the database
+    // TODO: Should the get_group function be called from here and array created, and passed to function?
+    // SAME QUESTION WITH FREQ and PRIORITY
+
+    list($status, $error_msg, $group_id) = getGroupIdUsingName($fields[0], $customer_id, $groups);
+
     $request_data->activegroup = $group_id;
     $request_data->taskName = $fields[1];
     $request_data->due_dt = $fields[2];
     $request_data->tags = $fields[3];
+    $request_data->frequency_cd = getFrequencyCdUsingName($dbh, $fields[4], $customer_id);
+    $request_data->priority_cd = getPriorityCdUsingName($dbh, $fields[5], $customer_id);
     // TODO: Upload Frequency and Priority... Decode Both...
     #var_dump($request_data);
     $result = addTodo($dbh, $request_data, $customer_id);
@@ -55,13 +63,13 @@ function processUploadedTodo($dbh, $fields, $customer_id){
 }
 
 #################################################################
-function getGroupIdUsingName($dbh, $groupName, $customer_id){
+function getGroupIdUsingName($groupName, $customer_id, $groups){
 
-    $groupName = trim($groupName);
-    $result = getGroups($dbh, $customer_id);
     $groupId = 0;
-    foreach ($result as $fields){
+    $groupName = trim($groupName);
+    foreach ($groups as $fields){
       $groupNmFromDB = $fields{'group_name'};
+      $groupNmFromDB = trim($groupNmFromDB);
       if(strtolower($groupName) == strtolower($groupNmFromDB)) {
           $groupId = $fields{'group_id'};
       }
@@ -72,9 +80,16 @@ function getGroupIdUsingName($dbh, $groupName, $customer_id){
       $status = 1;
       $err = "";
     }
-
     return array($status, $err, $groupId);
+}
 
+function getFrequencyCdUsingName($dbh, $name, $customer_id){
+  // TODO: Make this dynamic...
+  return 1;
+}
+function getPriorityCdUsingName($dbh, $name, $customer_id){
+  // TODO: Make this dynamic...
+  return 5;
 }
 
 
