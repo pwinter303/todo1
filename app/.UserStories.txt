@@ -1,5 +1,7 @@
 ========== MVP ============
 IN PROGRESS:
+Import Todos - Think this may be critical for folks to start using the app
+
 
 Add phpass for password storing... See: https://phpbestpractices.org/
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
@@ -15,14 +17,14 @@ Build Test Cases
 Dynamic congratulations messages for completed tasks... integrated with Tostr
 Show completed items... is this going to be a performance problem?  Should they be protected?
 Feedback form... or Forum...
-Import Todos - Think this may be critical for folks to start using the app
 Export Todos - Should this be part of premium?   MVP?
 HTTPS - Need:  Certificate, Business Name,
 
 BIZ STUFF
  - Setup LLC... Needed in advance of domain name, SSL setup, terms & conditions etc
  - Terms and Conditions?   Privacy Agreement? I think they're needed
- - Select URL/Domain:  TodoTiger?  TodoTurtle?
+ - Select URL/Domain:  TodoTiger?  TodoTurtle?  spectaculartodo?  todocrusher?  mytodo $2,900  todogiant todowarrior
+ -- NOT AVAILABLE: TodoRocket  TodoNinja
 
 
 ========== Nice to Have ============

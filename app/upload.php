@@ -5,7 +5,8 @@ include 'db.php';
 include 'functions.php';
 
 if(isset($_SESSION['authenticated'])){
-    $result = processRequest();
+    $total_added = processRequest();
+    $result->msg = "$total_added Todos were uploaded!";
 } else {
     ### must be logged in to use this...
     header('HTTP/1.1 401 Unauthorized');
@@ -23,48 +24,56 @@ function processRequest(){
   }   else  {
      die ('invalid customer id');
   }
+
   $array = readUploadedFileIntoArray();
+  #var_dump($array);
+
   // TODO: Add a batch ID to keep track of groups of uploaded txn.. to allow for delete
   // TODO: Capture stats: # Uploaded by Group, # Errors, etc
+
   $dbh = createDatabaseConnection();
   $groups = getGroups($dbh, $customer_id);
+  $frequencies = getFrequencies($dbh);
+  $priorities = getPriorities($dbh);
 
   $header = NULL;
+  $total_added = 0;
   foreach ($array as $fields){
       ### skip the first row since its a header
       if (!$header){
         $header = $fields;
       } else {
-        $result = processUploadedTodo($dbh, $fields, $customer_id, $groups);
+         $total_added += processUploadedTodo($dbh, $fields, $customer_id, $groups, $frequencies, $priorities);
       }
   }
-  return $result;
+  return $total_added;
 }
 #################################################################
-function processUploadedTodo($dbh, $fields, $customer_id, $groups){
-    ##var_dump($fields);
-    // TODO: Store Group_Name and Group_id to eliminate calls to the database
-    // TODO: Should the get_group function be called from here and array created, and passed to function?
-    // SAME QUESTION WITH FREQ and PRIORITY
+function processUploadedTodo($dbh, $fields, $customer_id, $groups, $frequencies, $priorities){
 
-    list($status, $error_msg, $group_id) = getGroupIdUsingName($fields[0], $customer_id, $groups);
+    list($ok, $error_msg, $group_id) = getGroupIdUsingName($fields[0], $groups);
 
-    $request_data->activegroup = $group_id;
-    $request_data->taskName = $fields[1];
-    $request_data->due_dt = $fields[2];
-    $request_data->tags = $fields[3];
-    $request_data->frequency_cd = getFrequencyCdUsingName($dbh, $fields[4], $customer_id);
-    $request_data->priority_cd = getPriorityCdUsingName($dbh, $fields[5], $customer_id);
-    // TODO: Upload Frequency and Priority... Decode Both...
-    #var_dump($request_data);
-    $result = addTodo($dbh, $request_data, $customer_id);
-    return $result;
+    // Add the item if the name exists and the group could be decoded
+    $todo_added = 0;
+    if (($ok) ){
+      $request_data->activegroup = $group_id;
+      $request_data->taskName = $fields[1];
+      $request_data->due_dt = $fields[2];
+      $request_data->tags = $fields[3];
+      $request_data->frequency_cd = getFrequencyCdUsingName($fields[4], $frequencies);
+      $request_data->priority_cd = getPriorityCdUsingName($fields[5], $priorities);
+      $result = addTodo($dbh, $request_data, $customer_id);
+      //var_dump($result);
+      if ($result['todo_id']){ $todo_added = 1;}
+      //echo "this is todo_added: $todo_added\n";
+    }
+
+    return $todo_added;
 
 }
 
 #################################################################
-function getGroupIdUsingName($groupName, $customer_id, $groups){
-
+function getGroupIdUsingName($groupName, $groups){
     $groupId = 0;
     $groupName = trim($groupName);
     foreach ($groups as $fields){
@@ -74,22 +83,43 @@ function getGroupIdUsingName($groupName, $customer_id, $groups){
           $groupId = $fields{'group_id'};
       }
     }
-    $status = 0;
+    $ok = 0;
     $err = "Group Not Found";
     if ($groupId){
-      $status = 1;
+      $ok = 1;
       $err = "";
     }
-    return array($status, $err, $groupId);
+    return array($ok, $err, $groupId);
 }
 
-function getFrequencyCdUsingName($dbh, $name, $customer_id){
-  // TODO: Make this dynamic...
-  return 1;
+function getFrequencyCdUsingName($frequency, $frequencies){
+  $frequency_cd = 1;
+  $frequency = trim($frequency);
+  foreach ($frequencies as $fields){
+    $frequencyNmFromDB = $fields{'name'};
+    $frequencyNmFromDB = trim($frequencyNmFromDB);
+    if(strtolower($frequency) == strtolower($frequencyNmFromDB)) {
+        $frequency_cd = $fields{'cd'};
+    }
+    ############echo "matching $frequency to $frequencyNmFromDB....frequency_cd is $frequency_cd\n";
+
+  }
+  return $frequency_cd;
 }
-function getPriorityCdUsingName($dbh, $name, $customer_id){
-  // TODO: Make this dynamic...
-  return 5;
+
+
+function getPriorityCdUsingName($priority, $priorities){
+    $priority_cd = 5;
+    $priority = trim($priority);
+    foreach ($priorities as $fields){
+      $priorityNmFromDB = $fields{'name'};
+      $pattern = "/$priority/";
+      if (preg_match("$pattern",$priorityNmFromDB)){
+          $priority_cd = $fields{'cd'};
+      }
+    }
+    ############echo "matching $priority to $priorityNmFromDB....priority_cd is $priority_cd\n";
+    return $priority_cd;
 }
 
 

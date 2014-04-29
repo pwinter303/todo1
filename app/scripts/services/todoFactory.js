@@ -73,12 +73,13 @@ angular.module('todoApp')
           });
         };
 
-        factory.uploadFile = function(file) {
-          file.action = 'updateFile';
-          return $http.post('todo.php',file).then(function(result) {
-            return result.data;
-          });
-        };
+//        not used..
+//        factory.uploadFile = function(file) {
+//          file.action = 'updateFile';
+//          return $http.post('todo.php',file).then(function(result) {
+//            return result.data;
+//          });
+//        };
 
         factory.registerUser = function(user) {
           user.action = 'registerUser';

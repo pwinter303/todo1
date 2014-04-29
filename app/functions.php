@@ -141,7 +141,14 @@ function  addTodo($dbh, $request_data, $customer_id){
 
   #### TODO pull priority, frequency, due_dt from request.. if not available.. default them.
   $priority_cd = 5;
+  if (isset($request_data->priority_cd)){
+    $priority_cd = $request_data->priority_cd;
+  }
   $frequency_cd = 1;
+  if (isset($request_data->frequency_cd)){
+    $frequency_cd = $request_data->frequency_cd;
+  }
+
   $status_cd = 0;
   $group_id = $request_data->activegroup;
   $task_name = mysqli_real_escape_string($dbh, $request_data->taskName);
@@ -271,8 +278,12 @@ function doDateStuff($date_string){
 function readUploadedFileIntoArray(){
     $csv = array();
 
-    // TODO: sanitize the data read from teh file
+    // TODO: sanitize the data read from the file
     // check there are no errors
+
+    //var_dump($_FILES);
+    //echo "this is the error on the file:" . $_FILES['file']['error'];
+
     if(0 == $_FILES['file']['error']){
         $name = $_FILES['file']['name'];
         $ext = strtolower(end(explode('.', $_FILES['file']['name'])));

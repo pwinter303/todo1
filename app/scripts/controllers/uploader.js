@@ -10,6 +10,7 @@ angular.module('todoApp')
           $scope.percentage = 0;
 
           $scope.upload = function () {
+            //uploadManager.upload();
             uploadManager.upload();
             $scope.files = [];
           };
@@ -33,8 +34,7 @@ angular.module('todoApp')
           $rootScope.$broadcast('fileAdded', file.files[0].name);
         },
         clear: function () {
-          //TODO: Uncomment
-          //_files = [];
+          _files = [];
         },
         files: function () {
           var fileNames = [];
@@ -55,7 +55,7 @@ angular.module('todoApp')
       };
     })
 
-    .directive('upload', ['uploadManager', function factory(uploadManager) {
+    .directive('upload', ['uploadManager', function  factory(uploadManager) {
       return {
         restrict: 'A',
         link: function (scope, element, attrs) {
@@ -69,6 +69,13 @@ angular.module('todoApp')
               uploadManager.setProgress(progress);
             },
             done: function (e, data) {
+              /*global toastr */
+              if (data.result){
+                var obj = JSON.parse(data.result);
+                if (obj.msg){
+                  toastr.success(obj.msg);
+                }
+              }
               uploadManager.setProgress(0);
             }
           });
