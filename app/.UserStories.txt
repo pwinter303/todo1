@@ -2,8 +2,6 @@
 IN PROGRESS:
 Import Todos - Think this may be critical for folks to start using the app
 
-
-Add phpass for password storing... See: https://phpbestpractices.org/
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
 Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email
 Print formatting
@@ -62,6 +60,7 @@ Change Password         (SETTINGS)
 space out the change password fields on successful password change...
 store database connection in session.... NOT POSSIBLE... "do not store any objects in session"
 Move Todos between Groups (SETTINGS)
+Add phpass for password storing... See: https://phpbestpractices.org/
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

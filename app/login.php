@@ -4,6 +4,10 @@ session_start();
 
 include 'db.php';
 
+// Include the phpass library
+require_once('bower_components/phpass-0.3/PasswordHash.php');
+
+
 $json = processRequest();
 echo $json;
 
@@ -105,7 +109,14 @@ function doesUserExist($dbh, $userName){
 }
 
 function addUser($dbh, $userName, $password){
-    $query = "Insert into customer (user_name, password) VALUES ('$userName', '$password')";
+
+    // Initialize the hasher without portable hashes (this is more secure)
+    $hasher = new PasswordHash(8, false);
+
+    // Hash the password.  $hashedPassword will be a 60-character string.
+    $hashedPassword = $hasher->HashPassword($password);
+
+    $query = "Insert into customer (user_name, password) VALUES ('$userName', '$hashedPassword')";
     $rowsAffected = actionSql($dbh,$query);
     return $rowsAffected;
 }
@@ -125,11 +136,21 @@ function  addTodoGroup($dbh, $customer_id){
 
 ##
 function validateUser($dbh, $userName, $password){
-    $query = "SELECT customer_id fROM customer where user_name = '$userName' and password = '$password' ";
+
+    // Initialize the hasher without portable hashes (this is more secure)
+    $hasher = new PasswordHash(8, false);
+
+    $query = "SELECT customer_id, password fROM customer where user_name = '$userName' ";
     $data = execSqlSingleRow($dbh, $query);
     $customer_id = $data['customer_id'];
+    $hashedPassword = $data['password'];
 
-    if ($customer_id){
+    //echo "pwd: $hashedPassword";
+
+    $valid = $hasher->CheckPassword($password, $hashedPassword); // true
+
+    if (($valid) and ($customer_id)) {
+    //if ($customer_id){
       $response{'login'} = 1;
       $_SESSION['authenticated'] = 1;
       $_SESSION['customer_id'] = $customer_id;
@@ -152,7 +173,11 @@ function changePassword($dbh, $oldPassword, $password, $password2){
                 $customer_id = $_SESSION['customer_id'];
                 $valid = validatePassword($customer_id, $oldPassword);
                 if ($valid){
-                    $query = "update customer set password = '$password' where customer_id = $customer_id";
+
+                    // Hash the password.  $hashedPassword will be a 60-character string.
+                    $hashedPassword = $hasher->HashPassword($password2);
+
+                    $query = "update customer set password = '$hashedPassword' where customer_id = $customer_id";
                     $rowsAffected = actionSql($dbh,$query);
 
                     if ($rowsAffected){
@@ -172,7 +197,13 @@ function changePassword($dbh, $oldPassword, $password, $password2){
 }
 
 function validatePassword($dbh, $customer_id, $password){
-    $query = "SELECT customer_id fROM customer where customer_id = $customer_id and password = '$password' ";
+    // Initialize the hasher without portable hashes (this is more secure)
+    $hasher = new PasswordHash(8, false);
+
+    // Hash the password.  $hashedPassword will be a 60-character string.
+    $hashedPassword = $hasher->HashPassword($password);
+
+    $query = "SELECT customer_id fROM customer where customer_id = $customer_id and password = '$hashedPassword' ";
     $data = execSqlSingleRow($dbh, $query);
     $customer_id = $data['customer_id'];
     if ($customer_id){

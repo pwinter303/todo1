@@ -1,6 +1,8 @@
 <?php
 
 include 'db.php';
+// Include the phpass library
+require_once('bower_components/phpass-0.3/PasswordHash.php');
 
 
 $dbh = createDatabaseConnection();
@@ -35,9 +37,16 @@ function emptyTable($dbh, $table){
 }
 function insertCustomer($dbh){
 
+  // Initialize the hasher without portable hashes (this is more secure)
+  $hasher = new PasswordHash(8, false);
+
+  // Hash the password.  $hashedPassword will be a 60-character string.
+  $hashedPassword1 = $hasher->HashPassword('fakepassword');
+  $hashedPassword2 = $hasher->HashPassword('fakepassword2');
+
   $query = "INSERT INTO customer (customer_id, user_name, password) VALUES
-    ( 1, 'fakeuser@yahoo.com','fakepassword'),
-    ( 2, 'fakeuser2@yahoo.com','fakepassword2')";
+    ( 1, 'fakeuser@yahoo.com', '$hashedPassword1'),
+    ( 2, 'fakeuser2@yahoo.com', '$hashedPassword2')";
 
   $rowsInserted = insertData($dbh, $query);
   echo "Customer inserted:" . $rowsInserted . "</br>";
