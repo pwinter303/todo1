@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="86e13eda-f552-4432-b750-06bfa432e5bd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.UserStories.txt" afterPath="$PROJECT_DIR$/app/.UserStories.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/dbRefreshTables.php" afterPath="$PROJECT_DIR$/app/dbRefreshTables.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/login.php" afterPath="$PROJECT_DIR$/app/login.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/createTables.sql" afterPath="$PROJECT_DIR$/app/createTables.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="todo.iws" />
@@ -31,16 +30,34 @@
       <file leaf-file-name="uploader.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="37" column="10" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0" vertical-offset="681" max-vertical-offset="2275">
+            <state line="37" column="10" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0" vertical-offset="1610" max-vertical-offset="2275">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".UserStories.txt" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="upload.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/upload.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="57" column="16" selection-start="1645" selection-end="1645" vertical-scroll-proportion="0.0" vertical-offset="1100" max-vertical-offset="3275">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".UserStories.txt" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/.UserStories.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="116" selection-end="116" vertical-scroll-proportion="0.07653061" vertical-offset="0" max-vertical-offset="1800">
+            <state line="69" column="0" selection-start="3660" selection-end="3660" vertical-scroll-proportion="0.0" vertical-offset="1725" max-vertical-offset="1950">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createTables.sql" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/createTables.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="123" column="52" selection-start="4788" selection-end="4793" vertical-scroll-proportion="0.3329843" vertical-offset="2757" max-vertical-offset="5650">
               <folding />
             </state>
           </provider>
@@ -58,43 +75,7 @@
       <file leaf-file-name="login.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="148" column="0" selection-start="4125" selection-end="4125" vertical-scroll-proportion="-7.7" vertical-offset="3315" max-vertical-offset="5950">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="dbRefreshTables.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/dbRefreshTables.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="32" selection-start="1257" selection-end="1257" vertical-scroll-proportion="-20.88" vertical-offset="678" max-vertical-offset="3400">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PasswordHash.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/bower_components/phpass-0.3/PasswordHash.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="211" column="48" selection-start="5782" selection-end="5782" vertical-scroll-proportion="0.0" vertical-offset="4928" max-vertical-offset="6475">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Makefile" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/bower_components/phpass-0.3/c/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
+            <state line="148" column="0" selection-start="4125" selection-end="4125" vertical-scroll-proportion="0.0" vertical-offset="3315" max-vertical-offset="5950">
               <folding />
             </state>
           </provider>
@@ -151,6 +132,7 @@
         <option value="$PROJECT_DIR$/app/dbRefreshTables.php" />
         <option value="$PROJECT_DIR$/app/login.php" />
         <option value="$PROJECT_DIR$/app/.UserStories.txt" />
+        <option value="$PROJECT_DIR$/app/createTables.sql" />
       </list>
     </option>
   </component>
@@ -280,72 +262,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phpass-0.3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="todo" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bower_components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="phpass-0.3" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="c" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -457,7 +373,11 @@
       <created>1398784672852</created>
       <updated>1398784672852</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="X">
+      <created>1399411022770</created>
+      <updated>1399411022770</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -489,7 +409,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32973504" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26414087" sideWeight="0.67026496" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2710779" sideWeight="0.67026496" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2303263" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -542,65 +462,29 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="150" column="0" selection-start="5040" selection-end="5040" vertical-scroll-proportion="0.0" vertical-offset="3532" max-vertical-offset="8150">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/import.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="10" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0" vertical-offset="550" max-vertical-offset="750">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/upload.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3275">
-          <folding />
-        </state>
+        <state line="22" column="10" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0" vertical-offset="550" max-vertical-offset="750" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todolist.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="59" selection-start="89" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="3150">
-          <folding />
-        </state>
+        <state line="3" column="59" selection-start="89" selection-end="100" vertical-scroll-proportion="0.0" vertical-offset="75" max-vertical-offset="3150" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todogroups.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1350" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/todoFactory.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="168" column="0" selection-start="5081" selection-end="5107" vertical-scroll-proportion="0.0" vertical-offset="4200" max-vertical-offset="4700">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="101" column="21" selection-start="5218" selection-end="5218" vertical-scroll-proportion="0.0" vertical-offset="2525" max-vertical-offset="3000">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="37" column="10" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0" vertical-offset="681" max-vertical-offset="2275">
           <folding />
         </state>
       </provider>
@@ -612,44 +496,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/bower_components/phpass-0.3/PasswordHash.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="211" column="48" selection-start="5782" selection-end="5782" vertical-scroll-proportion="0.0" vertical-offset="4928" max-vertical-offset="6475">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/bower_components/phpass-0.3/test.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1950">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/bower_components/phpass-0.3/c/Makefile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="993">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1950" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/dbRefreshTables.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="32" selection-start="1257" selection-end="1257" vertical-scroll-proportion="-20.88" vertical-offset="678" max-vertical-offset="3400">
-          <folding />
-        </state>
+        <state line="48" column="32" selection-start="1257" selection-end="1257" vertical-scroll-proportion="0.0" vertical-offset="1200" max-vertical-offset="3400" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/bower_components/phpass-0.3/PasswordHash.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="211" column="48" selection-start="5782" selection-end="5782" vertical-scroll-proportion="10.009488" vertical-offset="0" max-vertical-offset="6475" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/bower_components/phpass-0.3/c/Makefile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="993" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/login.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="148" column="0" selection-start="4125" selection-end="4125" vertical-scroll-proportion="-7.7" vertical-offset="3315" max-vertical-offset="5950">
+        <state line="148" column="0" selection-start="4125" selection-end="4125" vertical-scroll-proportion="0.0" vertical-offset="3315" max-vertical-offset="5950">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="37" column="10" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0" vertical-offset="681" max-vertical-offset="2275">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/upload.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="57" column="16" selection-start="1645" selection-end="1645" vertical-scroll-proportion="0.0" vertical-offset="1100" max-vertical-offset="3275">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/.UserStories.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="116" selection-end="116" vertical-scroll-proportion="0.07653061" vertical-offset="0" max-vertical-offset="1800">
+        <state line="69" column="0" selection-start="3660" selection-end="3660" vertical-scroll-proportion="0.0" vertical-offset="1725" max-vertical-offset="1950">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="101" column="21" selection-start="5218" selection-end="5218" vertical-scroll-proportion="0.0" vertical-offset="2525" max-vertical-offset="3000">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/createTables.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="123" column="52" selection-start="4788" selection-end="4793" vertical-scroll-proportion="0.3329843" vertical-offset="2757" max-vertical-offset="5650">
           <folding />
         </state>
       </provider>

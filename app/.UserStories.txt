@@ -1,11 +1,12 @@
 ========== MVP ============
 IN PROGRESS:
-Import Todos - Think this may be critical for folks to start using the app
+Import - Keep track of batches being uploaded.. Provide stats.. allow delete of batch
 
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
 Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email
 Print formatting
-Payment/Donation for usage
+Payment/Donation for usage using PayPal
+Payment/Donation for usage using CreditCard
 Tracking free trial period... enforcement of end of trial period
 Database Backup and Restore process
 Forgot password process.... generate temp password & email..... Force password change when using temp password
@@ -24,6 +25,8 @@ BIZ STUFF
  - Select URL/Domain:  TodoTiger?  TodoTurtle?  spectaculartodo?  todocrusher?  mytodo $2,900  todogiant todowarrior
  -- NOT AVAILABLE: TodoRocket  TodoNinja
 
+"Like us" on Facebook
+Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
 
 ========== Nice to Have ============
 Change order of group tabs   (SETTINGS)
@@ -38,6 +41,8 @@ IOS App
 Move session handling to dynamoDB on AWS
 Add the ability to specify priority (maybe: Tags, DueDate, Frequency) in quick add (for example... New Todo|03/31/2014|Once)
 Forum?
+Ability to share todo lists... have two people log into the same list (change to data model, security (ie - which todo group do you want to share), etc)
+
 
 ========== DONE ============
 Group Add trigger scope to redo the ng-repeat
@@ -61,6 +66,7 @@ space out the change password fields on successful password change...
 store database connection in session.... NOT POSSIBLE... "do not store any objects in session"
 Move Todos between Groups (SETTINGS)
 Add phpass for password storing... See: https://phpbestpractices.org/
+Import Todos - Think this may be critical for folks to start using the app
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
