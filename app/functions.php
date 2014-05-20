@@ -137,9 +137,10 @@ function  updateTodo($dbh, $request_data, $customer_id){
 }
 
 ###################################
-function  addTodo($dbh, $request_data, $customer_id){
+function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm){
 
-  #### TODO pull due_dt from request.. if not available.. default them.
+  #### TODO pull due_dt from request if its available
+
   $priority_cd = 5;
   if (isset($request_data->priority_cd)){
     $priority_cd = $request_data->priority_cd;
@@ -149,14 +150,18 @@ function  addTodo($dbh, $request_data, $customer_id){
     $frequency_cd = $request_data->frequency_cd;
   }
 
+  $batch_id = "NULL";
+  if (isset($batch_id_parm)){
+    $batch_id = $batch_id_parm;
+  }
   $status_cd = 0;
   $group_id = $request_data->activegroup;
   $task_name = mysqli_real_escape_string($dbh, $request_data->taskName);
   ####echo "$request_data->taskName  task_name $task_name";
 
   $query = "INSERT INTO todo (task_name, due_dt, starred, group_id, priority_cd,
-  frequency_cd, status_cd, customer_id, Note, done, done_dt, tags)  VALUES
-    ('$task_name', NULL, '0', $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, '', 0, NULL,'')";
+  frequency_cd, status_cd, customer_id, Note, done, done_dt, tags, batch_id)  VALUES
+    ('$task_name', NULL, '0', $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, '', 0, NULL,'', $batch_id)";
 
   $rowsAffected = actionSql($dbh,$query);
   $todo_id = mysqli_insert_id($dbh);

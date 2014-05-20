@@ -31,6 +31,7 @@ function processRequest(){
 
   // TODO: Add a batch ID to keep track of groups of uploaded txn.. to allow for delete
   // TODO: Capture stats: # Uploaded by Group, # Errors, etc
+  // TODO: Add reject if the number of items exceeds  xxxxx
 
   $dbh = createDatabaseConnection();
   $groups = getGroups($dbh, $customer_id);
@@ -46,13 +47,13 @@ function processRequest(){
       if (!$header){
         $header = $fields;
       } else {
-         $total_added += processUploadedTodo($dbh, $fields, $customer_id, $groups, $frequencies, $priorities);
+         $total_added += processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $frequencies, $priorities);
       }
   }
   return $total_added;
 }
 #################################################################
-function processUploadedTodo($dbh, $fields, $customer_id, $groups, $frequencies, $priorities){
+function processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $frequencies, $priorities){
 
     list($ok, $error_msg, $group_id) = getGroupIdUsingName($fields[0], $groups);
 
@@ -65,7 +66,7 @@ function processUploadedTodo($dbh, $fields, $customer_id, $groups, $frequencies,
       $request_data->tags = $fields[3];
       $request_data->frequency_cd = getFrequencyCdUsingName($fields[4], $frequencies);
       $request_data->priority_cd = getPriorityCdUsingName($fields[5], $priorities);
-      $result = addTodo($dbh, $request_data, $customer_id);
+      $result = addTodo($dbh, $request_data, $customer_id, $batch_id);
       //var_dump($result);
       if ($result['todo_id']){ $todo_added = 1;}
       //echo "this is todo_added: $todo_added\n";
