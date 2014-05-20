@@ -10,6 +10,7 @@ $dbh = createDatabaseConnection();
 #echo var_dump($dbh);
 
 emptyTable($dbh,'todo');
+emptyTable($dbh,'todo_batch');
 emptyTable($dbh,'todo_group');
 emptyTable($dbh,'todo_tag_xref');
 emptyTable($dbh,'tag');

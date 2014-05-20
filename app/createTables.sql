@@ -2,12 +2,15 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+DROP SCHEMA IF EXISTS `db508430361` ;
 CREATE SCHEMA IF NOT EXISTS `db508430361` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci ;
 USE `db508430361` ;
 
 -- -----------------------------------------------------
 -- Table `db508430361`.`customer`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`customer` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`customer` (
   `customer_id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -23,6 +26,8 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`payment`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`payment` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`payment` (
   `pmt_id` INT(11) NOT NULL,
   `customer_Id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -43,6 +48,8 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`tag`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`tag` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`tag` (
   `tag_id` INT(11) NOT NULL,
   `tag_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -62,6 +69,8 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_frequency`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`todo_frequency` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_frequency` (
   `frequency_cd` TINYINT(4) NOT NULL,
   `frequency_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -74,6 +83,8 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_priority`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`todo_priority` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_priority` (
   `priority_cd` TINYINT(4) NOT NULL,
   `priority_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -86,6 +97,8 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_status`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`todo_status` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_status` (
   `status_cd` TINYINT(4) NOT NULL,
   `status_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -98,6 +111,8 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_group`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`todo_group` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_group` (
   `group_id` INT(11) NOT NULL AUTO_INCREMENT,
   `customer_id` INT(11) NOT NULL,
@@ -121,18 +136,20 @@ COMMENT = '																																																												';
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_batch`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`todo_batch` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_batch` (
-  `customer_customer_id` INT(11) NOT NULL,
   `batch_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` INT(11) NOT NULL,
   `file_name` VARCHAR(145) NULL,
-  `uploaded` DATETIME NULL,
+  `upload_dt` DATETIME NULL,
   `count_uploaded` INT NULL,
   `count_error_no_group` INT NULL,
   `count_error_above_limit` INT NULL,
-  INDEX `fk_todo_batch_customer1_idx` (`customer_customer_id` ASC),
+  INDEX `fk_todo_batch_customer1_idx` (`customer_id` ASC),
   PRIMARY KEY (`batch_id`),
   CONSTRAINT `fk_todo_batch_customer1`
-    FOREIGN KEY (`customer_customer_id`)
+    FOREIGN KEY (`customer_id`)
     REFERENCES `db508430361`.`customer` (`customer_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -142,6 +159,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`todo` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo` (
   `todo_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `group_id` INT(11) NOT NULL,
@@ -156,7 +175,7 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`todo` (
   `done` TINYINT(1) NULL DEFAULT NULL,
   `tags` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
   `done_dt` DATE NULL DEFAULT NULL,
-  `batch_id` INT(11) NOT NULL,
+  `batch_id` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`todo_id`),
   INDEX `fk_todo_todoGroup1_idx` (`group_id` ASC),
   INDEX `fk_todo_priority1_idx` (`priority_cd` ASC),
@@ -201,6 +220,8 @@ AUTO_INCREMENT = 624;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_tag_xref`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`todo_tag_xref` ;
+
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_tag_xref` (
   `tag_Id` INT(11) NOT NULL,
   PRIMARY KEY (`tag_Id`),

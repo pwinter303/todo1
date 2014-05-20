@@ -25,8 +25,9 @@ function processRequest(){
      die ('invalid customer id');
   }
 
-  $array = readUploadedFileIntoArray();
-  #var_dump($array);
+  list($file_name, $array) = readUploadedFileIntoArray();
+  #var_dump($file_name);
+
 
   // TODO: Add a batch ID to keep track of groups of uploaded txn.. to allow for delete
   // TODO: Capture stats: # Uploaded by Group, # Errors, etc
@@ -35,6 +36,8 @@ function processRequest(){
   $groups = getGroups($dbh, $customer_id);
   $frequencies = getFrequencies($dbh);
   $priorities = getPriorities($dbh);
+
+  $batch_id = addBatch($dbh, $file_name, $customer_id);
 
   $header = NULL;
   $total_added = 0;
@@ -122,5 +125,19 @@ function getPriorityCdUsingName($priority, $priorities){
     return $priority_cd;
 }
 
+// todo - fix the column name upload... should be upload_dt
+
+function addBatch($dbh, $file_name, $customer_id ){
+  $query = "insert into todo_batch (file_name, upload_dt, customer_id) values (
+  '$file_name', CURDATE(), $customer_id)";
+
+  ###echo "$query";
+  $rowsAffected = actionSql($dbh,$query);
+
+  $batch_id = mysqli_insert_id($dbh);
+  ###echo "rowsAffected $rowsAffected\n";
+  ###echo "batch_id $batch_id\n";
+  return $batch_id;
+}
 
 ?>

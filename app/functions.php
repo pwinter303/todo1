@@ -139,7 +139,7 @@ function  updateTodo($dbh, $request_data, $customer_id){
 ###################################
 function  addTodo($dbh, $request_data, $customer_id){
 
-  #### TODO pull priority, frequency, due_dt from request.. if not available.. default them.
+  #### TODO pull due_dt from request.. if not available.. default them.
   $priority_cd = 5;
   if (isset($request_data->priority_cd)){
     $priority_cd = $request_data->priority_cd;
@@ -312,7 +312,7 @@ function readUploadedFileIntoArray(){
             }
         }
     }
-    return $array;
+    return array($name, $array);
 }
 
 
