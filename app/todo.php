@@ -68,6 +68,9 @@ function  processGet($customer_id){
        case 'getpriorities':
              $result = getPriorities($dbh);
              break;
+       case 'getbatches':
+             $result = getBatches($dbh, $customer_id);
+             break;
        default:
              echo "Error:Invalid Request:Action not set properly";
              break;

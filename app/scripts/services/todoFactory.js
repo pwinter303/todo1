@@ -165,7 +165,19 @@ angular.module('todoApp')
           });
         };
 
-    // prevent toastr is not defined error in grunt/jshint
+        factory.getBatches = function() {
+          var myGet = $http({
+            url: 'todo.php',
+            method: 'GET',
+            params: {action: 'getbatches'}
+          });
+          return myGet.then(function(result) {
+            return result.data;
+          });
+        };
+
+
+        // prevent toastr is not defined error in grunt/jshint
         /*global toastr */
         toastr.options = {
           'timeOut': '2000'

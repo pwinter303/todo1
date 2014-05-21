@@ -29,10 +29,6 @@ function processRequest(){
   #var_dump($file_name);
 
 
-  // TODO: Add a batch ID to keep track of groups of uploaded txn.. to allow for delete
-  // TODO: Capture stats: # Uploaded by Group, # Errors, etc
-  // TODO: Add reject if the number of items exceeds  xxxxx
-
   $dbh = createDatabaseConnection();
   $groups = getGroups($dbh, $customer_id);
   $frequencies = getFrequencies($dbh);
@@ -42,14 +38,23 @@ function processRequest(){
 
   $header = NULL;
   $total_added = 0;
+  $total_skipped = 0;
+  $total_errored = 0;
   foreach ($array as $fields){
       ### skip the first row since its a header
       if (!$header){
         $header = $fields;
       } else {
-         $total_added += processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $frequencies, $priorities);
+        // fixme: Add reject if the number of items exceeds  xxxxx
+        // fixme: Capture stats: # Uploaded, # Errors, Skipped etc
+         list($uploaded, $errored) = processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $frequencies, $priorities);
+         $total_added +=  $uploaded;
+         $total_errored +=  $errored;
       }
   }
+
+  $rows_updated = updateBatchStats($dbh, $customer_id, $batch_id, $total_added, $total_errored, $total_skipped);
+
   return $total_added;
 }
 #################################################################
@@ -59,6 +64,7 @@ function processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $f
 
     // Add the item if the name exists and the group could be decoded
     $todo_added = 0;
+    $todo_err = 0;
     if (($ok) ){
       $request_data->activegroup = $group_id;
       $request_data->taskName = $fields[1];
@@ -70,9 +76,11 @@ function processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $f
       //var_dump($result);
       if ($result['todo_id']){ $todo_added = 1;}
       //echo "this is todo_added: $todo_added\n";
+    } else {
+      $todo_err = 1;
     }
 
-    return $todo_added;
+    return array($todo_added, $todo_err);
 
 }
 
@@ -126,19 +134,5 @@ function getPriorityCdUsingName($priority, $priorities){
     return $priority_cd;
 }
 
-// todo - fix the column name upload... should be upload_dt
-
-function addBatch($dbh, $file_name, $customer_id ){
-  $query = "insert into todo_batch (file_name, upload_dt, customer_id) values (
-  '$file_name', CURDATE(), $customer_id)";
-
-  ###echo "$query";
-  $rowsAffected = actionSql($dbh,$query);
-
-  $batch_id = mysqli_insert_id($dbh);
-  ###echo "rowsAffected $rowsAffected\n";
-  ###echo "batch_id $batch_id\n";
-  return $batch_id;
-}
 
 ?>

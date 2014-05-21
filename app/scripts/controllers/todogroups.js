@@ -63,7 +63,7 @@ angular.module('todoApp')
         }
       }
       $rootScope.activegroup = id;
-      //TODO - Add call to update TodoGroups Active in Table.....
+      //FixMe: - Add call to update TodoGroups Active in Table.....
     };
 
     // needed for page reloads

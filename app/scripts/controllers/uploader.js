@@ -35,7 +35,7 @@ angular.module('todoApp')
         },
         clear: function () {
 
-          // todo: remove comment
+          // FixMe: remove comment
           //_files = [];
         },
         files: function () {

@@ -283,7 +283,7 @@ function doDateStuff($date_string){
 function readUploadedFileIntoArray(){
     $csv = array();
 
-    // TODO: sanitize the data read from the file
+    // FixMe: sanitize the data read from the file
     // check there are no errors
 
     //var_dump($_FILES);
@@ -319,6 +319,36 @@ function readUploadedFileIntoArray(){
     }
     return array($name, $array);
 }
+
+
+function addBatch($dbh, $file_name, $customer_id ){
+  $query = "insert into todo_batch (file_name, upload_dt, customer_id) values ('$file_name', CURTIME(), $customer_id)";
+  $rowsAffected = actionSql($dbh,$query);
+  $batch_id = mysqli_insert_id($dbh);
+  return $batch_id;
+}
+
+function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $skipped){
+  $query = "update todo_batch set  count_uploaded = $uploaded,   count_error_no_group = $errored,  count_error_above_limit = $skipped
+  where customer_id = $customer_id and batch_id = $batch_id";
+  $rowsAffected = actionSql($dbh,$query);
+  return $rowsAffected;
+}
+
+function deleteBatch($dbh, $customer_id, $batch_id){
+  $query = "delete from todo_batch where customer_id = $customer_id and batch_id = $batch_id";
+  $rowsAffected = actionSql($dbh,$query);
+  return $rowsAffected;
+}
+
+function getBatches($dbh, $customer_id){
+  $query = "select batch_id, file_name, upload_dt, count_uploaded, count_error_no_group, count_error_above_limit from todo_batch
+  where customer_id = $customer_id order by upload_dt desc";
+  $data = execSqlMultiRow($dbh, $query);
+  return $data;
+}
+
+
 
 
 
