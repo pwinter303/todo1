@@ -335,8 +335,13 @@ function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $s
   return $rowsAffected;
 }
 
-function deleteBatch($dbh, $customer_id, $batch_id){
+
+function deleteBatch($dbh, $request, $customer_id){
+  $batch_id = $request->batch_id;
+  // fixme: add delete of todos with matching batch_id... or... change table to do cascading delete
+  if (!isset($batch_id)){die("cannot delete batch.. missing information in the request");}
   $query = "delete from todo_batch where customer_id = $customer_id and batch_id = $batch_id";
+  echo "$query";
   $rowsAffected = actionSql($dbh,$query);
   return $rowsAffected;
 }

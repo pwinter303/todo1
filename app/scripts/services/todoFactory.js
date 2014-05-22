@@ -176,6 +176,12 @@ angular.module('todoApp')
           });
         };
 
+        factory.deleteBatch = function(batch) {
+          batch.action = 'deleteBatch';
+          return $http.post('todo.php',batch).then(function(result) {
+            return result.data;
+          });
+        };
 
         // prevent toastr is not defined error in grunt/jshint
         /*global toastr */

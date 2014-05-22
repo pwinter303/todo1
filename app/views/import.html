@@ -28,31 +28,35 @@
 <h2>Previous Uploads</h2>
 
 <div class="row">
-    <div class="col-md-4 small">File Name</div>
-    <div class="col-md-2 small">Upload Date and Time</div>
-    <div class="col-md-2 small">Todos Imported</div>
-    <div class="col-md-2 small">Errors TodoGroup Not Found</div>
-    <div class="col-md-2 small">Skipped Exceeded Limit</div>
+    <div class="col-md-3 small text-center">File Name</div>
+    <div class="col-md-2 small text-center">Upload Date and Time</div>
+    <div class="col-md-2 small text-center">Todos Imported</div>
+    <div class="col-md-2 small text-center">Skipped, Todo Group Not Found</div>
+    <div class="col-md-2 small text-center">Skipped, Exceeded Limit</div>
+    <div class="col-md-1 small text-center">Delete Batch and Todos</div>
 </div>
 
 <div ng-controller='BatchesCtrl'>
 
     <div data-ng-repeat="batch in batches">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 {{batch.file_name}}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 text-center">
                 {{batch.upload_dt}}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2  text-center">
                 {{batch.count_uploaded}}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2  text-center">
                 {{batch.count_error_no_group}}
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2  text-center" >
                 {{batch.count_error_above_limit}}
+            </div>
+            <div class="col-md-1">
+                <button  class="btn btn-danger btn-group-sm" data-ng-click="deleteBatch(batch)">Delete!</button>
             </div>
         </div>
     </div>

@@ -211,7 +211,7 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`todo` (
   CONSTRAINT `fk_todo_todo_batch1`
     FOREIGN KEY (`batch_id`)
     REFERENCES `db508430361`.`todo_batch` (`batch_id`)
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 624;

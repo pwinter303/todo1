@@ -109,6 +109,9 @@ function  processPost($customer_id){
        case 'updateGroup':
              $result = updateGroup($dbh, $request, $customer_id);
              break;
+       case 'deleteBatch':
+             $result = deleteBatch($dbh, $request, $customer_id);
+             break;
        default:
              echo "Error:Invalid Request:Action not set properly";
              break;
