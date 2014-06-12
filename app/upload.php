@@ -47,9 +47,13 @@ function processRequest(){
       } else {
         // fixme: Add reject if the number of items exceeds  xxxxx
         // fixme: Capture stats: # Uploaded, # Errors, Skipped etc
-         list($uploaded, $errored) = processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $frequencies, $priorities);
-         $total_added +=  $uploaded;
-         $total_errored +=  $errored;
+
+        // Note: Only process item if the ToDo name is populated....
+        if (strlen($fields[1])){
+           list($uploaded, $errored) = processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $frequencies, $priorities);
+           $total_added +=  $uploaded;
+           $total_errored +=  $errored;
+        }
       }
   }
 
