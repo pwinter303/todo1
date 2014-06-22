@@ -81,7 +81,12 @@ angular.module('todoApp')
               });
           };
 
-        $scope.moveTodos = function (passedData){
+    $scope.stripepurchase = function (token){
+      $scope.mytoken = token;
+
+    };
+
+    $scope.moveTodos = function (passedData){
 
           if (typeof passedData.fromGroup === 'undefined'){
             todoFactory.msgError('Select group to move FROM');

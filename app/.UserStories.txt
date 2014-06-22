@@ -18,6 +18,8 @@ Show completed items... is this going to be a performance problem?  Should they 
 Feedback form... or Forum...
 Export Todos - Should this be part of premium?   MVP?
 HTTPS - Need:  Certificate, Business Name,
+Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
+
 
 BIZ STUFF
  - Setup LLC... Needed in advance of domain name, SSL setup, terms & conditions etc
@@ -25,8 +27,6 @@ BIZ STUFF
  - Select URL/Domain:  TodoTiger?  TodoTurtle?  spectaculartodo?  todocrusher?  mytodo $2,900  todogiant todowarrior
  -- NOT AVAILABLE: TodoRocket  TodoNinja
 
-"Like us" on Facebook
-Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
 
 ========== Nice to Have ============
 Change order of group tabs   (SETTINGS)

@@ -1,0 +1,7 @@
+php extensions needed for stripe: curl, multibyte, openssl
+uncomment in the php.ini file (for windows)
+  extension=php_openssl.dll
+  extension=php_mbstring.dll
+  extension=php_curl.dll
+may need to install on linux
+http://www.knowledgebase-script.com/kb/article/how-to-enable-mbstring-in-php-46.html
