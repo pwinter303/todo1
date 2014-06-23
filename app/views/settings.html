@@ -8,38 +8,36 @@
             <button type="submit" class="btn btn-success" data-ng-click="changePassword(pwd)">Change Password</button>
         </form>
     </div>
-    <div id="myDiv" ng-controller="TodolistCtrl" class="col-md-6">
+    <div id="myDiv" ng-controller="AcctdetailCtrl" class="col-md-6">
         <h4>Account Details</h4>
         <div class="col-md-3">Membership Type:</div>
         <div class="col-md-9">Free</div>
-        <div class="col-md-3">Valid Through:</div>
+        <div class="col-md-3">Paid Through:</div>
         <div class="col-md-9">September 13, 2014</div>
-        <div class="col-md-3">Upgrade to Premium:</div>
-        <div class="col-md-9">xxxxx</div>
 
-        <button id="customButton">Purchase</button>
+        <button id="customButton" class="btn btn-success">Purchase 12 Months of Premium</button>
 
         <script>
             var handler = StripeCheckout.configure({
-                key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
-                image: '/square-image.png',
+                key: 'pk_test_fDHNv3NjM0BYMTFjxF2sPWS4',
+                image: '/todo/app/images/giant1.png',
                 token: function(token) {
                     // Use the token to create the charge with a server-side script.
                     // You can access the token ID with `token.id`
-                    console.log('PLWROCKS');
-//                    var microappscope = angular.element($("#myDiv")).scope();
-//                    microappscope.stripepurchase(token);
 
-                    angular.element($("#myDiv")).scope().stripepurchase(token);
+                    //var microappscope = angular.element($("#myDiv")).scope();
+                    //microappscope.stripepurchase(token);
+                    // must specify DOM element that hold controller in order to access scope and method/function
+                    angular.element($("#myDiv")).scope().processPayment(token);
                 }
             });
 
             document.getElementById('customButton').addEventListener('click', function(e) {
                 // Open Checkout with further options
                 handler.open({
-                    name: 'Demo Site',
-                    description: '2 widgets ($20.00)',
-                    amount: 2000
+                    name: 'TodoGiant',
+                    description: '12 Months: Premium Membership',
+                    amount: 1000
                 });
                 e.preventDefault();
             });

@@ -81,11 +81,6 @@ angular.module('todoApp')
               });
           };
 
-    $scope.stripepurchase = function (token){
-      $scope.mytoken = token;
-
-    };
-
     $scope.moveTodos = function (passedData){
 
           if (typeof passedData.fromGroup === 'undefined'){

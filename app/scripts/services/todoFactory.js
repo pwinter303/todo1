@@ -73,15 +73,7 @@ angular.module('todoApp')
           });
         };
 
-//        not used..
-//        factory.uploadFile = function(file) {
-//          file.action = 'updateFile';
-//          return $http.post('todo.php',file).then(function(result) {
-//            return result.data;
-//          });
-//        };
-
-        factory.registerUser = function(user) {
+       factory.registerUser = function(user) {
           user.action = 'registerUser';
           return $http.post('login.php',user).then(function(result) {
             return result.data;
@@ -181,6 +173,23 @@ angular.module('todoApp')
           return $http.post('todo.php',batch).then(function(result) {
             return result.data;
           });
+        };
+
+        factory.getAccountDetails = function() {
+          var myGet = $http({
+            url: 'userAccount.php',method: 'GET',params: {action: 'getAccountDetails'}
+          });
+          return myGet.then(function(result) {
+            return result.data;
+          });
+        };
+
+        factory.processPayment = function(token) {
+          token.action = 'processPayment';
+          return $http.post('userAccount.php',token).then(function(result) {
+            return result.data;
+          });
+
         };
 
         // prevent toastr is not defined error in grunt/jshint
