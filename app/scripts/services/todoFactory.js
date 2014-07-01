@@ -73,7 +73,7 @@ angular.module('todoApp')
           });
         };
 
-       factory.registerUser = function(user) {
+        factory.registerUser = function(user) {
           user.action = 'registerUser';
           return $http.post('login.php',user).then(function(result) {
             return result.data;
@@ -177,7 +177,9 @@ angular.module('todoApp')
 
         factory.getAccountDetails = function() {
           var myGet = $http({
-            url: 'userAccount.php',method: 'GET',params: {action: 'getAccountDetails'}
+            url: 'userAccount.php',
+            method: 'GET',
+            params: {action: 'getAccountDetails'}
           });
           return myGet.then(function(result) {
             return result.data;

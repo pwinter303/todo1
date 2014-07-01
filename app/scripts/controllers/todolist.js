@@ -81,7 +81,7 @@ angular.module('todoApp')
               });
           };
 
-    $scope.moveTodos = function (passedData){
+        $scope.moveTodos = function (passedData){
 
           if (typeof passedData.fromGroup === 'undefined'){
             todoFactory.msgError('Select group to move FROM');
