@@ -10,63 +10,60 @@ angular.module('todoApp')
 
 
     $scope.getTodoGroups = function (){
-      todoFactory.getToDoGroups().then(function(data) {
-        /* following comment turns off camelcase check for this function.. so it'll be ignored */
-        /* jshint camelcase: false */
+      /* following comment turns off camelcase check for this function.. so it'll be ignored */
+      /* jshint camelcase: false */
+      todoFactory.getToDoGroups()
+        .success(function (data) {
           $scope.groups = data;
           for(var i=0;i<$scope.groups.length;i++){
             if($scope.groups[i].active === true){
               $rootScope.activegroup = $scope.groups[i].group_id;
             }
           }
+        })
+        .error(function (error) {
+          $scope.status = 'Error Getting Todo Groups:' + error.message;
         });
     };
 
-    // needed for page reloads
-
-    // this isnt needed since we've changed the getloginstatus (in authenticate) to broadcast logged in
-    // which will call get groups
-
-    //this seems hacky... but.... cant find a better way to do it...
-//    getLogin();
-//    function getLogin() {
-//      todoFactory.getLoginStatusNew()
-//        .success(function (data) {
-//          if (data.login){
-//            $scope.getTodoGroups();
-//          }
-//        })
-//        .error(function (error) {
-//        });
-//    }
-
     $scope.addGroup = function (group){
-      todoFactory.addGroup(group).then(function(data){
-        if (data){
-          //$('#myModalAddGroup').modal('hide');
-          $scope.getTodoGroups();
-          $scope.newGroup.name = '';
-          todoFactory.msgSuccess('Todo Group Added!');
-        }
-      });
+      todoFactory.addGroup(group)
+        .success(function (data) {
+          if (data){
+            $scope.getTodoGroups();
+            $scope.newGroup.name = '';
+            todoFactory.msgSuccess('Todo Group Added!');
+          }
+        })
+        .error(function (error) {
+          $scope.status = 'Error Adding Group:' + error.message;
+        });
     };
 
     $scope.updateGroup = function (group){
-      todoFactory.updateGroup(group).then(function(data){
-        if (data){
-          $scope.getTodoGroups();
-          todoFactory.msgSuccess('Updated!');
-        }
-      });
+      todoFactory.updateGroup(group)
+        .success(function (data) {
+          if (data){
+            $scope.getTodoGroups();
+            todoFactory.msgSuccess('Updated!');
+          }
+        })
+        .error(function (error) {
+          $scope.status = 'Error Adding Group:' + error.message;
+        })
     };
 
     $scope.deleteGroup = function (group){
-      todoFactory.deleteGroup(group).then(function(data){
-        if (data){
-          $scope.getTodoGroups();
-          todoFactory.msgSuccess('Deleted!');
-        }
-      });
+      todoFactory.deleteGroup(group)
+        .success(function (data) {
+          if (data){
+            $scope.getTodoGroups();
+            todoFactory.msgSuccess('Deleted!');
+          }
+        })
+        .error(function (error) {
+          $scope.status = 'Error Adding Group:' + error.message;
+        })
     };
 
 

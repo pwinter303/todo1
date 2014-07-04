@@ -1,13 +1,13 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('todoAuthenticateCtrl', function ($scope, todoFactory, $location) {
+  .controller('todoAuthenticateCtrl', function ($scope, authentication, todoFactory, $location) {
 
         $scope.pwd = {};
         $scope.loggedIn = 0;
 
-        function getLogin() {
-          todoFactory.getLoginStatusNew()
+        function getLoginStatus() {
+          authentication.getLoginStatusNew()
             .success(function (data) {
               $scope.loggedIn = data.login;
               if ($scope.loggedIn){
@@ -20,85 +20,72 @@ angular.module('todoApp')
               $scope.status = 'Unable to login' + error.message;
             });
         }
+        getLoginStatus();
 
-        getLogin();
-
-        // old version of the code...
-//        $scope.getLoginStat = function (){
-//            var stat = todoFactory.getLocalLoginStatus();
-//
-//            if (typeof stat === 'undefined'){
-//              todoFactory.getLoginStatus().then(function(data) {
-//              //this will execute when the AJAX call completes.
-//                  $scope.loggedIn = data.login;
-//                  todoFactory.setLoginStatus($scope.loggedIn);
-//                  if (!$scope.loggedIn){
-//                    $location.path( '/' );
-//                  }
-//                });
-//            } else {
-//              $scope.loggedIn = stat;
-//            }
-//          };
-//
-//        $scope.getLoginStat();
-
-
-        $scope.logMeIn = function (user){
+        $scope.logIn = function (user){
             $scope.loginmsg='';
-
-            todoFactory.login(user).then(function(data) {
+            authentication.login(user)
+              .success(function (data) {
                 // php returns a string.. must convert to number
                 $scope.loggedIn = Number(data.login);
-                // stopped doing set of login status..
-                //todoFactory.setLoginStatus($scope.loggedIn);
                 if ($scope.loggedIn) {
-                  //$('#myModal').modal('hide');
                   $scope.$broadcast('LoggedIn', []);
                   $location.path( '/todolist' );
                 } else {
                   $scope.loginmsg = 'ERROR - Invalid email/password combination';
                 }
+              })
+              .error(function (error) {
+                $scope.status = 'Error Logging In:' + error.message;
               });
           };
 
         $scope.logMeOut = function(){
-          todoFactory.logOut().then(function() {
-            todoFactory.setLoginStatus(0);
-            $scope.$broadcast('LogOut', []);
-            $scope.loggedIn = 0;
-            $location.path( '/' );
-          });
+          authentication.logOut()
+            .success(function (data) {
+              $scope.$broadcast('LogOut', []);
+              $scope.loggedIn = 0;
+              $location.path( '/' );
+            })
+            .error(function (error) {
+              $scope.status = 'Error Logging Out:' + error.message;
+            });
         };
 
         $scope.changePassword = function(passworddata){
-          todoFactory.changePassword(passworddata).then(function(data) {
-            if (data.error){
-              todoFactory.msgError(data.error);
-            } else {
-              $scope.pwd.old = '';
-              $scope.pwd.new1 = '';
-              $scope.pwd.new2 = '';
-              todoFactory.msgSuccess(data.msg);
-            }
-          });
+          authentication.changePassword(passworddata)
+            .success(function (data) {
+              if (data.error){
+                todoFactory.msgError(data.error);
+              } else {
+                $scope.pwd.old = '';
+                $scope.pwd.new1 = '';
+                $scope.pwd.new2 = '';
+                todoFactory.msgSuccess(data.msg);
+              }
+            })
+            .error(function (error) {
+              $scope.status = 'Error Changing Password:' + error.message;
+            });
         };
 
         $scope.registerMe = function(user){
-          todoFactory.registerUser(user).then(function(data) {
-            $scope.errormsg = '';
-            if (data.error){
-              $scope.errormsg = data.error;
-            }
-            if (data.login){
-              $scope.loggedIn = 1;
-              todoFactory.setLoginStatus(1);
-              $scope.$broadcast('LoggedIn', []);
-              //$('#myModalRegister').modal('hide');
-              todoFactory.msgSuccess(data.msg);
-              $location.path( '/todolist' );
-            }
-          });
+          authentication.registerUser(user)
+            .success(function (data) {
+              $scope.errormsg = '';
+              if (data.error){
+                $scope.errormsg = data.error;
+              }
+              if (data.login){
+                $scope.loggedIn = 1;
+                $scope.$broadcast('LoggedIn', []);
+                todoFactory.msgSuccess(data.msg);
+                $location.path( '/todolist' );
+              }
+            })
+            .error(function (error) {
+              $scope.status = 'Error Logging In:' + error.message;
+            });
         };
 
       });

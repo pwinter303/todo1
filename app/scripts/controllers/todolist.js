@@ -4,17 +4,23 @@ angular.module('todoApp')
   .controller('TodolistCtrl', function ($scope, todoFactory, $rootScope ) {
 
         $scope.frequencies = function (){
-          todoFactory.getfrequencies().then(function(data) {
-            //this will execute when the AJAX call completes.
-            $scope.frequencies = data;
-          });
+          todoFactory.getfrequencies()
+            .success(function (data) {
+              $scope.frequencies = data;
+            })
+            .error(function (error) {
+              $scope.status = 'Error Saving:' + error.message;
+            });
         };
 
         $scope.priorities = function (){
-          todoFactory.getpriorities().then(function(data) {
-            //this will execute when the AJAX call completes.
-            $scope.priorities = data;
-          });
+          todoFactory.getpriorities()
+            .success(function (data) {
+              $scope.priorities = data;
+            })
+            .error(function (error) {
+              $scope.status = 'Error Saving:' + error.message;
+            });
         };
 
 
@@ -23,7 +29,7 @@ angular.module('todoApp')
           $scope.frequencies();
         }
 
-        $scope.addIt = function (newTodo){
+        $scope.addTodo = function (newTodo){
             newTodo.taskName = newTodo.task;
             newTodo.activegroup = $rootScope.activegroup;
             todoFactory.addTodo(newTodo)
@@ -94,13 +100,17 @@ angular.module('todoApp')
             if (typeof passedData.toGroup === 'undefined'){
               todoFactory.msgError('Select group to move TO');
             } else {
-              todoFactory.moveTodos(passedData).then(function(data) {
-                if (data.error){
-                  todoFactory.msgError(data.error);
-                } else {
-                  todoFactory.msgSuccess(data.msg);
-                }
-              });
+              todoFactory.moveTodos(passedData)
+                .success(function (data) {
+                  if (data.error){
+                    todoFactory.msgError(data.error);
+                  } else {
+                    todoFactory.msgSuccess(data.msg);
+                  }
+                })
+                .error(function (error) {
+                  $scope.status = 'Error Moving ToDos:' + error.message;
+                })
             }
           }
         };

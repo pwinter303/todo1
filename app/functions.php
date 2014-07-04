@@ -20,7 +20,7 @@ function  getTodos($dbh, $customer_id){
   $query = "select todo_id, group_id, task_name, DATE_FORMAT(due_dt,'%m/%d/%Y') AS due_dt, starred, priority_cd,
   frequency_cd, status_cd, note, done, tags, done_dt from todo
   where customer_id = $customer_id and
-  ((done_dt is NULL) or (done_dt >= CURDATE() - INTERVAL 3 DAY))
+  ((done_dt is NULL) or (done_dt >= CURDATE() - INTERVAL 1 DAY))
   order by priority_cd desc";
   $data = execSqlMultiRow($dbh, $query);
   #$data{0}{'done'} = true;
