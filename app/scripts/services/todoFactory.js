@@ -4,39 +4,28 @@ angular.module('todoApp')
   .factory('todoFactory', ['$http', function($http) {
 
     var dataFactory = {};
-        var loginStatus;
+    var loginStatus;
 
     dataFactory.getLoginStatusNew = function() {
           return $http.get('login.php');
         };
 
-    dataFactory.getLoginStatus = function() {
-            return $http.get('login.php').then(function(result) {
-                return result.data;
-              });
-          };
-
-    dataFactory.setLoginStatus = function(stat) {
-            loginStatus = stat;
-          };
-
-    dataFactory.getLocalLoginStatus = function() {
-            return loginStatus;
-          };
-
     dataFactory.addTodo = function(todo) {
           todo.action = 'addNew';
-          return $http.post('todo.php',todo).then(function(result) {
-            return result.data;
-          });
+          return $http.post('todo.php',todo);
         };
 
     dataFactory.updateTodo = function(todo) {
           todo.action = 'updateTodo';
-          return $http.post('todo.php',todo).then(function(result) {
-            return result.data;
-          });
+          return $http.post('todo.php',todo);
         };
+
+    dataFactory.getToDos = function() {
+          var todo = {};
+          todo.action = 'gettodos';
+          return $http({method:'GET', url:'todo.php', params: todo});
+    };
+
 
     dataFactory.moveTodos = function(data) {
           data.action = 'moveTodos';
@@ -82,19 +71,6 @@ angular.module('todoApp')
           return $http.post('login.php',user).then(function(result) {
             return result.data;
           });
-        };
-
-    dataFactory.getToDos = function() {
-          //since $http.get returns a promise, and promise.then() also returns a promise..
-          //that resolves to whatever value is returned in it's callback argument, we can return that.
-          var myGet = $http({
-            url: 'todo.php',
-            method: 'GET',
-            params: {action: 'gettodos'}
-          });
-          return myGet.then(function(result) {
-              return result.data;
-            });
         };
 
     dataFactory.getfrequencies = function() {
@@ -198,11 +174,11 @@ angular.module('todoApp')
 
         };
 
-        // prevent toastr is not defined error in grunt/jshint
-        /*global toastr */
-        toastr.options = {
-          'timeOut': '2000'
-        };
+    // prevent toastr is not defined error in grunt/jshint
+    /*global toastr */
+    toastr.options = {
+      'timeOut': '2000'
+    };
     dataFactory.msgSuccess = function(text) {
           toastr.success(text);
         };
@@ -210,6 +186,6 @@ angular.module('todoApp')
           toastr.error(text);
         };
 
-        return dataFactory;
+    return dataFactory;
 
   }]);

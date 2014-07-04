@@ -26,33 +26,38 @@ angular.module('todoApp')
         $scope.addIt = function (newTodo){
             newTodo.taskName = newTodo.task;
             newTodo.activegroup = $rootScope.activegroup;
-            todoFactory.addTodo(newTodo).then(function(data){
-              if (data){
-                todoFactory.msgSuccess('Todo Added!');
-              }
-              $scope.todos.push(data);
-              //console($scope.todos);
-              //$scope.getMyTodos();
-              $scope.newTodo.task = '';
-            });
-          };
+            todoFactory.addTodo(newTodo)
+              .success(function (data) {
+                if (data){
+                  todoFactory.msgSuccess('Todo Added!');
+                }
+                $scope.todos.push(data);
+                $scope.newTodo.task = '';
+                })
+              .error(function (error) {
+                $scope.status = 'Error Saving:' + error.message;
+              });
+        }
 
         $scope.updateDone = function (todo){
-          todoFactory.updateTodo(todo).then(function(data){
-            if (data){
-              if (todo.done){
-                todoFactory.msgSuccess('Well Done!');
+          todoFactory.updateTodo(todo)
+            .success(function (data) {
+              if (data){
+                if (todo.done){
+                  todoFactory.msgSuccess('Well Done!');
+                }
               }
-            }
-            // since the to do has been updated... there's no reason to refresh
-            //$scope.getMyTodos();
-          });
+            })
+            .error(function (error) {
+              $scope.status = 'Error Saving:' + error.message;
+            })
         };
 
         $scope.updateTask = function (todo){
           /* following comment turns off camelcase check for this function.. so it'll be ignored */
           /* jshint camelcase: false */
-          todoFactory.updateTodo(todo).then(function(data){
+          todoFactory.updateTodo(todo)
+            .success(function (data) {
               if (data){
                 todoFactory.msgSuccess('Updated');
                 // update the date since it may have changed (ie - pass in Monday and the backend service will translate)
@@ -62,31 +67,27 @@ angular.module('todoApp')
                   }
                 }
               }
-              // since the to do has been updated... there's no reason to refresh
-              //$scope.getMyTodos();
-            });
+            })
+            .error(function (error) {
+              $scope.status = 'Error Saving:' + error.message;
+            })
         };
 
         $scope.getMyTodos = function (){
-            todoFactory.getToDos().then(function(data) {
-                //this will execute when the AJAX call completes.
-                $scope.todos = data;
-                //console.log(data);
-              });
-          };
+            todoFactory.getToDos()
+              .success(function (data) {
+                if (data){
+                  $scope.todos = data;
+                }
+              })
+              .error(function (error) {
+                $scope.status = 'Error Retrieving ToDos:' + error.message;
+              })
+        }
 
         $scope.getMyTodos();
 
-        $scope.getOneTodo = function (){
-            todoFactory.getOneTodo().then(function(data) {
-                //this will execute when the AJAX call completes.
-                $scope.onetodo = data;
-                //console.log(data);
-              });
-          };
-
         $scope.moveTodos = function (passedData){
-
           if (typeof passedData.fromGroup === 'undefined'){
             todoFactory.msgError('Select group to move FROM');
           } else {

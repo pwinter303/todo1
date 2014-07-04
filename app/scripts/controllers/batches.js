@@ -22,6 +22,7 @@ angular.module('todoApp')
       });
     };
 
+    /*jshint unused:false */
     $rootScope.$on('uploadProgress', function (e, call) {
       $scope.getBatches();
     });

@@ -1,6 +1,7 @@
 'use strict';
 
-//var app = angular.module("app", []);
+// prevent toastr is not defined error in grunt/jshint
+/*global toastr */
 
 angular.module('todoApp', [
   'ngSanitize',
@@ -23,13 +24,13 @@ angular.module('todoApp', [
     return {
       response: function(response){
         if (response.status === 401) {
-          console.log("Response 401");
+          console.log('Response 401');
         }
         return response || $q.when(response);
       },
       responseError: function(rejection) {
         if (rejection.status === 401) {
-          console.log("Response Error 401",rejection);
+          console.log('Response Error 401',rejection);
           //$location.path('/').search('returnTo', $location.path());
           $location.path('/');
           // cant access the factory from here.
@@ -38,7 +39,7 @@ angular.module('todoApp', [
         }
         return $q.reject(rejection);
       }
-    }
+    };
   }])
   .config(['$httpProvider',function($httpProvider) {
     //Http Intercpetor to check auth failures for xhr requests

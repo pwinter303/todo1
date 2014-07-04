@@ -4,8 +4,7 @@ angular.module('todoApp')
   .controller('todoAuthenticateCtrl', function ($scope, todoFactory, $location) {
 
         $scope.pwd = {};
-        $scope.loggedInNEW = 0;
-        getLogin();
+        $scope.loggedIn = 0;
 
         function getLogin() {
           todoFactory.getLoginStatusNew()
@@ -21,6 +20,8 @@ angular.module('todoApp')
               $scope.status = 'Unable to login' + error.message;
             });
         }
+
+        getLogin();
 
         // old version of the code...
 //        $scope.getLoginStat = function (){
@@ -49,7 +50,8 @@ angular.module('todoApp')
             todoFactory.login(user).then(function(data) {
                 // php returns a string.. must convert to number
                 $scope.loggedIn = Number(data.login);
-                todoFactory.setLoginStatus($scope.loggedIn);
+                // stopped doing set of login status..
+                //todoFactory.setLoginStatus($scope.loggedIn);
                 if ($scope.loggedIn) {
                   //$('#myModal').modal('hide');
                   $scope.$broadcast('LoggedIn', []);
