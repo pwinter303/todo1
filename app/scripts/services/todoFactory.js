@@ -1,47 +1,51 @@
 'use strict';
 
 angular.module('todoApp')
-  .factory('todoFactory', function ($route, $routeParams, $http) {
+  .factory('todoFactory', ['$http', function($http) {
 
-        var factory = {};
+    var dataFactory = {};
         var loginStatus;
 
-        factory.getLoginStatus = function() {
+    dataFactory.getLoginStatusNew = function() {
+          return $http.get('login.php');
+        };
+
+    dataFactory.getLoginStatus = function() {
             return $http.get('login.php').then(function(result) {
                 return result.data;
               });
           };
 
-        factory.setLoginStatus = function(stat) {
+    dataFactory.setLoginStatus = function(stat) {
             loginStatus = stat;
           };
 
-        factory.getLocalLoginStatus = function() {
+    dataFactory.getLocalLoginStatus = function() {
             return loginStatus;
           };
 
-        factory.addTodo = function(todo) {
+    dataFactory.addTodo = function(todo) {
           todo.action = 'addNew';
           return $http.post('todo.php',todo).then(function(result) {
             return result.data;
           });
         };
 
-        factory.updateTodo = function(todo) {
+    dataFactory.updateTodo = function(todo) {
           todo.action = 'updateTodo';
           return $http.post('todo.php',todo).then(function(result) {
             return result.data;
           });
         };
 
-        factory.moveTodos = function(data) {
+    dataFactory.moveTodos = function(data) {
           data.action = 'moveTodos';
           return $http.post('todo.php',data).then(function(result) {
             return result.data;
           });
         };
 
-        factory.getToDoGroups = function() {
+    dataFactory.getToDoGroups = function() {
           var myGet = $http({
             url: 'todo.php',
             method: 'GET',
@@ -52,35 +56,35 @@ angular.module('todoApp')
           });
         };
 
-        factory.addGroup = function(group) {
+    dataFactory.addGroup = function(group) {
           group.action = 'addGroup';
           return $http.post('todo.php',group).then(function(result) {
             return result.data;
           });
         };
 
-        factory.deleteGroup = function(group) {
+    dataFactory.deleteGroup = function(group) {
           group.action = 'deleteGroup';
           return $http.post('todo.php',group).then(function(result) {
             return result.data;
           });
         };
 
-        factory.updateGroup = function(group) {
+    dataFactory.updateGroup = function(group) {
           group.action = 'updateGroup';
           return $http.post('todo.php',group).then(function(result) {
             return result.data;
           });
         };
 
-        factory.registerUser = function(user) {
+    dataFactory.registerUser = function(user) {
           user.action = 'registerUser';
           return $http.post('login.php',user).then(function(result) {
             return result.data;
           });
         };
 
-        factory.getToDos = function() {
+    dataFactory.getToDos = function() {
           //since $http.get returns a promise, and promise.then() also returns a promise..
           //that resolves to whatever value is returned in it's callback argument, we can return that.
           var myGet = $http({
@@ -93,7 +97,7 @@ angular.module('todoApp')
             });
         };
 
-        factory.getfrequencies = function() {
+    dataFactory.getfrequencies = function() {
           var myGet = $http({
             url: 'todo.php',
             method: 'GET',
@@ -104,7 +108,7 @@ angular.module('todoApp')
           });
         };
 
-        factory.getpriorities = function() {
+    dataFactory.getpriorities = function() {
           var myGet = $http({
             url: 'todo.php',
             method: 'GET',
@@ -114,7 +118,7 @@ angular.module('todoApp')
             return result.data;
           });
         };
-        factory.getOneTodo = function() {
+    dataFactory.getOneTodo = function() {
               //since $http.get returns a promise, and promise.then() also returns a promise
             //that resolves to whatever value is returned in it's callback argument, we can return that.
             var myGet = $http({
@@ -128,7 +132,7 @@ angular.module('todoApp')
           };
 
 
-        factory.login = function(user) {
+    dataFactory.login = function(user) {
             //see comments in getOneTodo
             var data = {
                 email: user.email,
@@ -140,7 +144,7 @@ angular.module('todoApp')
               });
           };
 
-        factory.logOut = function() {
+    dataFactory.logOut = function() {
           //see comments in getOneTodo
           var data = {
             action: 'logOutUser'
@@ -150,14 +154,14 @@ angular.module('todoApp')
           });
         };
 
-        factory.changePassword = function(data) {
+    dataFactory.changePassword = function(data) {
           data.action = 'changePassword';
           return $http.post('login.php',data).then(function(result) {
             return result.data;
           });
         };
 
-        factory.getBatches = function() {
+    dataFactory.getBatches = function() {
           var myGet = $http({
             url: 'todo.php',
             method: 'GET',
@@ -168,14 +172,14 @@ angular.module('todoApp')
           });
         };
 
-        factory.deleteBatch = function(batch) {
+    dataFactory.deleteBatch = function(batch) {
           batch.action = 'deleteBatch';
           return $http.post('todo.php',batch).then(function(result) {
             return result.data;
           });
         };
 
-        factory.getAccountDetails = function() {
+    dataFactory.getAccountDetails = function() {
           var myGet = $http({
             url: 'userAccount.php',
             method: 'GET',
@@ -186,7 +190,7 @@ angular.module('todoApp')
           });
         };
 
-        factory.processPayment = function(token) {
+    dataFactory.processPayment = function(token) {
           token.action = 'processPayment';
           return $http.post('userAccount.php',token).then(function(result) {
             return result.data;
@@ -199,13 +203,13 @@ angular.module('todoApp')
         toastr.options = {
           'timeOut': '2000'
         };
-        factory.msgSuccess = function(text) {
+    dataFactory.msgSuccess = function(text) {
           toastr.success(text);
         };
-        factory.msgError = function(text) {
+    dataFactory.msgError = function(text) {
           toastr.error(text);
         };
 
-        return factory;
+        return dataFactory;
 
-      });
+  }]);

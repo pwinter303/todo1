@@ -22,6 +22,24 @@ angular.module('todoApp')
         });
     };
 
+    // needed for page reloads
+
+    // this isnt needed since we've changed the getloginstatus (in authenticate) to broadcast logged in
+    // which will call get groups
+
+    //this seems hacky... but.... cant find a better way to do it...
+//    getLogin();
+//    function getLogin() {
+//      todoFactory.getLoginStatusNew()
+//        .success(function (data) {
+//          if (data.login){
+//            $scope.getTodoGroups();
+//          }
+//        })
+//        .error(function (error) {
+//        });
+//    }
+
     $scope.addGroup = function (group){
       todoFactory.addGroup(group).then(function(data){
         if (data){
@@ -66,9 +84,6 @@ angular.module('todoApp')
       //FixMe: - Add call to update TodoGroups Active in Table.....
     };
 
-    // needed for page reloads
-    $scope.getTodoGroups();
-
     // LoggedIn is broadcast after successful login
     $scope.$on('LoggedIn', function(event, data) {
       /* following comment turns off unused check for this function */
@@ -76,7 +91,7 @@ angular.module('todoApp')
         $scope.getTodoGroups();
       });
 
-    // LoggedIn is broadcast after successful login
+    // LogOut is broadcast after person does LogOut
     $scope.$on('LogOut', function(event, data) {
       /* following comment turns off unused check for this function */
       /* jshint unused: false */

@@ -9,7 +9,6 @@ angular.module('todoApp')
             $scope.frequencies = data;
           });
         };
-        $scope.frequencies();
 
         $scope.priorities = function (){
           todoFactory.getpriorities().then(function(data) {
@@ -17,7 +16,12 @@ angular.module('todoApp')
             $scope.priorities = data;
           });
         };
-        $scope.priorities();
+
+
+        if ($scope.loggedIn){
+          $scope.priorities();
+          $scope.frequencies();
+        }
 
         $scope.addIt = function (newTodo){
             newTodo.taskName = newTodo.task;

@@ -4,25 +4,43 @@ angular.module('todoApp')
   .controller('todoAuthenticateCtrl', function ($scope, todoFactory, $location) {
 
         $scope.pwd = {};
+        $scope.loggedInNEW = 0;
+        getLogin();
 
-        $scope.getLoginStat = function (){
-            var stat = todoFactory.getLocalLoginStatus();
+        function getLogin() {
+          todoFactory.getLoginStatusNew()
+            .success(function (data) {
+              $scope.loggedIn = data.login;
+              if ($scope.loggedIn){
+                $scope.loggedIn = data.login;
+                $scope.$broadcast('LoggedIn', []);
+              }
+            })
+            .error(function (error) {
+              $scope.loggedIn = 0;
+              $scope.status = 'Unable to login' + error.message;
+            });
+        }
 
-            if (typeof stat === 'undefined'){
-              todoFactory.getLoginStatus().then(function(data) {
-              //this will execute when the AJAX call completes.
-                  $scope.loggedIn = data.login;
-                  todoFactory.setLoginStatus($scope.loggedIn);
-                  if (!$scope.loggedIn){
-                    $location.path( '/' );
-                  }
-                });
-            } else {
-              $scope.loggedIn = stat;
-            }
-          };
-
-        $scope.getLoginStat();
+        // old version of the code...
+//        $scope.getLoginStat = function (){
+//            var stat = todoFactory.getLocalLoginStatus();
+//
+//            if (typeof stat === 'undefined'){
+//              todoFactory.getLoginStatus().then(function(data) {
+//              //this will execute when the AJAX call completes.
+//                  $scope.loggedIn = data.login;
+//                  todoFactory.setLoginStatus($scope.loggedIn);
+//                  if (!$scope.loggedIn){
+//                    $location.path( '/' );
+//                  }
+//                });
+//            } else {
+//              $scope.loggedIn = stat;
+//            }
+//          };
+//
+//        $scope.getLoginStat();
 
 
         $scope.logMeIn = function (user){
