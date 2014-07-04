@@ -58,21 +58,13 @@ angular.module('todoApp')
 
 
     dataFactory.getBatches = function() {
-          var myGet = $http({
-            url: 'todo.php',
-            method: 'GET',
-            params: {action: 'getbatches'}
-          });
-          return myGet.then(function(result) {
-            return result.data;
-          });
+          var data = {action: 'getbatches'};
+          return $http({method:'GET', url:'todo.php', params: data});
         };
 
     dataFactory.deleteBatch = function(batch) {
           batch.action = 'deleteBatch';
-          return $http.post('todo.php',batch).then(function(result) {
-            return result.data;
-          });
+          return $http.post('todo.php',batch);
         };
 
     dataFactory.getAccountDetails = function() {

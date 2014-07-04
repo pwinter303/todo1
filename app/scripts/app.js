@@ -12,7 +12,6 @@ angular.module('todoApp', [
     $routeProvider
       .when('/', {templateUrl: 'views/main.html',  controller: 'MainCtrl'})
       .when('/todolist', {templateUrl: 'views/todolist.html',  controller: 'TodolistCtrl' })
-      .when('/tododetail/:id', {templateUrl: 'views/tododetail.html',controller: 'TodolistCtrl'})
       .when('/settings', {templateUrl: 'views/settings.html', controller: 'TodolistCtrl'})
       .when('/login', {templateUrl: 'views/login.html'})
       .when('/register', {templateUrl: 'views/register.html'})

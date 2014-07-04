@@ -179,7 +179,7 @@ function  moveTodos($dbh, $request_data, $customer_id){
 
   $rowsAffected = actionSql($dbh,$query);
   if ($rowsAffected) {
-    $response{'msg'} = "$rowsAffected todos were moved!";
+    $response{'msg'} = "$rowsAffected todo(s) moved!";
   } else {
     $response{'error'} = "no todos moved";
   }
