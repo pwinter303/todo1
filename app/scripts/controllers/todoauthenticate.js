@@ -42,7 +42,7 @@ angular.module('todoApp')
 
         $scope.logMeOut = function(){
           authentication.logOut()
-            .success(function (data) {
+            .success(function () {
               $scope.$broadcast('LogOut', []);
               $scope.loggedIn = 0;
               $location.path( '/' );

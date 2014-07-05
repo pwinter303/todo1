@@ -7,17 +7,17 @@ angular.module('todoApp')
     return {
       getLoginStatusNew:  function() {
         return $http.get('login.php');
-        },
+      },
 
       registerUser: function(user) {
         user.action = 'registerUser';
         return $http.post('login.php',user);
-        },
+      },
 
       login:  function(user) {
         user.action = 'validateUser';
         return $http.post('login.php',user);
-        },
+      },
 
       logOut: function() {
         var data = {action: 'logOutUser'};
@@ -28,6 +28,6 @@ angular.module('todoApp')
         data.action = 'changePassword';
         return $http.post('login.php',data);
       }
-  };
+    };
   }]);
 

@@ -39,11 +39,11 @@ angular.module('todoApp')
                 }
                 $scope.todos.push(data);
                 $scope.newTodo.task = '';
-                })
+              })
               .error(function (error) {
                 $scope.status = 'Error Saving:' + error.message;
               });
-        }
+          };
 
         $scope.updateDone = function (todo){
           todoFactory.updateTodo(todo)
@@ -56,7 +56,7 @@ angular.module('todoApp')
             })
             .error(function (error) {
               $scope.status = 'Error Saving:' + error.message;
-            })
+            });
         };
 
         $scope.updateTask = function (todo){
@@ -76,7 +76,7 @@ angular.module('todoApp')
             })
             .error(function (error) {
               $scope.status = 'Error Saving:' + error.message;
-            })
+            });
         };
 
         $scope.getMyTodos = function (){
@@ -88,8 +88,8 @@ angular.module('todoApp')
               })
               .error(function (error) {
                 $scope.status = 'Error Retrieving ToDos:' + error.message;
-              })
-        }
+              });
+          };
 
         $scope.getMyTodos();
 
@@ -110,7 +110,7 @@ angular.module('todoApp')
                 })
                 .error(function (error) {
                   $scope.status = 'Error Moving ToDos:' + error.message;
-                })
+                });
             }
           }
         };

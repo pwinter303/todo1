@@ -18,7 +18,7 @@ angular.module('todoApp')
     dataFactory.getToDos = function() {
           var data = {action: 'gettodos'};
           return $http({method:'GET', url:'todo.php', params: data});
-    };
+        };
 
 
     dataFactory.moveTodos = function(data) {

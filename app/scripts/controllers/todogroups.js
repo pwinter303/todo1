@@ -50,7 +50,7 @@ angular.module('todoApp')
         })
         .error(function (error) {
           $scope.status = 'Error Adding Group:' + error.message;
-        })
+        });
     };
 
     $scope.deleteGroup = function (group){
@@ -63,7 +63,7 @@ angular.module('todoApp')
         })
         .error(function (error) {
           $scope.status = 'Error Adding Group:' + error.message;
-        })
+        });
     };
 
 
