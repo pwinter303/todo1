@@ -12,6 +12,10 @@ module.exports = function (grunt) {
   // Load grunt tasks automatically
   require('load-grunt-tasks')(grunt);
 
+    // start S3
+    grunt.loadNpmTasks('grunt-s3');
+    //end S3
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -135,10 +139,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-
-    
-
-    
 
     // Renames files for browser caching purposes
     rev: {
@@ -283,39 +283,52 @@ module.exports = function (grunt) {
       ]
     },
 
-    // By default, your `index.html`'s <!-- Usemin block --> will take care of
-    // minification. These next options are pre-configured if you do not wish
-    // to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/styles/main.css': [
-    //         '.tmp/styles/{,*/}*.css',
-    //         '<%= yeoman.app %>/styles/{,*/}*.css'
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       '<%= yeoman.dist %>/scripts/scripts.js': [
-    //         '<%= yeoman.dist %>/scripts/scripts.js'
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
-
     // Test settings
     karma: {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
       }
-    }
+    },
+
+    // start of S3
+      aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
+      s3: {
+          options: {
+              key: '<%= aws.AWSAccessKeyId %>',
+              secret: '<%= aws.AWSSecretKey %>',
+              bucket: '<%= aws.bucket %>',
+              access: 'public-read',
+              headers: {
+                  // Two Year cache policy (1000 * 60 * 60 * 24 * 730)
+                  "Cache-Control": "max-age=630720000, public",
+                  "Expires": new Date(Date.now() + 63072000000).toUTCString()
+              }
+          },
+          dev: {
+              // These options override the defaults
+              options: {
+                  // encoding screws up the uploads... instead of uploading to a folder it converts the backslash to 20% (or similar) and dumps it in the root folder
+                  //encodePaths: true,
+                  maxOperations: 4
+              },
+              // Files to be uploaded.
+              upload: [
+                  {src: 'app/*.php', dest: 'folder-backups/'},
+                  {src: 'app/*.sql', dest: 'folder-backups/'}
+              ]
+          }
+
+      }
+
+
+    //end of S3
+
+
+
+
+
+
   });
 
 
@@ -366,4 +379,5 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
 };
