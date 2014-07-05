@@ -301,17 +301,14 @@ module.exports = function (grunt) {
     },
 
     // start of S3
-      //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
-      //aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
-      //aws: grunt.file.readJSON('grunt-aws.json'),
+    //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
+    aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
+
     s3: {
       options: {
-        key: 'xx',
-        secret: 'xx',
-        bucket: 'xx',
-    //            key: '<%= aws.AWSAccessKeyId %>',
-    //            secret: '<%= aws.AWSSecretKey %>',
-    //            bucket: '<%= aws.bucket %>',
+        key: '<%= aws.AWSAccessKeyId %>',
+        secret: '<%= aws.AWSSecretKey %>',
+        bucket: '<%= aws.bucket %>',
         access: 'public-read',
         headers: {
           // Two Year cache policy (1000 * 60 * 60 * 24 * 730)
@@ -328,8 +325,8 @@ module.exports = function (grunt) {
             },
           // Files to be uploaded.
             upload: [
-              {src: 'app/*.php', dest: 'folder-backups/'},
-              {src: 'app/*.sql', dest: 'folder-backups/'}
+              {src: '<%= yeoman.dist %>/**/*', dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'), rel: 'dist'}
+              //{src: 'app/*.sql', dest: 'folder-backups/'}
             ]
           }
         }
