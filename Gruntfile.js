@@ -303,7 +303,8 @@ module.exports = function (grunt) {
     // start of S3
     //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
     aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
-
+    /* following comment turns off camelcase check for this function.. so it'll be ignored */
+    /* jshint camelcase: false */
     aws_s3: {
       options: {
         accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
@@ -329,11 +330,11 @@ module.exports = function (grunt) {
 //            dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
 //            action: 'upload',
 //            exclude:'<%= yeoman.dist %>/bower_components'}
-          ]
+        ]
       }
     },
 
-      s3: {
+    s3: {
       options: {
         key: '<%= aws.AWSAccessKeyId %>',
         secret: '<%= aws.AWSSecretKey %>',
@@ -345,13 +346,17 @@ module.exports = function (grunt) {
           'Expires': new Date(Date.now() + 63072000000).toUTCString()
         }
       },
-      dev: {
+      sourceCode: {
           // These options override the defaults
           options: {
               // encoding screws up the uploads... instead of uploading to a folder it converts the backslash to 20% (or similar) and dumps it in the root folder
               //encodePaths: true,
               maxOperations: 4
             },
+          // Files to be uploaded.
+          delete: [
+            {src:'source-code/' + grunt.template.today('yyyy-mm-dd')}
+          ],
           // Files to be uploaded.
             upload: [
               {src: '<%= yeoman.dist %>/**/*',
