@@ -304,7 +304,36 @@ module.exports = function (grunt) {
     //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
     aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
 
-    s3: {
+    aws_s3: {
+      options: {
+        accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
+        secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
+        uploadConcurrency: 5, // 5 simultaneous uploads
+        downloadConcurrency: 5, // 5 simultaneous downloads
+        region: 'eu-west-1'
+      },
+      source_code: {
+        options: {
+          bucket: 'storage-plw'
+        },
+        files: [
+          {action: 'upload',
+            expand: true,
+            cwd: 'dist/js',
+            dest: 'source-code/aaa',
+            src: ['**']
+          }
+//
+//          {cwd: '<%= yeoman.dist %>',
+//            src: '<%= yeoman.dist %>/**/*',
+//            dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
+//            action: 'upload',
+//            exclude:'<%= yeoman.dist %>/bower_components'}
+          ]
+      }
+    },
+
+      s3: {
       options: {
         key: '<%= aws.AWSAccessKeyId %>',
         secret: '<%= aws.AWSSecretKey %>',
@@ -325,7 +354,9 @@ module.exports = function (grunt) {
             },
           // Files to be uploaded.
             upload: [
-              {src: '<%= yeoman.dist %>/**/*', dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'), rel: 'dist'}
+              {src: '<%= yeoman.dist %>/**/*',
+                dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
+                rel: 'dist'}
               //{src: 'app/*.sql', dest: 'folder-backups/'}
             ]
           }

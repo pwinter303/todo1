@@ -79,3 +79,9 @@
     direction: ltr;
     cursor: pointer;
 }
+
+.navbar-brand img {
+    margin-bottom: -15px;
+    margin-top: -15px;
+    margin-right: 5px;
+}
