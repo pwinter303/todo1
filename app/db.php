@@ -50,8 +50,7 @@ function execSqlMultiRow($dbh, $query){
 
 
 function insertData($dbh,$query){
-       mysqli_query($dbh,$query) or die('Query failed: '
-                   . mysqli_error($dbh));
+       mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));
 
        mysqli_free_result($result);
 

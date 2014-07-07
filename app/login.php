@@ -79,7 +79,7 @@ function registerUser($dbh, $userName, $password, $password2){
         $return_status = addUser($dbh, $userName, $password);
         if ($return_status){
           $response{'msg'} = "Successful Registration";
-          $call_response = validateUser($userName, $password);
+          $call_response = validateUser($dbh, $userName, $password);
           $response{'login'} = $call_response{'login'};
           if ($call_response{'login'}){
             ##### Add Todo_Group.....
@@ -127,7 +127,6 @@ function  addTodoGroup($dbh, $customer_id){
     ('Work',2,$customer_id,0)
     "
   ;
-  ##echo "$query";
   #### add new group
   $rowsInserted = insertData($dbh, $query);
 
@@ -141,6 +140,7 @@ function validateUser($dbh, $userName, $password){
     $hasher = new PasswordHash(8, false);
 
     $query = "SELECT customer_id, password fROM customer where user_name = '$userName' ";
+    #####echo "$query";
     $data = execSqlSingleRow($dbh, $query);
     $customer_id = $data['customer_id'];
     $hashedPassword = $data['password'];
@@ -157,7 +157,8 @@ function validateUser($dbh, $userName, $password){
     } else {
       $response{'login'} = 0;
     }
-    closeDatabaseConnection($dbh);
+    // dont close the connection... it is needed in registeruser for additional processing.....
+    //closeDatabaseConnection($dbh);
 
     return $response;
 }

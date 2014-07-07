@@ -354,9 +354,9 @@ module.exports = function (grunt) {
               maxOperations: 4
             },
           // Files to be uploaded.
-          delete: [
-            {src:'source-code/' + grunt.template.today('yyyy-mm-dd')}
-          ],
+            delete: [
+              {src:'source-code/' + grunt.template.today('yyyy-mm-dd')}
+            ],
           // Files to be uploaded.
             upload: [
               {src: '<%= yeoman.dist %>/**/*',

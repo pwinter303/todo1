@@ -44,7 +44,9 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    //browsers: ['Chrome'],
+    //PLW Added to launch Firefox (instead of Chrome)
+    browsers: ['Firefox'],
 
 
     // Continuous Integration mode
