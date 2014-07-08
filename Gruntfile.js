@@ -272,7 +272,7 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>',
         dest: '<%= yeoman.dist %>',
         //copy php and sql files from app to dist.. exclude config file
-        src: ['*.php', '*.sql','!config.php']
+        src: ['*.php', '*.sql','!config.php', '!dbRefreshTables.php']
       }
     },
 
@@ -310,8 +310,7 @@ module.exports = function (grunt) {
         accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
         secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
         uploadConcurrency: 5, // 5 simultaneous uploads
-        downloadConcurrency: 5, // 5 simultaneous downloads
-        region: 'eu-west-1'
+        downloadConcurrency: 5 // 5 simultaneous downloads
       },
       source_code: {
         options: {
@@ -324,12 +323,6 @@ module.exports = function (grunt) {
             dest: 'source-code/aaa',
             src: ['**']
           }
-//
-//          {cwd: '<%= yeoman.dist %>',
-//            src: '<%= yeoman.dist %>/**/*',
-//            dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
-//            action: 'upload',
-//            exclude:'<%= yeoman.dist %>/bower_components'}
         ]
       }
     },
@@ -359,10 +352,24 @@ module.exports = function (grunt) {
             ],
           // Files to be uploaded.
             upload: [
-              {src: '<%= yeoman.dist %>/**/*',
+              {src: '<%= yeoman.dist %>/fonts/**/*',
+                dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
+                rel: 'dist'},
+              {src: '<%= yeoman.dist %>/scripts/**/*',
+                dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
+                rel: 'dist'},
+              {src: '<%= yeoman.dist %>/styles/**/*',
+                dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
+                rel: 'dist'},
+              {src: '<%= yeoman.dist %>/views/**/*',
+                dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
+                rel: 'dist'},
+              {src: '<%= yeoman.dist %>/*',
+                dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
+                rel: 'dist'},
+              {src: '<%= yeoman.dist %>/images/**/*',
                 dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
                 rel: 'dist'}
-              //{src: 'app/*.sql', dest: 'folder-backups/'}
             ]
           }
         }
