@@ -350,7 +350,7 @@ module.exports = function (grunt) {
             delete: [
               {src:'source-code/' + grunt.template.today('yyyy-mm-dd')}
             ],
-          // Files to be uploaded..
+          // Files to be uploaded....
             upload: [
               {src: '<%= yeoman.dist %>/fonts/**/*',
                 dest: 'source-code/' + grunt.template.today('yyyy-mm-dd'),
