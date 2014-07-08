@@ -6,7 +6,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
+    <title>ToDo Giant</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -41,18 +41,16 @@
                             <span class="icon-bar"></span>
                         </button>
                         <a class="navbar-brand" href="#main"> <img padding=0px src="images/site-logo-just-giant.png">To Do Giant</a>
+                        <!--<a class="navbar-brand" href="#main">To Do Giant</a>-->
                         <!--<a class="navbar-brand" href="#main">Todo Giant</a>-->
                     </div>
                     <div class="navbar-collapse collapse in">
                         <div>
                             <ul class="nav navbar-nav" data-ng-repeat="group in groups">
                                 <li data-ng-class="{active: group.active}"><a href="#todolist" data-ng-click="setTodoGroupActive(group.group_id)">{{group.group_name}}</a></li>
-                                <!-- OLD CODE -->
-                                <!-- <li class="active"><a href="#todolist">Home</a></li>  -->
+
                             </ul>
-                            <!--<ul class="nav navbar-nav">-->
-                            <!--<li><a class="glyphicon glyphicon-plus white" data-toggle="modal" data-target="#myModalAddGroup"></a></li>-->
-                            <!--</ul>-->
+
                         </div>
 
                         <div class="pull-right">
