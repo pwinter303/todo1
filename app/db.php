@@ -52,7 +52,8 @@ function execSqlMultiRow($dbh, $query){
 function insertData($dbh,$query){
        mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));
 
-       mysqli_free_result($result);
+       //dont think this is needed
+       //mysqli_free_result($result);
 
        return mysqli_affected_rows($dbh);
  }
@@ -62,7 +63,8 @@ function insertData($dbh,$query){
        mysqli_query($dbh,$query) or die('Query failed: '
                    . mysqli_error($dbh));
 
-       mysqli_free_result($result);
+       //dont think this is needed
+       //mysqli_free_result($result);
 
        return mysqli_affected_rows($dbh);
  }
