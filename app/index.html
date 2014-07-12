@@ -12,7 +12,7 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!-- build:css({.tmp,app}) styles/main.css -->
-        <link rel="stylesheet" href="styles/bootstrap.css">
+      <link rel="stylesheet" href="styles/bootstrap.css">
       <link rel="stylesheet" href="styles/sitespecific.css">
       <link rel="stylesheet" href="bower_components/toastr/toastr.css">
       <!-- endbuild -->
@@ -44,13 +44,14 @@
                         <!--<a class="navbar-brand" href="#main">To Do Giant</a>-->
                         <!--<a class="navbar-brand" href="#main">Todo Giant</a>-->
                     </div>
+                    <!-- everything within the next div gets collapsed -->
                     <div class="navbar-collapse collapse in">
                         <div>
-                            <ul class="nav navbar-nav" data-ng-repeat="group in groups">
-                                <li data-ng-class="{active: group.active}"><a href="#todolist" data-ng-click="setTodoGroupActive(group.group_id)">{{group.group_name}}</a></li>
-
+                            <ul class="nav navbar-nav navbar-left" data-ng-repeat="group in groups">
+                                <li data-ng-class="{active: group.active}">
+                                    <a href="#todolist" data-ng-click="setTodoGroupActive(group.group_id)">{{group.group_name}}</a>
+                                </li>
                             </ul>
-
                         </div>
 
                         <div class="pull-right">
@@ -94,6 +95,9 @@
     <!-- build:js scripts/modules.js -->
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- added to fix navbar not collapsing-->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <!-- FixMe: fix this.. download the actual files.. preferrably the min files -->
     <!--<script src="http://blueimp.github.com/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script>-->
