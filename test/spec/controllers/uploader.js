@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: UploaderCtrl', function () {
+describe('Controller: FileUploadCtrl', function () {
 
   // load the controller's module
   beforeEach(module('todoApp'));
 
-  var UploaderCtrl,
+  var FileUploadCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    UploaderCtrl = $controller('UploaderCtrl', {
+    FileUploadCtrl = $controller('FileUploadCtrl', {
       $scope: scope
     });
   }));

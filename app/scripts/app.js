@@ -5,8 +5,7 @@
 
 angular.module('todoApp', [
   'ngSanitize',
-  'ngRoute',
-  'ui.bootstrap',
+  'ngRoute'
 ])
   .config(function ($routeProvider) {
     $routeProvider
