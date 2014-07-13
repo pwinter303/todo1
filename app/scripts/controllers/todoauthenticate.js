@@ -1,23 +1,22 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('todoAuthenticateCtrl', function ($scope, authentication, todoFactory, $location) {
+  .controller('todoAuthenticateCtrl', ['$scope', 'authentication', 'todoFactory', '$location', function($scope, authentication, todoFactory, $location){
 
         $scope.pwd = {};
         $scope.loggedIn = 0;
 
         $scope.getLoginStatus = function() {
-          authentication.getLoginStatusNew()
-            .then(function (data) {
-              $scope.loggedIn = data.login;
-              if ($scope.loggedIn){
+          authentication.getLoginStatusNew().then(function (data) {
+              if (data.login){
                 $scope.loggedIn = data.login;
                 $scope.$broadcast('LoggedIn', []);
               }
             }, function(error) {
               // promise rejected, could log the error with: console.log('error', error);
-          });
-        }
+              $scope.loggedIn = 0;
+        });
+        };
         $scope.getLoginStatus();
 
         $scope.logIn = function (user){
@@ -86,7 +85,7 @@ angular.module('todoApp')
             });
         };
 
-      });
+      }]);
 
 angular.module('todoApp')
 .directive('formAutofillFix', function() {

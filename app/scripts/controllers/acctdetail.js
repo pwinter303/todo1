@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('AcctdetailCtrl', function ($scope, todoFactory) {
+  .controller('AcctdetailCtrl', ['$scope', 'todoFactory', function ($scope, todoFactory) {
 
     $scope.getAccountDetails = function (){
       todoFactory.getAccountDetails()
@@ -32,4 +32,4 @@ angular.module('todoApp')
     };
 
 
-  });
+  }]);

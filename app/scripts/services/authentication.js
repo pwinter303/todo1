@@ -1,13 +1,12 @@
 'use strict';
 
 angular.module('todoApp')
-  .factory('authentication', function($http, $q) {
+  .factory('authentication', ['$http', '$q', function($http, $q) {
 
     // Public API here
     return {
       getLoginStatusNew:  function() {
-        return $http.get('login.php')
-          .then(function(response) {
+        return $http.get('login.php').then(function(response) {
             if (typeof response.data === 'object') {
               return response.data;
             } else {
@@ -40,5 +39,5 @@ angular.module('todoApp')
         return $http.post('login.php',data);
       }
     };
-  });
+  }]);
 

@@ -4,7 +4,7 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('TodoGroupCtrl', function ($scope, todoFactory, $rootScope ) {
+  .controller('TodoGroupCtrl', ['$scope', 'todoFactory', '$rootScope', function ($scope, todoFactory, $rootScope ) {
 
     $scope.newGroup = {};
 
@@ -96,4 +96,4 @@ angular.module('todoApp')
     });
 
 
-  });
+  }]);

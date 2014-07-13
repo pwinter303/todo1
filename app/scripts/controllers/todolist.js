@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('TodolistCtrl', function ($scope, todoFactory, $rootScope ) {
+  .controller('TodolistCtrl', ['$scope', 'todoFactory', '$rootScope', function ($scope, todoFactory, $rootScope ) {
 
         $scope.frequencies = function (){
           todoFactory.getfrequencies()
@@ -115,7 +115,7 @@ angular.module('todoApp')
           }
         };
 
-      });
+      }]);
 
 
 angular.module('todoApp')

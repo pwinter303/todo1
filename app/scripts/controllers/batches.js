@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('BatchesCtrl', function ($scope, todoFactory, $rootScope ) {
+  .controller('BatchesCtrl', ['$scope', 'todoFactory', '$rootScope', function ($scope, todoFactory, $rootScope ) {
 
     $scope.getBatches = function (){
       todoFactory.getBatches()
@@ -36,4 +36,4 @@ angular.module('todoApp')
     });
 
 
-  });
+  }]);
