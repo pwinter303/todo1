@@ -1,34 +1,41 @@
 'use strict';
 
-describe('Controller: todoAuthenticateCtrl', function () {
+describe('Test of Controller: todoAuthenticateCtrl', function () {
 
-  // load the controller's module
-  beforeEach(module('todoApp'));
+  var scope;
+  var controller;
+  var getResponse = { data: 1 };
+  var getDeferred;
+  var myServiceMock1;
+  var myServiceMock2;
 
-  var todoAuthenticateCtrl,  scope;
+  //mock Application to allow us to inject our own dependencies
+  beforeEach(angular.mock.module('todoApp'));
+  //mock the controller for the same reason and include $rootScope and $controller
+  beforeEach(angular.mock.inject(function($q, $controller, $rootScope) {
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    todoAuthenticateCtrl = $controller('todoAuthenticateCtrl', {
-      $scope: scope
-    });
+    scope = $rootScope;
+    myServiceMock1 = {
+      getLoginStatusNew: function() {}
+    };
+    myServiceMock2 = {
+      placeholder: function() {}
+    };
+    // setup a promise for the get
+    getDeferred = $q.defer();
+    //set in 'it'
+    getDeferred.resolve({login: 1});
+    spyOn(myServiceMock1, 'getLoginStatusNew').andReturn(getDeferred.promise);
+    controller = $controller('todoAuthenticateCtrl', { $scope: scope, authentication: myServiceMock1});
   }));
 
-
-  it('should get login success',
-    inject(function(authentication, $httpBackend) {
-
-      $httpBackend.expect('POST', 'login.php')
-        .respond(200, "[{ success : 'true', login : 1 }]");
-
-      LoginService.login('test@test.com', 'password')
-        .then(function(data) {
-          expect(data.success).toBeTruthy();
-        });
-
-      $httpBackend.flush();
-    }));
-
-
+  it('should set some data on the scope when successful', function () {
+    //getDeferred.resolve(getResponse);
+    scope.getLoginStatus();
+    scope.$apply();
+    expect(myServiceMock1.getLoginStatusNew).toHaveBeenCalled();
+    //expect(scope.plw).toEqual(1);
+    expect(scope.loggedIn).toEqual(1);
+  });
 });
+

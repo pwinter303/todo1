@@ -6,7 +6,7 @@ angular.module('todoApp')
         $scope.pwd = {};
         $scope.loggedIn = 0;
 
-        function getLoginStatus() {
+        $scope.getLoginStatus = function() {
           authentication.getLoginStatusNew()
             .then(function (data) {
               $scope.loggedIn = data.login;
@@ -18,7 +18,7 @@ angular.module('todoApp')
               // promise rejected, could log the error with: console.log('error', error);
           });
         }
-        getLoginStatus();
+        $scope.getLoginStatus();
 
         $scope.logIn = function (user){
             $scope.loginmsg='';
