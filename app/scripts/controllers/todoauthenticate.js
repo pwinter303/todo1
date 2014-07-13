@@ -8,17 +8,15 @@ angular.module('todoApp')
 
         function getLoginStatus() {
           authentication.getLoginStatusNew()
-            .success(function (data) {
+            .then(function (data) {
               $scope.loggedIn = data.login;
               if ($scope.loggedIn){
                 $scope.loggedIn = data.login;
                 $scope.$broadcast('LoggedIn', []);
               }
-            })
-            .error(function (error) {
-              $scope.loggedIn = 0;
-              $scope.status = 'Unable to login' + error.message;
-            });
+            }, function(error) {
+              // promise rejected, could log the error with: console.log('error', error);
+          });
         }
         getLoginStatus();
 
