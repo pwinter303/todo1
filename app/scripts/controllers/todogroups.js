@@ -12,58 +12,54 @@ angular.module('todoApp')
     $scope.getTodoGroups = function (){
       /* following comment turns off camelcase check for this function.. so it'll be ignored */
       /* jshint camelcase: false */
-      todoFactory.getToDoGroups()
-        .success(function (data) {
-          $scope.groups = data;
-          for(var i=0;i<$scope.groups.length;i++){
-            if($scope.groups[i].active === true){
-              $rootScope.activegroup = $scope.groups[i].group_id;
-            }
+      todoFactory.getToDoGroups().then(function (data) {
+        $scope.groups = data;
+        for(var i=0;i<$scope.groups.length;i++){
+          if($scope.groups[i].active === true){
+            $rootScope.activegroup = $scope.groups[i].group_id;
           }
-        })
-        .error(function (error) {
-          $scope.status = 'Error Getting Todo Groups:' + error.message;
-        });
+        }
+      }, function(error) {
+        // promise rejected, could be because server returned 404, 500 error...
+        todoFactory.msgError('Error Getting Todo Groups:' + error);
+      });
     };
 
     $scope.addGroup = function (group){
-      todoFactory.addGroup(group)
-        .success(function (data) {
-          if (data){
-            $scope.getTodoGroups();
-            $scope.newGroup.name = '';
-            todoFactory.msgSuccess('Todo Group Added!');
-          }
-        })
-        .error(function (error) {
-          $scope.status = 'Error Adding Group:' + error.message;
-        });
+      todoFactory.addGroup(group).then(function (data) {
+        if (data){
+          $scope.getTodoGroups();
+          $scope.newGroup.name = '';
+          todoFactory.msgSuccess('Todo Group Added!');
+        }
+      }, function(error) {
+        // promise rejected, could be because server returned 404, 500 error...
+        todoFactory.msgError('Error Adding Group:' + error);
+      });
     };
 
     $scope.updateGroup = function (group){
-      todoFactory.updateGroup(group)
-        .success(function (data) {
-          if (data){
-            $scope.getTodoGroups();
-            todoFactory.msgSuccess('Updated!');
-          }
-        })
-        .error(function (error) {
-          $scope.status = 'Error Adding Group:' + error.message;
-        });
+      todoFactory.updateGroup(group).then(function (data) {
+        if (data){
+          $scope.getTodoGroups();
+          todoFactory.msgSuccess('Updated!');
+        }
+      }, function(error) {
+        // promise rejected, could be because server returned 404, 500 error...
+        todoFactory.msgError('Error Updating Group:' + error);
+      });
     };
 
     $scope.deleteGroup = function (group){
-      todoFactory.deleteGroup(group)
-        .success(function (data) {
-          if (data){
-            $scope.getTodoGroups();
-            todoFactory.msgSuccess('Deleted!');
-          }
-        })
-        .error(function (error) {
-          $scope.status = 'Error Adding Group:' + error.message;
-        });
+      todoFactory.deleteGroup(group).then(function (data) {
+        if (data){
+          $scope.getTodoGroups();
+          todoFactory.msgSuccess('Deleted!');
+        }
+      }, function(error) {
+        // promise rejected, could be because server returned 404, 500 error...
+        todoFactory.msgError('Error Deleting Group:' + error);
+      });
     };
 
 

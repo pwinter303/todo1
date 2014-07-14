@@ -219,7 +219,9 @@ function  addGroup($dbh, $request_data, $customer_id){
   //$group_id = mysqli_insert_id($dbh);
   //$new_group = getGroup($dbh, $customer_id, $group_id);
 
-  return $rowsAffected;
+  $response{'RowsAdded'} = $rowsAffected;
+
+  return $response;
 }
 
 ###################################
@@ -233,6 +235,7 @@ function  deleteGroup($dbh, $request_data, $customer_id){
   #### delete the group
   $query = "delete from todo_group where group_id = $group_id and customer_id = $customer_id";
   $rowsAffected = actionSql($dbh,$query);
+  $response{'RowsAdded'} = $rowsAffected;
 
   ### only try and fix actives if something was actually deleted....
   if ($rowsAffected){
@@ -249,6 +252,10 @@ function  deleteGroup($dbh, $request_data, $customer_id){
         $rowsAffected = actionSql($dbh,$query);
       }
   }
+
+
+  return $response;
+
 }
 
 ###################################

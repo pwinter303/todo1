@@ -45,7 +45,7 @@ function processPost(){
             $pass2 = $request->repassword;
             $result = registerUser($dbh, $email, $pass, $pass2);
             break;
-       case 'validateUser':
+       case 'loginUser':
             $email = $request->email;
             $pass = $request->password;
             $result = validateUser($dbh, $email, $pass);
@@ -57,7 +57,7 @@ function processPost(){
             $result = changePassword($dbh, $passOld, $pass1, $pass2);
             break;
        case 'logOutUser':
-             logOutUser();
+             $result = logOutUser();
              break;
        default:
              echo "Error:Invalid Request:Action not set properly";
@@ -228,6 +228,8 @@ function processGet(){
 function logOutUser(){
   session_unset();
   session_destroy();
+  $response{'login'} = 0;
+  return $response;
 }
 
 

@@ -46,19 +46,62 @@ angular.module('todoApp')
 
       ////=============================================================================///
       login:  function(passedData) {
-        passedData.action = 'validateUser';
-        return $http.post('login.php',passedData);
+        var url = 'login.php';
+        passedData.action = 'loginUser';
+        // OLD CODE: return $http.post('login.php',passedData);
+        // Start Standard Code... POST
+        var promise = $http.post(url , passedData);
+        return promise.then(function(result) {
+          if (typeof result.data === 'object') {
+            return result.data;
+          } else {
+            // call was successful but response was invalid (result was not an object)
+            return $q.reject(result.data);
+          }
+        }, function(result) {
+          // something went wrong.... error on the call..
+          return $q.reject(result.data);
+        });
       },
 
       logOut: function() {
+        var url = 'login.php';
         var passedData = {action: 'logOutUser'};
-        return $http.post('login.php',passedData);
+        //OLD CODE: return $http.post('login.php',passedData);
+        // Start Standard Code... POST
+        var promise = $http.post(url , passedData);
+        return promise.then(function(result) {
+          if (typeof result.data === 'object') {
+            return result.data;
+          } else {
+            // call was successful but response was invalid (result was not an object)
+            return $q.reject(result.data);
+          }
+        }, function(result) {
+          // something went wrong.... error on the call..
+          return $q.reject(result.data);
+        });
       },
 
       changePassword: function(passedData) {
+        var url = 'login.php';
         passedData.action = 'changePassword';
-        return $http.post('login.php',passedData);
+        //OLD CODE: return $http.post('login.php',passedData);
+        // Start Standard Code... POST
+        var promise = $http.post(url , passedData);
+        return promise.then(function(result) {
+          if (typeof result.data === 'object') {
+            return result.data;
+          } else {
+            // call was successful but response was invalid (result was not an object)
+            return $q.reject(result.data);
+          }
+        }, function(result) {
+          // something went wrong.... error on the call..
+          return $q.reject(result.data);
+        });
       }
+
     };
   }]);
 

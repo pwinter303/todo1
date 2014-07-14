@@ -21,50 +21,47 @@ angular.module('todoApp')
         $scope.getLoginStatus();
 
         $scope.logIn = function (user){
-            $scope.loginmsg='';
-            authentication.login(user)
-              .success(function (data) {
-                // php returns a string.. must convert to number
-                $scope.loggedIn = Number(data.login);
-                if ($scope.loggedIn) {
-                  $scope.$broadcast('LoggedIn', []);
-                  $location.path( '/todolist' );
-                } else {
-                  $scope.loginmsg = 'ERROR - Invalid email/password combination';
-                }
-              })
-              .error(function (error) {
-                $scope.status = 'Error Logging In:' + error.message;
-              });
-          };
+          $scope.loginmsg='';
+          authentication.login(user).then(function (data) {
+            $scope.loggedIn = Number(data.login);
+            if ($scope.loggedIn) {
+              $scope.$broadcast('LoggedIn', []);
+              $location.path( '/todolist' );
+            } else {
+              $scope.loginmsg = 'ERROR - Invalid email/password combination';
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError(error);
+          });
+        };
 
         $scope.logMeOut = function(){
-          authentication.logOut()
-            .success(function () {
-              $scope.$broadcast('LogOut', []);
-              $scope.loggedIn = 0;
-              $location.path( '/' );
-            })
-            .error(function (error) {
-              $scope.status = 'Error Logging Out:' + error.message;
-            });
+          authentication.logOut().then(function () {
+            $scope.$broadcast('LogOut', []);
+            $scope.loggedIn = 0;
+            $location.path( '/' );
+            todoFactory.msgSuccess('You have logged out. Thanks');
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError(error);
+          });
         };
 
         $scope.changePassword = function(passworddata){
-          authentication.changePassword(passworddata)
-            .success(function (data) {
-              if (data.error){
-                todoFactory.msgError(data.error);
-              } else {
-                $scope.pwd.old = '';
-                $scope.pwd.new1 = '';
-                $scope.pwd.new2 = '';
-                todoFactory.msgSuccess(data.msg);
-              }
-            })
-            .error(function (error) {
-              $scope.status = 'Error Changing Password:' + error.message;
-            });
+          authentication.changePassword(passworddata).then(function (data) {
+            if (data.error){
+              todoFactory.msgError(data.error);
+            } else {
+              $scope.pwd.old = '';
+              $scope.pwd.new1 = '';
+              $scope.pwd.new2 = '';
+              todoFactory.msgSuccess(data.msg);
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError(error);
+          });
         };
 
         $scope.registerMe = function(user){
@@ -81,12 +78,10 @@ angular.module('todoApp')
             }
           }, function(error) {
             // promise rejected, could be because server returned 404, 500 error...
-            $scope.loggedIn = 0;
             todoFactory.msgError(error);
           });
         };
-
-  }]);
+      }]);
 
 angular.module('todoApp')
 .directive('formAutofillFix', function() {

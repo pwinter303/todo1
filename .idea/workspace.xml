@@ -5,11 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86e13eda-f552-4432-b750-06bfa432e5bd" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/acctdetail.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/acctdetail.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/selenium-tests/add remove groups.html" afterPath="$PROJECT_DIR$/app/selenium-tests/add remove groups.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/services/authentication.js" afterPath="$PROJECT_DIR$/app/scripts/services/authentication.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/batches.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/batches.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/functions.php" afterPath="$PROJECT_DIR$/app/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/login.php" afterPath="$PROJECT_DIR$/app/login.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/services/todoFactory.js" afterPath="$PROJECT_DIR$/app/scripts/services/todoFactory.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/spec/controllers/todoauthenticate.js" afterPath="$PROJECT_DIR$/test/spec/controllers/todoauthenticate.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/selenium-tests/todogiant test suite" afterPath="$PROJECT_DIR$/app/selenium-tests/todogiant test suite" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/todogroups.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/todogroups.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/scripts/controllers/todolist.js" afterPath="$PROJECT_DIR$/app/scripts/controllers/todolist.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="todo.iws" />
@@ -33,52 +38,93 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="todoauthenticate.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js">
+      <file leaf-file-name="todoFactory.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/services/todoFactory.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="0" selection-start="761" selection-end="761" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1100">
+            <state line="105" column="36" selection-start="4268" selection-end="4268" vertical-scroll-proportion="-14.8" vertical-offset="2255" max-vertical-offset="7450">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="todo.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/todo.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="99" column="17" selection-start="2342" selection-end="2346" vertical-scroll-proportion="-10.8" vertical-offset="2205" max-vertical-offset="3225">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="238" column="0" selection-start="8257" selection-end="8257" vertical-scroll-proportion="0.0" vertical-offset="6627" max-vertical-offset="9325">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="login.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="230" column="0" selection-start="6866" selection-end="6891" vertical-scroll-proportion="0.0" vertical-offset="5039" max-vertical-offset="6025">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="batches.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/batches.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="18" column="0" selection-start="567" selection-end="937" vertical-scroll-proportion="0.0" vertical-offset="214" max-vertical-offset="1050">
               <folding>
-                <element signature="e#293#726#0" expanded="false" />
-                <element signature="e#800#1454#0" expanded="false" />
-                <element signature="e#1493#1829#0" expanded="false" />
-                <element signature="e#1886#2416#0" expanded="false" />
-                <element signature="e#2461#3083#0" expanded="false" />
+                <marker date="1405373101687" expanded="true" signature="644:757" placeholder="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register user.html" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/selenium-tests/register user.html">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="13" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.11923689" vertical-offset="1200" max-vertical-offset="2200">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todoauthenticate.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/spec/controllers/todoauthenticate.js">
+      <file leaf-file-name="todogroups.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todogroups.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="40" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="837" max-vertical-offset="1500">
+            <state line="27" column="19" selection-start="879" selection-end="887" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="2525">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todoFactory.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/services/todoFactory.js">
+      <file leaf-file-name="todolist.js" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todolist.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="98" column="23" selection-start="3066" selection-end="3066" vertical-scroll-proportion="0.0" vertical-offset="2012" max-vertical-offset="2675">
+            <state line="40" column="8" selection-start="1539" selection-end="1539" vertical-scroll-proportion="0.24480712" vertical-offset="835" max-vertical-offset="3300">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="authentication.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/services/authentication.js">
+      <file leaf-file-name="uploader.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="31" column="22" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1750">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="uploader.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/spec/controllers/uploader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="700">
               <folding />
             </state>
           </provider>
@@ -102,22 +148,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/index.html" />
-        <option value="$PROJECT_DIR$/app/scripts/app.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/uploader.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/junk2.js" />
         <option value="$PROJECT_DIR$/karma.conf.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/acctdetail.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/batches.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/todogroups.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/todolist.js" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/junk.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/junk.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/todoauthenticate.js" />
-        <option value="$PROJECT_DIR$/app/scripts/services/todoFactory.js" />
-        <option value="$PROJECT_DIR$/app/scripts/services/authentication.js" />
-        <option value="$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js" />
         <option value="$PROJECT_DIR$/app/selenium-tests/todogiant test suite" />
+        <option value="$PROJECT_DIR$/app/scripts/services/authentication.js" />
+        <option value="$PROJECT_DIR$/app/login.php" />
+        <option value="$PROJECT_DIR$/app/scripts/services/todoFactory.js" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/acctdetail.js" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/batches.js" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/todogroups.js" />
+        <option value="$PROJECT_DIR$/app/functions.php" />
+        <option value="$PROJECT_DIR$/app/scripts/controllers/todolist.js" />
       </list>
     </option>
   </component>
@@ -574,7 +620,11 @@
       <created>1405302958832</created>
       <updated>1405302958832</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="Fix Selenium Test, Updated RegisterUser Call">
+      <created>1405363620995</created>
+      <updated>1405363620995</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <option name="createChangelist" value="false" />
     <option name="createBranch" value="false" />
     <option name="closeIssue" value="false" />
@@ -602,28 +652,28 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3238469" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.313052" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6584887" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46927804" sideWeight="0.5465729" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16013628" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2044293" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46927804" sideWeight="0.5465729" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456777" sideWeight="0.67615306" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16013628" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1456777" sideWeight="0.686948" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39646712" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6592845" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39718804" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -677,112 +727,128 @@
     <MESSAGE value="Change to authenticate controller and unit test" />
     <MESSAGE value="Change dependency injection notation in controllers and services" />
     <MESSAGE value="Reworking getLoginStatusNew service... var for promise... trying to come up with standard pattern for factory" />
-    <option name="LAST_COMMIT_MESSAGE" value="Reworking getLoginStatusNew service... var for promise... trying to come up with standard pattern for factory" />
+    <MESSAGE value="Fix Selenium Test, Updated RegisterUser Call" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Selenium Test, Updated RegisterUser Call" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/batches.js">
+    <entry file="file://$PROJECT_DIR$/app/selenium-tests/register user.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="4" selection-start="1001" selection-end="1001" vertical-scroll-proportion="0.0" vertical-offset="821" max-vertical-offset="1125" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="425" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todogroups.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="4" selection-start="2941" selection-end="2941" vertical-scroll-proportion="0.0" vertical-offset="2321" max-vertical-offset="2625">
+        <state line="51" column="13" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.11923689" vertical-offset="1200" max-vertical-offset="2200">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todolist.js">
+    <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="117" column="8" selection-start="3902" selection-end="3902" vertical-scroll-proportion="0.0" vertical-offset="2725" max-vertical-offset="3525" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/junk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="0" selection-start="149" selection-end="149" vertical-scroll-proportion="0.0" vertical-offset="142" max-vertical-offset="550" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/junk.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="4" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0" vertical-offset="175" max-vertical-offset="1100">
+        <state line="110" column="36" selection-start="2776" selection-end="2776" vertical-scroll-proportion="-1.1734694" vertical-offset="3325" max-vertical-offset="10925">
           <folding />
         </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/acctdetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="527" selection-end="527" vertical-scroll-proportion="0.0" vertical-offset="140" max-vertical-offset="700" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/controllers/acctdetail.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="525" selection-end="525" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1025" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/login.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="218" column="19" selection-start="6629" selection-end="6639" vertical-scroll-proportion="-5.32" vertical-offset="5317" max-vertical-offset="5975">
-          <folding />
+        <state line="18" column="0" selection-start="573" selection-end="911" vertical-scroll-proportion="0.0" vertical-offset="63" max-vertical-offset="925">
+          <folding>
+            <marker date="1405372788571" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1405372788571" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1405372788571" expanded="true" signature="-1:-1" placeholder="{...}" />
+            <marker date="1405372788571" expanded="true" signature="-1:-1" placeholder="{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/services/todoFactory.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="98" column="23" selection-start="3066" selection-end="3066" vertical-scroll-proportion="0.0" vertical-offset="2012" max-vertical-offset="2675">
+        <state line="8" column="23" selection-start="268" selection-end="273" vertical-scroll-proportion="4.0" vertical-offset="300" max-vertical-offset="2700">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/services/authentication.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="22" selection-start="1212" selection-end="1212" vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="1750">
+        <state line="47" column="12" selection-start="1818" selection-end="1824" vertical-scroll-proportion="-10.8" vertical-offset="905" max-vertical-offset="2825">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/todoauthenticate.js">
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="40" selection-start="1190" selection-end="1190" vertical-scroll-proportion="0.0" vertical-offset="950" max-vertical-offset="1500">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js">
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/uploader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="0" selection-start="761" selection-end="761" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1100">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/batches.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="567" selection-end="937" vertical-scroll-proportion="0.0" vertical-offset="214" max-vertical-offset="1050">
           <folding>
-            <element signature="e#293#726#0" expanded="false" />
-            <element signature="e#800#1454#0" expanded="false" />
-            <element signature="e#1493#1829#0" expanded="false" />
-            <element signature="e#1886#2416#0" expanded="false" />
-            <element signature="e#2461#3083#0" expanded="false" />
+            <marker date="1405373101687" expanded="true" signature="644:757" placeholder="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/selenium-tests/todogiant test suite">
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="0" selection-start="706" selection-end="706" vertical-scroll-proportion="0.6033183" vertical-offset="0" max-vertical-offset="663">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="836">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/selenium-tests/register user.html">
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/uploader.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="13" selection-start="1164" selection-end="1164" vertical-scroll-proportion="0.11923689" vertical-offset="1200" max-vertical-offset="2200">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todogroups.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="27" column="19" selection-start="879" selection-end="887" vertical-scroll-proportion="0.0" vertical-offset="375" max-vertical-offset="2525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/services/todoFactory.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="105" column="36" selection-start="4268" selection-end="4268" vertical-scroll-proportion="-14.8" vertical-offset="2255" max-vertical-offset="7450">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="230" column="0" selection-start="6866" selection-end="6891" vertical-scroll-proportion="0.0" vertical-offset="5039" max-vertical-offset="6025">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/todo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="99" column="17" selection-start="2342" selection-end="2346" vertical-scroll-proportion="-10.8" vertical-offset="2205" max-vertical-offset="3225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="238" column="0" selection-start="8257" selection-end="8257" vertical-scroll-proportion="0.0" vertical-offset="6627" max-vertical-offset="9325">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todolist.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="8" selection-start="1539" selection-end="1539" vertical-scroll-proportion="0.24480712" vertical-offset="835" max-vertical-offset="3300">
           <folding />
         </state>
       </provider>

@@ -4,25 +4,22 @@ angular.module('todoApp')
   .controller('TodolistCtrl', ['$scope', 'todoFactory', '$rootScope', function ($scope, todoFactory, $rootScope ) {
 
         $scope.frequencies = function (){
-          todoFactory.getfrequencies()
-            .success(function (data) {
-              $scope.frequencies = data;
-            })
-            .error(function (error) {
-              $scope.status = 'Error Saving:' + error.message;
-            });
+          todoFactory.getfrequencies().then(function (data) {
+            $scope.frequencies = data;
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Getting Frequencies:' + error);
+          });
         };
 
         $scope.priorities = function (){
-          todoFactory.getpriorities()
-            .success(function (data) {
-              $scope.priorities = data;
-            })
-            .error(function (error) {
-              $scope.status = 'Error Saving:' + error.message;
-            });
+          todoFactory.getpriorities().then(function (data) {
+            $scope.priorities = data;
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Getting Priorities:' + error);
+          });
         };
-
 
         if ($scope.loggedIn){
           $scope.priorities();
@@ -30,67 +27,62 @@ angular.module('todoApp')
         }
 
         $scope.addTodo = function (newTodo){
-            newTodo.taskName = newTodo.task;
-            newTodo.activegroup = $rootScope.activegroup;
-            todoFactory.addTodo(newTodo)
-              .success(function (data) {
-                if (data){
-                  todoFactory.msgSuccess('Todo Added!');
-                }
-                $scope.todos.push(data);
-                $scope.newTodo.task = '';
-              })
-              .error(function (error) {
-                $scope.status = 'Error Saving:' + error.message;
-              });
-          };
+          newTodo.taskName = newTodo.task;
+          newTodo.activegroup = $rootScope.activegroup;
+          todoFactory.addTodo(newTodo).then(function (data) {
+              if (data){
+                todoFactory.msgSuccess('Todo Added!');
+              }
+              $scope.todos.push(data);
+              $scope.newTodo.task = '';
+            }, function(error) {
+              // promise rejected, could be because server returned 404, 500 error...
+              todoFactory.msgError('Error Saving:' + error);
+            });
+        };
 
         $scope.updateDone = function (todo){
-          todoFactory.updateTodo(todo)
-            .success(function (data) {
-              if (data){
-                if (todo.done){
-                  todoFactory.msgSuccess('Well Done!');
-                }
+          todoFactory.updateTodo(todo).then(function (data) {
+            if (data){
+              if (todo.done){
+                todoFactory.msgSuccess('Well Done!');
               }
-            })
-            .error(function (error) {
-              $scope.status = 'Error Saving:' + error.message;
-            });
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Saving:' + error);
+          });
         };
 
         $scope.updateTask = function (todo){
           /* following comment turns off camelcase check for this function.. so it'll be ignored */
           /* jshint camelcase: false */
-          todoFactory.updateTodo(todo)
-            .success(function (data) {
-              if (data){
-                todoFactory.msgSuccess('Updated');
-                // update the date since it may have changed (ie - pass in Monday and the backend service will translate)
-                for(var i=0;i<$scope.todos.length;i++){
-                  if($scope.todos[i].todo_id === data.todo_id){
-                    $scope.todos[i].due_dt = data.due_dt;
-                  }
+          todoFactory.updateTodo(todo).then(function (data) {
+            if (data){
+              todoFactory.msgSuccess('Updated');
+              // update the date since it may have changed (ie - pass in Monday and the backend service will translate)
+              for(var i=0;i<$scope.todos.length;i++){
+                if($scope.todos[i].todo_id === data.todo_id){
+                  $scope.todos[i].due_dt = data.due_dt;
                 }
               }
-            })
-            .error(function (error) {
-              $scope.status = 'Error Saving:' + error.message;
-            });
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Saving:' + error);
+          });
         };
 
         $scope.getMyTodos = function (){
-            todoFactory.getToDos()
-              .success(function (data) {
-                if (data){
-                  $scope.todos = data;
-                }
-              })
-              .error(function (error) {
-                $scope.status = 'Error Retrieving ToDos:' + error.message;
-              });
-          };
-
+          todoFactory.getToDos().then(function (data) {
+            if (data){
+              $scope.todos = data;
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Retrieving ToDos:' + error);
+          });
+        };
         $scope.getMyTodos();
 
         $scope.moveTodos = function (passedData){
@@ -100,17 +92,16 @@ angular.module('todoApp')
             if (typeof passedData.toGroup === 'undefined'){
               todoFactory.msgError('Select group to move TO');
             } else {
-              todoFactory.moveTodos(passedData)
-                .success(function (data) {
-                  if (data.error){
-                    todoFactory.msgError(data.error);
-                  } else {
-                    todoFactory.msgSuccess(data.msg);
-                  }
-                })
-                .error(function (error) {
-                  $scope.status = 'Error Moving ToDos:' + error.message;
-                });
+              todoFactory.moveTodos(passedData).then(function (data) {
+                if (data.error){
+                  todoFactory.msgError(data.error);
+                } else {
+                  todoFactory.msgSuccess(data.msg);
+                }
+              }, function(error) {
+                // promise rejected, could be because server returned 404, 500 error...
+                todoFactory.msgError('Error Moving ToDos:' + error);
+              });
             }
           }
         };
