@@ -41,7 +41,7 @@ describe('Test of Controller: todoAuthenticateCtrl', function () {
     expect(scope.loggedIn).toEqual(1);
   });
 
-  it("should broadcast something", function() {
+  it('should broadcast something', function() {
     var getResponse = {login: 1};
     spyOn(scope, '$broadcast');
     getDeferred.resolve(getResponse);

@@ -6,17 +6,33 @@ angular.module('todoApp')
     // Public API here
     return {
       getLoginStatusNew:  function() {
-        return $http.get('login.php').then(function(response) {
-            if (typeof response.data === 'object') {
-              return response.data;
+        var promise = $http({
+          url: 'login.php',
+          method: 'GET'
+        });
+        return promise.then(function(result) {
+            if (typeof result.data === 'object') {
+              return result.data;
             } else {
               // invalid response
-              return $q.reject(response.data);
+              return $q.reject(result.data);
             }
           }, function(response) {
             // something went wrong
-            return $q.reject(response.data);
+            return $q.reject(result.data);
           });
+//        var promise =  $http.get('login.php').then(function(response) {
+//            if (typeof response.data === 'object') {
+//              return response.data;
+//            } else {
+//              // invalid response
+//              return $q.reject(response.data);
+//            }
+//          }, function(response) {
+//            // something went wrong
+//            return $q.reject(response.data);
+//          });
+//        return promise;
       },
 
       registerUser: function(user) {

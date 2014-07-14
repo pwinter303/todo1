@@ -15,7 +15,8 @@ angular.module('todoApp')
             }, function(error) {
               // promise rejected, could log the error with: console.log('error', error);
               $scope.loggedIn = 0;
-        });
+              todoFactory.msgError(error.msg);
+            });
         };
         $scope.getLoginStatus();
 
