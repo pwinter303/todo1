@@ -5,66 +5,66 @@ angular.module('todoApp')
 
     var dataFactory = {};
 
-    dataFactory.addTodo = function(todo) {
-          todo.action = 'addNew';
-          return $http.post('todo.php',todo);
+    dataFactory.addTodo = function(passedData) {
+          passedData.action = 'addNew';
+          return $http.post('todo.php',passedData);
         };
 
-    dataFactory.updateTodo = function(todo) {
-          todo.action = 'updateTodo';
-          return $http.post('todo.php',todo);
+    dataFactory.updateTodo = function(passedData) {
+          passedData.action = 'updateTodo';
+          return $http.post('todo.php',passedData);
         };
 
     dataFactory.getToDos = function() {
-          var data = {action: 'gettodos'};
-          return $http({method:'GET', url:'todo.php', params: data});
+          var passedData = {action: 'gettodos'};
+          return $http({method:'GET', url:'todo.php', params: passedData});
         };
 
 
-    dataFactory.moveTodos = function(data) {
-          data.action = 'moveTodos';
-          return $http.post('todo.php',data);
+    dataFactory.moveTodos = function(passedData) {
+          passedData.action = 'moveTodos';
+          return $http.post('todo.php',passedData);
         };
 
     dataFactory.getToDoGroups = function() {
-          var data = {action: 'gettodogroups'};
-          return $http({method:'GET', url:'todo.php', params: data});
+          var passedData = {action: 'gettodogroups'};
+          return $http({method:'GET', url:'todo.php', params: passedData});
         };
 
-    dataFactory.addGroup = function(group) {
-          group.action = 'addGroup';
-          return $http.post('todo.php',group);
+    dataFactory.addGroup = function(passedData) {
+          passedData.action = 'addGroup';
+          return $http.post('todo.php',passedData);
         };
 
-    dataFactory.deleteGroup = function(group) {
-          group.action = 'deleteGroup';
-          return $http.post('todo.php',group);
+    dataFactory.deleteGroup = function(passedData) {
+          passedData.action = 'deleteGroup';
+          return $http.post('todo.php',passedData);
         };
 
-    dataFactory.updateGroup = function(group) {
-          group.action = 'updateGroup';
-          return $http.post('todo.php',group);
+    dataFactory.updateGroup = function(passedData) {
+          passedData.action = 'updateGroup';
+          return $http.post('todo.php',passedData);
         };
 
     dataFactory.getfrequencies = function() {
-          var data = {action: 'getfrequencies'};
-          return $http({method:'GET', url:'todo.php', params: data});
+          var passedData = {action: 'getfrequencies'};
+          return $http({method:'GET', url:'todo.php', params: passedData});
         };
 
     dataFactory.getpriorities = function() {
-          var data = {action: 'getpriorities'};
-          return $http({method:'GET', url:'todo.php', params: data});
+          var passedData = {action: 'getpriorities'};
+          return $http({method:'GET', url:'todo.php', params: passedData});
         };
 
 
     dataFactory.getBatches = function() {
-          var data = {action: 'getbatches'};
-          return $http({method:'GET', url:'todo.php', params: data});
+          var passedData = {action: 'getbatches'};
+          return $http({method:'GET', url:'todo.php', params: passedData});
         };
 
-    dataFactory.deleteBatch = function(batch) {
-          batch.action = 'deleteBatch';
-          return $http.post('todo.php',batch);
+    dataFactory.deleteBatch = function(passedData) {
+          passedData.action = 'deleteBatch';
+          return $http.post('todo.php',passedData);
         };
 
     dataFactory.getAccountDetails = function() {
@@ -78,23 +78,21 @@ angular.module('todoApp')
           });
         };
 
-    dataFactory.processPayment = function(token) {
-          token.action = 'processPayment';
-          return $http.post('userAccount.php',token).then(function(result) {
-            return result.data;
-          });
-
-        };
+    dataFactory.processPayment = function(passedData) {
+      passedData.action = 'processPayment';
+      return $http.post('userAccount.php',passedData).then(function(result) {
+        return result.data;
+      });
+    };
 
     // prevent toastr is not defined error in grunt/jshint
     /*global toastr */
-    toastr.options = {
-      'timeOut': '2000'
-    };
     dataFactory.msgSuccess = function(text) {
+      toastr.options = {'timeOut': '2000'};
           toastr.success(text);
         };
     dataFactory.msgError = function(text) {
+          toastr.options = {'timeOut': '5000'};
           toastr.error(text);
         };
 

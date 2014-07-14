@@ -7,15 +7,15 @@ angular.module('todoApp')
         $scope.loggedIn = 0;
 
         $scope.getLoginStatus = function() {
-          authentication.getLoginStatusNew().then(function (data) {
+          authentication.getLoginStatus().then(function (data) {
               if (data.login){
                 $scope.loggedIn = data.login;
                 $scope.$broadcast('LoggedIn', []);
               }
             }, function(error) {
-              // promise rejected, could log the error with: console.log('error', error);
+              // promise rejected, could be because server returned 404, 500 error...
               $scope.loggedIn = 0;
-              todoFactory.msgError(error.msg);
+              todoFactory.msgError(error);
             });
         };
         $scope.getLoginStatus();
@@ -68,25 +68,25 @@ angular.module('todoApp')
         };
 
         $scope.registerMe = function(user){
-          authentication.registerUser(user)
-            .success(function (data) {
-              $scope.errormsg = '';
-              if (data.error){
-                $scope.errormsg = data.error;
-              }
-              if (data.login){
-                $scope.loggedIn = 1;
-                $scope.$broadcast('LoggedIn', []);
-                todoFactory.msgSuccess(data.msg);
-                $location.path( '/todolist' );
-              }
-            })
-            .error(function (error) {
-              $scope.status = 'Error Logging In:' + error.message;
-            });
+          authentication.registerUser(user).then(function (data) {
+            $scope.errormsg = '';
+            if (data.error){
+              $scope.errormsg = data.error;
+            }
+            if (data.login){
+              $scope.loggedIn = 1;
+              $scope.$broadcast('LoggedIn', []);
+              todoFactory.msgSuccess(data.msg);
+              $location.path( '/todolist' );
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            $scope.loggedIn = 0;
+            todoFactory.msgError(error);
+          });
         };
 
-      }]);
+  }]);
 
 angular.module('todoApp')
 .directive('formAutofillFix', function() {

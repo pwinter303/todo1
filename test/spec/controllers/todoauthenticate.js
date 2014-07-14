@@ -18,7 +18,7 @@ describe('Test of Controller: todoAuthenticateCtrl', function () {
     scope = $rootScope.$new();
     rootScope = $rootScope;
     myServiceMock1 = {
-      getLoginStatusNew: function() {},
+      getLoginStatus: function() {},
       login: function() {}
     };
     myServiceMock2 = {
@@ -26,7 +26,7 @@ describe('Test of Controller: todoAuthenticateCtrl', function () {
     };
     // setup a promise for the get
     getDeferred = $q.defer();
-    spyOn(myServiceMock1, 'getLoginStatusNew').andReturn(getDeferred.promise);
+    spyOn(myServiceMock1, 'getLoginStatus').andReturn(getDeferred.promise);
 
     controller = $controller('todoAuthenticateCtrl', { $scope: scope, authentication: myServiceMock1});
   }));
@@ -36,7 +36,7 @@ describe('Test of Controller: todoAuthenticateCtrl', function () {
     getDeferred.resolve(getResponse);
     scope.getLoginStatus();
     scope.$apply();
-    expect(myServiceMock1.getLoginStatusNew).toHaveBeenCalled();
+    expect(myServiceMock1.getLoginStatus).toHaveBeenCalled();
     //expect(scope.plw).toEqual(1);
     expect(scope.loggedIn).toEqual(1);
   });

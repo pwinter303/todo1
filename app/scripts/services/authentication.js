@@ -5,54 +5,59 @@ angular.module('todoApp')
 
     // Public API here
     return {
-      getLoginStatusNew:  function() {
-        var promise = $http({
-          url: 'login.php',
-          method: 'GET'
-        });
+      ////=============================================================================///
+      getLoginStatus:  function() {
+        var url = 'login.php';
+        var passedData = {action: 'getLoginStatus'};
+        // Start Standard Code... GET
+        var promise = $http.get(url , {params: passedData });
         return promise.then(function(result) {
             if (typeof result.data === 'object') {
               return result.data;
             } else {
-              // invalid response
+              // call was successful but response was invalid (result was not an object)
               return $q.reject(result.data);
             }
-          }, function(response) {
-            // something went wrong
+          }, function(result) {
+            // something went wrong.... error on the call..
             return $q.reject(result.data);
           });
-//        var promise =  $http.get('login.php').then(function(response) {
-//            if (typeof response.data === 'object') {
-//              return response.data;
-//            } else {
-//              // invalid response
-//              return $q.reject(response.data);
-//            }
-//          }, function(response) {
-//            // something went wrong
-//            return $q.reject(response.data);
-//          });
-//        return promise;
       },
 
-      registerUser: function(user) {
-        user.action = 'registerUser';
-        return $http.post('login.php',user);
+      ////=============================================================================///
+      registerUser: function(passedData) {
+        var url = 'login.php';
+        passedData.action = 'registerUser';
+        //OLD CODE:   return $http.post('login.php',passedData);
+        // Start Standard Code... POST
+        var promise = $http.post(url , passedData);
+        return promise.then(function(result) {
+          if (typeof result.data === 'object') {
+            return result.data;
+          } else {
+            // call was successful but response was invalid (result was not an object)
+            return $q.reject(result.data);
+          }
+        }, function(result) {
+          // something went wrong.... error on the call..
+          return $q.reject(result.data);
+        });
       },
 
-      login:  function(user) {
-        user.action = 'validateUser';
-        return $http.post('login.php',user);
+      ////=============================================================================///
+      login:  function(passedData) {
+        passedData.action = 'validateUser';
+        return $http.post('login.php',passedData);
       },
 
       logOut: function() {
-        var data = {action: 'logOutUser'};
-        return $http.post('login.php',data);
+        var passedData = {action: 'logOutUser'};
+        return $http.post('login.php',passedData);
       },
 
-      changePassword: function(data) {
-        data.action = 'changePassword';
-        return $http.post('login.php',data);
+      changePassword: function(passedData) {
+        passedData.action = 'changePassword';
+        return $http.post('login.php',passedData);
       }
     };
   }]);
