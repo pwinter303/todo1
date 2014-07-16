@@ -11,7 +11,6 @@ Tracking free trial period... enforcement of end of trial period
 Forgot password process.... generate temp password & email..... Force password change when using temp password
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
 Add Content on Login and Registration Page
-Build Test Cases
 Dynamic congratulations messages for completed tasks... integrated with Tostr
 Show completed items... is this going to be a performance problem?  Should they be protected?
 Feedback form... or Forum...
@@ -19,7 +18,11 @@ Export Todos - Should this be part of premium?   MVP?
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
 Ability to specify priority/date on the quick add
 BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed
-
+Build Unit Test Cases for Controllers and Services
+Add Selenium test to grunt
+Split settings page into multiple pages.... Change Settings button to be a drop down and name it something generic
+Setup test database on EC2
+Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 
 
 ========== Nice to Have ============
