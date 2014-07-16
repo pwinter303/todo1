@@ -8,7 +8,6 @@ Print formatting
 Payment/Donation for usage using PayPal
 Payment/Donation for usage using CreditCard
 Tracking free trial period... enforcement of end of trial period
-Database Backup and Restore process
 Forgot password process.... generate temp password & email..... Force password change when using temp password
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
 Add Content on Login and Registration Page
@@ -17,15 +16,10 @@ Dynamic congratulations messages for completed tasks... integrated with Tostr
 Show completed items... is this going to be a performance problem?  Should they be protected?
 Feedback form... or Forum...
 Export Todos - Should this be part of premium?   MVP?
-HTTPS - Need:  Certificate, Business Name,
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
+Ability to specify priority/date on the quick add
+BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed
 
-
-BIZ STUFF
- - Setup LLC... Needed in advance of domain name, SSL setup, terms & conditions etc
- - Terms and Conditions?   Privacy Agreement? I think they're needed
- - Select URL/Domain:  TodoTiger?  TodoTurtle?  spectaculartodo?  todocrusher?  mytodo $2,900  todogiant todowarrior
- -- NOT AVAILABLE: TodoRocket  TodoNinja
 
 
 ========== Nice to Have ============
@@ -67,6 +61,11 @@ store database connection in session.... NOT POSSIBLE... "do not store any objec
 Move Todos between Groups (SETTINGS)
 Add phpass for password storing... See: https://phpbestpractices.org/
 Import Todos - Think this may be critical for folks to start using the app
+BIZ STUFF - Setup LLC... Needed in advance of domain name, SSL setup, terms & conditions etc
+BIZ STUFF - Select URL/Domain:  TodoTiger?  TodoTurtle?  spectaculartodo?  todocrusher?  mytodo $2,900  todogiant todowarrior... NOT AVAILABLE: TodoRocket  TodoNinja
+HTTPS - Need:  Certificate, Business Name,
+Database Backup and Restore process
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
