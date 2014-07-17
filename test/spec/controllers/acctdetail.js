@@ -1,22 +1,37 @@
 'use strict';
 
-describe('Controller: AcctdetailCtrl', function () {
+describe('Controller: AcctdetailCtrl ', function () {
+    var $scope, ctrl, $timeout;
+    var todoFactoryMOCK;
 
-  // load the controller's module
-  beforeEach(module('todoApp'));
-
-  var AcctdetailCtrl,
-    scope;
-
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    AcctdetailCtrl = $controller('AcctdetailCtrl', {
-      $scope: scope
+    // This function will be called before every "it" block. This should be used to "reset" state for your tests.
+    beforeEach(function (){
+      // Create a "spy object" for our Service.
+      todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getAccountDetails']);
+      module('todoApp');
+      inject(function($rootScope, $controller, $q, _$timeout_) {
+        $scope = $rootScope.$new();
+        // $q.when creates a resolved promise... values in When are what the service should return...
+        todoFactoryMOCK.getAccountDetails.andReturn($q.when({accountType:1, paidThrough:3 }));
+        // assign $timeout to a scoped variable so we can use $timeout.flush() later.
+        $timeout = _$timeout_;
+        ctrl = $controller('AcctdetailCtrl', {
+          $scope: $scope,
+          todoFactory: todoFactoryMOCK
+        });
+      });
     });
-  }));
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+
+    it('should call function getAccountDetails on the todoFactory and set values on scope', function (){
+// call the function
+      $scope.getAccountDetails();
+// assert that it called the service method.
+      expect(todoFactoryMOCK.getAccountDetails).toHaveBeenCalled();
+// call $timeout.flush() to flush the unresolved dependency from our service.
+      $timeout.flush();
+// assert that it set $scope correctly
+      expect($scope.accountType).toEqual(1);
+      expect($scope.paidThrough).toEqual(3);
+    });
   });
-});
