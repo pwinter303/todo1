@@ -12,7 +12,7 @@ angular.module('todoApp')
     $scope.getTodoGroups = function (){
       /* following comment turns off camelcase check for this function.. so it'll be ignored */
       /* jshint camelcase: false */
-      todoFactory.getToDoGroups().then(function (data) {
+      todoFactory.getTodoGroups().then(function (data) {
         $scope.groups = data;
         for(var i=0;i<$scope.groups.length;i++){
           if($scope.groups[i].active === true){

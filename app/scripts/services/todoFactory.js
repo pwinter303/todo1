@@ -80,7 +80,7 @@ angular.module('todoApp')
       });
     };
     ////=============================================================================///
-    dataFactory.getToDoGroups = function() {
+    dataFactory.getTodoGroups = function() {
       var url = 'todo.php';
       var passedData = {action: 'gettodogroups'};
       //OLD CODE: return $http({method:'GET', url:'todo.php', params: passedData});

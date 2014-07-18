@@ -24,13 +24,13 @@ describe('Controller: AcctdetailCtrl ', function () {
 
 
     it('should call function getAccountDetails on the todoFactory and set values on scope', function (){
-// call the function
+      // call the function
       $scope.getAccountDetails();
-// assert that it called the service method.
+      // assert that it called the service method.
       expect(todoFactoryMOCK.getAccountDetails).toHaveBeenCalled();
-// call $timeout.flush() to flush the unresolved dependency from our service.
+      // call $timeout.flush() to flush the unresolved dependency from our service.
       $timeout.flush();
-// assert that it set $scope correctly
+      // assert that it set $scope correctly
       expect($scope.accountType).toEqual(1);
       expect($scope.paidThrough).toEqual(3);
     });
