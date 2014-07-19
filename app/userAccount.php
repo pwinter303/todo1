@@ -27,7 +27,8 @@ function processRequest(){
              break;
     }
 
-    return $result;
+    $json = json_encode($result);
+    return $json;
 }
 
 ####################  GETs ################################
@@ -55,6 +56,9 @@ function  processPost($customer_id){
     $dbh = createDatabaseConnection();
 
     $postdata = file_get_contents("php://input");
+
+    //var_dump($postdata);
+
     $request = json_decode($postdata);
 
     $action = $request->action;
@@ -63,7 +67,7 @@ function  processPost($customer_id){
              $result = processPayment($dbh, $customer_id, $request);
              break;
        default:
-             echo "Error:Invalid Request:Action not set properly";
+             echo "Error:Invalid Request:action not set properly";
              break;
     }
 
@@ -85,10 +89,10 @@ function  processPayment($dbh, $customer_id, $request){
 
   //$token  = $_POST['stripeToken'];
   $token  = $request->id;
-  echo "this is id:$token";
+  // echo "this is id:$token";
 
   $email  = $request->email;
-  echo "this is email:$email";
+  //echo "this is email:$email";
 
   //FixMe: Get the customer information... eg eMail...
 
@@ -103,10 +107,15 @@ function  processPayment($dbh, $customer_id, $request){
       'currency' => 'usd'
   ));
 
-  echo '<h1>Successfully charged $10.00. Thank you!</h1>';
+  //echo '<h1>Successfully charged $10.00. Thank you!</h1>';
+
+  $response{'msg'} = 'Successfully charged $10.00. Thank you!';
+
+  return $response;
 
 
 
 }
+
 
 ?>

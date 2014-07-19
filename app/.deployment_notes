@@ -5,3 +5,8 @@ uncomment in the php.ini file (for windows)
   extension=php_curl.dll
 may need to install on linux
 http://www.knowledgebase-script.com/kb/article/how-to-enable-mbstring-in-php-46.html
+install json_decode
+
+linux mint... using package manager
+install: php curl
+

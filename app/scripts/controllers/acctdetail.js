@@ -18,7 +18,7 @@ angular.module('todoApp')
     $scope.processPayment = function (token){
       todoFactory.processPayment(token).then(function (data) {
         if (data){
-          todoFactory.msgSuccess('Payment Received!');
+          todoFactory.msgSuccess(data.msg);
           $scope.getAccountDetails();
         }
       }, function(error) {
