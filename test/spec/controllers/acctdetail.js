@@ -7,6 +7,7 @@ describe('Controller: AcctdetailCtrl ', function () {
     // This function will be called before every "it" block. This should be used to "reset" state for your tests.
     beforeEach(function (){
       // Create a "spy object" for our Service.
+      /*global jasmine */
       todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getAccountDetails']);
       module('todoApp');
       inject(function($rootScope, $controller, $q, _$timeout_) {

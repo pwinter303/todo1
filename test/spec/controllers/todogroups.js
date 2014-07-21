@@ -8,12 +8,13 @@ describe('Controller: TodoGroupCtrl', function () {
     var $scope;
     var ROOTScope, ctrl, $timeout;
     var todoFactoryMOCK;
-    var rtnData_getTodoGroups = {"group_id":"48","group_name":"aaaa","sort_order":"4","active":true};
-    var rtnData_addGroup = {"RowsAdded":1};
+    var rtnDatagetTodoGroups = {'group_id':'48','group_name':'aaaa','sort_order':'4','active':true};
+    var rtnDataaddGroup = {'RowsAdded':1};
 
     // This function will be called before every "it" block. This should be used to "reset" state for your tests.
     beforeEach(function (){
       // Create a "spy object" for our Service.
+      /*global jasmine */
       todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getTodoGroups', 'addGroup','msgSuccess']);
       module('todoApp');
       inject(function($rootScope, $controller, $q, _$timeout_) {
@@ -21,8 +22,8 @@ describe('Controller: TodoGroupCtrl', function () {
         ROOTScope = $rootScope;
         // $q.when creates a resolved promise... values in When are what the service should return...
 
-        todoFactoryMOCK.getTodoGroups.andReturn($q.when(rtnData_getTodoGroups));
-        todoFactoryMOCK.addGroup.andReturn($q.when(rtnData_addGroup));
+        todoFactoryMOCK.getTodoGroups.andReturn($q.when(rtnDatagetTodoGroups));
+        todoFactoryMOCK.addGroup.andReturn($q.when(rtnDataaddGroup));
         todoFactoryMOCK.msgSuccess.andReturn('Done');
 
         //todoFactoryMOCK.getAccountDetails.andReturn($q.when({accountType:1, paidThrough:3 }));
@@ -45,30 +46,28 @@ describe('Controller: TodoGroupCtrl', function () {
       // call $timeout.flush() to flush the unresolved dependency from our service.
       $timeout.flush();
       // assert that it set $scope correctly
-      expect($scope.groups).toEqual(rtnData_getTodoGroups);
+      expect($scope.groups).toEqual(rtnDatagetTodoGroups);
 
       // this should work... and it works in the actual site... not sure why it doesnt work here
       //expect(ROOTScope.activegroup).toEqual(48);
     });
 
-  it('should call functions todoFactory.addGroup and $scope.getTodoGroups', function (){
+    it('should call functions todoFactory.addGroup and $scope.getTodoGroups', function (){
 
-    spyOn($scope, 'getTodoGroups').andCallThrough();
+      spyOn($scope, 'getTodoGroups').andCallThrough();
 
-    // call the function
-    $scope.addGroup();
-    // assert that it called the service method.
-    expect(todoFactoryMOCK.addGroup).toHaveBeenCalled();
-    // call $timeout.flush() to flush the unresolved dependency from our service.
-    $timeout.flush();
-    // assert that it set $scope correctly
-    expect($scope.newGroup.name).toEqual('');
+      // call the function
+      $scope.addGroup();
+      // assert that it called the service method.
+      expect(todoFactoryMOCK.addGroup).toHaveBeenCalled();
+      // call $timeout.flush() to flush the unresolved dependency from our service.
+      $timeout.flush();
+      // assert that it set $scope correctly
+      expect($scope.newGroup.name).toEqual('');
 
-    // assert that it called the service method.
-    expect($scope.getTodoGroups).toHaveBeenCalled();
-    expect(todoFactoryMOCK.msgSuccess).toHaveBeenCalled();
-
-
-  });
+      // assert that it called the service method.
+      expect($scope.getTodoGroups).toHaveBeenCalled();
+      expect(todoFactoryMOCK.msgSuccess).toHaveBeenCalled();
+    });
 
   });

@@ -7,7 +7,7 @@ Fix blog link
 Enter date and it is not savings
 Ellen wants the ability to move 1 todo between group
 Ability to delete a single todo
-Ability to set how long a completed task
+Ability to set how long a completed task is shown
 Picture in the stripe checkout
 What do you get when you pay for it
 Change To Do to Todo.. redo screen shots..
