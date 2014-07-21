@@ -74,7 +74,7 @@ function registerUser($dbh, $userName, $password, $password2){
     } else {
       $exists = doesUserExist($dbh, $userName);
       if ($exists){
-              $response{'error'} = "ERROR - customer already exists";
+              $response{'error'} = "ERROR - eMail already registered";
       } else {
         $return_status = addUser($dbh, $userName, $password);
         if ($return_status){

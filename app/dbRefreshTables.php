@@ -104,12 +104,12 @@ function insertTodos($dbh){
 
   $query = "INSERT INTO todo (task_name, due_dt, starred, group_id, priority_cd,
   frequency_cd, status_cd, customer_id, Note, done, tags)  VALUES
-    ('test1', '2014-01-05 00:00:00', '1', '1', '1', '1', '1',1, 'my note', 0, ''),
-    ('test2', '2014-01-06 00:00:00', '0', '1', '2', '2', '2',1, 'my note', 0, ''),
-    ('test3', '2014-01-07 00:00:00', '1', '1', '3', '3', '1',1, 'my note', 0, ''),
-    ('test4', '2014-01-02 00:00:00', '0', '1', '1', '2', '2',1, 'my note', 0, ''),
-    ('test5', '2014-01-03 00:00:00', '1', '1', '2', '3', '1',1, 'my note', 0, ''),
-    ('test6', '2014-01-09 00:00:00', '0', '1', '3', '2', '2',1, 'my note', 0, '')";
+    ('Buy Milk', '2014-07-05 00:00:00', '1', '1', '1', '1', '1',1, 'my note', 0, ''),
+    ('Fertilize the lawn', '2014-07-06 00:00:00', '0', '1', '2', '2', '2',1, 'my note', 0, ''),
+    ('Plan Vacation', '2014-07-07 00:00:00', '1', '1', '3', '3', '1',1, 'my note', 0, ''),
+    ('Study for exam', '2014-08-02 00:00:00', '0', '1', '1', '2', '2',1, 'my note', 0, ''),
+    ('Plant Fall flowers', '2014-09-03 00:00:00', '1', '1', '2', '3', '1',1, 'my note', 0, ''),
+    ('Get Todo Giant', '2014-9-09 00:00:00', '0', '1', '3', '2', '2',1, 'my note', 0, '')";
 
   $rowsInserted = insertData($dbh, $query);
   echo "todos inserted:" . $rowsInserted . "</br>";

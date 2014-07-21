@@ -13,6 +13,8 @@ What do you get when you pay for it
 Change To Do to Todo.. redo screen shots..
 Update.. some places called 'tags' other places 'keywords' other places 'category'
 Fix null error message in stripe payment
+When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
+
 
 
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
