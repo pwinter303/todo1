@@ -5,12 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86e13eda-f552-4432-b750-06bfa432e5bd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.UserStories.txt" afterPath="$PROJECT_DIR$/app/.UserStories.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/dbRefreshTables.php" afterPath="$PROJECT_DIR$/app/dbRefreshTables.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/login.php" afterPath="$PROJECT_DIR$/app/login.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/main.html" afterPath="$PROJECT_DIR$/app/views/main.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/todolist.html" afterPath="$PROJECT_DIR$/app/views/todolist.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="todo.iws" />
@@ -638,7 +632,11 @@
       <created>1405780791636</created>
       <updated>1405780791636</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Added realistic data to RefreshTables, Updated Login Msg">
+      <created>1405939500359</created>
+      <updated>1405939500359</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <option name="createChangelist" value="false" />
     <option name="createBranch" value="false" />
     <option name="closeIssue" value="false" />
@@ -745,7 +743,8 @@
     <MESSAGE value="Overhauled promise logic in factories and controllers" />
     <MESSAGE value="Added unit test on acctdetail controller" />
     <MESSAGE value="Changed To Do to Todo.&#10;Started fixing the stripe payment&#10;Added Ellen's feedback to user stories" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed To Do to Todo.&#10;Started fixing the stripe payment&#10;Added Ellen's feedback to user stories" />
+    <MESSAGE value="Added realistic data to RefreshTables, Updated Login Msg" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added realistic data to RefreshTables, Updated Login Msg" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
