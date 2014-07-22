@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="86e13eda-f552-4432-b750-06bfa432e5bd" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\paul-winter\WebSites\todo\app\pmt.php" afterPath="" />
-      <change type="MOVED" beforePath="C:\Users\paul-winter\WebSites\todo\app\config_stripe.php" afterPath="$PROJECT_DIR$/config/config_stripe.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/db.php" afterPath="$PROJECT_DIR$/app/db.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.UserStories.txt" afterPath="$PROJECT_DIR$/app/.UserStories.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/userAccount.php" afterPath="$PROJECT_DIR$/app/userAccount.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -32,19 +30,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="todoFactory.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/scripts/services/todoFactory.js">
+      <file leaf-file-name="todogroups.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todogroups.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="278" column="0" selection-start="11465" selection-end="11487" vertical-scroll-proportion="0.0" vertical-offset="6950" max-vertical-offset="7450">
+            <state line="44" column="45" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.0" vertical-offset="767" max-vertical-offset="2525">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="todogroups.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/spec/controllers/todogroups.js">
+      <file leaf-file-name="todo.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/todo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="11" selection-start="1663" selection-end="1663" vertical-scroll-proportion="0.0" vertical-offset="875" max-vertical-offset="1975">
+            <state line="61" column="2" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.0" vertical-offset="875" max-vertical-offset="3225">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="217" column="87" selection-start="7576" selection-end="7576" vertical-scroll-proportion="0.0" vertical-offset="5175" max-vertical-offset="9325">
               <folding />
             </state>
           </provider>
@@ -59,10 +66,19 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name=".UserStories.txt" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/.UserStories.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="5" column="13" selection-start="178" selection-end="178" vertical-scroll-proportion="0.16361256" vertical-offset="0" max-vertical-offset="2375">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="config_stripe.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/config_stripe.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+            <state line="2" column="14" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
               <folding />
             </state>
           </provider>
@@ -71,34 +87,25 @@
       <file leaf-file-name="userAccount.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/userAccount.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="18" selection-start="1895" selection-end="1902" vertical-scroll-proportion="0.0" vertical-offset="1725" max-vertical-offset="3150">
+            <state line="81" column="0" selection-start="1791" selection-end="1791" vertical-scroll-proportion="-12.08" vertical-offset="1723" max-vertical-offset="3225">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="db.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="db.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/db.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="18" selection-start="25" selection-end="25" vertical-scroll-proportion="0.06435006" vertical-offset="0" max-vertical-offset="1950">
+            <state line="14" column="32" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1950">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".UserStories.txt" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/.UserStories.txt">
+      <file leaf-file-name="acctdetail.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/scripts/controllers/acctdetail.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="30" selection-start="377" selection-end="377" vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="2375">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3150">
+            <state line="8" column="28" selection-start="274" selection-end="285" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="925">
               <folding />
             </state>
           </provider>
@@ -132,7 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/scripts/services/authentication.js" />
         <option value="$PROJECT_DIR$/app/login.php" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/todoauthenticate.js" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/batches.js" />
@@ -143,11 +149,12 @@
         <option value="$PROJECT_DIR$/karma.conf.js" />
         <option value="$PROJECT_DIR$/app/scripts/services/todoFactory.js" />
         <option value="$PROJECT_DIR$/app/scripts/controllers/todogroups.js" />
-        <option value="$PROJECT_DIR$/app/.UserStories.txt" />
         <option value="$PROJECT_DIR$/test/spec/controllers/acctdetail.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/todogroups.js" />
-        <option value="$PROJECT_DIR$/app/userAccount.php" />
         <option value="$PROJECT_DIR$/app/db.php" />
+        <option value="$PROJECT_DIR$/config/config_stripe.php" />
+        <option value="$PROJECT_DIR$/app/userAccount.php" />
+        <option value="$PROJECT_DIR$/app/.UserStories.txt" />
       </list>
     </option>
   </component>
@@ -229,6 +236,46 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="todo" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scripts" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -516,7 +563,11 @@
       <created>1405977356918</created>
       <updated>1405977356918</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Removed pmt.php since that logic is in userAccount.php&#10;Change to pull config files from different directory&#10;">
+      <created>1406037356374</created>
+      <updated>1406037356374</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <option name="createChangelist" value="false" />
     <option name="createBranch" value="false" />
     <option name="closeIssue" value="false" />
@@ -546,6 +597,7 @@
     <frame x="-8" y="-8" width="1936" height="1186" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2196307" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2044293" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -562,7 +614,6 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.6584887" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3295082" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3953099" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -624,39 +675,21 @@
     <MESSAGE value="Added unit test on acctdetail controller" />
     <MESSAGE value="Added unit test on todogroup controller" />
     <MESSAGE value="Cleaned up JSLINT errors" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up JSLINT errors" />
+    <MESSAGE value="Removed pmt.php since that logic is in userAccount.php&#10;Change to pull config files from different directory&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed pmt.php since that logic is in userAccount.php&#10;Change to pull config files from different directory&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/batches.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="819" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/spec/controllers/todoauthenticate.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="30" column="36" selection-start="882" selection-end="882" vertical-scroll-proportion="0.0" vertical-offset="343" max-vertical-offset="1500" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/acctdetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="26" selection-start="773" selection-end="773" vertical-scroll-proportion="0.0" vertical-offset="575" max-vertical-offset="925">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/karma.conf.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="6" selection-start="757" selection-end="757" vertical-scroll-proportion="0.0" vertical-offset="266" max-vertical-offset="1575">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todogroups.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="0" selection-start="1705" selection-end="1705" vertical-scroll-proportion="0.0" vertical-offset="767" max-vertical-offset="2525">
           <folding />
         </state>
       </provider>
@@ -668,23 +701,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/.UserStories.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="30" selection-start="377" selection-end="377" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2375">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3150">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/spec/controllers/acctdetail.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="22" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="1100">
           <folding />
         </state>
       </provider>
@@ -703,6 +722,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="32" selection-start="379" selection-end="379" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1950">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Gruntfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="243" column="23" selection-start="6052" selection-end="6052" vertical-scroll-proportion="0.0" vertical-offset="6075" max-vertical-offset="10925">
@@ -712,21 +738,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config/config_stripe.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="775">
+        <state line="2" column="14" selection-start="89" selection-end="89" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/acctdetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="28" selection-start="274" selection-end="285" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="925">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/spec/controllers/acctdetail.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="22" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="200" max-vertical-offset="1100">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/controllers/todogroups.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="45" selection-start="1507" selection-end="1507" vertical-scroll-proportion="0.0" vertical-offset="767" max-vertical-offset="2525">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/todo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="61" column="2" selection-start="1261" selection-end="1261" vertical-scroll-proportion="0.0" vertical-offset="875" max-vertical-offset="3225">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="217" column="87" selection-start="7576" selection-end="7576" vertical-scroll-proportion="0.0" vertical-offset="5175" max-vertical-offset="9325">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/userAccount.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="18" selection-start="1895" selection-end="1902" vertical-scroll-proportion="0.0" vertical-offset="1725" max-vertical-offset="3150">
+        <state line="81" column="0" selection-start="1791" selection-end="1791" vertical-scroll-proportion="-12.08" vertical-offset="1723" max-vertical-offset="3225">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/db.php">
+    <entry file="file://$PROJECT_DIR$/app/.UserStories.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="18" selection-start="25" selection-end="25" vertical-scroll-proportion="0.06435006" vertical-offset="0" max-vertical-offset="1950">
+        <state line="5" column="13" selection-start="178" selection-end="178" vertical-scroll-proportion="0.16361256" vertical-offset="0" max-vertical-offset="2375">
           <folding />
         </state>
       </provider>

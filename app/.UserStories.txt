@@ -14,7 +14,7 @@ Change To Do to Todo.. redo screen shots..
 Update.. some places called 'tags' other places 'keywords' other places 'category'
 Fix null error message in stripe payment
 When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
-
+GetAccountDetails - get the data from a real table.... remove hard coding from the view
 
 
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO

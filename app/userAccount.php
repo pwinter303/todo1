@@ -78,14 +78,17 @@ function  processPost($customer_id){
 ####################  FUNCTIONS ################################
 function  getAccountDetails($dbh, $customer_id){
 
-
+  //FixMe: Pull this from the real table
+  $result{'accountType'} = '1';
+  $result{'paidThrough'} = '1';
+  return $result;
 }
 
 
 ####################  FUNCTIONS ################################
 function  processPayment($dbh, $customer_id, $request){
 
-  require_once(../config/config_stripe.php');
+  require_once('../config/config_stripe.php');
 
   //$token  = $_POST['stripeToken'];
   $token  = $request->id;
