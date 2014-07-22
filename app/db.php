@@ -1,6 +1,6 @@
 <?php
 
-include 'config.php';
+include '../config/config.php';
 
 function closeDatabaseConnection($dbh){
       mysqli_close($dbh);

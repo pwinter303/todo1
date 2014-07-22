@@ -85,7 +85,7 @@ function  getAccountDetails($dbh, $customer_id){
 ####################  FUNCTIONS ################################
 function  processPayment($dbh, $customer_id, $request){
 
-  require_once(dirname(__FILE__) . '/config_stripe.php');
+  require_once(../config/config_stripe.php');
 
   //$token  = $_POST['stripeToken'];
   $token  = $request->id;
