@@ -3,7 +3,6 @@ IN PROGRESS:
 Import - Keep track of batches being uploaded.. Provide stats.. allow delete of batch
 
 Need more instructions around import
-Fix blog link
 Enter date and it is not savings
 Ellen wants the ability to move 1 todo between group
 Ability to delete a single todo
@@ -15,7 +14,7 @@ Update.. some places called 'tags' other places 'keywords' other places 'categor
 Fix null error message in stripe payment
 When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
 GetAccountDetails - get the data from a real table.... remove hard coding from the view
-
+Katie: Confusing to say "By Category" in the search/filter boxes
 
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
 Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email
@@ -36,7 +35,6 @@ BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed
 Build Unit Test Cases for Controllers and Services
 Add Selenium test to grunt
 Split settings page into multiple pages.... Change Settings button to be a drop down and name it something generic
-Setup test database on EC2
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 
 
@@ -83,7 +81,9 @@ BIZ STUFF - Setup LLC... Needed in advance of domain name, SSL setup, terms & co
 BIZ STUFF - Select URL/Domain:  TodoTiger?  TodoTurtle?  spectaculartodo?  todocrusher?  mytodo $2,900  todogiant todowarrior... NOT AVAILABLE: TodoRocket  TodoNinja
 HTTPS - Need:  Certificate, Business Name,
 Database Backup and Restore process
-
+Fix blog link
+Setup test database on EC2
+Create deployment process on EC2
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
