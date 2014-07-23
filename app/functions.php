@@ -114,6 +114,7 @@ function  updateTodo($dbh, $request_data, $customer_id){
   if (strlen($due_dt)){
     $due_dt = doDateStuff($due_dt);
   }
+
   // if it is still a valid date after the doDateStuff routine... then update
   if (strlen($due_dt)){
       //$due_dt_sql = "due_dt = STR_TO_DATE('$due_dt', '%Y-%m-%d'),";
@@ -272,7 +273,7 @@ function doDateStuff($date_string){
   }
 
   if (preg_match("/([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})/", $date_string, $matches)) {
-      if (!checkdate($matches[2], $matches[1], $matches[3])) {
+      if (!checkdate($matches[1], $matches[2], $matches[3])) {
           $date_string = "";
       }
   } else {
