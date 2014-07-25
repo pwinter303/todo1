@@ -136,6 +136,9 @@ function  addTodoGroup($dbh, $customer_id){
 ##
 function validateUser($dbh, $userName, $password){
 
+
+    //fixme: instead of duplicate code have this call validate password (?)
+
     // Initialize the hasher without portable hashes (this is more secure)
     $hasher = new PasswordHash(8, false);
 
@@ -164,6 +167,9 @@ function validateUser($dbh, $userName, $password){
 }
 
 function changePassword($dbh, $oldPassword, $password, $password2){
+    // Initialize the hasher without portable hashes (this is more secure)
+    $hasher = new PasswordHash(8, false);
+
     if ($password <> $password2){
       $response{'error'} = "ERROR - Re-entered password does not match";
     } else {
@@ -172,9 +178,9 @@ function changePassword($dbh, $oldPassword, $password, $password2){
         } else {
             if (isset($_SESSION['customer_id'])) {
                 $customer_id = $_SESSION['customer_id'];
-                $valid = validatePassword($customer_id, $oldPassword);
-                if ($valid){
+                $valid = validatePassword($dbh, $customer_id, $oldPassword);
 
+                if ($valid){
                     // Hash the password.  $hashedPassword will be a 60-character string.
                     $hashedPassword = $hasher->HashPassword($password2);
 
@@ -202,17 +208,21 @@ function validatePassword($dbh, $customer_id, $password){
     $hasher = new PasswordHash(8, false);
 
     // Hash the password.  $hashedPassword will be a 60-character string.
-    $hashedPassword = $hasher->HashPassword($password);
-
-    $query = "SELECT customer_id fROM customer where customer_id = $customer_id and password = '$hashedPassword' ";
+    //$hashedPassword = $hasher->HashPassword($password);
+    //$query = "SELECT customer_id fROM customer where customer_id = $customer_id and password = '$hashedPassword' ";
+    $query = "SELECT password FROM customer where customer_id = $customer_id ";
+    //echo "this is password:$password  and  query: $query";
     $data = execSqlSingleRow($dbh, $query);
-    $customer_id = $data['customer_id'];
-    if ($customer_id){
-      $response = 1;
-    } else {
-      $response = 0;
-    }
-    return $response;
+
+    $hashedPassword = $data['password'];
+    $valid = $hasher->CheckPassword($password, $hashedPassword); // true
+
+//    if ($valid){
+//      $response = 1;
+//    } else {
+//      $response = 0;
+//    }
+    return $valid;
 }
 
 
