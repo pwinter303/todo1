@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-md-6">
+        <h4>Password Change</h4>
+        <form role="form">
+            <input type="text" class="form-control input-sm" data-ng-model="pwd.old" placeholder="enter current password">
+            <input type="text" class="form-control input-sm" data-ng-model="pwd.new1" placeholder="enter new password">
+            <input type="text" class="form-control input-sm" data-ng-model="pwd.new2" placeholder="re-enter new password">
+            <button type="submit" class="btn btn-success" data-ng-click="changePassword(pwd)">Change Password</button>
+        </form>
+    </div>
+    <div id="myDiv" ng-controller="AcctdetailCtrl" class="col-md-6">
+        <h4>Account Details</h4>
+        <div class="col-md-3">Membership Type:</div>
+        <div class="col-md-9">Free</div>
+        <div class="col-md-3">Paid Through:</div>
+        <div class="col-md-9">September 13, 2014</div>
+
+        <button id="customButton" class="btn btn-success">Purchase 12 Months of Premium</button>
+
+        <script>
+            var handler = StripeCheckout.configure({
+                key: 'pk_test_fDHNv3NjM0BYMTFjxF2sPWS4',
+                image: '/todo/app/images/Giant1.png',
+                token: function(token) {
+                    // Use the token to create the charge with a server-side script.
+                    // You can access the token ID with `token.id`
+
+                    //var microappscope = angular.element($("#myDiv")).scope();
+                    //microappscope.stripepurchase(token);
+                    // must specify DOM element that hold controller in order to access scope and method/function
+                    angular.element($("#myDiv")).scope().processPayment(token);
+                }
+            });
+
+            document.getElementById('customButton').addEventListener('click', function(e) {
+                // Open Checkout with further options
+                handler.open({
+                    name: 'TodoGiant',
+                    description: '12 Months: Premium Membership',
+                    amount: 1000
+                });
+                e.preventDefault();
+            });
+        </script>
+    </div>
+</div>

@@ -41,18 +41,35 @@ angular.module('todoApp')
             });
         };
 
-        $scope.updateDone = function (todo){
-          todoFactory.updateTodo(todo).then(function (data) {
+        $scope.deleteTodo = function (Todo){
+          todoFactory.deleteTodo(Todo).then(function (data) {
             if (data){
-              if (todo.done){
-                todoFactory.msgSuccess('Well Done!');
+              if (data.RowsDeleted === 0){
+                todoFactory.msgError(data.Msg);
+              } else {
+                todoFactory.msgSuccess('Todo Deleted!');
               }
             }
+            //fixme: may want to just iterate through the todos and delete locally
+            $scope.getTodos();
           }, function(error) {
             // promise rejected, could be because server returned 404, 500 error...
-            todoFactory.msgError('Error Saving:' + error);
+            todoFactory.msgError('Error Deleting Todo:' + error);
           });
         };
+
+        $scope.updateDone = function (todo){
+              todoFactory.updateTodo(todo).then(function (data) {
+                if (data){
+                  if (todo.done){
+                    todoFactory.msgSuccess('Well Done!');
+                  }
+                }
+              }, function(error) {
+                // promise rejected, could be because server returned 404, 500 error...
+                todoFactory.msgError('Error Saving:' + error);
+              });
+            };
 
         $scope.updateTask = function (todo){
           /* following comment turns off camelcase check for this function.. so it'll be ignored */
@@ -73,7 +90,7 @@ angular.module('todoApp')
           });
         };
 
-        $scope.getMyTodos = function (){
+        $scope.getTodos = function (){
           todoFactory.getToDos().then(function (data) {
             if (data){
               $scope.todos = data;
@@ -83,7 +100,7 @@ angular.module('todoApp')
             todoFactory.msgError('Error Retrieving ToDos:' + error);
           });
         };
-        $scope.getMyTodos();
+        $scope.getTodos();
 
         $scope.moveTodos = function (passedData){
           if (typeof passedData.fromGroup === 'undefined'){

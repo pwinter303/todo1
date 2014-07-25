@@ -172,6 +172,15 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm){
 }
 
 ###################################
+function deleteTodo($dbh, $request, $customer_id){
+  $todo_id = $request->todo_id;
+  $query = "delete from todo where customer_id = $customer_id and todo_id = $todo_id";
+  $rowsAffected = actionSql($dbh,$query);
+  $response{'RowsDeleted'} = $rowsAffected;
+  return $response;
+}
+
+###################################
 function  moveTodos($dbh, $request_data, $customer_id){
   $from_group_id = $request_data->fromGroup;
   $to_group_id = $request_data->toGroup;
@@ -195,6 +204,8 @@ function  updateGroup($dbh, $request_data, $customer_id){
   $query = "update todo_group set group_name = '$group_name' where customer_id = $customer_id
             and group_id = $group_id";
   $rowsAffected = actionSql($dbh,$query);
+  $response{'RowsUpdated'} = $rowsAffected;
+  return $response;
 }
 
 ###################################
@@ -229,30 +240,39 @@ function  addGroup($dbh, $request_data, $customer_id){
 function  deleteGroup($dbh, $request_data, $customer_id){
   $group_id = $request_data->group_id;
 
-  #### delete Todos associated with the group
-  $query = "delete from todo where group_id = $group_id and customer_id = $customer_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "select count(*) from todo_group where customer_id = $customer_id";
+  $data = execSqlSingleRow($dbh, $query);
+  $count = $data{'count'};
 
-  #### delete the group
-  $query = "delete from todo_group where group_id = $group_id and customer_id = $customer_id";
-  $rowsAffected = actionSql($dbh,$query);
-  $response{'RowsAdded'} = $rowsAffected;
+  if (1 == $count){
+      $response{'Msg'} = "Group not deleted. Must have at least one group";
+      $response{'RowsDeleted'} = 0;
+  } else {
+      #### delete Todos associated with the group
+      $query = "delete from todo where group_id = $group_id and customer_id = $customer_id";
+      $rowsAffected = actionSql($dbh,$query);
 
-  ### only try and fix actives if something was actually deleted....
-  if ($rowsAffected){
-      #### Count of actives
-      $query = "select count(*) from todo_group where customer_id = $customer_id and active = 1";
-      $data = execSqlSingleRow($dbh, $query);
-      $count = $data{'count'};
-      if (!$count){
-        $query = "select group_id, min(sort_order) from todo_group where customer_id = $customer_id";
-        $data = execSqlSingleRow($dbh, $query);
-        $group_id = $data{'group_id'};
+      #### delete the group
+      $query = "delete from todo_group where group_id = $group_id and customer_id = $customer_id";
+      $rowsAffected = actionSql($dbh,$query);
+      $response{'RowsDeleted'} = $rowsAffected;
 
-        $query = "update todo_group set active = 1 where customer_id = $customer_id and group_id = $group_id";
-        $rowsAffected = actionSql($dbh,$query);
+      ### only try and fix actives if something was actually deleted....
+      if ($rowsAffected){
+          #### Count of actives
+          $query = "select count(*) from todo_group where customer_id = $customer_id and active = 1";
+          $data = execSqlSingleRow($dbh, $query);
+          $count = $data{'count'};
+          if (!$count){
+            $query = "select group_id, min(sort_order) from todo_group where customer_id = $customer_id";
+            $data = execSqlSingleRow($dbh, $query);
+            $group_id = $data{'group_id'};
+
+            $query = "update todo_group set active = 1 where customer_id = $customer_id and group_id = $group_id";
+            $rowsAffected = actionSql($dbh,$query);
+          }
       }
-  }
+  } ## end of the count on on groups
 
 
   return $response;
@@ -333,14 +353,17 @@ function addBatch($dbh, $file_name, $customer_id ){
   $query = "insert into todo_batch (file_name, upload_dt, customer_id) values ('$file_name', CURTIME(), $customer_id)";
   $rowsAffected = actionSql($dbh,$query);
   $batch_id = mysqli_insert_id($dbh);
-  return $batch_id;
+  $response{'RowsAdded'} = $rowsAffected;
+  $response{'batch_id'} = $batch_id;
+  return $response;
 }
 
 function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $skipped){
   $query = "update todo_batch set  count_uploaded = $uploaded,   count_error_no_group = $errored,  count_error_above_limit = $skipped
   where customer_id = $customer_id and batch_id = $batch_id";
   $rowsAffected = actionSql($dbh,$query);
-  return $rowsAffected;
+  $response{'RowsUpdated'} = $rowsAffected;
+  return $response;
 }
 
 
@@ -349,9 +372,9 @@ function deleteBatch($dbh, $request, $customer_id){
   // fixme: add delete of todos with matching batch_id... or... change table to do cascading delete
   if (!isset($batch_id)){die("cannot delete batch.. missing information in the request");}
   $query = "delete from todo_batch where customer_id = $customer_id and batch_id = $batch_id";
-  echo "$query";
   $rowsAffected = actionSql($dbh,$query);
-  return $rowsAffected;
+  $response{'RowsDeleted'} = $rowsAffected;
+  return $response;
 }
 
 function getBatches($dbh, $customer_id){

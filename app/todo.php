@@ -106,6 +106,9 @@ function  processPost($customer_id){
        case 'deleteGroup':
              $result = deleteGroup($dbh, $request, $customer_id);
              break;
+       case 'deleteTodo':
+             $result = deleteTodo($dbh, $request, $customer_id);
+             break;
        case 'updateGroup':
              $result = updateGroup($dbh, $request, $customer_id);
              break;

@@ -53,8 +53,12 @@ angular.module('todoApp')
     $scope.deleteGroup = function (group){
       todoFactory.deleteGroup(group).then(function (data) {
         if (data){
-          $scope.getTodoGroups();
-          todoFactory.msgSuccess('Deleted!');
+          if (data.RowsDeleted === 0){
+            todoFactory.msgError(data.Msg);
+          } else {
+            $scope.getTodoGroups();
+            todoFactory.msgSuccess('Deleted!');
+          }
         }
       }, function(error) {
         // promise rejected, could be because server returned 404, 500 error...

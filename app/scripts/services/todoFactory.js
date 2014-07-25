@@ -24,6 +24,23 @@ angular.module('todoApp')
       });
     };
     ////=============================================================================///
+    dataFactory.deleteTodo = function(passedData) {
+      var url = 'todo.php';
+      passedData.action = 'deleteTodo';
+      var promise = $http.post(url , passedData);
+      return promise.then(function(result) {
+        if (typeof result.data === 'object') {
+          return result.data;
+        } else {
+          // call was successful but response was invalid (result was not an object)
+          return $q.reject(result.data);
+        }
+      }, function(result) {
+        // something went wrong.... error on the call..
+        return $q.reject(result.data);
+      });
+    };
+    ////=============================================================================///
     dataFactory.updateTodo = function(passedData) {
       var url = 'todo.php';
       passedData.action = 'updateTodo';
