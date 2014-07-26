@@ -2,7 +2,6 @@
 IN PROGRESS:
 
 Need more instructions around import
-Ellen wants the ability to move 1 todo between group
 Ability to set how long a completed task is shown
 Picture in the stripe checkout
 What do you get when you pay for it
@@ -48,6 +47,7 @@ Move session handling to dynamoDB on AWS
 Add the ability to specify priority (maybe: Tags, DueDate, Frequency) in quick add (for example... New Todo|03/31/2014|Once)
 Forum?
 Ability to share todo lists... have two people log into the same list (change to data model, security (ie - which todo group do you want to share), etc)
+Ellen wants the ability to move 1 todo between group
 
 
 ========== DONE ============
