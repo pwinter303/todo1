@@ -18,7 +18,6 @@ emptyTable($dbh,'todo_status');
 emptyTable($dbh,'todo_priority');
 emptyTable($dbh,'payment');
 emptyTable($dbh,'todo_frequency');
-emptyTable($dbh,'customer');
 
 emptyTable($dbh,'payment');
 emptyTable($dbh,'payment_method');
@@ -28,6 +27,8 @@ emptyTable($dbh,'event_description');
 emptyTable($dbh,'account_period');
 emptyTable($dbh,'account_period_status');
 emptyTable($dbh,'account_type');
+
+emptyTable($dbh,'customer');
 
 
 
