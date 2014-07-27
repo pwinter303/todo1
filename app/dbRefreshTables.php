@@ -12,13 +12,24 @@ $dbh = createDatabaseConnection();
 emptyTable($dbh,'todo');
 emptyTable($dbh,'todo_batch');
 emptyTable($dbh,'todo_group');
-emptyTable($dbh,'todo_tag_xref');
-emptyTable($dbh,'tag');
+//emptyTable($dbh,'todo_tag_xref');
+//emptyTable($dbh,'tag');
 emptyTable($dbh,'todo_status');
 emptyTable($dbh,'todo_priority');
 emptyTable($dbh,'payment');
 emptyTable($dbh,'todo_frequency');
 emptyTable($dbh,'customer');
+
+emptyTable($dbh,'payment');
+emptyTable($dbh,'payment_method');
+
+emptyTable($dbh,'event');
+emptyTable($dbh,'event_description');
+emptyTable($dbh,'account_period');
+emptyTable($dbh,'account_period_status');
+emptyTable($dbh,'account_type');
+
+
 
 insertCustomer($dbh);
 insertFrequencies($dbh);
@@ -26,6 +37,15 @@ insertStatuses($dbh);
 insertPriorities($dbh);
 insertTodoGroups($dbh);
 insertTodos($dbh);
+
+insert_payment_method($dbh);
+insert_event_description($dbh);
+insert_account_period_status($dbh);
+insert_account_type($dbh);
+
+
+insert_event($dbh);
+insert_payment($dbh);
 
 
 function emptyTable($dbh, $table){
@@ -130,3 +150,74 @@ function insertTodoGroups($dbh){
   echo "todoGroups inserted:" . $rowsInserted . "</br>";
 
 }
+
+function insert_payment_method($dbh){
+    $query = "INSERT INTO payment_method (payment_method_cd, description) VALUES
+    (1, 'CreditCard'),
+    (2, 'PayPal')
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "insert_payment_method inserted:" . $rowsInserted . "</br>";
+
+}
+
+
+
+
+function insert_event_description($dbh){
+    $query = "INSERT INTO event_description (event_cd, description) VALUES
+    (1, 'Registration'),
+    (2, 'Login'),
+    (3, 'Facebook Like'),
+    (4, 'Tweet'),
+    (5, 'Payment'),
+    (6, 'Password Change'),
+    (7, 'Referral')
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "insert_event_description inserted:" . $rowsInserted . "</br>";
+};
+
+
+
+function insert_account_period_status($dbh){
+    $query = "INSERT INTO account_period_status (account_period_status_cd, description) VALUES
+    (1, 'Active'),
+    (2, 'Done')
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "insert_account_period_status inserted:" . $rowsInserted . "</br>";
+};
+
+
+
+function insert_account_type($dbh){
+    $query = "INSERT INTO account_type (account_type_cd, description) VALUES
+    (1, 'Trial'),
+    (2, 'Free'),
+    (3,'Premium')
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "insert_account_type inserted:" . $rowsInserted . "</br>";
+};
+
+
+function insert_event($dbh){
+    $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES
+    (1, CURDATE(), 1),
+    (2, CURDATE(), 1)
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "insert_event inserted:" . $rowsInserted . "</br>";
+};
+
+
+
+function insert_payment($dbh){
+
+};

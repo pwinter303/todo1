@@ -2,7 +2,6 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
-DROP SCHEMA IF EXISTS `db508430361` ;
 CREATE SCHEMA IF NOT EXISTS `db508430361` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci ;
 USE `db508430361` ;
 
@@ -15,12 +14,124 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`customer` (
   `customer_id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
   `password` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
+  `temporary_password` TINYINT NULL,
+  `first_name` VARCHAR(145) NULL,
+  `last_name` VARCHAR(145) NULL,
+  `guid` VARCHAR(45) NULL,
   PRIMARY KEY (`customer_id`),
   UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC))
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_general_ci;
+
+
+-- -----------------------------------------------------
+-- Table `db508430361`.`event_description`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`event_description` ;
+
+CREATE TABLE IF NOT EXISTS `db508430361`.`event_description` (
+  `event_cd` TINYINT(4) NOT NULL,
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`event_cd`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db508430361`.`account_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`account_type` ;
+
+CREATE TABLE IF NOT EXISTS `db508430361`.`account_type` (
+  `account_type_cd` TINYINT NOT NULL,
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`account_type_cd`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db508430361`.`account_period_status`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`account_period_status` ;
+
+CREATE TABLE IF NOT EXISTS `db508430361`.`account_period_status` (
+  `account_period_status_cd` TINYINT NOT NULL,
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`account_period_status_cd`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db508430361`.`account_period`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`account_period` ;
+
+CREATE TABLE IF NOT EXISTS `db508430361`.`account_period` (
+  `account_period_id` INT NOT NULL AUTO_INCREMENT,
+  `begin_dt` DATE NULL,
+  `end_dt` DATE NULL,
+  `account_type_cd` TINYINT NOT NULL,
+  `account_period_status_cd` TINYINT NOT NULL,
+  PRIMARY KEY (`account_period_id`),
+  INDEX `fk_account_period_account_type1_idx` (`account_type_cd` ASC),
+  INDEX `fk_account_period_account_period_status1_idx` (`account_period_status_cd` ASC),
+  CONSTRAINT `fk_account_period_account_type1`
+    FOREIGN KEY (`account_type_cd`)
+    REFERENCES `db508430361`.`account_type` (`account_type_cd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_account_period_account_period_status1`
+    FOREIGN KEY (`account_period_status_cd`)
+    REFERENCES `db508430361`.`account_period_status` (`account_period_status_cd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db508430361`.`event`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`event` ;
+
+CREATE TABLE IF NOT EXISTS `db508430361`.`event` (
+  `event_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `customer_id` INT(11) NOT NULL,
+  `create_dt` VARCHAR(45) NULL,
+  `event_cd` TINYINT(4) NOT NULL,
+  `account_period_id` INT NULL DEFAULT NULL,
+  PRIMARY KEY (`event_id`),
+  INDEX `fk_events_customer1_idx` (`customer_id` ASC),
+  INDEX `fk_events_event_descriptions1_idx` (`event_cd` ASC),
+  INDEX `fk_event_account_period1_idx` (`account_period_id` ASC),
+  CONSTRAINT `fk_events_customer1`
+    FOREIGN KEY (`customer_id`)
+    REFERENCES `db508430361`.`customer` (`customer_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_events_event_descriptions1`
+    FOREIGN KEY (`event_cd`)
+    REFERENCES `db508430361`.`event_description` (`event_cd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_account_period1`
+    FOREIGN KEY (`account_period_id`)
+    REFERENCES `db508430361`.`account_period` (`account_period_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `db508430361`.`payment_method`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `db508430361`.`payment_method` ;
+
+CREATE TABLE IF NOT EXISTS `db508430361`.`payment_method` (
+  `payment_method_cd` TINYINT(4) NOT NULL,
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`payment_method_cd`))
+ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -33,32 +144,25 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`payment` (
   `customer_Id` INT(11) NOT NULL AUTO_INCREMENT,
   `pmt_dt` DATETIME NULL DEFAULT NULL,
   `pmt_amt` DECIMAL(11,2) NULL DEFAULT NULL,
+  `event_id` INT(11) NOT NULL,
+  `payment_method_cd` TINYINT(4) NOT NULL,
   PRIMARY KEY (`pmt_id`),
   INDEX `fk_payments_customer1_idx` (`customer_Id` ASC),
+  INDEX `fk_payment_events1_idx` (`event_id` ASC),
+  INDEX `fk_payment_payment_method1_idx` (`payment_method_cd` ASC),
   CONSTRAINT `fk_payments_customer1`
     FOREIGN KEY (`customer_Id`)
     REFERENCES `db508430361`.`customer` (`customer_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1
-COLLATE = latin1_general_ci;
-
-
--- -----------------------------------------------------
--- Table `db508430361`.`tag`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`tag` ;
-
-CREATE TABLE IF NOT EXISTS `db508430361`.`tag` (
-  `tag_id` INT(11) NOT NULL,
-  `tag_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
-  `customer_id` INT(11) NOT NULL,
-  PRIMARY KEY (`tag_id`),
-  INDEX `fk_tags_customer1_idx` (`customer_id` ASC),
-  CONSTRAINT `fk_tags_customer1`
-    FOREIGN KEY (`customer_id`)
-    REFERENCES `db508430361`.`customer` (`customer_id`)
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_payment_events1`
+    FOREIGN KEY (`event_id`)
+    REFERENCES `db508430361`.`event` (`event_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_payment_payment_method1`
+    FOREIGN KEY (`payment_method_cd`)
+    REFERENCES `db508430361`.`payment_method` (`payment_method_cd`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -141,19 +245,21 @@ DROP TABLE IF EXISTS `db508430361`.`todo_batch` ;
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_batch` (
   `batch_id` INT(11) NOT NULL AUTO_INCREMENT,
   `customer_id` INT(11) NOT NULL,
-  `file_name` VARCHAR(145) NULL,
-  `upload_dt` DATETIME NULL,
-  `count_uploaded` INT NULL,
-  `count_error_no_group` INT NULL,
-  `count_error_above_limit` INT NULL,
-  INDEX `fk_todo_batch_customer1_idx` (`customer_id` ASC),
+  `file_name` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
+  `upload_dt` DATETIME NULL DEFAULT NULL,
+  `count_uploaded` INT(11) NULL DEFAULT NULL,
+  `count_error_no_group` INT(11) NULL DEFAULT NULL,
+  `count_error_above_limit` INT(11) NULL DEFAULT NULL,
   PRIMARY KEY (`batch_id`),
+  INDEX `fk_todo_batch_customer1_idx` (`customer_id` ASC),
   CONSTRAINT `fk_todo_batch_customer1`
     FOREIGN KEY (`customer_id`)
     REFERENCES `db508430361`.`customer` (`customer_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1
+COLLATE = latin1_general_ci;
 
 
 -- -----------------------------------------------------
@@ -214,24 +320,7 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`todo` (
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 624;
-
-
--- -----------------------------------------------------
--- Table `db508430361`.`todo_tag_xref`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`todo_tag_xref` ;
-
-CREATE TABLE IF NOT EXISTS `db508430361`.`todo_tag_xref` (
-  `tag_Id` INT(11) NOT NULL,
-  PRIMARY KEY (`tag_Id`),
-  INDEX `fk_tags_has_todo_tags1_idx` (`tag_Id` ASC),
-  CONSTRAINT `fk_tags_has_todo_tags1`
-    FOREIGN KEY (`tag_Id`)
-    REFERENCES `db508430361`.`tag` (`tag_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
+AUTO_INCREMENT = 642
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_general_ci;
 
