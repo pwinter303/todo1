@@ -402,5 +402,41 @@ function addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, $account_type_
   return $response;
 }
 
+function createGUID(){
+    mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
+    $charid = strtoupper(md5(uniqid(rand(), true)));
+    $hyphen = chr(45);// "-"
+    $uuid = chr(123)// "{"
+            .substr($charid, 0, 8).$hyphen
+            .substr($charid, 8, 4).$hyphen
+            .substr($charid,12, 4).$hyphen
+            .substr($charid,16, 4).$hyphen
+            .substr($charid,20,12)
+            .chr(125);// "}"
+    return $uuid;
+}
+
+
+function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
+  $query = "UPDATE customer set credential_cd = $credential_cd where customer_id = $customer_id";
+  $rowsAffected = actionSql($dbh,$query);
+  $response{'RowsUpdated'} = $rowsAffected;
+  return $response;
+}
+
+function getMaxAccountPeriodEndDt($dbh, $customer_id){
+    $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type = 3";  ### 3 = Premium
+    $data = execSqlMultiRow($dbh,$query);
+    return $data;
+}
+
+function getAccountPeriod($dbh, $customer_id){
+    $query = "select description, begin_dt, end_dt from  as account_period, account_type where account_type.account_type_cd = account_period.account_type_cd and
+    account_period_status_cd = 1 and customer_id = $customer_id";   ### 1 = active
+    $data = execSqlSingleRow($dbh, $query);
+    return $data;
+}
+
+
 
 ?>
