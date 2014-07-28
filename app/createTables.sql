@@ -2,6 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
+DROP SCHEMA IF EXISTS `db508430361` ;
 CREATE SCHEMA IF NOT EXISTS `db508430361` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci ;
 USE `db508430361` ;
 
@@ -79,9 +80,11 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`account_period` (
   `end_dt` DATE NULL,
   `account_type_cd` TINYINT NOT NULL,
   `account_period_status_cd` TINYINT NOT NULL,
+  `customer_id` INT(11) NOT NULL,
   PRIMARY KEY (`account_period_id`),
   INDEX `fk_account_period_account_type1_idx` (`account_type_cd` ASC),
   INDEX `fk_account_period_account_period_status1_idx` (`account_period_status_cd` ASC),
+  INDEX `fk_account_period_customer1_idx` (`customer_id` ASC),
   CONSTRAINT `fk_account_period_account_type1`
     FOREIGN KEY (`account_type_cd`)
     REFERENCES `db508430361`.`account_type` (`account_type_cd`)
@@ -90,6 +93,11 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`account_period` (
   CONSTRAINT `fk_account_period_account_period_status1`
     FOREIGN KEY (`account_period_status_cd`)
     REFERENCES `db508430361`.`account_period_status` (`account_period_status_cd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_account_period_customer1`
+    FOREIGN KEY (`customer_id`)
+    REFERENCES `db508430361`.`customer` (`customer_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

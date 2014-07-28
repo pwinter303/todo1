@@ -75,6 +75,8 @@ insert_account_type($dbh);
 insert_event($dbh);
 insert_payment($dbh);
 
+insert_account_period($dbh);
+
 }
 
 function process_base($dbh){
@@ -102,6 +104,8 @@ insert_account_type($dbh);
 
 insert_event($dbh);
 insert_payment($dbh);
+
+insert_account_period($dbh);
 
 
 }
@@ -234,7 +238,7 @@ function insert_payment_method($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "insert_payment_method inserted:" . $rowsInserted . "</br>";
+    echo "payment_method inserted:" . $rowsInserted . "</br>";
 
 }
 
@@ -253,7 +257,7 @@ function insert_event_description($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "insert_event_description inserted:" . $rowsInserted . "</br>";
+    echo "event_description inserted:" . $rowsInserted . "</br>";
 };
 
 
@@ -265,7 +269,7 @@ function insert_account_period_status($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "insert_account_period_status inserted:" . $rowsInserted . "</br>";
+    echo "account_period_status inserted:" . $rowsInserted . "</br>";
 };
 
 
@@ -274,11 +278,11 @@ function insert_account_type($dbh){
     $query = "INSERT INTO account_type (account_type_cd, description) VALUES
     (1, 'Trial'),
     (2, 'Free'),
-    (3,'Premium')
+    (3, 'Premium')
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "insert_account_type inserted:" . $rowsInserted . "</br>";
+    echo "account_type inserted:" . $rowsInserted . "</br>";
 };
 
 
@@ -289,7 +293,7 @@ function insert_event($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "insert_event inserted:" . $rowsInserted . "</br>";
+    echo "event inserted:" . $rowsInserted . "</br>";
 };
 
 
@@ -297,3 +301,14 @@ function insert_event($dbh){
 function insert_payment($dbh){
 
 };
+
+function insert_account_period($dbh){
+    $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd) VALUES
+    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1),
+    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1)
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "account_period inserted:" . $rowsInserted . "</br>";
+
+}

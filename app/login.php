@@ -3,6 +3,7 @@
 session_start();
 
 include 'db.php';
+include 'functions.php';
 
 // Include the phpass library
 require_once('bower_components/phpass-0.3/PasswordHash.php');
@@ -49,7 +50,7 @@ function processPost(){
        case 'loginUser':
             $email = $request->email;
             $pass = $request->password;
-            $result = validateUser($dbh, $email, $pass);
+            $result = loginUser($dbh, $email, $pass);
             break;
        case 'changePassword':
             $passOld = $request->old;
@@ -80,13 +81,14 @@ function registerUser($dbh, $userName, $password, $password2){
         $return_status = addUser($dbh, $userName, $password);
         if ($return_status){
           $response{'msg'} = "Successful Registration";
-          $call_response = validateUser($dbh, $userName, $password);
+          $call_response = loginUser($dbh, $userName, $password);
           $response{'login'} = $call_response{'login'};
           if ($call_response{'login'}){
-            ##### Add Todo_Group.....
+            ##### Add Todo_Group and Create Event.....
             if (isset($_SESSION['customer_id'])) {
               $customer_id = $_SESSION['customer_id'];
               addTodoGroup($dbh, $customer_id);
+              addEvent($dbh, $customer_id, 1);  # 1 = Registration
             }
           }
         } else {
@@ -135,7 +137,7 @@ function  addTodoGroup($dbh, $customer_id){
 
 
 ##
-function validateUser($dbh, $userName, $password){
+function loginUser($dbh, $userName, $password){
 
 
     //fixme: instead of duplicate code have this call validate password (?)
@@ -158,6 +160,7 @@ function validateUser($dbh, $userName, $password){
       $response{'login'} = 1;
       $_SESSION['authenticated'] = 1;
       $_SESSION['customer_id'] = $customer_id;
+      addEvent($dbh, $customer_id, 2);  # 2 = Login
     } else {
       $response{'login'} = 0;
     }
@@ -190,6 +193,7 @@ function changePassword($dbh, $oldPassword, $password, $password2){
 
                     if ($rowsAffected){
                       $response{'msg'} = "Password Changed";
+                      addEvent($dbh, $customer_id, 6);  # 6 = Password Change
                     } else {
                       $response{'error'} = "ERROR - Password could not be updated.";
                     }
