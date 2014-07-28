@@ -3,6 +3,18 @@
 -- Host: localhost    Database: db508430361
 -- ------------------------------------------------------
 -- Server version	5.5.38
+-- ------------------------------------------------------
+-- ------------------------------------------------------
+--
+--  NOTE:  THIS WAS CREATED FROM AWS EC2 INSTANCE AND
+--         WILL BE USED AS THE BASE SCHEMA AND ALL PATCHES
+--         WILL BE BUILT OFF OF THIS.  ALTERNATIVELY, YOU
+--         CAN JUST REPLACE YOUR SCHEMA WITH createTables.sql
+-- ------------------------------------------------------
+-- ------------------------------------------------------
+
+
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

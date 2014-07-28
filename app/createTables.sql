@@ -6,20 +6,34 @@ CREATE SCHEMA IF NOT EXISTS `db508430361` DEFAULT CHARACTER SET latin1 COLLATE l
 USE `db508430361` ;
 
 -- -----------------------------------------------------
+-- Table `db508430361`.`credential_status`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db508430361`.`credential_status` (
+  `credential_cd` INT NOT NULL,
+  `description` VARCHAR(45) NULL,
+  PRIMARY KEY (`credential_cd`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `db508430361`.`customer`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`customer` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`customer` (
   `customer_id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
   `password` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
-  `temporary_password` TINYINT NULL,
   `first_name` VARCHAR(145) NULL,
   `last_name` VARCHAR(145) NULL,
   `guid` VARCHAR(45) NULL,
+  `credential_cd` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`customer_id`),
-  UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC))
+  UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC),
+  INDEX `fk_customer_credential_status1_idx` (`credential_cd` ASC),
+  CONSTRAINT `fk_customer_credential_status1`
+    FOREIGN KEY (`credential_cd`)
+    REFERENCES `db508430361`.`credential_status` (`credential_cd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = latin1
@@ -29,8 +43,6 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`event_description`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`event_description` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`event_description` (
   `event_cd` TINYINT(4) NOT NULL,
   `description` VARCHAR(45) NULL,
@@ -41,8 +53,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db508430361`.`account_type`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`account_type` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`account_type` (
   `account_type_cd` TINYINT NOT NULL,
   `description` VARCHAR(45) NULL,
@@ -53,8 +63,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db508430361`.`account_period_status`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`account_period_status` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`account_period_status` (
   `account_period_status_cd` TINYINT NOT NULL,
   `description` VARCHAR(45) NULL,
@@ -65,8 +73,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db508430361`.`account_period`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`account_period` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`account_period` (
   `account_period_id` INT NOT NULL AUTO_INCREMENT,
   `begin_dt` DATE NULL,
@@ -92,8 +98,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db508430361`.`event`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`event` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`event` (
   `event_id` INT(11) NOT NULL AUTO_INCREMENT,
   `customer_id` INT(11) NOT NULL,
@@ -125,8 +129,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db508430361`.`payment_method`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`payment_method` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`payment_method` (
   `payment_method_cd` TINYINT(4) NOT NULL,
   `description` VARCHAR(45) NULL,
@@ -137,8 +139,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `db508430361`.`payment`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`payment` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`payment` (
   `pmt_id` INT(11) NOT NULL,
   `customer_Id` INT(11) NOT NULL AUTO_INCREMENT,
@@ -173,8 +173,6 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_frequency`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`todo_frequency` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_frequency` (
   `frequency_cd` TINYINT(4) NOT NULL,
   `frequency_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -187,8 +185,6 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_priority`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`todo_priority` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_priority` (
   `priority_cd` TINYINT(4) NOT NULL,
   `priority_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -201,8 +197,6 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_status`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`todo_status` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_status` (
   `status_cd` TINYINT(4) NOT NULL,
   `status_name` VARCHAR(45) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
@@ -215,8 +209,6 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_group`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`todo_group` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_group` (
   `group_id` INT(11) NOT NULL AUTO_INCREMENT,
   `customer_id` INT(11) NOT NULL,
@@ -240,8 +232,6 @@ COMMENT = '																																																												';
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo_batch`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`todo_batch` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo_batch` (
   `batch_id` INT(11) NOT NULL AUTO_INCREMENT,
   `customer_id` INT(11) NOT NULL,
@@ -265,8 +255,6 @@ COLLATE = latin1_general_ci;
 -- -----------------------------------------------------
 -- Table `db508430361`.`todo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `db508430361`.`todo` ;
-
 CREATE TABLE IF NOT EXISTS `db508430361`.`todo` (
   `todo_id` BIGINT(20) NOT NULL AUTO_INCREMENT,
   `group_id` INT(11) NOT NULL,

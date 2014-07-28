@@ -30,8 +30,10 @@ emptyTable($dbh,'account_type');
 
 emptyTable($dbh,'customer');
 
+# must be after customer since customer has FK to this:
+emptyTable($dbh,'credential_status');
 
-
+insert_credential_status($dbh);
 insertCustomer($dbh);
 insertFrequencies($dbh);
 insertStatuses($dbh);
@@ -57,6 +59,22 @@ function emptyTable($dbh, $table){
   echo "$table deleted:" . $rowsDeleted . "</br>";
 
 }
+
+
+function insert_credential_status($dbh){
+    $query = "INSERT INTO credential_status (credential_cd, description) VALUES
+    (1, 'Awaiting Confirmation eMail Return'),
+    (2, 'Temporary Password Issued'),
+    (0, 'Legitimate')
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "credential_status: rows inserted:" . $rowsInserted . "</br>";
+
+}
+
+
+
 function insertCustomer($dbh){
 
   // Initialize the hasher without portable hashes (this is more secure)
