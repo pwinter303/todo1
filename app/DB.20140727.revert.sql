@@ -5,8 +5,9 @@
 -- Apply To: localhost/aws
 --
 
-USE `aws`;
-ALTER DATABASE `aws` COLLATE=latin1_swedish_ci;
+CREATE SCHEMA IF NOT EXISTS `db508430361` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci ;
+USE `db508430361` ;
+
 DROP TABLE `account_period`;
 DROP TABLE `account_period_status`;
 DROP TABLE `account_type`;

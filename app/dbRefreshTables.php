@@ -4,10 +4,36 @@ include 'db.php';
 // Include the phpass library
 require_once('bower_components/phpass-0.3/PasswordHash.php');
 
-
 $dbh = createDatabaseConnection();
 
-#echo var_dump($dbh);
+if (defined('STDIN')) {
+  $patch = $argv[1];  #### assumes your running:  php dbRefreshTables.php DB20140727
+} else {
+  $patch = $_GET['patch'];
+}
+
+if (!isset($patch)){
+    die('patch needs to be passed via query string for http requests... or passed on command line \n valid values:DB.20140727 or BASE or ALL');
+}
+
+
+switch ($patch) {
+    case 'ALL':
+        process_all($dbh);
+        break;
+    case 'DB.20140727':
+        process_patchDB_20140727($dbh);
+        break;
+    case 'BASE':
+        process_base($dbh);
+        break;
+    default:
+        die("patch value of -->$patch<-- is not valid");
+        break;
+}
+
+
+function process_all($dbh){
 
 emptyTable($dbh,'todo');
 emptyTable($dbh,'todo_batch');
@@ -46,9 +72,40 @@ insert_event_description($dbh);
 insert_account_period_status($dbh);
 insert_account_type($dbh);
 
+insert_event($dbh);
+insert_payment($dbh);
+
+}
+
+function process_base($dbh){
+
+insertCustomer($dbh);
+insertFrequencies($dbh);
+insertStatuses($dbh);
+insertPriorities($dbh);
+insertTodoGroups($dbh);
+insertTodos($dbh);
+
+
+}
+
+
+function process_patchDB_20140727($dbh){
+
+echo "processing....process_patchDB_20140727";
+
+insert_credential_status($dbh);
+insert_payment_method($dbh);
+insert_event_description($dbh);
+insert_account_period_status($dbh);
+insert_account_type($dbh);
 
 insert_event($dbh);
 insert_payment($dbh);
+
+
+}
+
 
 
 function emptyTable($dbh, $table){

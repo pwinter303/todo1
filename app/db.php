@@ -1,8 +1,11 @@
 <?php
 
-$basepath = dirname(dirname($_SERVER['SCRIPT_FILENAME']));
-require($basepath.'/config/config.php');
-///include '../config/config.php';
+if (defined('STDIN')) {
+        include '../config/config.php';
+} else {
+        $basepath = dirname(dirname($_SERVER['SCRIPT_FILENAME']));
+        require($basepath.'/config/config.php');
+}
 
 function closeDatabaseConnection($dbh){
       mysqli_close($dbh);

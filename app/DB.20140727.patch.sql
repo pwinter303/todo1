@@ -5,8 +5,9 @@
 -- Apply To: localhost/aws
 --
 
-USE `aws`;
-ALTER DATABASE `aws` COLLATE=latin1_general_ci;
+CREATE SCHEMA IF NOT EXISTS `db508430361` DEFAULT CHARACTER SET latin1 COLLATE latin1_general_ci ;
+USE `db508430361` ;
+
 CREATE TABLE `account_period` ( `account_period_id` int(11) NOT NULL AUTO_INCREMENT, `begin_dt` date DEFAULT NULL, `end_dt` date DEFAULT NULL, `account_type_cd` tinyint(4) NOT NULL, `account_period_status_cd` tinyint(4) NOT NULL, PRIMARY KEY (`account_period_id`), KEY `fk_account_period_account_type1_idx` (`account_type_cd`), KEY `fk_account_period_account_period_status1_idx` (`account_period_status_cd`), CONSTRAINT `fk_account_period_account_type1` FOREIGN KEY (`account_type_cd`) REFERENCES `account_type` (`account_type_cd`) ON DELETE NO ACTION ON UPDATE NO ACTION, CONSTRAINT `fk_account_period_account_period_status1` FOREIGN KEY (`account_period_status_cd`) REFERENCES `account_period_status` (`account_period_status_cd`) ON DELETE NO ACTION ON UPDATE NO ACTION) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 CREATE TABLE `account_period_status` ( `account_period_status_cd` tinyint(4) NOT NULL, `description` varchar(45) COLLATE latin1_general_ci DEFAULT NULL, PRIMARY KEY (`account_period_status_cd`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 CREATE TABLE `account_type` ( `account_type_cd` tinyint(4) NOT NULL, `description` varchar(45) COLLATE latin1_general_ci DEFAULT NULL, PRIMARY KEY (`account_type_cd`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
