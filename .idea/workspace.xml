@@ -42,35 +42,35 @@
       <file leaf-file-name="login.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/login.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-34.73077" vertical-offset="2175" max-vertical-offset="4864">
-              <caret line="162" column="36" selection-start-line="162" selection-start-column="36" selection-end-line="162" selection-end-column="36" />
+            <state vertical-scroll-proportion="-20.846153" vertical-offset="1168" max-vertical-offset="4864">
+              <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
               <folding>
-                <marker date="1406553571000" expanded="true" signature="2840:2911" placeholder="SELECT count..customer..." />
-                <marker date="1406553571000" expanded="true" signature="3389:3471" placeholder="Insert into ..." />
-                <marker date="1406553571000" expanded="true" signature="3603:3738" placeholder="INSERT INTO ..." />
-                <marker date="1406553571000" expanded="true" signature="4081:4153" placeholder="SELECT custo..customer..." />
-                <marker date="1406553571000" expanded="true" signature="5703:5784" placeholder="update custo..." />
-                <marker date="1406553571000" expanded="true" signature="6903:6965" placeholder="SELECT passw..customer..." />
+                <marker date="1406557540000" expanded="true" signature="2866:2937" placeholder="SELECT count..customer..." />
+                <marker date="1406557540000" expanded="true" signature="3415:3497" placeholder="Insert into ..." />
+                <marker date="1406557540000" expanded="true" signature="3629:3764" placeholder="INSERT INTO ..." />
+                <marker date="1406557540000" expanded="true" signature="4107:4179" placeholder="SELECT custo..customer..." />
+                <marker date="1406557540000" expanded="true" signature="5729:5810" placeholder="update custo..." />
+                <marker date="1406557540000" expanded="true" signature="6929:6991" placeholder="SELECT passw..customer..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="functions.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/functions.php">
+      <file leaf-file-name="dbRefreshTables.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/dbRefreshTables.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7676">
-              <caret line="22" column="62" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="62" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="5189" max-vertical-offset="6422">
+              <caret line="309" column="14" selection-start-line="309" selection-start-column="14" selection-end-line="309" selection-end-column="141" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dbRefreshTables.php" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/dbRefreshTables.php">
+      <file leaf-file-name="functions.php" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/functions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.784266" vertical-offset="4828" max-vertical-offset="6061">
-              <caret line="305" column="114" selection-start-line="305" selection-start-column="114" selection-end-line="305" selection-end-column="114" />
+            <state vertical-scroll-proportion="0.13706407" vertical-offset="6519" max-vertical-offset="7809">
+              <caret line="352" column="13" selection-start-line="352" selection-start-column="13" selection-end-line="352" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -79,38 +79,8 @@
       <file leaf-file-name="db.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/db.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1577">
-              <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DB.base.schema.sql" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/DB.base.schema.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4389">
-              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DB.20140727.patch.sql" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/DB.20140727.patch.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="513">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="8" selection-end-column="19" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DB.20140727.revert.sql" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/DB.20140727.revert.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="513">
-              <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="1577">
+              <caret line="16" column="29" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -119,8 +89,8 @@
       <file leaf-file-name="createTables.sql" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/createTables.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6308">
-              <caret line="326" column="0" selection-start-line="326" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="6593">
+              <caret line="285" column="39" selection-start-line="285" selection-start-column="39" selection-end-line="285" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -178,10 +148,10 @@
         <option value="$PROJECT_DIR$/app/DB.base.schema.sql" />
         <option value="$PROJECT_DIR$/app/DB.20140727.patch.sql" />
         <option value="$PROJECT_DIR$/app/DB.20140727.revert.sql" />
-        <option value="$PROJECT_DIR$/app/functions.php" />
-        <option value="$PROJECT_DIR$/app/login.php" />
         <option value="$PROJECT_DIR$/app/createTables.sql" />
         <option value="$PROJECT_DIR$/app/dbRefreshTables.php" />
+        <option value="$PROJECT_DIR$/app/functions.php" />
+        <option value="$PROJECT_DIR$/app/login.php" />
       </list>
     </option>
   </component>
@@ -477,7 +447,11 @@
       <created>1406552185989</created>
       <updated>1406552185989</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added relationship btwn customer and account_period&#10;addEvent function and call during login, registration, etc">
+      <created>1406554411573</created>
+      <updated>1406554411573</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <option name="createChangelist" value="false" />
     <option name="createBranch" value="false" />
     <option name="closeIssue" value="false" />
@@ -584,7 +558,8 @@
     <MESSAGE value="New Tables for Payment, Event, Account Period, etc" />
     <MESSAGE value="Added credential_status table" />
     <MESSAGE value="changed db.php to allow calling scripts from command line&#10;Updated schemas and tested process to install base schema, then patch etc&#10;Added capability to run BASE, patch or ALL in dbRefreshTables.php" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed db.php to allow calling scripts from command line&#10;Updated schemas and tested process to install base schema, then patch etc&#10;Added capability to run BASE, patch or ALL in dbRefreshTables.php" />
+    <MESSAGE value="Added relationship btwn customer and account_period&#10;addEvent function and call during login, registration, etc" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added relationship btwn customer and account_period&#10;addEvent function and call during login, registration, etc" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -901,14 +876,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/db.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1577">
-          <caret line="6" column="48" selection-start-line="6" selection-start-column="48" selection-end-line="6" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/DB.base.schema.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4389">
@@ -933,41 +900,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/login.php">
+    <entry file="file://$PROJECT_DIR$/app/createTables.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-34.73077" vertical-offset="2175" max-vertical-offset="4864">
-          <caret line="162" column="36" selection-start-line="162" selection-start-column="36" selection-end-line="162" selection-end-column="36" />
-          <folding>
-            <marker date="1406553571000" expanded="true" signature="2840:2911" placeholder="SELECT count..customer..." />
-            <marker date="1406553571000" expanded="true" signature="3389:3471" placeholder="Insert into ..." />
-            <marker date="1406553571000" expanded="true" signature="3603:3738" placeholder="INSERT INTO ..." />
-            <marker date="1406553571000" expanded="true" signature="4081:4153" placeholder="SELECT custo..customer..." />
-            <marker date="1406553571000" expanded="true" signature="5703:5784" placeholder="update custo..." />
-            <marker date="1406553571000" expanded="true" signature="6903:6965" placeholder="SELECT passw..customer..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="7676">
-          <caret line="22" column="62" selection-start-line="22" selection-start-column="36" selection-end-line="22" selection-end-column="62" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="756" max-vertical-offset="6593">
+          <caret line="285" column="39" selection-start-line="285" selection-start-column="39" selection-end-line="285" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/createTables.sql">
+    <entry file="file://$PROJECT_DIR$/app/db.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="6308">
-          <caret line="326" column="0" selection-start-line="326" selection-start-column="0" selection-end-line="326" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="95" max-vertical-offset="1577">
+          <caret line="16" column="29" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/dbRefreshTables.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.784266" vertical-offset="4828" max-vertical-offset="6061">
-          <caret line="305" column="114" selection-start-line="305" selection-start-column="114" selection-end-line="305" selection-end-column="114" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="5189" max-vertical-offset="6422">
+          <caret line="309" column="14" selection-start-line="309" selection-start-column="14" selection-end-line="309" selection-end-column="141" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.846153" vertical-offset="1168" max-vertical-offset="4864">
+          <caret line="90" column="30" selection-start-line="90" selection-start-column="30" selection-end-line="90" selection-end-column="30" />
+          <folding>
+            <marker date="1406557540000" expanded="true" signature="2866:2937" placeholder="SELECT count..customer..." />
+            <marker date="1406557540000" expanded="true" signature="3415:3497" placeholder="Insert into ..." />
+            <marker date="1406557540000" expanded="true" signature="3629:3764" placeholder="INSERT INTO ..." />
+            <marker date="1406557540000" expanded="true" signature="4107:4179" placeholder="SELECT custo..customer..." />
+            <marker date="1406557540000" expanded="true" signature="5729:5810" placeholder="update custo..." />
+            <marker date="1406557540000" expanded="true" signature="6929:6991" placeholder="SELECT passw..customer..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13706407" vertical-offset="6519" max-vertical-offset="7809">
+          <caret line="352" column="13" selection-start-line="352" selection-start-column="13" selection-end-line="352" selection-end-column="13" />
           <folding />
         </state>
       </provider>

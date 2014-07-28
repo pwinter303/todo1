@@ -84,7 +84,7 @@ function registerUser($dbh, $userName, $password, $password2){
           $call_response = loginUser($dbh, $userName, $password);
           $response{'login'} = $call_response{'login'};
           if ($call_response{'login'}){
-            ##### Add Todo_Group and Create Event.....
+            ##### Add Todo_Group and Create Event, account_period, and xref.....
             if (isset($_SESSION['customer_id'])) {
               $customer_id = $_SESSION['customer_id'];
               addTodoGroup($dbh, $customer_id);

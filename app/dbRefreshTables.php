@@ -77,6 +77,8 @@ insert_payment($dbh);
 
 insert_account_period($dbh);
 
+insert_event_account_period_xref($dbh);
+
 }
 
 function process_base($dbh){
@@ -106,6 +108,8 @@ insert_event($dbh);
 insert_payment($dbh);
 
 insert_account_period($dbh);
+
+insert_event_account_period_xref($dbh);
 
 
 }
@@ -287,9 +291,9 @@ function insert_account_type($dbh){
 
 
 function insert_event($dbh){
-    $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES
-    (1, CURDATE(), 1),
-    (2, CURDATE(), 1)
+    $query = "INSERT INTO event (customer_id, create_dt, event_cd, event_id) VALUES
+    (1, CURDATE(), 1, 1),
+    (2, CURDATE(), 1, 2)
     ";
 
     $rowsInserted = insertData($dbh, $query);
@@ -303,12 +307,27 @@ function insert_payment($dbh){
 };
 
 function insert_account_period($dbh){
-    $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd) VALUES
-    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1),
-    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1)
+    $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, account_period_id) VALUES
+    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 1),
+    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 2)
     ";
 
     $rowsInserted = insertData($dbh, $query);
     echo "account_period inserted:" . $rowsInserted . "</br>";
+
+}
+
+
+function insert_event_account_period_xref($dbh){
+    $query = "INSERT INTO event_account_period_xref (event_id, account_period_id) VALUES
+    (1, 1),
+    (2, 2)
+    ";
+
+    $rowsInserted = insertData($dbh, $query);
+    echo "event_account_period_xref inserted:" . $rowsInserted . "</br>";
+
+
+
 
 }

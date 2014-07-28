@@ -387,13 +387,20 @@ function getBatches($dbh, $customer_id){
 
 function addEvent($dbh, $customer_id, $event_cd){
   $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES ($customer_id, CURDATE(), $event_cd)";
-
   $rowsAffected = actionSql($dbh,$query);
   $response{'RowsUpdated'} = $rowsAffected;
+  $response{'LastInsertId'} = mysqli_insert_id($dbh);
   return $response;
 }
 
-
+function addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd){
+  $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd) VALUES (
+    $customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd)";
+  $rowsAffected = actionSql($dbh,$query);
+  $response{'RowsUpdated'} = $rowsAffected;
+  $response{'LastInsertId'} = mysqli_insert_id($dbh);
+  return $response;
+}
 
 
 ?>
