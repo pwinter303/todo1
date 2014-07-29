@@ -425,7 +425,7 @@ function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
 }
 
 function getMaxAccountPeriodEndDt($dbh, $customer_id){
-    $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type = 3";  ### 3 = Premium
+    $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
     $data = execSqlMultiRow($dbh,$query);
     return $data;
 }

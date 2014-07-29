@@ -48,6 +48,7 @@ emptyTable($dbh,'todo_frequency');
 emptyTable($dbh,'payment');
 emptyTable($dbh,'payment_method');
 
+emptyTable($dbh, 'event_account_period_xref');
 emptyTable($dbh,'event');
 emptyTable($dbh,'event_description');
 emptyTable($dbh,'account_period');
@@ -280,7 +281,7 @@ function insert_account_period_status($dbh){
 
 function insert_account_type($dbh){
     $query = "INSERT INTO account_type (account_type_cd, description) VALUES
-    (1, 'Trial'),
+    (1, 'Trial (Premium)'),
     (2, 'Free'),
     (3, 'Premium')
     ";
@@ -309,7 +310,9 @@ function insert_payment($dbh){
 function insert_account_period($dbh){
     $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, account_period_id) VALUES
     (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 1),
-    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 2)
+    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 2),
+    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 3),
+    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 4)
     ";
 
     $rowsInserted = insertData($dbh, $query);
