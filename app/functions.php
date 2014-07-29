@@ -431,8 +431,7 @@ function getMaxAccountPeriodEndDt($dbh, $customer_id){
 }
 
 function getAccountPeriod($dbh, $customer_id){
-    $query = "select description, begin_dt, end_dt from  as account_period, account_type where account_type.account_type_cd = account_period.account_type_cd and
-    account_period_status_cd = 1 and customer_id = $customer_id";   ### 1 = active
+    $query = "select description, begin_dt, end_dt from  account_period, account_type where account_type.account_type_cd = account_period.account_type_cd and account_period_status_cd = 1 and customer_id = $customer_id";   ### 1 = active
     $data = execSqlSingleRow($dbh, $query);
     return $data;
 }

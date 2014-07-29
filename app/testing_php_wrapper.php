@@ -41,6 +41,9 @@ switch ($action) {
    case 'getMaxAccountPeriodEndDt':
          $result = getMaxAccountPeriodEndDt($dbh, $customer_id);
          break;
+   case 'getAccountPeriod':
+         $result = getAccountPeriod($dbh, $customer_id);
+         break;
    default:
          echo "Error:Invalid Request:Action not set properly";
          break;

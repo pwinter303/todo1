@@ -9,13 +9,13 @@ $sessionID = '77jk4u4oa3itc0jgq0lllqikj4';
 
 
 #####   TEST - LOGIN  ##############
+#####   THIS ESTABLISHES THE SESSION  :-)  ##############
 $testName = 'login';
 $url = $baseURL . 'login.php';
 $data = array("action" => "loginUser", "email" => "fakeuser@yahoo.com", "password" => "fakepassword");
 $expected = '{"login":1}';
 $result = postIT($url, $data, $sessionID);
 if ($result == $expected){echo "$testName PASSED\n";} else {echo "$testName FAILED.. \nGOT:    \t$result \nEXPECTED:\t$expected\n\n\n\n\n\n";}
-
 
 #####   TEST - LOGIN  Status ##############
 $testName = 'loginStatus';
@@ -71,6 +71,22 @@ $result = getIT($url, $query_string, $sessionID);
 if ($result == $expected){echo "$testName PASSED\n";} else {echo "$testName FAILED.. \nGOT:    \t$result \nEXPECTED:\t$expected\n\n\n\n\n\n";}
 
 
+#####   TEST - getAccountPeriod  ##############
+$testName = 'getAccountPeriod';
+$url = $baseURL . 'testing_php_wrapper.php';
+$query_string = "?action=getAccountPeriod";
+$expected = '{"0":"Trial (Premium)","description":"Trial (Premium)","1":"2014-07-29","begin_dt":"2014-07-29","2":"2014-08-29","end_dt":"2014-08-29"}';
+$result = getIT($url, $query_string, $sessionID);
+if ($result == $expected){echo "$testName PASSED\n";} else {echo "$testName FAILED.. \nGOT:    \t$result \nEXPECTED:\t$expected\n\n\n\n\n\n";}
+
+
+#####   TEST - logOutUser  ##############
+$testName = 'logOutUser';
+$url = $baseURL . 'login.php';
+$data = array("action" => "logOutUser");
+$expected = '{"login":0}';
+$result = postIT($url, $data, $sessionID);
+if ($result == $expected){echo "$testName PASSED\n";} else {echo "$testName FAILED.. \nGOT:    \t$result \nEXPECTED:\t$expected\n\n\n\n\n\n";}
 
 
 
