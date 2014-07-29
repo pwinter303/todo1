@@ -121,8 +121,10 @@ function emptyTable($dbh, $table){
 
   $query = "delete from $table"  ;
 
+  //$query = "TRUNCATE TABLE $table";
   $rowsDeleted = deleteData($dbh, $query);
   echo "$table deleted:" . $rowsDeleted . "</br>";
+
 
 }
 
@@ -208,13 +210,13 @@ function insertStatuses($dbh){
 function insertTodos($dbh){
 
   $query = "INSERT INTO todo (task_name, due_dt, starred, group_id, priority_cd,
-  frequency_cd, status_cd, customer_id, Note, done, tags)  VALUES
-    ('Buy Milk', '2014-07-05 00:00:00', '1', '1', '1', '1', '1',1, 'my note', 0, ''),
-    ('Fertilize the lawn', '2014-07-06 00:00:00', '0', '1', '2', '2', '2',1, 'my note', 0, ''),
-    ('Plan Vacation', '2014-07-07 00:00:00', '1', '1', '3', '3', '1',1, 'my note', 0, ''),
-    ('Study for exam', '2014-08-02 00:00:00', '0', '1', '1', '2', '2',1, 'my note', 0, ''),
-    ('Plant Fall flowers', '2014-09-03 00:00:00', '1', '1', '2', '3', '1',1, 'my note', 0, ''),
-    ('Get Todo Giant', '2014-9-09 00:00:00', '0', '1', '3', '2', '2',1, 'my note', 0, '')";
+  frequency_cd, status_cd, customer_id, Note, done, tags, todo_id)  VALUES
+    ('Buy Milk', '2014-07-05 00:00:00', '1', '1', '1', '1', '1',1, 'my note', 0, '',1),
+    ('Fertilize the lawn', '2014-07-06 00:00:00', '0', '1', '2', '2', '2',1, 'my note', 0, '',2),
+    ('Plan Vacation', '2014-07-07 00:00:00', '1', '1', '3', '3', '1',1, 'my note', 0, '',3),
+    ('Study for exam', '2014-08-02 00:00:00', '0', '1', '1', '2', '2',1, 'my note', 0, '',4),
+    ('Plant Fall flowers', '2014-09-03 00:00:00', '1', '1', '2', '3', '1',1, 'my note', 0, '',5),
+    ('Get Todo Giant', '2014-9-09 00:00:00', '0', '1', '3', '2', '2',1, 'my note', 0, '',6)";
 
   $rowsInserted = insertData($dbh, $query);
   echo "todos inserted:" . $rowsInserted . "</br>";
