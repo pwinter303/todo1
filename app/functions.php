@@ -424,19 +424,90 @@ function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
   return $response;
 }
 
-function getMaxAccountPeriodEndDt($dbh, $customer_id){
+function getMaxPremiumDt($dbh, $customer_id){
     $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
     $data = execSqlMultiRow($dbh,$query);
     return $data;
 }
 
 function getAccountPeriod($dbh, $customer_id){
-    $query = "select description, begin_dt, end_dt from  as account_period, account_type where account_type.account_type_cd = account_period.account_type_cd and
-    account_period_status_cd = 1 and customer_id = $customer_id";   ### 1 = active
+    $query = "select description, begin_dt, end_dt from  account_period, account_type
+    where account_type.account_type_cd = account_period.account_type_cd and account_period_status_cd = 1
+    and customer_id = $customer_id
+    order by begin_dt asc";   ### 1 = active
     $data = execSqlSingleRow($dbh, $query);
     return $data;
 }
 
+function addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, $pmt_dt){
+  $query = "INSERT INTO payment (customer_id, pmt_amt, event_id, payment_method_cd, pmt_dt) VALUES
+  ($customer_id, $pmt_amt, $event_id, $payment_method_cd, $pmt_dt)";
+  $rowsAffected = actionSql($dbh,$query);
+  $response{'RowsUpdated'} = $rowsAffected;
+  $response{'LastInsertId'} = mysqli_insert_id($dbh);
+  return $response;
+}
+
+function setCustomerCredentialCd($dbh, $customer_id, $credential_cd){
+  $query = "UPDATE customer set credential_cd = $credential_cd where customer_id = $customer_id";
+  $rowsAffected = actionSql($dbh,$query);
+  $response{'RowsUpdated'} = $rowsAffected;
+  return $response;
+}
+
+function doesUserExist($dbh, $userName){
+    #### see if user already exists
+    $query = "SELECT count(*) as theCount fROM customer where user_name = '$userName'";
+    $data = execSqlSingleRow($dbh, $query);
+    $nbrOfCustomers = $data['theCount'];
+    if ($nbrOfCustomers){
+      return 1;
+    } else {
+      return 0;
+    }
+}
+
+function getCustomerId($dbh, $userName){
+    $query = "SELECT customer_id fROM customer where user_name = '$userName'";
+    $data = execSqlSingleRow($dbh, $query);
+    if (isset($data['customer_id'])){
+        return $data['customer_id'];
+    } else {
+        return '';
+    }
+}
+
+function generatePassword( $length = 8 ) {
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
+    $password = substr( str_shuffle( $chars ), 0, $length );
+    return $password;
+}
+
+
+function setAccountPeriodToDone($dbh, $customer_id, $account_type_cd) {
+    $query = "UPDATE account_period set account_period_status_cd = 2
+    where customer_id = $customer_id and account_period_status_cd = 1
+    and account_type_cd = $account_type_cd";
+    $rowsAffected = actionSql($dbh,$query);
+    $response{'RowsUpdated'} = $rowsAffected;
+    return $response;
+}
+
+
+function setExtendPremiumAccountPeriod($dbh, $customer_id, $extension, $periods, $account_type){
+    #Get Current Max Premium Date
+    $response = getMaxPremiumDt($dbh, $customer_id);
+    #fixme: check for null in the response and default to current date....
+
+    #deactivate any free rows
+    setAccountPeriodToDone($dbh, $customer_id, 2); #2:Free
+
+    #add premium period
+
+
+    #add free period
+
+}
 
 
 ?>

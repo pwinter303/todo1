@@ -8,10 +8,10 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="todo processing.html">todo processing</a></td></tr>
 <tr><td><a href="register user.html">register user</a></td></tr>
+<tr><td><a href="todo processing.html">todo processing</a></td></tr>
 <tr><td><a href="add remove groups.html">add remove groups</a></td></tr>
-<tr><td><a href="../../../../../../Documents and Settings/paul-winter/WebSites/todo/app/selenium-tests/changepassword.html">changepassword</a></td></tr>
+<tr><td><a href="changepassword.html">changepassword</a></td></tr>
 </tbody></table>
 </body>
 </html>
