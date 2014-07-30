@@ -455,9 +455,9 @@ function setCustomerCredentialCd($dbh, $customer_id, $credential_cd){
   return $response;
 }
 
-function doesUserExist($dbh, $userName){
+function doesUserExist($dbh, $email){
     #### see if user already exists
-    $query = "SELECT count(*) as theCount fROM customer where user_name = '$userName'";
+    $query = "SELECT count(*) as theCount fROM customer where email = '$email'";
     $data = execSqlSingleRow($dbh, $query);
     $nbrOfCustomers = $data['theCount'];
     if ($nbrOfCustomers){
@@ -467,8 +467,8 @@ function doesUserExist($dbh, $userName){
     }
 }
 
-function getCustomerId($dbh, $userName){
-    $query = "SELECT customer_id fROM customer where user_name = '$userName'";
+function getCustomerId($dbh, $email){
+    $query = "SELECT customer_id fROM customer where email = '$email'";
     $data = execSqlSingleRow($dbh, $query);
     if (isset($data['customer_id'])){
         return $data['customer_id'];

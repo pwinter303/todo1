@@ -104,7 +104,7 @@ function registerUser($dbh, $userName, $password, $password2){
 }
 
 
-function addUser($dbh, $userName, $password){
+function addUser($dbh, $email, $password){
 
     // Initialize the hasher without portable hashes (this is more secure)
     $hasher = new PasswordHash(8, false);
@@ -112,7 +112,7 @@ function addUser($dbh, $userName, $password){
     // Hash the password.  $hashedPassword will be a 60-character string.
     $hashedPassword = $hasher->HashPassword($password);
 
-    $query = "Insert into customer (user_name, password) VALUES ('$userName', '$hashedPassword')";
+    $query = "Insert into customer (email, password) VALUES ('$email', '$hashedPassword')";
     $rowsAffected = actionSql($dbh,$query);
     return $rowsAffected;
 }
@@ -130,7 +130,7 @@ function  addTodoGroup($dbh, $customer_id){
 
 
 ##
-function loginUser($dbh, $userName, $password){
+function loginUser($dbh, $email, $password){
 
 
     //fixme: instead of duplicate code have this call validate password (?)
@@ -138,7 +138,7 @@ function loginUser($dbh, $userName, $password){
     // Initialize the hasher without portable hashes (this is more secure)
     $hasher = new PasswordHash(8, false);
 
-    $query = "SELECT customer_id, password fROM customer where user_name = '$userName' ";
+    $query = "SELECT customer_id, password fROM customer where email = '$email' ";
     #####echo "$query";
     $data = execSqlSingleRow($dbh, $query);
     $customer_id = $data['customer_id'];

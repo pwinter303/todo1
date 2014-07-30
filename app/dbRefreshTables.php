@@ -38,8 +38,6 @@ function process_all($dbh){
 emptyTable($dbh,'todo');
 emptyTable($dbh,'todo_batch');
 emptyTable($dbh,'todo_group');
-//emptyTable($dbh,'todo_tag_xref');
-//emptyTable($dbh,'tag');
 emptyTable($dbh,'todo_status');
 emptyTable($dbh,'todo_priority');
 emptyTable($dbh,'payment');
@@ -48,11 +46,12 @@ emptyTable($dbh,'todo_frequency');
 emptyTable($dbh,'payment');
 emptyTable($dbh,'payment_method');
 
-emptyTable($dbh, 'event_account_period_xref');
-emptyTable($dbh,'event');
-emptyTable($dbh,'event_description');
 emptyTable($dbh,'account_period');
 emptyTable($dbh,'account_period_status');
+
+emptyTable($dbh,'event');
+emptyTable($dbh,'event_description');
+
 emptyTable($dbh,'account_type');
 
 emptyTable($dbh,'customer');
@@ -72,13 +71,11 @@ insert_payment_method($dbh);
 insert_event_description($dbh);
 insert_account_period_status($dbh);
 insert_account_type($dbh);
-
 insert_event($dbh);
 insert_payment($dbh);
 
 insert_account_period($dbh);
 
-insert_event_account_period_xref($dbh);
 
 }
 
@@ -109,8 +106,6 @@ insert_event($dbh);
 insert_payment($dbh);
 
 insert_account_period($dbh);
-
-insert_event_account_period_xref($dbh);
 
 
 }
@@ -152,7 +147,7 @@ function insertCustomer($dbh){
   $hashedPassword1 = $hasher->HashPassword('fakepassword');
   $hashedPassword2 = $hasher->HashPassword('fakepassword2');
 
-  $query = "INSERT INTO customer (customer_id, user_name, password) VALUES
+  $query = "INSERT INTO customer (customer_id, email, password) VALUES
     ( 1, 'fakeuser@yahoo.com', '$hashedPassword1'),
     ( 2, 'fakeuser2@yahoo.com', '$hashedPassword2')";
 
@@ -311,29 +306,14 @@ function insert_payment($dbh){
 };
 
 function insert_account_period($dbh){
-    $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, account_period_id) VALUES
-    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 1),
-    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 2),
-    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 3),
-    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 4)
+    $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, account_period_id, event_id) VALUES
+    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 1,1),
+    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 2,1),
+    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 3,2),
+    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 4,2)
     ";
 
     $rowsInserted = insertData($dbh, $query);
     echo "account_period inserted:" . $rowsInserted . "</br>";
-
-}
-
-
-function insert_event_account_period_xref($dbh){
-    $query = "INSERT INTO event_account_period_xref (event_id, account_period_id) VALUES
-    (1, 1),
-    (2, 2)
-    ";
-
-    $rowsInserted = insertData($dbh, $query);
-    echo "event_account_period_xref inserted:" . $rowsInserted . "</br>";
-
-
-
 
 }
