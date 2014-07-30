@@ -69,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`event` (
   `customer_id` INT(11) NOT NULL,
   `create_dt` VARCHAR(45) NULL,
   `event_cd` TINYINT(4) NOT NULL,
-  `parent_event_id` INT(11) NOT NULL,
+  `parent_event_id` INT(11) NULL,
   PRIMARY KEY (`event_id`),
   INDEX `fk_events_customer1_idx` (`customer_id` ASC),
   INDEX `fk_events_event_descriptions1_idx` (`event_cd` ASC),
