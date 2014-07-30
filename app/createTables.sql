@@ -21,17 +21,17 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db508430361`.`customer` (
   `customer_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `user_name` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
+  `email` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
   `password` VARCHAR(145) CHARACTER SET 'latin1' COLLATE 'latin1_general_ci' NULL DEFAULT NULL,
   `first_name` VARCHAR(145) NULL,
   `last_name` VARCHAR(145) NULL,
   `guid` VARCHAR(45) NULL,
-  `credential_cd` TINYINT(4) NOT NULL DEFAULT 0,
+  `credential_status_cd` TINYINT(4) NOT NULL DEFAULT 0,
   PRIMARY KEY (`customer_id`),
-  UNIQUE INDEX `user_name_UNIQUE` (`user_name` ASC),
-  INDEX `fk_customer_credential_status1_idx` (`credential_cd` ASC),
+  UNIQUE INDEX `user_name_UNIQUE` (`email` ASC),
+  INDEX `fk_customer_credential_status1_idx` (`credential_status_cd` ASC),
   CONSTRAINT `fk_customer_credential_status1`
-    FOREIGN KEY (`credential_cd`)
+    FOREIGN KEY (`credential_status_cd`)
     REFERENCES `db508430361`.`credential_status` (`credential_cd`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -69,9 +69,11 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`event` (
   `customer_id` INT(11) NOT NULL,
   `create_dt` VARCHAR(45) NULL,
   `event_cd` TINYINT(4) NOT NULL,
+  `parent_event_id` INT(11) NOT NULL,
   PRIMARY KEY (`event_id`),
   INDEX `fk_events_customer1_idx` (`customer_id` ASC),
   INDEX `fk_events_event_descriptions1_idx` (`event_cd` ASC),
+  INDEX `fk_event_event1_idx` (`parent_event_id` ASC),
   CONSTRAINT `fk_events_customer1`
     FOREIGN KEY (`customer_id`)
     REFERENCES `db508430361`.`customer` (`customer_id`)
@@ -80,6 +82,11 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`event` (
   CONSTRAINT `fk_events_event_descriptions1`
     FOREIGN KEY (`event_cd`)
     REFERENCES `db508430361`.`event_description` (`event_cd`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_event_event1`
+    FOREIGN KEY (`parent_event_id`)
+    REFERENCES `db508430361`.`event` (`event_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -91,8 +98,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `db508430361`.`payment` (
   `pmt_id` INT(11) NOT NULL,
   `customer_Id` INT(11) NOT NULL AUTO_INCREMENT,
-  `pmt_dt` DATETIME NULL DEFAULT NULL,
-  `pmt_amt` DECIMAL(11,2) NULL DEFAULT NULL,
+  `payment_dt` DATETIME NULL DEFAULT NULL,
+  `payment_amt` DECIMAL(11,2) NULL DEFAULT NULL,
   `payment_method_cd` TINYINT(4) NOT NULL,
   `event_id` INT(11) NOT NULL,
   PRIMARY KEY (`pmt_id`),
@@ -292,10 +299,12 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`account_period` (
   `account_type_cd` TINYINT(4) NOT NULL,
   `account_period_status_cd` TINYINT(4) NOT NULL,
   `customer_id` INT(11) NOT NULL,
+  `event_id` INT(11) NOT NULL,
   PRIMARY KEY (`account_period_id`),
   INDEX `fk_account_period_account_type1_idx` (`account_type_cd` ASC),
   INDEX `fk_account_period_account_period_status1_idx` (`account_period_status_cd` ASC),
   INDEX `fk_account_period_customer1_idx` (`customer_id` ASC),
+  INDEX `fk_account_period_event1_idx` (`event_id` ASC),
   CONSTRAINT `fk_account_period_account_type1`
     FOREIGN KEY (`account_type_cd`)
     REFERENCES `db508430361`.`account_type` (`account_type_cd`)
@@ -310,27 +319,10 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`account_period` (
     FOREIGN KEY (`customer_id`)
     REFERENCES `db508430361`.`customer` (`customer_id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `db508430361`.`event_account_period_xref`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db508430361`.`event_account_period_xref` (
-  `event_id` INT(11) NOT NULL,
-  `account_period_id` INT(11) NOT NULL,
-  INDEX `fk_event_account_period_xref_event1_idx` (`event_id` ASC),
-  INDEX `fk_event_account_period_xref_account_period1_idx` (`account_period_id` ASC),
-  PRIMARY KEY (`event_id`, `account_period_id`),
-  CONSTRAINT `fk_event_account_period_xref_event1`
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_account_period_event1`
     FOREIGN KEY (`event_id`)
     REFERENCES `db508430361`.`event` (`event_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_event_account_period_xref_account_period1`
-    FOREIGN KEY (`account_period_id`)
-    REFERENCES `db508430361`.`account_period` (`account_period_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
