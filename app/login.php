@@ -204,7 +204,7 @@ function setPassword($dbh, $customer_id, $password, $event_cd){
     $rowsAffected = actionSql($dbh,$query);
 
     # addEvent
-    addEvent($dbh, $customer_id, $event_cd); 
+    addEvent($dbh, $customer_id, $event_cd);
 
 
     return $rowsAffected;
