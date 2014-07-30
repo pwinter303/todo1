@@ -424,7 +424,7 @@ function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
   return $response;
 }
 
-function getMaxAccountPeriodEndDt($dbh, $customer_id){
+function getMaxPremiumDt($dbh, $customer_id){
     $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
     $data = execSqlMultiRow($dbh,$query);
     return $data;
@@ -475,13 +475,37 @@ function getCustomerId($dbh, $userName){
     } else {
         return '';
     }
-
+}
 
 function generatePassword( $length = 8 ) {
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
     $password = substr( str_shuffle( $chars ), 0, $length );
     return $password;
 }
+
+
+function setAccountPeriodToDone($dbh, $customer_id, $account_type_cd) {
+    $query = "UPDATE account_period set account_period_status_cd = 2
+    where customer_id = $customer_id and account_period_status_cd = 1
+    and account_type_cd = $account_type_cd";
+    $rowsAffected = actionSql($dbh,$query);
+    $response{'RowsUpdated'} = $rowsAffected;
+    return $response;
+}
+
+
+function setExtendPremiumAccountPeriod($dbh, $customer_id, $extension, $periods, $account_type){
+    #Get Current Max Premium Date
+    $response = getMaxPremiumDt($dbh, $customer_id);
+    #fixme: check for null in the response and default to current date....
+
+    #deactivate any free rows
+    setAccountPeriodToDone($dbh, $customer_id, 2); #2:Free
+
+    #add premium period
+
+
+    #add free period
 
 }
 

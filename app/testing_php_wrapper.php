@@ -50,8 +50,8 @@ $dbh = createDatabaseConnection();
 
 
 switch ($action) {
-   case 'getMaxAccountPeriodEndDt':
-         $result = getMaxAccountPeriodEndDt($dbh, $customer_id);
+   case 'getMaxPremiumDt':
+         $result = getMaxPremiumDt($dbh, $customer_id);
          break;
    case 'getAccountPeriod':
          $result = getAccountPeriod($dbh, $customer_id);
