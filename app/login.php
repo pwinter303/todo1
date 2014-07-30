@@ -58,6 +58,10 @@ function processPost(){
             $pass2 = $request->new2;
             $result = changePassword($dbh, $passOld, $pass1, $pass2);
             break;
+       case 'forgotPassword':
+            $email = $request->email;
+            $result = changePassword($dbh,$email);
+            break;
        case 'logOutUser':
              $result = logOutUser();
              break;
@@ -99,17 +103,6 @@ function registerUser($dbh, $userName, $password, $password2){
     return $response;
 }
 
-function doesUserExist($dbh, $userName){
-    #### see if user already exists
-    $query = "SELECT count(*) as theCount fROM customer where user_name = '$userName'";
-    $data = execSqlSingleRow($dbh, $query);
-    $nbrOfCustomers = $data['theCount'];
-    if ($nbrOfCustomers){
-      return 1;
-    } else {
-      return 0;
-    }
-}
 
 function addUser($dbh, $userName, $password){
 
@@ -171,8 +164,6 @@ function loginUser($dbh, $userName, $password){
 }
 
 function changePassword($dbh, $oldPassword, $password, $password2){
-    // Initialize the hasher without portable hashes (this is more secure)
-    $hasher = new PasswordHash(8, false);
 
     if ($password <> $password2){
       $response{'error'} = "ERROR - Re-entered password does not match";
@@ -185,15 +176,9 @@ function changePassword($dbh, $oldPassword, $password, $password2){
                 $valid = validatePassword($dbh, $customer_id, $oldPassword);
 
                 if ($valid){
-                    // Hash the password.  $hashedPassword will be a 60-character string.
-                    $hashedPassword = $hasher->HashPassword($password2);
-
-                    $query = "update customer set password = '$hashedPassword' where customer_id = $customer_id";
-                    $rowsAffected = actionSql($dbh,$query);
-
+                    $rowsAffected = setPassword($dbh, $customer_id, $password, 6);  # 6 = Password Change
                     if ($rowsAffected){
                       $response{'msg'} = "Password Changed";
-                      addEvent($dbh, $customer_id, 6);  # 6 = Password Change
                     } else {
                       $response{'error'} = "ERROR - Password could not be updated.";
                     }
@@ -206,6 +191,23 @@ function changePassword($dbh, $oldPassword, $password, $password2){
         }
     }
     return $response;
+}
+
+
+function setPassword($dbh, $customer_id, $password, $event_cd){
+    // Initialize the hasher without portable hashes (this is more secure)
+    $hasher = new PasswordHash(8, false);
+    // Hash the password.  $hashedPassword will be a 60-character string.
+    $hashedPassword = $hasher->HashPassword($password);
+
+    $query = "update customer set password = '$hashedPassword' where customer_id = $customer_id";
+    $rowsAffected = actionSql($dbh,$query);
+
+    # addEvent
+    addEvent($dbh, $customer_id, $event_cd); 
+
+
+    return $rowsAffected;
 }
 
 function validatePassword($dbh, $customer_id, $password){
@@ -228,6 +230,37 @@ function validatePassword($dbh, $customer_id, $password){
 //      $response = 0;
 //    }
     return $valid;
+}
+
+function forgotPassword($dbh, $email){
+    #see if customer exists
+    if (doesUserExist($dbh, $email)){
+        # get customer_id
+        $customer_id = getCustomerId($dbh, $email);
+
+        # set credential_cd
+        $response = setCustomerCredentialCd($dbh, $customer_id, 2); ## 2:Temp Password Issued
+
+        # generate password
+        $password = generatePassword();
+
+        # email password
+        //fixme: eMail password...
+
+        # save password
+        $rowsAffected = setPassword($dbh, $customer_id, $password, 8);  # 8:Temp Pwd Created
+        if ($rowsAffected){
+            $response{'msg'} = "Temporary Password Mailed";
+        } else {
+            $response{'error'} = "ERROR - Temporary Password Could not be Generated.";
+        }
+
+    } else {
+        $response{'error'} = "ERROR - eMail Not Found";
+    }
+
+    return $response;
+
 }
 
 

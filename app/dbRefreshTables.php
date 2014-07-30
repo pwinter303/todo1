@@ -260,7 +260,8 @@ function insert_event_description($dbh){
     (4, 'Tweet'),
     (5, 'Payment'),
     (6, 'Password Change'),
-    (7, 'Referral')
+    (7, 'Referral'),
+    (8, 'Temporary Password Created')
     ";
 
     $rowsInserted = insertData($dbh, $query);

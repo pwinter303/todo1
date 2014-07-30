@@ -1,5 +1,17 @@
 <?php
 
+
+#########################
+#########################
+###  NOTE: I think this should be ditched since the testing_php_driver can just call the functions directly and that's cleaner
+#########################
+#########################
+
+
+
+
+
+
 session_start();
 
 include 'db.php';
