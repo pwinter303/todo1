@@ -94,10 +94,8 @@ testDriverDirect('cust', 'getCustomerId', $result, $expected);
 
 ###################
 $expected = '[{"end_dt":"2014-08-29"}]';
-$result = getMaxPremiumDt($dbh, 3);
-var_dump($result);
+$result = getMaxPremiumDt($dbh, 1);
 $result = json_encode($result);
-var_dump($result);
 testDriverDirect('acct', 'getMaxPremiumDt', $result, $expected);
 
 
@@ -121,6 +119,9 @@ if ($result == $expected){echo "$cat\t$testName PASSED\n";} else {echo "$cat\t$t
 
 }
 
+
+
+#########################################################################
 function testDriverDirect($cat, $testName, $result, $expected){
 if ($result == $expected){echo "$cat\t$testName PASSED\n";} else {echo "$cat\t$testName FAILED.. \nGOT:    \t$result \nEXPECTED:\t$expected\n\n\n\n\n\n";}
 

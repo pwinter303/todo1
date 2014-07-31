@@ -307,11 +307,13 @@ function insert_payment($dbh){
 
 function insert_account_period($dbh){
     $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, account_period_id, event_id) VALUES
-    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 1,1),
-    (1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 2,1),
-    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 3,2),
-    (2, CURDATE(), CURDATE() + INTERVAL 31 DAY, 3, 1, 4,2)
+    (1, '2014-07-29', '2014-08-29', 1, 1, 1,1),
+    (1, '2014-07-29', '2014-08-29', 3, 1, 2,1),
+    (2, '2014-07-29', '2014-08-29', 1, 1, 3,2),
+    (2, '2014-07-29', '2014-08-29'  , 3, 1, 4,2)
     ";
+
+    //(1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 1,1),
 
     $rowsInserted = insertData($dbh, $query);
     echo "account_period inserted:" . $rowsInserted . "</br>";
