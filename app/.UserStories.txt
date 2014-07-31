@@ -2,7 +2,7 @@
 IN PROGRESS:
 
 Need more instructions around import
-Ability to set how long a completed task is shown
+Ability to set how long a completed task is shown -  SCHEMA
 Picture in the stripe checkout
 What do you get when you pay for it
 Change To Do to Todo.. redo screen shots..

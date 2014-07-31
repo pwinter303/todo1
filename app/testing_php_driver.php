@@ -106,6 +106,16 @@ $result = json_encode($result);
 testDriverDirect('acct', 'getAccountPeriod', $result, $expected);
 
 
+###################
+$expected = 1;
+$result = doesUserExist($dbh, 'fakeuser@yahoo.com');
+testDriverDirect('cust', 'doesUserExist', $result, $expected);
+
+
+
+
+
+
 
 
 #########################################################################
