@@ -106,7 +106,12 @@ function  processPayment($dbh, $customer_id, $request){
       'currency' => 'usd'
   ));
 
-  //echo '<h1>Successfully charged $10.00. Thank you!</h1>';
+
+  // FixMe: add logic to handle processing payment
+  ### Add Payment Record
+  ### Add Event
+  ### Add Account Period
+  ### Extend Free Account Period
 
   $response{'msg'} = 'Successfully charged $10.00. Thank you!';
 
