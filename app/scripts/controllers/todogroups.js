@@ -78,7 +78,8 @@ angular.module('todoApp')
         }
       }
       $rootScope.activegroup = id;
-      //FixMe: - Add call to update TodoGroups Active in Table.....
+      todoFactory.setGroupToActive(id);
+      // this happens in the background and there's no need to display a message, or trap errors...
     };
 
     // LoggedIn is broadcast after successful login

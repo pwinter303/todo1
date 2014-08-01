@@ -100,6 +100,9 @@ function  processPost($customer_id){
        case 'addGroup':
              $result = addGroup($dbh, $request, $customer_id);
              break;
+       case 'setGroupToActive':
+             $result = setGroupToActive($dbh, $request, $customer_id);
+             break;
        case 'moveTodos':
              $result = moveTodos($dbh, $request, $customer_id);
              break;

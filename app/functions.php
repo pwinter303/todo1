@@ -236,6 +236,26 @@ function  addGroup($dbh, $request_data, $customer_id){
   return $response;
 }
 
+
+###################################
+function  setGroupToActive($dbh, $request_data, $customer_id){
+  $group_id = $request_data->group_id;
+
+  #### set all groups to inactive
+  $query = "update todo_group set active = 0 where customer_id = $customer_id";
+  $rowsAffected = actionSql($dbh,$query);
+
+  #### set selected group to active
+  $query = "update todo_group set active = 1 where customer_id = $customer_id and group_id = $group_id";
+  $rowsAffected = actionSql($dbh,$query);
+
+  $response{'Status'} = 1;
+
+  return $response;
+
+}
+
+
 ###################################
 function  deleteGroup($dbh, $request_data, $customer_id){
   $group_id = $request_data->group_id;

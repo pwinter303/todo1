@@ -173,6 +173,24 @@ angular.module('todoApp')
       });
     };
     ////=============================================================================///
+    dataFactory.setGroupToActive = function(group_id) {
+        var url = 'todo.php';
+        var passedData = {action:'setGroupToActive', group_id: group_id };
+        // Start Standard Code... POST
+        var promise = $http.post(url , passedData);
+        return promise.then(function(result) {
+            if (typeof result.data === 'object') {
+                return result.data;
+            } else {
+                // call was successful but response was invalid (result was not an object)
+                return $q.reject(result.data);
+            }
+        }, function(result) {
+            // something went wrong.... error on the call..
+            return $q.reject(result.data);
+        });
+    };
+    ////=============================================================================///
     dataFactory.getfrequencies = function() {
       var url = 'todo.php';
       var passedData = {action: 'getfrequencies'};
