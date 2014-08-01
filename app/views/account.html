@@ -14,12 +14,17 @@
     <div id="myDiv" ng-controller="AcctdetailCtrl" class="col-md-6">
         <h4>Account Details</h4>
 
-        <div class="col-md-3">Membership Type:</div>
-        <div class="col-md-9">Free</div>
-        <div class="col-md-3">Paid Through:</div>
-        <div class="col-md-9">September 13, 2014</div>
+        <div class="col-md-6">Membership Type:</div>
+        <div class="col-md-3">Begin Date</div>
+        <div class="col-md-3">End Date</div>
 
-        <button id="customButton" class="btn btn-success">Purchase 12 Months of Premium</button>
+        <div data-ng-repeat="accountPeriod in accountPeriods">
+            <div class="col-md-6">{{accountPeriod.description}}</div>
+            <div class="col-md-3">{{accountPeriod.begin_dt}}</div>
+            <div class="col-md-3">{{accountPeriod.end_dt}}</div>
+        </div>
+
+        <button id="customButton" class="btn btn-success">Purchase 12 Months of Premium $10</button>
 
         <script>
             var handler = StripeCheckout.configure({

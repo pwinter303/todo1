@@ -267,9 +267,9 @@ angular.module('todoApp')
       });
     };
     ////=============================================================================///
-    dataFactory.getAccountDetails = function() {
+    dataFactory.getAccountPeriod = function() {
       var url = 'userAccount.php';
-      var passedData = {action: 'getAccountDetails'};
+      var passedData = {action: 'getAccountPeriod'};
       //OLD CODE:var myGet = $http({url: 'userAccount.php', method: 'GET', params: {action: 'getAccountDetails'}});
       //OLD CODE:return myGet.then(function(result) {
       //OLD CODE:return result.data;

@@ -3,6 +3,7 @@
 session_start();
 
 include 'db.php';
+include 'functions.php';
 
 $json = processRequest();
 echo $json;
@@ -38,8 +39,8 @@ function  processGet($customer_id){
 
     $action = htmlspecialchars($_GET["action"]);
     switch ($action) {
-       case 'getAccountDetails':
-             $result = getAccountDetails($dbh, $customer_id);
+       case 'getAccountPeriod':
+             $result = getAccountPeriod($dbh, $customer_id);
              break;
        default:
              echo "Error:Invalid Request:Action not set properly";
@@ -76,13 +77,6 @@ function  processPost($customer_id){
 
 
 ####################  FUNCTIONS ################################
-function  getAccountDetails($dbh, $customer_id){
-
-  //FixMe: Pull this from the real table
-  $result{'accountType'} = '1';
-  $result{'paidThrough'} = '1';
-  return $result;
-}
 
 
 ####################  FUNCTIONS ################################

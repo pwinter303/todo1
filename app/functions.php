@@ -455,7 +455,7 @@ function getAccountPeriod($dbh, $customer_id){
     where account_type.account_type_cd = account_period.account_type_cd and account_period_status_cd = 1
     and customer_id = $customer_id
     order by begin_dt asc";   ### 1 = active
-    $data = execSqlSingleRow($dbh, $query);
+    $data = execSqlMultiRow($dbh, $query);
     return $data;
 }
 
