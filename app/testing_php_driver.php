@@ -61,7 +61,7 @@ testDriver('acct', 'getMaxPremiumDt', $url, 1, $data, $expected);
 ###################
 $url = $baseURL . 'testing_php_wrapper.php';
 $data = "?action=getAccountPeriod";
-$expected = '{"0":"Trial (Premium)","description":"Trial (Premium)","1":"2014-07-29","begin_dt":"2014-07-29","2":"2014-08-29","end_dt":"2014-08-29"}';
+$expected = '[{"description":"Trial (Premium)","begin_dt":"2014-07-29","end_dt":"2014-08-29"},{"description":"Free","begin_dt":"2014-08-30","end_dt":"2015-08-29"}]';
 testDriver('acct', 'getAccountPeriod', $url, 1, $data, $expected);
 
 
@@ -100,7 +100,7 @@ testDriverDirect('acct', 'getMaxPremiumDt', $result, $expected);
 
 
 ###################
-$expected = '{"0":"Trial (Premium)","description":"Trial (Premium)","1":"2014-07-29","begin_dt":"2014-07-29","2":"2014-08-29","end_dt":"2014-08-29"}';
+$expected = '[{"description":"Trial (Premium)","begin_dt":"2014-07-29","end_dt":"2014-08-29"},{"description":"Free","begin_dt":"2014-08-30","end_dt":"2015-08-29"}]';
 $result = getAccountPeriod($dbh, 1);
 $result = json_encode($result);
 testDriverDirect('acct', 'getAccountPeriod', $result, $expected);
