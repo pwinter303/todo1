@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`customer` (
   `last_name` VARCHAR(145) NULL,
   `guid` VARCHAR(45) NULL,
   `credential_status_cd` TINYINT(4) NOT NULL DEFAULT 0,
+  `stripe_customer_id` VARCHAR(145) NULL DEFAULT NULL,
+  `display_days_done_todos` TINYINT(4) NULL DEFAULT 5,
   PRIMARY KEY (`customer_id`),
   UNIQUE INDEX `user_name_UNIQUE` (`email` ASC),
   INDEX `fk_customer_credential_status1_idx` (`credential_status_cd` ASC),
@@ -67,7 +69,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `db508430361`.`event` (
   `event_id` INT(11) NOT NULL AUTO_INCREMENT,
   `customer_id` INT(11) NOT NULL,
-  `create_dt` VARCHAR(45) NULL,
+  `create_dt` DATETIME NULL,
   `event_cd` TINYINT(4) NOT NULL,
   `parent_event_id` INT(11) NULL,
   PRIMARY KEY (`event_id`),
@@ -96,13 +98,13 @@ ENGINE = InnoDB;
 -- Table `db508430361`.`payment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db508430361`.`payment` (
-  `pmt_id` INT(11) NOT NULL,
-  `customer_Id` INT(11) NOT NULL AUTO_INCREMENT,
+  `payment_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `customer_Id` INT(11) NOT NULL,
   `payment_dt` DATETIME NULL DEFAULT NULL,
   `payment_amt` DECIMAL(11,2) NULL DEFAULT NULL,
   `payment_method_cd` TINYINT(4) NOT NULL,
   `event_id` INT(11) NOT NULL,
-  PRIMARY KEY (`pmt_id`),
+  PRIMARY KEY (`payment_id`),
   INDEX `fk_payments_customer1_idx` (`customer_Id` ASC),
   INDEX `fk_payment_payment_method1_idx` (`payment_method_cd` ASC),
   INDEX `fk_payment_event1_idx` (`event_id` ASC),
