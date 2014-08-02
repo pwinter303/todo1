@@ -270,10 +270,6 @@ angular.module('todoApp')
     dataFactory.getAccountPeriod = function() {
       var url = 'userAccount.php';
       var passedData = {action: 'getAccountPeriod'};
-      //OLD CODE:var myGet = $http({url: 'userAccount.php', method: 'GET', params: {action: 'getAccountDetails'}});
-      //OLD CODE:return myGet.then(function(result) {
-      //OLD CODE:return result.data;
-      //OLD CODE:});
       // Start Standard Code... GET
       var promise = $http.get(url , {params: passedData });
       return promise.then(function(result) {
@@ -287,6 +283,24 @@ angular.module('todoApp')
         // something went wrong.... error on the call..
         return $q.reject(result.data);
       });
+    };
+    ////=============================================================================///
+    dataFactory.getEmail = function() {
+        var url = 'userAccount.php';
+        var passedData = {action: 'getEmail'};
+        // Start Standard Code... GET
+        var promise = $http.get(url , {params: passedData });
+        return promise.then(function(result) {
+            if (typeof result.data === 'object') {
+                return result.data;
+            } else {
+                // call was successful but response was invalid (result was not an object)
+                return $q.reject(result.data);
+            }
+        }, function(result) {
+            // something went wrong.... error on the call..
+            return $q.reject(result.data);
+        });
     };
     ////=============================================================================///
     dataFactory.processPayment = function(passedData) {

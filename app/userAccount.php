@@ -42,6 +42,9 @@ function  processGet($customer_id){
        case 'getAccountPeriod':
              $result = getAccountPeriod($dbh, $customer_id);
              break;
+       case 'getEmail':
+             $result = getEmail($dbh, $customer_id);
+             break;
        default:
              echo "Error:Invalid Request:Action not set properly";
              break;

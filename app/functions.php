@@ -497,6 +497,12 @@ function getCustomerId($dbh, $email){
     }
 }
 
+function getEmail($dbh, $customer_id){
+    $query = "SELECT email fROM customer where customer_id = $customer_id     ";
+    $data = execSqlSingleRow($dbh, $query);
+    return $data;
+}
+
 function generatePassword( $length = 8 ) {
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
     $password = substr( str_shuffle( $chars ), 0, $length );
