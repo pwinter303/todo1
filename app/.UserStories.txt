@@ -1,32 +1,30 @@
 ========== MVP ============
 IN PROGRESS:
 
-Need more instructions around import
-Ability to set how long a completed task is shown -  SCHEMA
-Picture in the stripe checkout
+Payment Processing: Record Payment, Event, Account Periods
+Ability to specify category/priority/date on the quick add
+Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email
+Tracking free trial period... enforcement of end of trial period
+Feedback form... or Forum...
 What do you get when you pay for it
-Change To Do to Todo.. redo screen shots..
-Update.. some places called 'tags' other places 'keywords' other places 'category'
-When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
-GetAccountDetails - get the data from a real table.... remove hard coding from the view
-Katie: Confusing to say "By Category" in the search/filter boxes
-Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
+Ability to set how long a completed task is shown -  SCHEMA
+Forgot password process.... generate temp password & email..... Force password change when using temp password
 Katie: bypass registration by entering email and hit shift and pressing register (?)
 
+Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
+Need more instructions around import
+Add Content on Login and Registration Page
+Change To Do to Todo.. redo screen shots..
+Frequency logic.... For example, when completing a "Monthly" tasks do we add another
+
+When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
+Katie: Confusing to say "By Category" in the search/filter boxes
+Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
-Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email
 Print formatting
 Payment/Donation for usage using PayPal
-Payment/Donation for usage using CreditCard
-Tracking free trial period... enforcement of end of trial period
-Forgot password process.... generate temp password & email..... Force password change when using temp password
-Frequency logic.... For example, when completing a "Monthly" tasks do we add another
-Add Content on Login and Registration Page
 Show completed items... is this going to be a performance problem?  Should they be protected?
-Feedback form... or Forum...
 Export Todos - Should this be part of premium?   MVP?
-Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
-Ability to specify priority/date on the quick add
 BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed
 Build Unit Test Cases for Controllers and Services
 Add Selenium test to grunt
@@ -86,7 +84,11 @@ Ability to delete a single todo  7/25/14
 Fix null error message in stripe payment  7/25/14
 Prevent last group from being deleted...   7/25/14
 Split settings page into multiple pages.... Change Settings button to be a drop down and name it something generic  7/25/14
-
+GetAccountDetails - get the data from a real table.... remove hard coding from the view  8/2
+Payment/Donation for usage using CreditCard
+Update.. some places called 'tags' other places 'keywords' other places 'category'  8/3
+Picture in the stripe checkout
+Schema changes for AccountPeriods, Customer, Events, Payments, etc:   8/3
 
 
 ========== CANCELED ============
