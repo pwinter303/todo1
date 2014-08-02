@@ -54,7 +54,7 @@ testDriver('todo', 'gettodogroups', $url, 1, $data, $expected);
 ###################
 $url = $baseURL . 'testing_php_wrapper.php';
 $data = "?action=getMaxPremiumDt";
-$expected = '[{"end_dt":"2014-08-29"}]';
+$expected = '{"0":"2014-08-29","end_dt":"2014-08-29"}';
 testDriver('acct', 'getMaxPremiumDt', $url, 1, $data, $expected);
 
 
@@ -93,7 +93,7 @@ testDriverDirect('cust', 'getCustomerId', $result, $expected);
 
 
 ###################
-$expected = '[{"end_dt":"2014-08-29"}]';
+$expected = '{"0":"2014-08-29","end_dt":"2014-08-29"}';
 $result = getMaxPremiumDt($dbh, 1);
 $result = json_encode($result);
 testDriverDirect('acct', 'getMaxPremiumDt', $result, $expected);

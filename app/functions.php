@@ -405,8 +405,8 @@ function getBatches($dbh, $customer_id){
 }
 
 
-function addEvent($dbh, $customer_id, $event_cd, $date){
-  $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES ($customer_id, '$date', $event_cd)";
+function addEvent($dbh, $customer_id, $event_cd, $dateTime){
+  $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES ($customer_id, '$dateTime', $event_cd)";
   $rowsAffected = actionSql($dbh,$query);
   $response{'RowsUpdated'} = $rowsAffected;
   $response{'LastInsertId'} = mysqli_insert_id($dbh);
@@ -520,10 +520,19 @@ function setAccountPeriodToDone($dbh, $customer_id, $account_type_cd) {
 }
 
 
+function setStripeCustomerId($dbh, $customer_id, $stripe_customer_id) {
+    $query = "UPDATE customer set stripe_customer_id = '$stripe_customer_id'
+    where customer_id = $customer_id";
+    $rowsAffected = actionSql($dbh,$query);
+    $response{'RowsUpdated'} = $rowsAffected;
+    return $response;
+}
+
+
 function setExtendPremiumOneYear($dbh, $customer_id, $event_id){
     #Get Current Max Premium Date
     $response = getMaxPremiumDt($dbh, $customer_id);
-    var_dump($response);
+    //var_dump($response);
     $maxdt = $response{'end_dt'};
     #fixme: check for null in the response and default to current date....
 

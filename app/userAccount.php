@@ -99,11 +99,12 @@ function  processPayment($dbh, $customer_id, $request){
   //Documentation: https://stripe.com/docs/tutorials/charges
 
   //This creates a customer abstraction at stripe which can be used later
-  //fixme:  store the stripe_customer_id in the database
   $customer = Stripe_Customer::create(array(
       'email' => $email,
       'card'  => $token
   ));
+
+  setStripeCustomerId($dbh, $customer_id, $customer->id);
 
   //this charges the customer...
   $pmt_amt = 1000;
@@ -122,7 +123,7 @@ function  processPayment($dbh, $customer_id, $request){
   if($charge['paid']){
 
       ### Add Event
-      $response = addEvent($dbh, $customer_id, 5, date('Y-m-d') );  # 5 = Payment
+      $response = addEvent($dbh, $customer_id, 5, date('Y-m-d H:i:s') );  # 5 = Payment
       $event_id = $response{'LastInsertId'};
 
       ### Add Payment Record
