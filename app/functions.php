@@ -140,36 +140,112 @@ function  updateTodo($dbh, $request_data, $customer_id){
 ###################################
 function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm){
 
-  #### TODO pull due_dt from request if its available
-
-  $priority_cd = 5;
-  if (isset($request_data->priority_cd)){
-    $priority_cd = $request_data->priority_cd;
-  }
-  $frequency_cd = 1;
-  if (isset($request_data->frequency_cd)){
-    $frequency_cd = $request_data->frequency_cd;
-  }
-
-  $batch_id = "NULL";
-  if (isset($batch_id_parm)){
-    $batch_id = $batch_id_parm;
-  }
-  $status_cd = 0;
   $group_id = $request_data->activegroup;
-  $task_name = mysqli_real_escape_string($dbh, $request_data->taskName);
-  ####echo "$request_data->taskName  task_name $task_name";
 
-  $query = "INSERT INTO todo (task_name, due_dt, starred, group_id, priority_cd,
-  frequency_cd, status_cd, customer_id, Note, done, done_dt, tags, batch_id)  VALUES
-    ('$task_name', NULL, '0', $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, '', 0, NULL,'', $batch_id)";
+  $response = checkFreeTodoThresholds($dbh, $customer_id, $group_id);
 
-  $rowsAffected = actionSql($dbh,$query);
-  $todo_id = mysqli_insert_id($dbh);
-  $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
+  if ($response{'err'}){
+    //this is a problem... can't add more todos... limit has been reached....
+    return $response;
 
-  return $new_todo_data;
+  } else {
+
+      $priority_cd = 5;
+      if (isset($request_data->priority_cd)){
+        $priority_cd = $request_data->priority_cd;
+      }
+      $frequency_cd = 1;
+      if (isset($request_data->frequency_cd)){
+        $frequency_cd = $request_data->frequency_cd;
+      }
+
+      $batch_id = "NULL";
+      if (isset($batch_id_parm)){
+        $batch_id = $batch_id_parm;
+      }
+      $status_cd = 0;
+
+      $task_name = mysqli_real_escape_string($dbh, $request_data->taskName);
+      ####echo "$request_data->taskName  task_name $task_name";
+
+      $query = "INSERT INTO todo (task_name, due_dt, starred, group_id, priority_cd,
+      frequency_cd, status_cd, customer_id, Note, done, done_dt, tags, batch_id)  VALUES
+        ('$task_name', NULL, '0', $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, '', 0, NULL,'', $batch_id)";
+
+      $rowsAffected = actionSql($dbh,$query);
+      $todo_id = mysqli_insert_id($dbh);
+      $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
+
+      return $new_todo_data;
+
+  }
+
 }
+
+function  isPremiumAccount($dbh, $customer_id){
+    $query = "select count(*) as TrueInd from account_period where customer_id = $customer_id and
+    begin_dt < CURDATE() and end_dt > CURDATE() and account_type_cd in (1,3)";
+    $data = execSqlSingleRow($dbh, $query);
+    return $data{'TrueInd'};
+}
+
+function checkFreeTodoThresholds($dbh, $customer_id, $group_id){
+
+    $response{'err'} = 0;
+
+    if (isPremiumAccount($dbh, $customer_id)){
+        // customer is premium... no need to check anything else...
+    } else {
+        $response = checkFreeTodoThreshold($dbh, $customer_id);
+
+        if (!$response{'err'}){
+            $response = checkFreeTodoWithinGroupThreshold($dbh, $customer_id, $group_id);
+        }
+    }
+    return $response;
+}
+
+
+
+function  checkFreeTodoThreshold($dbh, $customer_id){
+    $query = "select count(*) as todo_count from todo where customer_id = $customer_id and done = 0";
+    $data = execSqlSingleRow($dbh, $query);
+    $response{'err'}=0;
+    //echo "this is the todo count:" . $data{'todo_count'};
+    if ($data{'todo_count'} > 50){
+        $response{'err'}=1;
+        $response{'errMsg'}="You've reached the maximum todos (50) across all groups for a free account. Please upgrade by going to Settings, Account/Profile, or delete existing todos";
+    }
+    return $response;
+}
+
+function  checkFreeGroupsThreshold($dbh, $customer_id){
+    $response{'err'} = 0;
+
+    if (isPremiumAccount($dbh, $customer_id)){
+        // customer is premium... no need to check anything else...
+    } else {
+        $query = "select count(*) as group_count from todo_group where customer_id = $customer_id";
+        $data = execSqlSingleRow($dbh, $query);
+        if ($data{'group_count'} > 0){
+            $response{'err'}=1;
+            $response{'errMsg'}="You've reached the maximum groups (2) for a free account. Please upgrade by going to Settings, Account/Profile, or delete an existing group.";
+        }
+    }
+    return $response;
+}
+
+function  checkFreeTodoWithinGroupThreshold($dbh, $customer_id,$group_id){
+    $query = "select count(*) as todo_count from todo where customer_id = $customer_id and done = 0 and group_id = $group_id";
+    $data = execSqlSingleRow($dbh, $query);
+    $response{'err'}=0;
+    if ($data{'todo_count'} > 15){
+        $response{'err'}=1;
+        $response{'errMsg'}="You've reached the maximum todos (15) within a group for a free account. Please upgrade by going to Settings, Account/Profile, or delete existing todos";
+    }
+    return $response;
+}
+
 
 ###################################
 function deleteTodo($dbh, $request, $customer_id){
@@ -210,29 +286,38 @@ function  updateGroup($dbh, $request_data, $customer_id){
 
 ###################################
 function  addGroup($dbh, $request_data, $customer_id){
-  #### set all groups to inactive
-  $query = "update todo_group set active = 0 where customer_id = $customer_id";
-  $rowsAffected = actionSql($dbh,$query);
 
-  ### Get Max Sort_order
-  $query = "select max(sort_order) as max_order from todo_group where customer_id = $customer_id";
-  $data = execSqlSingleRow($dbh, $query);
-  #####var_dump($data);
-  $max_sort_order = $data{'max_order'};
-  $max_sort_order = $max_sort_order + 1;
-  #####echo "max sort order: $max_sort_order";
+  $response{'err'}=0;
+  $response = checkFreeGroupsThreshold($dbh, $customer_id);
 
+  if ($response{'err'}){
+    //this is a problem... can't add more todos... limit has been reached....
+    return $response;
 
-  #### add new group
-  $groupName = mysqli_real_escape_string($dbh, $request_data->name);
-  $query = "insert into todo_group (customer_id, group_name, active, sort_order) VALUES ($customer_id, '$groupName', 1, $max_sort_order)";
-  $rowsAffected = actionSql($dbh,$query);
-  // no need to return the group add since the controller does a full refresh of groups
-  //$group_id = mysqli_insert_id($dbh);
-  //$new_group = getGroup($dbh, $customer_id, $group_id);
+  } else {
 
-  $response{'RowsAdded'} = $rowsAffected;
+      #### set all groups to inactive
+      $query = "update todo_group set active = 0 where customer_id = $customer_id";
+      $rowsAffected = actionSql($dbh,$query);
 
+      ### Get Max Sort_order
+      $query = "select max(sort_order) as max_order from todo_group where customer_id = $customer_id";
+      $data = execSqlSingleRow($dbh, $query);
+      #####var_dump($data);
+      $max_sort_order = $data{'max_order'};
+      $max_sort_order = $max_sort_order + 1;
+      #####echo "max sort order: $max_sort_order";
+
+      #### add new group
+      $groupName = mysqli_real_escape_string($dbh, $request_data->name);
+      $query = "insert into todo_group (customer_id, group_name, active, sort_order) VALUES ($customer_id, '$groupName', 1, $max_sort_order)";
+      $rowsAffected = actionSql($dbh,$query);
+      // no need to return the group add since the controller does a full refresh of groups
+      //$group_id = mysqli_insert_id($dbh);
+      //$new_group = getGroup($dbh, $customer_id, $group_id);
+
+      $response{'RowsAdded'} = $rowsAffected;
+  }
   return $response;
 }
 

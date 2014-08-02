@@ -173,23 +173,25 @@ angular.module('todoApp')
       });
     };
     ////=============================================================================///
+    /* following comment turns off camelcase check for this function.. so it'll be ignored */
+    /* jshint camelcase: false */
     dataFactory.setGroupToActive = function(group_id) {
         var url = 'todo.php';
         var passedData = {action:'setGroupToActive', group_id: group_id };
         // Start Standard Code... POST
         var promise = $http.post(url , passedData);
         return promise.then(function(result) {
-            if (typeof result.data === 'object') {
-                return result.data;
-            } else {
-                // call was successful but response was invalid (result was not an object)
-                return $q.reject(result.data);
-            }
-        }, function(result) {
-            // something went wrong.... error on the call..
+          if (typeof result.data === 'object') {
+            return result.data;
+          } else {
+            // call was successful but response was invalid (result was not an object)
             return $q.reject(result.data);
+          }
+        }, function(result) {
+          // something went wrong.... error on the call..
+          return $q.reject(result.data);
         });
-    };
+      };
     ////=============================================================================///
     dataFactory.getfrequencies = function() {
       var url = 'todo.php';
@@ -292,16 +294,16 @@ angular.module('todoApp')
         var promise = $http.get(url , {params: passedData });
         return promise.then(function(result) {
             if (typeof result.data === 'object') {
-                return result.data;
+              return result.data;
             } else {
-                // call was successful but response was invalid (result was not an object)
-                return $q.reject(result.data);
+              // call was successful but response was invalid (result was not an object)
+              return $q.reject(result.data);
             }
-        }, function(result) {
+          }, function(result) {
             // something went wrong.... error on the call..
             return $q.reject(result.data);
-        });
-    };
+          });
+      };
     ////=============================================================================///
     dataFactory.processPayment = function(passedData) {
       var url = 'userAccount.php';

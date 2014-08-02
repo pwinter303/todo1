@@ -31,10 +31,14 @@ angular.module('todoApp')
           newTodo.activegroup = $rootScope.activegroup;
           todoFactory.addTodo(newTodo).then(function (data) {
               if (data){
-                todoFactory.msgSuccess('Todo Added!');
+                if (data.err){
+                  todoFactory.msgError(data.errMsg);
+                } else {
+                  todoFactory.msgSuccess('Todo Added!');
+                  $scope.todos.push(data);
+                  $scope.newTodo.task = '';
+                }
               }
-              $scope.todos.push(data);
-              $scope.newTodo.task = '';
             }, function(error) {
               // promise rejected, could be because server returned 404, 500 error...
               todoFactory.msgError('Error Saving:' + error);

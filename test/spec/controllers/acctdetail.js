@@ -8,12 +8,12 @@ describe('Controller: AcctdetailCtrl ', function () {
     beforeEach(function (){
       // Create a "spy object" for our Service.
       /*global jasmine */
-      todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getAccountDetails']);
+      todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getAccountPeriod']);
       module('todoApp');
       inject(function($rootScope, $controller, $q, _$timeout_) {
         $scope = $rootScope.$new();
         // $q.when creates a resolved promise... values in When are what the service should return...
-        todoFactoryMOCK.getAccountDetails.andReturn($q.when({accountType:1, paidThrough:3 }));
+        todoFactoryMOCK.getAccountPeriod.andReturn($q.when({accountType:1, paidThrough:3 }));
         // assign $timeout to a scoped variable so we can use $timeout.flush() later.
         $timeout = _$timeout_;
         ctrl = $controller('AcctdetailCtrl', {
@@ -24,11 +24,11 @@ describe('Controller: AcctdetailCtrl ', function () {
     });
 
 
-    it('should call function getAccountDetails on the todoFactory and set values on scope', function (){
+    it('should call function getAccountPeriod on the todoFactory and set values on scope', function (){
       // call the function
-      $scope.getAccountDetails();
+      $scope.getAccountPeriod();
       // assert that it called the service method.
-      expect(todoFactoryMOCK.getAccountDetails).toHaveBeenCalled();
+      expect(todoFactoryMOCK.getAccountPeriod).toHaveBeenCalled();
       // call $timeout.flush() to flush the unresolved dependency from our service.
       $timeout.flush();
       // assert that it set $scope correctly

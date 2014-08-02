@@ -121,9 +121,13 @@ testDriverDirect('cust', 'doesUserExist', $result, $expected);
 //      $pmt_amt = $pmt_amt/100; ##divide by 100 since 1000 is $10.00 for stripe.
 //      addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, date('Y-m-d'));
 
-$customer_id=1;
-setExtendPremiumOneYear($dbh, $customer_id, 53);
+//$customer_id=1;
+//setExtendPremiumOneYear($dbh, $customer_id, 53);
 
+
+echo(isPremiumAccount($dbh, 1));
+
+var_dump(checkFreeTodoThresholds($dbh, 1, 1));
 
 #########################################################################
 function testDriver($cat, $testName, $url, $get, $data, $expected){

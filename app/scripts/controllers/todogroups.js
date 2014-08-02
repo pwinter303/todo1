@@ -28,9 +28,13 @@ angular.module('todoApp')
     $scope.addGroup = function (group){
       todoFactory.addGroup(group).then(function (data) {
         if (data){
-          $scope.getTodoGroups();
-          $scope.newGroup.name = '';
-          todoFactory.msgSuccess('Todo Group Added!');
+          if (data.err){
+            todoFactory.msgError(data.errMsg);
+          } else {
+            $scope.getTodoGroups();
+            $scope.newGroup.name = '';
+            todoFactory.msgSuccess('Todo Group Added!');
+          }
         }
       }, function(error) {
         // promise rejected, could be because server returned 404, 500 error...

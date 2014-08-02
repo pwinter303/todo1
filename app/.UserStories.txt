@@ -2,10 +2,8 @@
 IN PROGRESS:
 
 
-Payment Processing: Record Payment, Event, Account Periods
 Ability to specify category/priority/date on the quick add
 Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email
-Tracking free trial period... enforcement of end of trial period
 Feedback form... or Forum...
 What do you get when you pay for it
 Ability to set how long a completed task is shown -  SCHEMA
@@ -91,6 +89,8 @@ Update.. some places called 'tags' other places 'keywords' other places 'categor
 Picture in the stripe checkout
 Schema changes for AccountPeriods, Customer, Events, Payments, etc:   8/2
 Change event create_dt to timestamp.. update code that calls addEvent 8/2
+Payment Processing: Record Payment, Event, Account Periods  8/2
+Tracking free trial period... enforcement of end of trial period  8/2
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
