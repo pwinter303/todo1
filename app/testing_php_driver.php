@@ -113,9 +113,16 @@ testDriverDirect('cust', 'doesUserExist', $result, $expected);
 
 
 
+//$result = addEvent($dbh, 1, 2, '2014-08-02');
+//      $payment_method_cd = 1; #1:credit card
+//      $pmt_amt = 1000;
+//      $customer_id=1;
+//      $event_id = 53;
+//      $pmt_amt = $pmt_amt/100; ##divide by 100 since 1000 is $10.00 for stripe.
+//      addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, date('Y-m-d'));
 
-
-
+$customer_id=1;
+setExtendPremiumOneYear($dbh, $customer_id, 53);
 
 
 #########################################################################

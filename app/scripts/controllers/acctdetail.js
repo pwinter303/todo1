@@ -32,8 +32,13 @@ angular.module('todoApp')
     $scope.processPayment = function (token){
       todoFactory.processPayment(token).then(function (data) {
         if (data){
-          todoFactory.msgSuccess(data.msg);
-          $scope.getAccountDetails();
+            if (data.msg){
+              todoFactory.msgSuccess(data.msg);
+            }
+            if (data.err){
+                todoFactory.msgError(data.msg);
+            }
+            $scope.getAccountPeriod();
         }
       }, function(error) {
         // promise rejected, could be because server returned 404, 500 error...

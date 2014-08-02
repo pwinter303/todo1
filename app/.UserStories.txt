@@ -1,6 +1,7 @@
 ========== MVP ============
 IN PROGRESS:
 
+Change event create_dt to timestamp.. update code that calls addEvent
 Payment Processing: Record Payment, Event, Account Periods
 Ability to specify category/priority/date on the quick add
 Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email

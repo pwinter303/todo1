@@ -96,27 +96,45 @@ function  processPayment($dbh, $customer_id, $request){
   $email  = $request->email;
   //echo "this is email:$email";
 
-  //FixMe: Get the customer information... eg eMail...
+  //Documentation: https://stripe.com/docs/tutorials/charges
 
+  //This creates a customer abstraction at stripe which can be used later
+  //fixme:  store the stripe_customer_id in the database
   $customer = Stripe_Customer::create(array(
       'email' => $email,
       'card'  => $token
   ));
 
-  $charge = Stripe_Charge::create(array(
-      'customer' => $customer->id,
-      'amount'   => 1000,
-      'currency' => 'usd'
-  ));
+  //this charges the customer...
+  $pmt_amt = 1000;
+  try {
+      $charge = Stripe_Charge::create(array(
+          'customer' => $customer->id,
+          'amount'   => $pmt_amt,
+          'currency' => 'usd'
+      ));
+  } catch(Stripe_CardError $e) {
+    //print('Message is:' . $err['message'] . "\n");
+    $response{'err'} = $err['message'];
+  }
 
+  //if the return from stripe has the paid field set to true... continue processing...
+  if($charge['paid']){
 
-  // FixMe: add logic to handle processing payment
-  ### Add Payment Record
-  ### Add Event
-  ### Add Account Period
-  ### Extend Free Account Period
+      ### Add Event
+      $response = addEvent($dbh, $customer_id, 5, date('Y-m-d') );  # 5 = Payment
+      $event_id = $response{'LastInsertId'};
 
-  $response{'msg'} = 'Successfully charged $10.00. Thank you!';
+      ### Add Payment Record
+      $payment_method_cd = 1; #1:credit card
+      $pmt_amt = $pmt_amt/100; ##divide by 100 since 1000 is $10.00 for stripe.
+      addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, date('Y-m-d'));
+
+      ### Add/Adjust Account Periods
+      setExtendPremiumOneYear($dbh, $customer_id, $event_id);
+
+      $response{'msg'} = "Successfully charged $" . $pmt_amt .". Thank you!";
+  }
 
   return $response;
 

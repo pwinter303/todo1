@@ -92,7 +92,7 @@ function registerUser($dbh, $userName, $password, $password2){
             if (isset($_SESSION['customer_id'])) {
               $customer_id = $_SESSION['customer_id'];
               addTodoGroup($dbh, $customer_id);
-              addEvent($dbh, $customer_id, 1);  # 1 = Registration
+              addEvent($dbh, $customer_id, 1, date('Y-m-d') );  # 1 = Registration
             }
           }
         } else {
@@ -153,7 +153,7 @@ function loginUser($dbh, $email, $password){
       $response{'login'} = 1;
       $_SESSION['authenticated'] = 1;
       $_SESSION['customer_id'] = $customer_id;
-      addEvent($dbh, $customer_id, 2);  # 2 = Login
+      addEvent($dbh, $customer_id, 2, date('Y-m-d') );  # 2 = Login
     } else {
       $response{'login'} = 0;
     }
@@ -204,8 +204,7 @@ function setPassword($dbh, $customer_id, $password, $event_cd){
     $rowsAffected = actionSql($dbh,$query);
 
     # addEvent
-    addEvent($dbh, $customer_id, $event_cd);
-
+    addEvent($dbh, $customer_id, $event_cd, date('Y-m-d') );
 
     return $rowsAffected;
 }

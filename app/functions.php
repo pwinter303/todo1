@@ -405,17 +405,17 @@ function getBatches($dbh, $customer_id){
 }
 
 
-function addEvent($dbh, $customer_id, $event_cd){
-  $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES ($customer_id, CURDATE(), $event_cd)";
+function addEvent($dbh, $customer_id, $event_cd, $date){
+  $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES ($customer_id, '$date', $event_cd)";
   $rowsAffected = actionSql($dbh,$query);
   $response{'RowsUpdated'} = $rowsAffected;
   $response{'LastInsertId'} = mysqli_insert_id($dbh);
   return $response;
 }
 
-function addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd){
-  $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd) VALUES (
-    $customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd)";
+function addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd, $event_id){
+  $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, event_id) VALUES (
+    $customer_id, '$begin_dt', '$end_dt', $account_type_cd, $account_period_status_cd,$event_id)";
   $rowsAffected = actionSql($dbh,$query);
   $response{'RowsUpdated'} = $rowsAffected;
   $response{'LastInsertId'} = mysqli_insert_id($dbh);
@@ -446,7 +446,7 @@ function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
 
 function getMaxPremiumDt($dbh, $customer_id){
     $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
-    $data = execSqlMultiRow($dbh,$query);
+    $data = execSqlSingleRow($dbh,$query);
     return $data;
 }
 
@@ -460,8 +460,8 @@ function getAccountPeriod($dbh, $customer_id){
 }
 
 function addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, $pmt_dt){
-  $query = "INSERT INTO payment (customer_id, pmt_amt, event_id, payment_method_cd, pmt_dt) VALUES
-  ($customer_id, $pmt_amt, $event_id, $payment_method_cd, $pmt_dt)";
+  $query = "INSERT INTO payment (customer_id, payment_amt, event_id, payment_method_cd, payment_dt) VALUES
+  ($customer_id, $pmt_amt, $event_id, $payment_method_cd, '$pmt_dt')";
   $rowsAffected = actionSql($dbh,$query);
   $response{'RowsUpdated'} = $rowsAffected;
   $response{'LastInsertId'} = mysqli_insert_id($dbh);
@@ -520,19 +520,31 @@ function setAccountPeriodToDone($dbh, $customer_id, $account_type_cd) {
 }
 
 
-function setExtendPremiumAccountPeriod($dbh, $customer_id, $extension, $periods, $account_type){
+function setExtendPremiumOneYear($dbh, $customer_id, $event_id){
     #Get Current Max Premium Date
     $response = getMaxPremiumDt($dbh, $customer_id);
+    var_dump($response);
+    $maxdt = $response{'end_dt'};
     #fixme: check for null in the response and default to current date....
 
     #deactivate any free rows
     setAccountPeriodToDone($dbh, $customer_id, 2); #2:Free
 
     #add premium period
+    $begin_dt = date('Y-m-d', strtotime($maxdt. ' + 1 days'));
+    $end_dt =date('Y-m-d', strtotime('+1 year', strtotime($begin_dt)) );
 
+    addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, 3, 1, $event_id); #3:Premium;  1:Active
 
     #add free period
+    $begin_dt = date('Y-m-d', strtotime($end_dt. ' + 1 days'));
+    $end_dt =date('Y-m-d', strtotime('+1 year', strtotime($begin_dt)) );
+    addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, 2, 1,$event_id); #2:Free;  1:Active
 
+}
+
+function testIT(){
+echo date('Y-m-d');
 }
 
 
