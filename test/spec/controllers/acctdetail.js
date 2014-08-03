@@ -8,12 +8,13 @@ describe('Controller: AcctdetailCtrl ', function () {
     beforeEach(function (){
       // Create a "spy object" for our Service.
       /*global jasmine */
-      todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getAccountPeriod']);
+      todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getAccountPeriod','getEmail']);
       module('todoApp');
       inject(function($rootScope, $controller, $q, _$timeout_) {
         $scope = $rootScope.$new();
         // $q.when creates a resolved promise... values in When are what the service should return...
-        todoFactoryMOCK.getAccountPeriod.andReturn($q.when({accountType:1, paidThrough:3 }));
+        todoFactoryMOCK.getAccountPeriod.andReturn($q.when([{"description":"Trial (Premium)","begin_dt":"2014-07-29","end_dt":"2014-08-29"},{"description":"Free","begin_dt":"2014-08-30","end_dt":"2015-08-29"}]));
+        todoFactoryMOCK.getEmail.andReturn($q.when({"email": "fakeuser@yahoo.com"}));
         // assign $timeout to a scoped variable so we can use $timeout.flush() later.
         $timeout = _$timeout_;
         ctrl = $controller('AcctdetailCtrl', {
@@ -32,7 +33,18 @@ describe('Controller: AcctdetailCtrl ', function () {
       // call $timeout.flush() to flush the unresolved dependency from our service.
       $timeout.flush();
       // assert that it set $scope correctly
-      expect($scope.accountType).toEqual(1);
-      expect($scope.paidThrough).toEqual(3);
+      expect($scope.accountPeriods).toBeDefined();
+      //expect($scope.paidThrough).toEqual(3);
+    });
+
+    it('should call function getEmail on the todoFactory and set values on scope', function (){
+      // call the function
+      $scope.getEmail();
+      // assert that it called the service method.
+      expect(todoFactoryMOCK.getEmail).toHaveBeenCalled();
+      // call $timeout.flush() to flush the unresolved dependency from our service.
+      $timeout.flush();
+      // assert that it set $scope correctly
+      expect($scope.email).toEqual('fakeuser@yahoo.com');
     });
   });
