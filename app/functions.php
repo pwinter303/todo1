@@ -164,6 +164,7 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
       $due_dt = "NULL";
       if (isset($request_data->due_dt)){
         $due_dt = $request_data->due_dt;
+        $due_dt = "STR_TO_DATE('$due_dt', '%m/%d/%Y')";
       }
 
       $tags = '';
@@ -180,8 +181,8 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
       $task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
 
       $query = "INSERT INTO todo
-      (  task_name,   due_dt, starred,  group_id,   priority_cd,  frequency_cd,  status_cd,  customer_id, Note, done, done_dt, batch_id,   tags)  VALUES
-      ('$task_name', $due_dt, 0      , $group_id,  $priority_cd, $frequency_cd, $status_cd, $customer_id, '',      0, NULL   , $batch_id, '$tags')";
+      (  task_name,   due_dt  , starred,  group_id,   priority_cd,  frequency_cd,  status_cd,  customer_id, Note, done, done_dt, batch_id,   tags)  VALUES
+      ('$task_name',  $due_dt , 0      , $group_id,  $priority_cd, $frequency_cd, $status_cd, $customer_id, '',      0, NULL   , $batch_id, '$tags')";
 
       $rowsAffected = actionSql($dbh,$query);
       $todo_id = mysqli_insert_id($dbh);
@@ -218,19 +219,23 @@ function  explodeTodoName($request){
             $foundPriorityMatch=1;
           }
           if(preg_match('/\//',$value)){
-            $request->due_dt = $value;
+            $due_dt = doDateStuff($value);
+            $request->due_dt = $due_dt;
             $foundDueDtMatch=1;
           }
 
           foreach ($daysOfWeek as $day) {
-            if(preg_match('/$day/',$value)){
-              $request->due_dt = $value;
+            //echo "day:$day value:$value\n";
+            if(preg_match("/$day/i",$value)){
+              $due_dt = doDateStuff($value);
+              //echo "this is due_dt after the call $due_dt\n";
+              $request->due_dt = $due_dt;
               $foundDueDtMatch=1;
             }
           }
 
           if ((0 == $foundPriorityMatch) and (0 == $foundDueDtMatch)){
-            $request{'tags'} = $value;
+            $request->tags = $value;
           }
 
       }
@@ -457,6 +462,9 @@ function doDateStuff($date_string){
   }
 
   if (preg_match("/([0-9]{1,2})\/([0-9]{1,2})\/([0-9]{4})/", $date_string, $matches)) {
+
+      //echo "this is date_string within doDateStuff:$date_string\n";
+
       if (!checkdate($matches[1], $matches[2], $matches[3])) {
           $date_string = "";
       }
