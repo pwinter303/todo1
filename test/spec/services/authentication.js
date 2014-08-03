@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: Authentication', function () {
+describe('Service: authentication', function () {
 
   // load the service's module
   beforeEach(module('todoApp'));
 
   // instantiate service
-  var Authentication;
-  beforeEach(inject(function (_Authentication_) {
-    Authentication = _Authentication_;
+  var authentication;
+  beforeEach(inject(function (_authentication_) {
+    authentication = _authentication_;
   }));
 
   it('should do something', function () {
-    expect(!!Authentication).toBe(true);
+    expect(!!authentication).toBe(true);
   });
 
 });

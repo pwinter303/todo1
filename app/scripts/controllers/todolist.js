@@ -95,13 +95,13 @@ angular.module('todoApp')
         };
 
         $scope.getTodos = function (){
-          todoFactory.getToDos().then(function (data) {
+          todoFactory.getTodos().then(function (data) {
             if (data){
               $scope.todos = data;
             }
           }, function(error) {
             // promise rejected, could be because server returned 404, 500 error...
-            todoFactory.msgError('Error Retrieving ToDos:' + error);
+            todoFactory.msgError('Error Retrieving Todos:' + error);
           });
         };
         $scope.getTodos();
@@ -121,7 +121,7 @@ angular.module('todoApp')
                 }
               }, function(error) {
                 // promise rejected, could be because server returned 404, 500 error...
-                todoFactory.msgError('Error Moving ToDos:' + error);
+                todoFactory.msgError('Error Moving Todos:' + error);
               });
             }
           }
