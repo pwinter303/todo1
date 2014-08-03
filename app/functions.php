@@ -138,7 +138,7 @@ function  updateTodo($dbh, $request_data, $customer_id){
 }
 
 ###################################
-function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm){
+function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
 
   $group_id = $request_data->activegroup;
 
@@ -149,6 +149,8 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm){
     return $response;
 
   } else {
+
+      $request_data = explodeTodoName($request_data);
 
       $priority_cd = 5;
       if (isset($request_data->priority_cd)){
@@ -170,13 +172,12 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm){
       }
 
       $batch_id = "NULL";
-      if (isset($batch_id_parm)){
+      if ($batch_id_parm > 0){
         $batch_id = $batch_id_parm;
       }
       $status_cd = 1;
 
-      $task_name = mysqli_real_escape_string($dbh, $request_data->taskName);
-      ####echo "$request_data->taskName  task_name $task_name";
+      $task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
 
       $query = "INSERT INTO todo
       (  task_name,   due_dt, starred,  group_id,   priority_cd,  frequency_cd,  status_cd,  customer_id, Note, done, done_dt, batch_id,   tags)  VALUES
@@ -191,6 +192,54 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm){
   }
 
 }
+
+function  explodeTodoName($request){
+
+  //var_dump($request);
+
+  $task_name = $request->task_name;
+
+  $daysOfWeek = array('Sunday', 'Sun', 'Monday', 'Mon', 'Tuesday', 'Tue', 'Wednesday', 'Wed', 'Thursday',
+   'Thu', 'Friday', 'Fri', 'Saturday', 'Sat'
+   );
+
+  if (preg_match('/|/', $task_name)) {
+      $fields = explode('|',$task_name);
+      $request->task_name = $fields[0];
+      unset($fields[0]);     # remove the task name
+      $fields = array_values($fields);  #re-index
+
+      foreach ($fields as $value) {
+          $foundPriorityMatch = 0;
+          $foundDueDtMatch = 0;
+
+          if(preg_match('/^\d+$/',$value)){
+            $request->priority_cd= $value;
+            $foundPriorityMatch=1;
+          }
+          if(preg_match('/\//',$value)){
+            $request->due_dt = $value;
+            $foundDueDtMatch=1;
+          }
+
+          foreach ($daysOfWeek as $day) {
+            if(preg_match('/$day/',$value)){
+              $request->due_dt = $value;
+              $foundDueDtMatch=1;
+            }
+          }
+
+          if ((0 == $foundPriorityMatch) and (0 == $foundDueDtMatch)){
+            $request{'tags'} = $value;
+          }
+
+      }
+  }
+
+  //var_dump($request);
+  return $request;
+}
+
 
 function  isPremiumAccount($dbh, $customer_id){
     $query = "select count(*) as TrueInd from account_period where customer_id = $customer_id and

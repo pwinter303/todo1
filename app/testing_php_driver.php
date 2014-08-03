@@ -129,6 +129,10 @@ echo(isPremiumAccount($dbh, 1));
 
 var_dump(checkFreeTodoThresholds($dbh, 1, 1));
 
+$x->task_name  = "Wow|2|ggggg";
+explodeTodoName($x);
+
+
 #########################################################################
 function testDriver($cat, $testName, $url, $get, $data, $expected){
 if ($get){
@@ -147,6 +151,7 @@ function testDriverDirect($cat, $testName, $result, $expected){
 if ($result == $expected){echo "$cat\t$testName PASSED\n";} else {echo "$cat\t$testName FAILED.. \nGOT:    \t$result \nEXPECTED:\t$expected\n\n\n\n\n\n";}
 
 }
+
 
 
 

@@ -27,7 +27,9 @@ angular.module('todoApp')
         }
 
         $scope.addTodo = function (newTodo){
-          newTodo.taskName = newTodo.task;
+          /* following comment turns off camelcase check for this function.. so it'll be ignored */
+          /* jshint camelcase: false */
+          newTodo.task_name = newTodo.task;
           newTodo.activegroup = $rootScope.activegroup;
           todoFactory.addTodo(newTodo).then(function (data) {
               if (data){

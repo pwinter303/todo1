@@ -71,7 +71,7 @@ function processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $f
     $todo_err = 0;
     if (($ok) ){
       $request_data->activegroup = $group_id;
-      $request_data->taskName = $fields[1];
+      $request_data->task_name = $fields[1];
       $request_data->due_dt = $fields[2];
       $request_data->tags = $fields[3];
       $request_data->frequency_cd = getFrequencyCdUsingName($fields[4], $frequencies);
