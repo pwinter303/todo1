@@ -12,9 +12,11 @@ describe('Controller: AcctdetailCtrl ', function () {
       module('todoApp');
       inject(function($rootScope, $controller, $q, _$timeout_) {
         $scope = $rootScope.$new();
+        /* following comment turns off camelcase check for this function.. so it'll be ignored */
+        /* jshint camelcase: false */
         // $q.when creates a resolved promise... values in When are what the service should return...
-        todoFactoryMOCK.getAccountPeriod.andReturn($q.when([{"description":"Trial (Premium)","begin_dt":"2014-07-29","end_dt":"2014-08-29"},{"description":"Free","begin_dt":"2014-08-30","end_dt":"2015-08-29"}]));
-        todoFactoryMOCK.getEmail.andReturn($q.when({"email": "fakeuser@yahoo.com"}));
+        todoFactoryMOCK.getAccountPeriod.andReturn($q.when([{description:'Trial (Premium)',begin_dt:'2014-07-29',end_dt:'2014-08-29'}]));
+        todoFactoryMOCK.getEmail.andReturn($q.when({email: 'fakeuser@yahoo.com'}));
         // assign $timeout to a scoped variable so we can use $timeout.flush() later.
         $timeout = _$timeout_;
         ctrl = $controller('AcctdetailCtrl', {
