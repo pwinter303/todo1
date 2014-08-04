@@ -578,15 +578,60 @@ function createGUID(){
     mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
     $charid = strtoupper(md5(uniqid(rand(), true)));
     $hyphen = chr(45);// "-"
-    $uuid = chr(123)// "{"
-            .substr($charid, 0, 8).$hyphen
+//    $uuid = chr(123)// "{"
+//            .substr($charid, 0, 8).$hyphen
+//            .substr($charid, 8, 4).$hyphen
+//            .substr($charid,12, 4).$hyphen
+//            .substr($charid,16, 4).$hyphen
+//            .substr($charid,20,12)
+//            .chr(125);// "}"
+
+    //dont want to use curly braces
+    $uuid =  substr($charid, 0, 8).$hyphen
             .substr($charid, 8, 4).$hyphen
             .substr($charid,12, 4).$hyphen
             .substr($charid,16, 4).$hyphen
-            .substr($charid,20,12)
-            .chr(125);// "}"
+            .substr($charid,20,12);
+
     return $uuid;
 }
+
+
+function eMailActivation($email, $guid){
+
+  $body = "";
+  $body .= "Welcome to Todo Giant!\n\r";
+  $body .= "Thanks for signing up. Please click the link below to activate your account:\n\r";
+  $body .= "https://todogiant.com/login.php?action=Activate&GUID=$guid\n\r";
+  $body .= "Thanks Again!";
+
+  eMailToCustomer($email, 'Account Activation', $body);
+
+}
+
+function eMailForgotPassword($email, $password){
+
+  $body = "";
+  $body .= "Hi\n\r";
+  $body .= "Here is the temporary password that can be used to login to your account:\n\r";
+  $body .= "$password\n\r";
+  $body .= "Please change it after you've logged into the site";
+
+  eMailToCustomer($email, 'Password Reset', $body);
+
+}
+
+function eMailToCustomer($email, $subject, $body){
+
+// In case any of our lines are larger than 70 characters, we should use wordwrap()
+// TAKING CARE OF WORD WRAPPING MYSELF..
+//$body = wordwrap($body, 70, "\r\n");
+
+// Send
+mail($email, $subject, $body);
+
+}
+
 
 
 function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
@@ -620,11 +665,17 @@ function addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd,
   return $response;
 }
 
-function setCustomerCredentialCd($dbh, $customer_id, $credential_cd){
-  $query = "UPDATE customer set credential_cd = $credential_cd where customer_id = $customer_id";
+function setCustomerCredentialCd($dbh, $customer_id, $credential_status_cd){
+  $query = "UPDATE customer set credential_status_cd = $credential_status_cd where customer_id = $customer_id";
   $rowsAffected = actionSql($dbh,$query);
   $response{'RowsUpdated'} = $rowsAffected;
   return $response;
+}
+
+function getCustomerIdUsingGUID($dbh, $guid){
+    $query = "SELECT customer_id FROM customer where guid = '$guid' ";
+    $data = execSqlSingleRow($dbh, $query);
+    return $data;
 }
 
 function doesUserExist($dbh, $email){

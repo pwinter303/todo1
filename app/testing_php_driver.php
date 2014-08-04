@@ -132,6 +132,10 @@ var_dump(checkFreeTodoThresholds($dbh, 1, 1));
 $x->task_name  = "Wow|2|ggggg";
 explodeTodoName($x);
 
+//eMailActivation('paul-winter@localhost', 'jkfsadl;jasjfa;osf;asoidjfoisajfosa');
+
+forgotPassword($dbh, $email)
+
 
 #########################################################################
 function testDriver($cat, $testName, $url, $get, $data, $expected){

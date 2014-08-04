@@ -1,6 +1,9 @@
 <?php
 
 include 'db.php';
+include 'functions.php';
+
+
 // Include the phpass library
 require_once('bower_components/phpass-0.3/PasswordHash.php');
 
@@ -140,6 +143,10 @@ function insert_credential_status($dbh){
 
 function insertCustomer($dbh){
 
+
+  $guid1 = createGUID();
+  $guid2 = createGUID();
+
   // Initialize the hasher without portable hashes (this is more secure)
   $hasher = new PasswordHash(8, false);
 
@@ -147,9 +154,9 @@ function insertCustomer($dbh){
   $hashedPassword1 = $hasher->HashPassword('fakepassword');
   $hashedPassword2 = $hasher->HashPassword('fakepassword2');
 
-  $query = "INSERT INTO customer (customer_id, email, password) VALUES
-    ( 1, 'fakeuser@yahoo.com', '$hashedPassword1'),
-    ( 2, 'fakeuser2@yahoo.com', '$hashedPassword2')";
+  $query = "INSERT INTO customer (customer_id, email, password, guid) VALUES
+    ( 1, 'fakeuser@yahoo.com', '$hashedPassword1', '$guid1'),
+    ( 2, 'fakeuser2@yahoo.com', '$hashedPassword2','$guid2')";
 
   $rowsInserted = insertData($dbh, $query);
   echo "Customer inserted:" . $rowsInserted . "</br>";

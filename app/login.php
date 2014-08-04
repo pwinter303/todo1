@@ -74,18 +74,20 @@ function processPost(){
 }
 
 #####
-function registerUser($dbh, $userName, $password, $password2){
+function registerUser($dbh, $email, $password, $password2){
     if ($password <> $password2){
       $response{'error'} = "ERROR - Passwords do not match";
     } else {
-      $exists = doesUserExist($dbh, $userName);
+      $exists = doesUserExist($dbh, $email);
       if ($exists){
               $response{'error'} = "ERROR - eMail already registered";
       } else {
-        $return_status = addUser($dbh, $userName, $password);
+        $guid = createGUID();
+        $return_status = addUser($dbh, $email, $password, 2, $guid); #2:Awaiting Confirmation eMail return
         if ($return_status){
+          eMailActivation($email, $guid);
           $response{'msg'} = "Successful Registration";
-          $call_response = loginUser($dbh, $userName, $password);
+          $call_response = loginUser($dbh, $email, $password);
           $response{'login'} = $call_response{'login'};
           if ($call_response{'login'}){
             ##### Add Todo_Group and Create Event, account_period, and xref.....
@@ -104,7 +106,10 @@ function registerUser($dbh, $userName, $password, $password2){
 }
 
 
-function addUser($dbh, $email, $password){
+function addUser($dbh, $email, $password, $credential_status_cd, $guid){
+
+    //considered doing createGUID within this function... or even letting MySQL create it... but
+    //since the guid is needed in the calling function (eg: email it).. kept the creation outside of this
 
     // Initialize the hasher without portable hashes (this is more secure)
     $hasher = new PasswordHash(8, false);
@@ -112,10 +117,12 @@ function addUser($dbh, $email, $password){
     // Hash the password.  $hashedPassword will be a 60-character string.
     $hashedPassword = $hasher->HashPassword($password);
 
-    $query = "Insert into customer (email, password) VALUES ('$email', '$hashedPassword')";
+    $query = "Insert into customer (email,          password,   credential_status_cd,   guid) VALUES
+                                 ('$email', '$hashedPassword', $credential_status_cd, '$guid'  )";
     $rowsAffected = actionSql($dbh,$query);
     return $rowsAffected;
 }
+
 
 function  addTodoGroup($dbh, $customer_id){
   $query = "INSERT INTO todo_group (group_name, Sort_Order,customer_id, active) VALUES
@@ -244,7 +251,7 @@ function forgotPassword($dbh, $email){
         $password = generatePassword();
 
         # email password
-        //fixme: eMail password...
+        eMailForgotPassword($email, $password);
 
         # save password
         $rowsAffected = setPassword($dbh, $customer_id, $password, 8);  # 8:Temp Pwd Created
@@ -264,6 +271,44 @@ function forgotPassword($dbh, $email){
 
 
 function processGet(){
+
+    $dbh = createDatabaseConnection();
+
+    $action = htmlspecialchars($_GET["action"]);
+    switch ($action) {
+       case 'getLoginStatus':
+             $result = getLoginStatus();
+             break;
+       case 'Activate':
+             $GUID = htmlspecialchars($_GET["GUID"]);
+             $result = Activate($dbh, $GUID);
+             break;
+       default:
+             echo "Error:Invalid Request:Action not set properly";
+             break;
+    }
+
+    return $result;
+
+}
+
+
+function Activate($dbh, $GUID){
+
+    $data = getCustomerIdUsingGUID($dbh, $GUID);
+    $customer_id = $data{'customer_id'};
+
+    if ($customer_id){
+      $response = setCustomerCredentialCd($dbh, $customer_id, 0); #0:Legitimate
+      echo "Thank you for activating your account";
+    } else {
+      $response{'err_msg'} = "Could not find a matching record.";
+    }
+
+    return $response;
+}
+
+function getLoginStatus(){
     if (isset($_SESSION['authenticated'])) {
         $response{'login'} = 1;
     } else {
@@ -271,6 +316,8 @@ function processGet(){
     }
     return $response;
 }
+
+
 
 function logOutUser(){
   session_unset();
