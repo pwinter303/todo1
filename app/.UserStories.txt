@@ -1,29 +1,33 @@
 ========== MVP ============
 IN PROGRESS:
-
-
-Feedback form... or Forum...
-What do you get when you pay for it
-Ability to set how long a completed task is shown -  SCHEMA
 Forgot password process.... generate temp password & email..... Force password change when using temp password
-Katie: bypass registration by entering email and hit shift and pressing register (?)
 
+
+
+MVP:  CRITICAL
+Feedback form... or Forum...
+What do you get when you pay for it... done but need content explain free vs premium
+Ability to set how long a completed task is shown -  SCHEMA
+Katie: bypass registration by entering email and hit shift and pressing register (?)
+Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
+Build Unit Test Cases for Controllers and Services
+
+MVP:  IMPORTANT
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
 Need more instructions around import
 Add Content on Login and Registration Page
 Change To Do to Todo.. redo screen shots..
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
 
+MVP:  NEEDED
 When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
 Katie: Confusing to say "By Category" in the search/filter boxes
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
-Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
 Print formatting
 Payment/Donation for usage using PayPal
 Show completed items... is this going to be a performance problem?  Should they be protected?
 Export Todos - Should this be part of premium?   MVP?
 BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed
-Build Unit Test Cases for Controllers and Services
 Add Selenium test to grunt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 
