@@ -132,7 +132,7 @@ function  processPayment($dbh, $customer_id, $request){
       addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, date('Y-m-d'));
 
       ### Add/Adjust Account Periods
-      setExtendPremiumOneYear($dbh, $customer_id, $event_id);
+      setAcctPeriodsForPayment($dbh, $customer_id, $event_id);
 
       $response{'msg'} = "Successfully charged $" . $pmt_amt .". Thank you!";
   }

@@ -1,7 +1,6 @@
 ========== MVP ============
 IN PROGRESS:
-Forgot password process.... generate temp password & email..... Force password change when using temp password
-
+Forgot password.... Force password change when using temp password
 
 MVP:  CRITICAL
 Feedback form... or Forum...
@@ -10,6 +9,10 @@ Ability to set how long a completed task is shown -  SCHEMA
 Katie: bypass registration by entering email and hit shift and pressing register (?)
 Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
 Build Unit Test Cases for Controllers and Services
+Update Stripe to use a real bank account and take it out of test mode...
+Register URL with Google and Others..
+Blog Content:  How to use the site..
+Should BLOG Link be removed and replace it with direct links to sections within the blog
 
 MVP:  IMPORTANT
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
@@ -21,14 +24,19 @@ Frequency logic.... For example, when completing a "Monthly" tasks do we add ano
 MVP:  NEEDED
 When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
 Katie: Confusing to say "By Category" in the search/filter boxes
-Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Print formatting
 Payment/Donation for usage using PayPal
 Show completed items... is this going to be a performance problem?  Should they be protected?
-Export Todos - Should this be part of premium?   MVP?
-BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed
+BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!
 Add Selenium test to grunt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
+
+MVP:  ON THE BUBBLE...
+Track referrals and give Premium access for x weeks...
+Track Twitter/Facebook posts and give Premium access for x weeks...
+Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
+Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
+Export Todos - Should this be part of premium?   MVP?
 
 
 ========== Nice to Have ============
@@ -94,6 +102,8 @@ Payment Processing: Record Payment, Event, Account Periods  8/2
 Tracking free trial period... enforcement of end of trial period  8/2
 Ability to specify category/priority/date on the quick add  8/3
 Registration confirmation email (to verify account)... Create unique hash, email with hash in URL in email  8/4
+Registration: Add account periods:  Trial (Premium),  Free (1 Year)   8/5
+Forgot password process.... generate temp password & email  8/5
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

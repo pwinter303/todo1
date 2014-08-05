@@ -11,12 +11,6 @@ function  getTodo($dbh, $customer_id, $todo_id){
 ###################################
 function  getTodos($dbh, $customer_id){
 
-  ###  ATTEMPTED TO ONLY RETRIEVE TODOS for a GROUP... BUT.. rootscope.activegroup is not set when get is fired
-  ###$group_id = htmlspecialchars($_GET["group_id"]);
-  ###if (isset($group_id){
-  ###  echo "this is the group_id in getTodos $group_id";
-  ###}
-
   $query = "select todo_id, group_id, task_name, DATE_FORMAT(due_dt,'%m/%d/%Y') AS due_dt, starred, priority_cd,
   frequency_cd, status_cd, note, done, tags, done_dt from todo
   where customer_id = $customer_id and
@@ -32,7 +26,6 @@ function  getTodos($dbh, $customer_id){
 ###################################
 function  getGroups($dbh, $customer_id){
   $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = $customer_id order by sort_order asc";
-  #####echo "$query";
   $data = execSqlMultiRow($dbh,$query);
   $data = convertToBoolean($data);
   return $data;
@@ -41,7 +34,6 @@ function  getGroups($dbh, $customer_id){
 ###################################
 function  getGroup($dbh, $customer_id, $group_id){
   $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = $customer_id and group_id = $group_id order by sort_order asc";
-  #####echo "$query";
   $data = execSqlSingleRow($dbh,$query);
   $data = convertToBoolean($data);
   return $data;
@@ -140,58 +132,60 @@ function  updateTodo($dbh, $request_data, $customer_id){
 ###################################
 function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
 
-  $group_id = $request_data->activegroup;
-
-  $response = checkFreeTodoThresholds($dbh, $customer_id, $group_id);
-
-  if ($response{'err'}){
-    //this is a problem... can't add more todos... limit has been reached....
-    return $response;
-
+  if (0 == strlen($request_data->task_name)){
+      $response{'err'}=1;
+      $response{'errMsg'}="Todo name is blank. Nothing was added";
+      return $response;
   } else {
+    $group_id = $request_data->activegroup;
+    $response = checkFreeTodoThresholds($dbh, $customer_id, $group_id);
 
-      $request_data = explodeTodoName($request_data);
+    if ($response{'err'}){
+      //this is a problem... can't add more todos... limit has been reached....
+      return $response;
+    } else {
 
-      $priority_cd = 5;
-      if (isset($request_data->priority_cd)){
-        $priority_cd = $request_data->priority_cd;
-      }
-      $frequency_cd = 1;
-      if (isset($request_data->frequency_cd)){
-        $frequency_cd = $request_data->frequency_cd;
-      }
+        $request_data = explodeTodoName($request_data);
 
-      $due_dt = "NULL";
-      if (isset($request_data->due_dt)){
-        $due_dt = $request_data->due_dt;
-        $due_dt = "STR_TO_DATE('$due_dt', '%m/%d/%Y')";
-      }
+        $priority_cd = 5;
+        if (isset($request_data->priority_cd)){
+          $priority_cd = $request_data->priority_cd;
+        }
+        $frequency_cd = 1;
+        if (isset($request_data->frequency_cd)){
+          $frequency_cd = $request_data->frequency_cd;
+        }
 
-      $tags = '';
-      if (isset($request_data->tags)){
-        $tags = $request_data->tags;
-      }
+        $due_dt = "NULL";
+        if (isset($request_data->due_dt)){
+          $due_dt = $request_data->due_dt;
+          $due_dt = "STR_TO_DATE('$due_dt', '%m/%d/%Y')";
+        }
 
-      $batch_id = "NULL";
-      if ($batch_id_parm > 0){
-        $batch_id = $batch_id_parm;
-      }
-      $status_cd = 1;
+        $tags = '';
+        if (isset($request_data->tags)){
+          $tags = $request_data->tags;
+        }
 
-      $task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
+        $batch_id = "NULL";
+        if ($batch_id_parm > 0){
+          $batch_id = $batch_id_parm;
+        }
+        $status_cd = 1;
 
-      $query = "INSERT INTO todo
-      (  task_name,   due_dt  , starred,  group_id,   priority_cd,  frequency_cd,  status_cd,  customer_id, Note, done, done_dt, batch_id,   tags)  VALUES
-      ('$task_name',  $due_dt , 0      , $group_id,  $priority_cd, $frequency_cd, $status_cd, $customer_id, '',      0, NULL   , $batch_id, '$tags')";
+        $task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
 
-      $rowsAffected = actionSql($dbh,$query);
-      $todo_id = mysqli_insert_id($dbh);
-      $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
+        $query = "INSERT INTO todo
+        (  task_name,   due_dt  , starred,  group_id,   priority_cd,  frequency_cd,  status_cd,  customer_id, Note, done, done_dt, batch_id,   tags)  VALUES
+        ('$task_name',  $due_dt , 0      , $group_id,  $priority_cd, $frequency_cd, $status_cd, $customer_id, '',      0, NULL   , $batch_id, '$tags')";
 
-      return $new_todo_data;
+        $rowsAffected = actionSql($dbh,$query);
+        $todo_id = mysqli_insert_id($dbh);
+        $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
 
+        return $new_todo_data;
+    }
   }
-
 }
 
 function  explodeTodoName($request){
@@ -248,7 +242,7 @@ function  explodeTodoName($request){
 
 function  isPremiumAccount($dbh, $customer_id){
     $query = "select count(*) as TrueInd from account_period where customer_id = $customer_id and
-    begin_dt < CURDATE() and end_dt > CURDATE() and account_type_cd in (1,3)";
+    begin_dt <= CURDATE() and end_dt >= CURDATE() and account_type_cd in (1,3)";
     $data = execSqlSingleRow($dbh, $query);
     return $data{'TrueInd'};
 }
@@ -291,7 +285,7 @@ function  checkFreeGroupsThreshold($dbh, $customer_id){
     } else {
         $query = "select count(*) as group_count from todo_group where customer_id = $customer_id";
         $data = execSqlSingleRow($dbh, $query);
-        if ($data{'group_count'} > 0){
+        if ($data{'group_count'} > 2){
             $response{'err'}=1;
             $response{'errMsg'}="You've reached the maximum groups (2) for a free account. Please upgrade by going to Settings, Account/Profile, or delete an existing group.";
         }
@@ -351,36 +345,43 @@ function  updateGroup($dbh, $request_data, $customer_id){
 ###################################
 function  addGroup($dbh, $request_data, $customer_id){
 
-  $response{'err'}=0;
-  $response = checkFreeGroupsThreshold($dbh, $customer_id);
+  if (strlen($request_data->name)){
 
-  if ($response{'err'}){
-    //this is a problem... can't add more todos... limit has been reached....
-    return $response;
+    $response{'err'}=0;
+    $response = checkFreeGroupsThreshold($dbh, $customer_id);
 
+    if ($response{'err'}){
+      //this is a problem... can't add more todos... limit has been reached....
+      return $response;
+
+    } else {
+
+        #### set all groups to inactive
+        $query = "update todo_group set active = 0 where customer_id = $customer_id";
+        $rowsAffected = actionSql($dbh,$query);
+
+        ### Get Max Sort_order
+        $query = "select max(sort_order) as max_order from todo_group where customer_id = $customer_id";
+        $data = execSqlSingleRow($dbh, $query);
+        #####var_dump($data);
+        $max_sort_order = $data{'max_order'};
+        $max_sort_order = $max_sort_order + 1;
+        #####echo "max sort order: $max_sort_order";
+
+        #### add new group
+        $groupName = mysqli_real_escape_string($dbh, $request_data->name);
+        $query = "insert into todo_group (customer_id, group_name, active, sort_order) VALUES ($customer_id, '$groupName', 1, $max_sort_order)";
+        $rowsAffected = actionSql($dbh,$query);
+        // no need to return the group add since the controller does a full refresh of groups
+        //$group_id = mysqli_insert_id($dbh);
+        //$new_group = getGroup($dbh, $customer_id, $group_id);
+
+        $response{'RowsAdded'} = $rowsAffected;
+    }
   } else {
-
-      #### set all groups to inactive
-      $query = "update todo_group set active = 0 where customer_id = $customer_id";
-      $rowsAffected = actionSql($dbh,$query);
-
-      ### Get Max Sort_order
-      $query = "select max(sort_order) as max_order from todo_group where customer_id = $customer_id";
-      $data = execSqlSingleRow($dbh, $query);
-      #####var_dump($data);
-      $max_sort_order = $data{'max_order'};
-      $max_sort_order = $max_sort_order + 1;
-      #####echo "max sort order: $max_sort_order";
-
-      #### add new group
-      $groupName = mysqli_real_escape_string($dbh, $request_data->name);
-      $query = "insert into todo_group (customer_id, group_name, active, sort_order) VALUES ($customer_id, '$groupName', 1, $max_sort_order)";
-      $rowsAffected = actionSql($dbh,$query);
-      // no need to return the group add since the controller does a full refresh of groups
-      //$group_id = mysqli_insert_id($dbh);
-      //$new_group = getGroup($dbh, $customer_id, $group_id);
-
-      $response{'RowsAdded'} = $rowsAffected;
+    // nothing to do
+    $response{'err'} = 1;
+    $response{'errMsg'} = "Group name is blank. Nothing was added.";
   }
   return $response;
 }
@@ -732,7 +733,7 @@ function setStripeCustomerId($dbh, $customer_id, $stripe_customer_id) {
 }
 
 
-function setExtendPremiumOneYear($dbh, $customer_id, $event_id){
+function setAcctPeriodsForPayment($dbh, $customer_id, $event_id){
     #Get Current Max Premium Date
     $response = getMaxPremiumDt($dbh, $customer_id);
     //var_dump($response);
@@ -755,8 +756,18 @@ function setExtendPremiumOneYear($dbh, $customer_id, $event_id){
 
 }
 
-function testIT(){
-echo date('Y-m-d');
+function setAcctPeriodsForRegistration($dbh, $customer_id, $event_id){
+
+    #add Trial (Premium)
+    $begin_dt = $currentDate = date("Y-m-d");
+    $end_dt =date('Y-m-d', strtotime('+25 day', strtotime($begin_dt)) ); #add 1 year to begin date
+    addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, 1, 1, $event_id); #1:Trial(Premium) ;  1:Active
+
+    #add free period
+    $begin_dt = date('Y-m-d', strtotime($end_dt. ' + 1 days')); #add 1 day to end_dt of Trail
+    $end_dt =date('Y-m-d', strtotime('+1 year', strtotime($begin_dt)) );  #add 1 year to begin date
+    addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, 2, 1,$event_id); #2:Free;  1:Active
+
 }
 
 

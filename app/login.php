@@ -94,7 +94,12 @@ function registerUser($dbh, $email, $password, $password2){
             if (isset($_SESSION['customer_id'])) {
               $customer_id = $_SESSION['customer_id'];
               addTodoGroup($dbh, $customer_id);
-              addEvent($dbh, $customer_id, 1, date('Y-m-d H:i:s') );  # 1 = Registration
+              $addEventResponse = addEvent($dbh, $customer_id, 1, date('Y-m-d H:i:s') );  # 1 = Registration
+              $event_id = $addEventResponse{'LastInsertId'};
+
+              #Add Account Period - Trial (Premium)
+              #Add Account Period - Free
+              setAcctPeriodsForRegistration($dbh, $customer_id, $event_id);
             }
           }
         } else {
@@ -244,14 +249,14 @@ function forgotPassword($dbh, $email){
         # get customer_id
         $customer_id = getCustomerId($dbh, $email);
 
-        # set credential_cd
-        $response = setCustomerCredentialCd($dbh, $customer_id, 2); ## 2:Temp Password Issued
-
         # generate password
         $password = generatePassword();
 
         # email password
         eMailForgotPassword($email, $password);
+
+        # set credential_cd
+        $response = setCustomerCredentialCd($dbh, $customer_id, 2); ## 2:Temp Password Issued
 
         # save password
         $rowsAffected = setPassword($dbh, $customer_id, $password, 8);  # 8:Temp Pwd Created
