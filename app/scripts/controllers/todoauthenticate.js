@@ -5,7 +5,7 @@ angular.module('todoApp')
 
         $scope.pwd = {};
         $scope.loggedIn = 0;
-
+        //================================================================================
         $scope.getLoginStatus = function() {
           authentication.getLoginStatus().then(function (data) {
               if (data.login){
@@ -20,6 +20,7 @@ angular.module('todoApp')
         };
         $scope.getLoginStatus();
 
+        //================================================================================
         $scope.logIn = function (user){
           $scope.loginmsg='';
           authentication.login(user).then(function (data) {
@@ -36,6 +37,7 @@ angular.module('todoApp')
           });
         };
 
+        //================================================================================
         $scope.logMeOut = function(){
           authentication.logOut().then(function () {
             $scope.$broadcast('LogOut', []);
@@ -48,6 +50,20 @@ angular.module('todoApp')
           });
         };
 
+        //================================================================================
+        $scope.forgotPassword = function(passworddata){
+          authentication.forgotPassword(passworddata).then(function (data) {
+            if (data.error){
+              todoFactory.msgError(data.error);
+            } else {
+              todoFactory.msgSuccess('Temporary password has been sent');
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError(error);
+          });
+        };
+        //================================================================================
         $scope.changePassword = function(passworddata){
           authentication.changePassword(passworddata).then(function (data) {
             if (data.error){
@@ -64,6 +80,7 @@ angular.module('todoApp')
           });
         };
 
+        //================================================================================
         $scope.registerMe = function(user){
           authentication.registerUser(user).then(function (data) {
             $scope.errormsg = '';

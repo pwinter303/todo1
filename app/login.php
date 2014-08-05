@@ -60,7 +60,7 @@ function processPost(){
             break;
        case 'forgotPassword':
             $email = $request->email;
-            $result = changePassword($dbh,$email);
+            $result = forgotPassword($dbh,$email);
             break;
        case 'logOutUser':
              $result = logOutUser();
@@ -83,7 +83,7 @@ function registerUser($dbh, $email, $password, $password2){
               $response{'error'} = "ERROR - eMail already registered";
       } else {
         $guid = createGUID();
-        $return_status = addUser($dbh, $email, $password, 2, $guid); #2:Awaiting Confirmation eMail return
+        $return_status = addUser($dbh, $email, $password, 1, $guid); #1:Awaiting Confirmation eMail return
         if ($return_status){
           eMailActivation($email, $guid);
           $response{'msg'} = "Successful Registration";
@@ -302,10 +302,10 @@ function Activate($dbh, $GUID){
       $response = setCustomerCredentialCd($dbh, $customer_id, 0); #0:Legitimate
       echo "Thank you for activating your account";
     } else {
-      $response{'err_msg'} = "Could not find a matching record.";
+      echo "Hmmm... Could not find a matching record.";
     }
 
-    return $response;
+    //return $response;
 }
 
 function getLoginStatus(){

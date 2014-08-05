@@ -3,7 +3,6 @@ IN PROGRESS:
 Forgot password process.... generate temp password & email..... Force password change when using temp password
 
 
-
 MVP:  CRITICAL
 Feedback form... or Forum...
 What do you get when you pay for it... done but need content explain free vs premium
