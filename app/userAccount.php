@@ -70,6 +70,9 @@ function  processPost($customer_id){
        case 'processPayment':
              $result = processPayment($dbh, $customer_id, $request);
              break;
+       case 'contactSubmit':
+             $result = contactSubmit($dbh, $customer_id, $request);
+             break;
        default:
              echo "Error:Invalid Request:action not set properly";
              break;
@@ -138,10 +141,12 @@ function  processPayment($dbh, $customer_id, $request){
   }
 
   return $response;
-
-
-
 }
 
+function contactSubmit($dbh, $customer_id, $request){
+
+  var_dump($request);
+
+}
 
 ?>

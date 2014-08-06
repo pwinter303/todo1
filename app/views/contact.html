@@ -1,0 +1,32 @@
+<form>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-2">First Name</div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" required  data-ng-model="contact.firstName"  placeholder="enter first Name">
+                 </div>
+            </div>
+            </br>
+            <div class="row">
+                <div class="col-md-2">Last Name</div>
+                <div class="col-md-10">
+                    <input type="text" class="form-control" required  data-ng-model="contact.lastName" placeholder="enter last Name">
+                </div>
+            </div>
+            </br>
+            <div class="row">
+               <div class="col-md-2">Subject</div>
+               <div class="col-md-10">
+                   <select class="form-control" ng-model="contact.contactType" ng-options="contactType.name for contactType in contactTypes"></select><br>
+                </div>
+            </div>
+            </br>
+            <div class="row">
+                <div class="col-md-3">Message</div>
+                <textarea name="message" id="message" required  class="col-md-9 form-control" ng-model="contact.message"  rows="10"></textarea>
+            </div>
+                <button type="submit" class="btn btn-primary pull-right" data-ng-click="contactSubmit(contact)" >Send</button>
+        </div>
+    </div>
+</form>

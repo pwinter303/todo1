@@ -14,6 +14,7 @@ angular.module('todoApp', [
       .when('/account', {templateUrl: 'views/account.html', controller: 'TodolistCtrl'})
       .when('/groups', {templateUrl: 'views/groups.html', controller: 'TodolistCtrl'})
       .when('/login', {templateUrl: 'views/login.html'})
+      .when('/contact', {templateUrl: 'views/contact.html', controller: 'ContactCtrl'})
       .when('/forgotpassword', {templateUrl: 'views/forgotpassword.html'})
       .when('/register', {templateUrl: 'views/register.html'})
       .when('/import', {templateUrl: 'views/import.html',controller: 'TodolistCtrl'})
