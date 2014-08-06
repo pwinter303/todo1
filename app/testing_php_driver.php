@@ -129,13 +129,12 @@ echo(isPremiumAccount($dbh, 1));
 
 var_dump(checkFreeTodoThresholds($dbh, 1, 1));
 
-$x->task_name  = "Wow|2|ggggg";
-explodeTodoName($x);
-
 //eMailActivation('paul-winter@localhost', 'jkfsadl;jasjfa;osf;asoidjfoisajfosa');
 
-forgotPassword($dbh, $email)
+//forgotPassword($dbh, $email);
 
+
+var_dump(getGroupsNEW($dbh, 1));
 
 #########################################################################
 function testDriver($cat, $testName, $url, $get, $data, $expected){

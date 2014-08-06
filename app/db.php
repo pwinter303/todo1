@@ -53,6 +53,42 @@ function execSqlMultiRow($dbh, $query){
       return $data;
 }
 
+function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
+
+  if (!($stmt = $dbh->prepare($query))) {
+       echo "Prepare failed: (" . $dbh->errno . ") " . $dbh->error;
+  }
+
+  // http://stackoverflow.com/questions/5100046/how-to-bind-mysqli-bind-param-arguments-dynamically-in-php
+  // credit for the code below goes to the post above...
+  if($types&&$params){
+      $bind_names[] = $types;
+      for ($i=0; $i<count($params);$i++)
+      {
+          $bind_name = 'bind' . $i;
+          $$bind_name = $params[$i];
+          $bind_names[] = &$$bind_name;
+      }
+      $return = call_user_func_array(array($stmt,'bind_param'),$bind_names);
+  }
+
+  /* execute query */
+  if (!$stmt->execute()) {
+      echo "Execute failed: (" . $dbh->errno . ") " . $dbh->error;
+  }
+
+  $data = array();
+  $result = $stmt->get_result();
+  while ($resultArray = $result->fetch_assoc()){
+    array_push($data, $resultArray);
+  }
+
+  return $data;
+
+}
+
+
+
 
 function insertData($dbh,$query){
        mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));

@@ -146,10 +146,13 @@ function  processPayment($dbh, $customer_id, $request){
 function contactSubmit($dbh, $customer_id, $request){
 
 
-  //FixMe: Required in the HTML SELECT does not seem to work... Fix It...
-  if (!isset($request->contactType->name)){
+  //The HTML form has required paramaters so the form cant be submitted.. This is just extra insurance
+  if ( (!isset($request->contactType->name)
+    or (!isset($request->firstName)
+    or (!isset($request->lastName)
+    or (!isset($request->message)  ){
       $response{'err'} = 1;
-      $response{'msg'} = 'Please select a Subject';
+      $response{'msg'} = 'Please enter data in all of the fields.';
       return $response;
   } else {
     $subject = $request->contactType->name;

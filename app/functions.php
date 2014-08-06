@@ -32,6 +32,20 @@ function  getGroups($dbh, $customer_id){
 }
 
 ###################################
+function  getGroupsNEW($dbh, $customer_id){
+
+  $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = ? order by sort_order asc";
+
+  $types = 'i';  ## pass
+  $params = array($customer_id);
+  $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
+  $data = convertToBoolean($data);
+
+  return $data;
+
+}
+
+###################################
 function  getGroup($dbh, $customer_id, $group_id){
   $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = $customer_id and group_id = $group_id order by sort_order asc";
   $data = execSqlSingleRow($dbh,$query);

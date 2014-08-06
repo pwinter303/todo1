@@ -3,6 +3,7 @@ IN PROGRESS:
 Forgot password.... Force password change when using temp password
 
 MVP:  CRITICAL
+Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 What do you get when you pay for it... done but need content explain free vs premium
 Ability to set how long a completed task is shown -  SCHEMA
 Katie: bypass registration by entering email and hit shift and pressing register (?)
