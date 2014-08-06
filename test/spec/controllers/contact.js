@@ -1,22 +1,44 @@
 'use strict';
 
 describe('Controller: ContactCtrl', function () {
+  var $scope;
+  var ROOTScope, ctrl, $timeout;
+  var todoFactoryMOCK;
+  var contactSubmitDATA = {'msg':'Thanks'};
 
-  // load the controller's module
-  beforeEach(module('todoApp'));
+  // This function will be called before every "it" block. This should be used to "reset" state for your tests.
+  beforeEach(function (){
+    // Create a "spy object" for our Service.
+    /*global jasmine */
+    todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['contactSubmit','msgSuccess', 'msgError']);
+    module('todoApp');
+    inject(function($rootScope, $controller, $q, _$timeout_) {
+      $scope = $rootScope.$new();
+      ROOTScope = $rootScope;
+      // $q.when creates a resolved promise... values in When are what the service should return...
 
-  var ContactCtrl,
-    scope;
+      todoFactoryMOCK.contactSubmit.andReturn($q.when(contactSubmitDATA));
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    ContactCtrl = $controller('ContactCtrl', {
-      $scope: scope
+      //todoFactoryMOCK.getAccountDetails.andReturn($q.when({accountType:1, paidThrough:3 }));
+      // assign $timeout to a scoped variable so we can use $timeout.flush() later.
+      $timeout = _$timeout_;
+      ctrl = $controller('ContactCtrl', {
+        $scope: $scope,
+        ROOTScope: $rootScope,
+        todoFactory: todoFactoryMOCK
+      });
     });
-  }));
+  });
 
-  it('should attach a list of awesomeThings to the scope', function () {
-    expect(scope.awesomeThings.length).toBe(3);
+
+  it('should call function contactSubmit on the todoFactory and call MsgSuccess', function (){
+    // call the function
+    $scope.contactSubmit();
+    // assert that it called the service method.
+    expect(todoFactoryMOCK.contactSubmit).toHaveBeenCalled();
+    // call $timeout.flush() to flush the unresolved dependency from our service.
+    $timeout.flush();
+    // assert that it set $scope correctly
+    expect(todoFactoryMOCK.msgSuccess).toHaveBeenCalled();
   });
 });

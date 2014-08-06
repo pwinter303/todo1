@@ -145,7 +145,31 @@ function  processPayment($dbh, $customer_id, $request){
 
 function contactSubmit($dbh, $customer_id, $request){
 
-  var_dump($request);
+
+  //FixMe: Required in the HTML SELECT does not seem to work... Fix It...
+  if (!isset($request->contactType->name)){
+      $response{'err'} = 1;
+      $response{'msg'} = 'Please select a Subject';
+      return $response;
+  } else {
+    $subject = $request->contactType->name;
+
+    # store first and last name
+    $first_name = $request->firstName;
+    $last_name = $request->lastName;
+    updateCustomerName($dbh, $customer_id, $first_name, $last_name);
+
+    $body = $request->message;
+
+    $email = 'paul@todogiant.com';
+
+    # Send eMail
+    eMailSend($email, $subject, $body, 1); #1: WordWrap
+
+    $response{'msg'} = 'Message Sent. Thank you!';
+    return $response;
+
+  }
 
 }
 

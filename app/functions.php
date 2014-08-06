@@ -521,7 +521,7 @@ function readUploadedFileIntoArray(){
     return array($name, $array);
 }
 
-
+################################################################################
 function addBatch($dbh, $file_name, $customer_id ){
   $query = "insert into todo_batch (file_name, upload_dt, customer_id) values ('$file_name', CURTIME(), $customer_id)";
   $rowsAffected = actionSql($dbh,$query);
@@ -531,6 +531,7 @@ function addBatch($dbh, $file_name, $customer_id ){
   return $response;
 }
 
+################################################################################
 function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $skipped){
   $query = "update todo_batch set  count_uploaded = $uploaded,   count_error_no_group = $errored,  count_error_above_limit = $skipped
   where customer_id = $customer_id and batch_id = $batch_id";
@@ -539,7 +540,7 @@ function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $s
   return $response;
 }
 
-
+################################################################################
 function deleteBatch($dbh, $request, $customer_id){
   $batch_id = $request->batch_id;
   // fixme: add delete of todos with matching batch_id... or... change table to do cascading delete
@@ -550,6 +551,7 @@ function deleteBatch($dbh, $request, $customer_id){
   return $response;
 }
 
+################################################################################
 function getBatches($dbh, $customer_id){
   $query = "select batch_id, file_name, upload_dt, count_uploaded, count_error_no_group, count_error_above_limit from todo_batch
   where customer_id = $customer_id order by upload_dt desc";
@@ -557,7 +559,7 @@ function getBatches($dbh, $customer_id){
   return $data;
 }
 
-
+################################################################################
 function addEvent($dbh, $customer_id, $event_cd, $dateTime){
   $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES ($customer_id, '$dateTime', $event_cd)";
   $rowsAffected = actionSql($dbh,$query);
@@ -566,6 +568,7 @@ function addEvent($dbh, $customer_id, $event_cd, $dateTime){
   return $response;
 }
 
+################################################################################
 function addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd, $event_id){
   $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, event_id) VALUES (
     $customer_id, '$begin_dt', '$end_dt', $account_type_cd, $account_period_status_cd,$event_id)";
@@ -575,6 +578,7 @@ function addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, $account_type_
   return $response;
 }
 
+################################################################################
 function createGUID(){
     mt_srand((double)microtime()*10000);//optional for php 4.2.0 and up.
     $charid = strtoupper(md5(uniqid(rand(), true)));
@@ -598,43 +602,42 @@ function createGUID(){
 }
 
 
+################################################################################
 function eMailActivation($email, $guid){
-
   $body = "";
   $body .= "Welcome to Todo Giant!\n\r";
   $body .= "Thanks for signing up. Please click the link below to activate your account:\n\r";
   $body .= "https://todogiant.com/login.php?action=Activate&GUID=$guid\n\r";
   $body .= "Thanks Again!";
 
-  eMailToCustomer($email, 'Account Activation', $body);
+  eMailSend($email, 'Account Activation', $body, 0);  #0: No word wrap
 
 }
 
+################################################################################
 function eMailForgotPassword($email, $password){
-
   $body = "";
   $body .= "Hi\n\r";
   $body .= "Here is the temporary password that can be used to login to your account:\n\r";
   $body .= "$password\n\r";
   $body .= "Please change it after you've logged into the site";
 
-  eMailToCustomer($email, 'Password Reset', $body);
+  eMailSend($email, 'Password Reset', $body, 0);  #0: No word wrap
 
 }
 
-function eMailToCustomer($email, $subject, $body){
-
+################################################################################
+function eMailSend($email, $subject, $body, $wordWrap = 1){
 // In case any of our lines are larger than 70 characters, we should use wordwrap()
-// TAKING CARE OF WORD WRAPPING MYSELF..
-//$body = wordwrap($body, 70, "\r\n");
-
+if ($wordWrap){
+  $body = wordwrap($body, 70, "\r\n");
+}
 // Send
 mail($email, $subject, $body);
 
 }
 
-
-
+################################################################################
 function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
   $query = "UPDATE customer set credential_cd = $credential_cd where customer_id = $customer_id";
   $rowsAffected = actionSql($dbh,$query);
@@ -642,12 +645,14 @@ function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
   return $response;
 }
 
+################################################################################
 function getMaxPremiumDt($dbh, $customer_id){
     $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
     $data = execSqlSingleRow($dbh,$query);
     return $data;
 }
 
+################################################################################
 function getAccountPeriod($dbh, $customer_id){
     $query = "select description, begin_dt, end_dt from  account_period, account_type
     where account_type.account_type_cd = account_period.account_type_cd and account_period_status_cd = 1
@@ -657,6 +662,7 @@ function getAccountPeriod($dbh, $customer_id){
     return $data;
 }
 
+################################################################################
 function addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, $pmt_dt){
   $query = "INSERT INTO payment (customer_id, payment_amt, event_id, payment_method_cd, payment_dt) VALUES
   ($customer_id, $pmt_amt, $event_id, $payment_method_cd, '$pmt_dt')";
@@ -666,6 +672,7 @@ function addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd,
   return $response;
 }
 
+################################################################################
 function setCustomerCredentialCd($dbh, $customer_id, $credential_status_cd){
   $query = "UPDATE customer set credential_status_cd = $credential_status_cd where customer_id = $customer_id";
   $rowsAffected = actionSql($dbh,$query);
@@ -673,12 +680,14 @@ function setCustomerCredentialCd($dbh, $customer_id, $credential_status_cd){
   return $response;
 }
 
+################################################################################
 function getCustomerIdUsingGUID($dbh, $guid){
     $query = "SELECT customer_id FROM customer where guid = '$guid' ";
     $data = execSqlSingleRow($dbh, $query);
     return $data;
 }
 
+################################################################################
 function doesUserExist($dbh, $email){
     #### see if user already exists
     $query = "SELECT count(*) as theCount fROM customer where email = '$email'";
@@ -691,6 +700,7 @@ function doesUserExist($dbh, $email){
     }
 }
 
+################################################################################
 function getCustomerId($dbh, $email){
     $query = "SELECT customer_id fROM customer where email = '$email'";
     $data = execSqlSingleRow($dbh, $query);
@@ -701,19 +711,21 @@ function getCustomerId($dbh, $email){
     }
 }
 
+################################################################################
 function getEmail($dbh, $customer_id){
     $query = "SELECT email fROM customer where customer_id = $customer_id     ";
     $data = execSqlSingleRow($dbh, $query);
     return $data;
 }
 
+################################################################################
 function generatePassword( $length = 8 ) {
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
     $password = substr( str_shuffle( $chars ), 0, $length );
     return $password;
 }
 
-
+################################################################################
 function setAccountPeriodToDone($dbh, $customer_id, $account_type_cd) {
     $query = "UPDATE account_period set account_period_status_cd = 2
     where customer_id = $customer_id and account_period_status_cd = 1
@@ -723,7 +735,7 @@ function setAccountPeriodToDone($dbh, $customer_id, $account_type_cd) {
     return $response;
 }
 
-
+################################################################################
 function setStripeCustomerId($dbh, $customer_id, $stripe_customer_id) {
     $query = "UPDATE customer set stripe_customer_id = '$stripe_customer_id'
     where customer_id = $customer_id";
@@ -732,7 +744,17 @@ function setStripeCustomerId($dbh, $customer_id, $stripe_customer_id) {
     return $response;
 }
 
+################################################################################
+function updateCustomerName($dbh, $customer_id, $first_name, $last_name) {
+    $query = "UPDATE customer set first_name = '$first_name', last_name = '$last_name'
+    where customer_id = $customer_id";
+    $rowsAffected = actionSql($dbh,$query);
+    $response{'RowsUpdated'} = $rowsAffected;
+    return $response;
+}
 
+
+################################################################################
 function setAcctPeriodsForPayment($dbh, $customer_id, $event_id){
     #Get Current Max Premium Date
     $response = getMaxPremiumDt($dbh, $customer_id);

@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('ContactCtrl', ['$scope', 'todoFactory', function ($scope, todoFactory) {
+  .controller('ContactCtrl', ['$scope', 'todoFactory', '$location', function ($scope, todoFactory, $location) {
+
     $scope.getContactTypes = function (){
       $scope.contactTypes = [
         {'cd':'1', 'name':'Feature Request'},
@@ -16,11 +17,13 @@ angular.module('todoApp')
     $scope.contactSubmit = function (passedData){
       todoFactory.contactSubmit(passedData).then(function (data) {
         if (data){
-          if (data.msg){
-            todoFactory.msgSuccess(data.msg);
-          }
           if (data.err){
             todoFactory.msgError(data.msg);
+          } else {
+            if (data.msg){
+              todoFactory.msgSuccess(data.msg);
+              $location.path( '/todolist' );
+            }
           }
         }
       }, function(error) {
