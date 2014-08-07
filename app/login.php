@@ -143,16 +143,18 @@ function  addTodoGroup($dbh, $customer_id){
 
 ##
 function loginUser($dbh, $email, $password){
-
-
     //fixme: instead of duplicate code have this call validate password (?)
 
     // Initialize the hasher without portable hashes (this is more secure)
     $hasher = new PasswordHash(8, false);
 
-    $query = "SELECT customer_id, password fROM customer where email = '$email' ";
-    #####echo "$query";
-    $data = execSqlSingleRow($dbh, $query);
+    $query = "SELECT customer_id, password fROM customer where email = ? ";
+    //$data = execSqlSingleRow($dbh, $query);
+
+    $types = 's';  ## pass
+    $params = array($email);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     $customer_id = $data['customer_id'];
     $hashedPassword = $data['password'];
 
@@ -228,9 +230,12 @@ function validatePassword($dbh, $customer_id, $password){
     // Hash the password.  $hashedPassword will be a 60-character string.
     //$hashedPassword = $hasher->HashPassword($password);
     //$query = "SELECT customer_id fROM customer where customer_id = $customer_id and password = '$hashedPassword' ";
-    $query = "SELECT password FROM customer where customer_id = $customer_id ";
-    //echo "this is password:$password  and  query: $query";
-    $data = execSqlSingleRow($dbh, $query);
+
+    $query = "SELECT password FROM customer where customer_id = ? ";
+    //$data = execSqlSingleRow($dbh, $query);
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
 
     $hashedPassword = $data['password'];
     $valid = $hasher->CheckPassword($password, $hashedPassword); // true
