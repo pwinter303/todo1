@@ -53,6 +53,7 @@ function execSqlMultiRow($dbh, $query){
       return $data;
 }
 
+########################################################################
 function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
 
   if (!($stmt = $dbh->prepare($query))) {
@@ -77,16 +78,31 @@ function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
       echo "Execute failed: (" . $dbh->errno . ") " . $dbh->error;
   }
 
-  $data = array();
-  $result = $stmt->get_result();
-  while ($resultArray = $result->fetch_assoc()){
-    array_push($data, $resultArray);
+  # these lines of code below return one dimensional array, similar to mysqli::fetch_assoc()
+  $meta = $stmt->result_metadata();
+
+  while ($field = $meta->fetch_field()) {
+      $var = $field->name;
+      $$var = null;
+      $parameters[$field->name] = &$$var;
   }
+
+  call_user_func_array(array($stmt, 'bind_result'), $parameters);
+
+  $data = array();
+  while($stmt->fetch() ){
+    foreach( $parameters as $key=>$value ){
+        $row_tmb[ $key ] = $value;
+    }
+    $data[] = $row_tmb;
+  }
+
+  # close statement
+  $stmt->close();
 
   return $data;
 
 }
-
 
 
 

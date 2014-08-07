@@ -17,14 +17,12 @@ function  getTodos($dbh, $customer_id){
   ((done_dt is NULL) or (done_dt >= CURDATE() - INTERVAL 1 DAY))
   order by priority_cd desc";
   $data = execSqlMultiRow($dbh, $query);
-  #$data{0}{'done'} = true;
-  #echo "my data:". $data{0}{'done'};
   $data = convertToBoolean($data);
   return $data;
 }
 
 ###################################
-function  getGroups($dbh, $customer_id){
+function  getGroupsOLD($dbh, $customer_id){
   $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = $customer_id order by sort_order asc";
   $data = execSqlMultiRow($dbh,$query);
   $data = convertToBoolean($data);
@@ -32,7 +30,7 @@ function  getGroups($dbh, $customer_id){
 }
 
 ###################################
-function  getGroupsNEW($dbh, $customer_id){
+function  getGroups($dbh, $customer_id){
 
   $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = ? order by sort_order asc";
 
