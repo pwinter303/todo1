@@ -3,8 +3,12 @@
 ###################################
 function  getTodo($dbh, $customer_id, $todo_id){
   $query = "select todo_id, group_id, task_name, DATE_FORMAT(due_dt,'%m/%d/%Y') AS due_dt, starred, priority_cd,
-                 frequency_cd, status_cd, note, done, tags, done_dt from todo where customer_id = $customer_id and todo_id = $todo_id";
-  $data = execSqlSingleRow($dbh, $query);
+                 frequency_cd, status_cd, note, done, tags, done_dt from todo where customer_id = ? and todo_id = ?";
+
+  $types = 'ii';  ## pass
+  $params = array($customer_id, $todo_id);
+  $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
   return $data;
 }
 
@@ -22,22 +26,6 @@ function  getTodos($dbh, $customer_id){
   $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
   $data = convertToBoolean($data);
 
-
-//  $query = "select todo_id, group_id, task_name, DATE_FORMAT(due_dt,'%m/%d/%Y') AS due_dt, starred, priority_cd,
-//  frequency_cd, status_cd, note, done, tags, done_dt from todo
-//  where customer_id = $customer_id and
-//  ((done_dt is NULL) or (done_dt >= CURDATE() - INTERVAL 1 DAY))
-//  order by priority_cd desc";
-//  $data = execSqlMultiRow($dbh, $query);
-//  $data = convertToBoolean($data);
-  return $data;
-}
-
-###################################
-function  getGroupsOLD($dbh, $customer_id){
-  $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = $customer_id order by sort_order asc";
-  $data = execSqlMultiRow($dbh,$query);
-  $data = convertToBoolean($data);
   return $data;
 }
 
@@ -429,12 +417,17 @@ function  setGroupToActive($dbh, $request_data, $customer_id){
 
 }
 
+function  testSingleMulti($dbh, $customer_id){
+  $query = "select count(*) as count from todo_group where customer_id = $customer_id";
+  $data = execSqlMultiRow($dbh, $query);
+  return $data;
+}
 
 ###################################
 function  deleteGroup($dbh, $request_data, $customer_id){
   $group_id = $request_data->group_id;
 
-  $query = "select count(*) from todo_group where customer_id = $customer_id";
+  $query = "select count(*) as count from todo_group where customer_id = $customer_id";
   $data = execSqlSingleRow($dbh, $query);
   $count = $data{'count'};
 

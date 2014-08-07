@@ -104,6 +104,54 @@ function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
 
 }
 
+function  execSqlSingleRowPREPARED($dbh, $query, $types, $params){
+
+  if (!($stmt = $dbh->prepare($query))) {
+       echo "Prepare failed: (" . $dbh->errno . ") " . $dbh->error;
+  }
+
+  // http://stackoverflow.com/questions/5100046/how-to-bind-mysqli-bind-param-arguments-dynamically-in-php
+  // credit for the code below goes to the post above...
+  if($types&&$params){
+      $bind_names[] = $types;
+      for ($i=0; $i<count($params);$i++)
+      {
+          $bind_name = 'bind' . $i;
+          $$bind_name = $params[$i];
+          $bind_names[] = &$$bind_name;
+      }
+      $return = call_user_func_array(array($stmt,'bind_param'),$bind_names);
+  }
+
+  /* execute query */
+  if (!$stmt->execute()) {
+      echo "Execute failed: (" . $dbh->errno . ") " . $dbh->error;
+  }
+
+  # these lines of code below return one dimensional array, similar to mysqli::fetch_assoc()
+  $meta = $stmt->result_metadata();
+
+  while ($field = $meta->fetch_field()) {
+      $var = $field->name;
+      $$var = null;
+      $parameters[$field->name] = &$$var;
+  }
+
+  call_user_func_array(array($stmt, 'bind_result'), $parameters);
+
+  //fixme: Only difference between ExecSQLSingle & Multi... Can they be combined??
+  $stmt->fetch(); ## Get the single row returned
+  foreach( $parameters as $key=>$value ){
+      $row_tmb[ $key ] = $value;
+  }
+  $data = $row_tmb;
+
+  # close statement
+  $stmt->close();
+
+  return $data;
+
+}
 
 
 function insertData($dbh,$query){

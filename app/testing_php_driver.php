@@ -125,16 +125,23 @@ testDriverDirect('cust', 'doesUserExist', $result, $expected);
 //setExtendPremiumOneYear($dbh, $customer_id, 53);
 
 
-echo(isPremiumAccount($dbh, 1));
+echo "isPremiumAccount\n";
+echo (isPremiumAccount($dbh, 1)) . "\n";
+echo "endOfTest\n";
 
-var_dump(checkFreeTodoThresholds($dbh, 1, 1));
+echo "SingleMultiTest\n";
+ var_dump(testSingleMulti($dbh, 1));
+echo "endOfTest\n";
+//echo(testSingleMulti($dbh, 1));
+
+//var_dump(checkFreeTodoThresholds($dbh, 1, 1));
 
 //eMailActivation('paul-winter@localhost', 'jkfsadl;jasjfa;osf;asoidjfoisajfosa');
 
 //forgotPassword($dbh, $email);
 
 
-var_dump(getGroupsNEW($dbh, 1));
+//var_dump(getGroupsNEW($dbh, 1));
 
 #########################################################################
 function testDriver($cat, $testName, $url, $get, $data, $expected){
