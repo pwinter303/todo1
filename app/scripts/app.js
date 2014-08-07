@@ -11,13 +11,13 @@ angular.module('todoApp', [
     $routeProvider
       .when('/', {templateUrl: 'views/main.html',  controller: 'MainCtrl'})
       .when('/todolist', {templateUrl: 'views/todolist.html',  controller: 'TodolistCtrl' })
-      .when('/account', {templateUrl: 'views/account.html', controller: 'TodolistCtrl'})
-      .when('/groups', {templateUrl: 'views/groups.html', controller: 'TodolistCtrl'})
+      .when('/account', {templateUrl: 'views/account.html', controller: 'AcctdetailCtrl'})
+      .when('/groups', {templateUrl: 'views/groups.html'})//No need for controller.. defined in Index.Html
       .when('/login', {templateUrl: 'views/login.html'})
       .when('/contact', {templateUrl: 'views/contact.html', controller: 'ContactCtrl'})
       .when('/forgotpassword', {templateUrl: 'views/forgotpassword.html'})
       .when('/register', {templateUrl: 'views/register.html'})
-      .when('/import', {templateUrl: 'views/import.html',controller: 'TodolistCtrl'})
+      .when('/import', {templateUrl: 'views/import.html',controller: 'FileUploadCtrl'})
       .otherwise({redirectTo: '/'});
   })
 

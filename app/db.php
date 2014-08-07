@@ -121,6 +121,10 @@ function  execSqlSingleRowPREPARED($dbh, $query, $types, $params){
           $bind_names[] = &$$bind_name;
       }
       $return = call_user_func_array(array($stmt,'bind_param'),$bind_names);
+
+      if (!($return)){
+        echo "query troubles:$query\n\n\n\n";
+      }
   }
 
   /* execute query */

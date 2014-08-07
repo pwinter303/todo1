@@ -129,9 +129,6 @@ echo "isPremiumAccount\n";
 echo (isPremiumAccount($dbh, 1)) . "\n";
 echo "endOfTest\n";
 
-echo "SingleMultiTest\n";
- var_dump(testSingleMulti($dbh, 1));
-echo "endOfTest\n";
 //echo(testSingleMulti($dbh, 1));
 
 //var_dump(checkFreeTodoThresholds($dbh, 1, 1));
@@ -139,6 +136,15 @@ echo "endOfTest\n";
 //eMailActivation('paul-winter@localhost', 'jkfsadl;jasjfa;osf;asoidjfoisajfosa');
 
 //forgotPassword($dbh, $email);
+
+echo "getAccountPeriod TEST\n";
+ var_dump(getAccountPeriod($dbh, 1));
+echo "endOfTest\n";
+
+echo "getEmail TEST\n";
+ var_dump(getEmail($dbh, 1));
+echo "endOfTest\n";
+
 
 
 //var_dump(getGroupsNEW($dbh, 1));

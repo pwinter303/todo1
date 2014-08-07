@@ -45,23 +45,47 @@ function  getGroups($dbh, $customer_id){
 
 ###################################
 function  getGroup($dbh, $customer_id, $group_id){
-  $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = $customer_id and group_id = $group_id order by sort_order asc";
-  $data = execSqlSingleRow($dbh,$query);
+  $query = "select group_id, group_name, sort_order, active from todo_group where customer_id = ? and group_id = ? order by sort_order asc";
+
+  //$data = execSqlSingleRow($dbh,$query);
+
+  $types = 'ii';  ## pass
+  $params = array($customer_id, $group_id);
+  $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
   $data = convertToBoolean($data);
   return $data;
 }
 
 ###################################
 function getFrequencies($dbh){
-  $query = "select frequency_cd as cd, frequency_name as name from todo_frequency order by 1";
-  $data = execSqlMultiRow($dbh, $query);
+  $query = "select frequency_cd as cd, frequency_name as name from todo_frequency where 1 = ? order by 1";
+  //$data = execSqlMultiRow($dbh, $query);
+
+  //NOTE: Binding to $dummy was done to use the PREPARED mssql_free_statement
+  // the PREPARED statement is needed because the result passes back numeric frequency_cd
+  // where the execSqlMultiRow statement was returning strings for frequency_cd and it caused
+  // lookup/match within todolist to not pick up the correct frequency_cd
+  $dummy=1;
+  $types = 'i';  ## pass
+  $params = array($dummy);
+  $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
+
   return $data;
 }
 
 ###################################
 function getPriorities($dbh){
-  $query = "select priority_cd as cd, priority_name as name from todo_priority order by 1";
-  $data = execSqlMultiRow($dbh, $query);
+  $query = "select priority_cd as cd, priority_name as name from todo_priority where 1 = ? order by 1";
+  //$data = execSqlMultiRow($dbh, $query);
+
+  //NOTE: See NOTE in the getFrequencies function...
+  $dummy=1;
+  $types = 'i';  ## pass
+  $params = array($dummy);
+  $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
+
+
   return $data;
 }
 
@@ -253,9 +277,15 @@ function  explodeTodoName($request){
 
 
 function  isPremiumAccount($dbh, $customer_id){
-    $query = "select count(*) as TrueInd from account_period where customer_id = $customer_id and
+    $query = "select count(*) as TrueInd from account_period where customer_id = ? and
     begin_dt <= CURDATE() and end_dt >= CURDATE() and account_type_cd in (1,3)";
-    $data = execSqlSingleRow($dbh, $query);
+
+    //$data = execSqlSingleRow($dbh, $query);
+
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     return $data{'TrueInd'};
 }
 
@@ -278,8 +308,14 @@ function checkFreeTodoThresholds($dbh, $customer_id, $group_id){
 
 
 function  checkFreeTodoThreshold($dbh, $customer_id){
-    $query = "select count(*) as todo_count from todo where customer_id = $customer_id and done = 0";
-    $data = execSqlSingleRow($dbh, $query);
+    $query = "select count(*) as todo_count from todo where customer_id = ? and done = 0";
+
+    //$data = execSqlSingleRow($dbh, $query);
+
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     $response{'err'}=0;
     //echo "this is the todo count:" . $data{'todo_count'};
     if ($data{'todo_count'} > 50){
@@ -295,8 +331,13 @@ function  checkFreeGroupsThreshold($dbh, $customer_id){
     if (isPremiumAccount($dbh, $customer_id)){
         // customer is premium... no need to check anything else...
     } else {
-        $query = "select count(*) as group_count from todo_group where customer_id = $customer_id";
-        $data = execSqlSingleRow($dbh, $query);
+        $query = "select count(*) as group_count from todo_group where customer_id = ?";
+        //$data = execSqlSingleRow($dbh, $query);
+
+        $types = 'i';  ## pass
+        $params = array($customer_id);
+        $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
         if ($data{'group_count'} > 2){
             $response{'err'}=1;
             $response{'errMsg'}="You've reached the maximum groups (2) for a free account. Please upgrade by going to Settings, Account/Profile, or delete an existing group.";
@@ -308,6 +349,11 @@ function  checkFreeGroupsThreshold($dbh, $customer_id){
 function  checkFreeTodoWithinGroupThreshold($dbh, $customer_id,$group_id){
     $query = "select count(*) as todo_count from todo where customer_id = $customer_id and done = 0 and group_id = $group_id";
     $data = execSqlSingleRow($dbh, $query);
+
+    $types = 'ii';  ## pass
+    $params = array($customer_id, $group_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     $response{'err'}=0;
     if ($data{'todo_count'} > 15){
         $response{'err'}=1;
@@ -415,12 +461,6 @@ function  setGroupToActive($dbh, $request_data, $customer_id){
 
   return $response;
 
-}
-
-function  testSingleMulti($dbh, $customer_id){
-  $query = "select count(*) as count from todo_group where customer_id = $customer_id";
-  $data = execSqlMultiRow($dbh, $query);
-  return $data;
 }
 
 ###################################
@@ -571,8 +611,13 @@ function deleteBatch($dbh, $request, $customer_id){
 ################################################################################
 function getBatches($dbh, $customer_id){
   $query = "select batch_id, file_name, upload_dt, count_uploaded, count_error_no_group, count_error_above_limit from todo_batch
-  where customer_id = $customer_id order by upload_dt desc";
-  $data = execSqlMultiRow($dbh, $query);
+  where customer_id = ? order by upload_dt desc";
+  //$data = execSqlMultiRow($dbh, $query);
+
+  $types = 'i';  ## pass
+  $params = array($customer_id);
+  $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
+
   return $data;
 }
 
@@ -664,8 +709,13 @@ function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
 
 ################################################################################
 function getMaxPremiumDt($dbh, $customer_id){
-    $query = "select max(end_dt) as end_dt from account_period where customer_id = $customer_id and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
-    $data = execSqlSingleRow($dbh,$query);
+    $query = "select max(end_dt) as end_dt from account_period where customer_id = ? and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
+    //$data = execSqlSingleRow($dbh,$query);
+
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     return $data;
 }
 
@@ -673,9 +723,16 @@ function getMaxPremiumDt($dbh, $customer_id){
 function getAccountPeriod($dbh, $customer_id){
     $query = "select description, begin_dt, end_dt from  account_period, account_type
     where account_type.account_type_cd = account_period.account_type_cd and account_period_status_cd = 1
-    and customer_id = $customer_id
+    and customer_id = ?
     order by begin_dt asc";   ### 1 = active
-    $data = execSqlMultiRow($dbh, $query);
+    //$data = execSqlMultiRow($dbh, $query);
+
+    //echo "doing getAccountPeriod\n";
+
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
+
     return $data;
 }
 
@@ -699,16 +756,27 @@ function setCustomerCredentialCd($dbh, $customer_id, $credential_status_cd){
 
 ################################################################################
 function getCustomerIdUsingGUID($dbh, $guid){
-    $query = "SELECT customer_id FROM customer where guid = '$guid' ";
-    $data = execSqlSingleRow($dbh, $query);
+    $query = "SELECT customer_id FROM customer where guid = ? ";
+    //$data = execSqlSingleRow($dbh, $query);
+
+    $types = 's';  ## pass
+    $params = array($guid);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     return $data;
 }
 
 ################################################################################
 function doesUserExist($dbh, $email){
     #### see if user already exists
-    $query = "SELECT count(*) as theCount fROM customer where email = '$email'";
-    $data = execSqlSingleRow($dbh, $query);
+    $query = "SELECT count(*) as theCount fROM customer where email = ? ";
+    //$data = execSqlSingleRow($dbh, $query);
+
+    $types = 's';  ## pass
+    $params = array($email);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
+
     $nbrOfCustomers = $data['theCount'];
     if ($nbrOfCustomers){
       return 1;
@@ -719,8 +787,13 @@ function doesUserExist($dbh, $email){
 
 ################################################################################
 function getCustomerId($dbh, $email){
-    $query = "SELECT customer_id fROM customer where email = '$email'";
-    $data = execSqlSingleRow($dbh, $query);
+    $query = "SELECT customer_id fROM customer where email = ?   ";
+    //$data = execSqlSingleRow($dbh, $query);
+
+    $types = 's';  ## pass
+    $params = array($email);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     if (isset($data['customer_id'])){
         return $data['customer_id'];
     } else {
@@ -730,8 +803,14 @@ function getCustomerId($dbh, $email){
 
 ################################################################################
 function getEmail($dbh, $customer_id){
-    $query = "SELECT email fROM customer where customer_id = $customer_id     ";
-    $data = execSqlSingleRow($dbh, $query);
+//    $query = "SELECT email fROM customer where customer_id = $customer_id  ";
+//    $data = execSqlSingleRow($dbh, $query);
+
+    $query = "SELECT email fROM customer where customer_id = ?  ";
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
     return $data;
 }
 
@@ -795,6 +874,7 @@ function setAcctPeriodsForPayment($dbh, $customer_id, $event_id){
 
 }
 
+################################################################################
 function setAcctPeriodsForRegistration($dbh, $customer_id, $event_id){
 
     #add Trial (Premium)

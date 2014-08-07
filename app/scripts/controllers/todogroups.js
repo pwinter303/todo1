@@ -70,6 +70,26 @@ angular.module('todoApp')
       });
     };
 
+    $scope.moveTodos = function (passedData){
+      if (typeof passedData.fromGroup === 'undefined'){
+        todoFactory.msgError('Select group to move FROM');
+      } else {
+        if (typeof passedData.toGroup === 'undefined'){
+          todoFactory.msgError('Select group to move TO');
+        } else {
+          todoFactory.moveTodos(passedData).then(function (data) {
+            if (data.error){
+              todoFactory.msgError(data.error);
+            } else {
+              todoFactory.msgSuccess(data.msg);
+            }
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Moving Todos:' + error);
+          });
+        }
+      }
+    };
 
     $scope.setTodoGroupActive = function (id){
       /* following comment turns off camelcase check for this function */

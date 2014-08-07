@@ -21,6 +21,7 @@ angular.module('todoApp')
           });
         };
 
+        //fixme: On page refresh... there is a race condition where todoauthenticate.js is being done after todolist.js
         if ($scope.loggedIn){
           $scope.priorities();
           $scope.frequencies();
@@ -107,27 +108,6 @@ angular.module('todoApp')
           });
         };
         $scope.getTodos();
-
-        $scope.moveTodos = function (passedData){
-          if (typeof passedData.fromGroup === 'undefined'){
-            todoFactory.msgError('Select group to move FROM');
-          } else {
-            if (typeof passedData.toGroup === 'undefined'){
-              todoFactory.msgError('Select group to move TO');
-            } else {
-              todoFactory.moveTodos(passedData).then(function (data) {
-                if (data.error){
-                  todoFactory.msgError(data.error);
-                } else {
-                  todoFactory.msgSuccess(data.msg);
-                }
-              }, function(error) {
-                // promise rejected, could be because server returned 404, 500 error...
-                todoFactory.msgError('Error Moving Todos:' + error);
-              });
-            }
-          }
-        };
 
       }]);
 

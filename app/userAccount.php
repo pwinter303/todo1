@@ -143,14 +143,14 @@ function  processPayment($dbh, $customer_id, $request){
   return $response;
 }
 
+
+####################  FUNCTIONS ################################
 function contactSubmit($dbh, $customer_id, $request){
-
-
   //The HTML form has required paramaters so the form cant be submitted.. This is just extra insurance
-  if ( (!isset($request->contactType->name)
-    or (!isset($request->firstName)
-    or (!isset($request->lastName)
-    or (!isset($request->message)  ){
+  if ( (!isset($request->contactType->name))
+    or (!isset($request->firstName))
+    or (!isset($request->lastName))
+    or (!isset($request->message))  ){
       $response{'err'} = 1;
       $response{'msg'} = 'Please enter data in all of the fields.';
       return $response;
