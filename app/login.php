@@ -79,8 +79,19 @@ function processPost(){
 
 #####
 function registerUser($dbh, $email, $password, $password2){
+  if (   (0 == strlen($password))   or   (0 == strlen($email)) ) {
+      $response{'error'}=1;
+      if (0 == strlen($password)) {
+          $response{'errMsg'}="Please enter a password.";
+      } else {
+          $response{'errMsg'}="Please enter your email address.";
+      }
+      return $response;
+  } else {
     if ($password <> $password2){
-      $response{'error'} = "ERROR - Passwords do not match";
+      $response{'error'}=1;
+      $response{'errMsg'}="Passwords do not match.";
+      //$response{'error'} = "ERROR - Passwords do not match";
     } else {
       $exists = doesUserExist($dbh, $email);
       if ($exists){
@@ -112,6 +123,7 @@ function registerUser($dbh, $email, $password, $password2){
       }
     }
     return $response;
+  }
 }
 
 

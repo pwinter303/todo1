@@ -85,7 +85,8 @@ angular.module('todoApp')
           authentication.registerUser(user).then(function (data) {
             $scope.errormsg = '';
             if (data.error){
-              $scope.errormsg = data.error;
+              //$scope.errormsg = data.error;
+              todoFactory.msgError(data.errMsg);
             }
             if (data.login){
               $scope.loggedIn = 1;

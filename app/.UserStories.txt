@@ -7,18 +7,17 @@ MVP:  CRITICAL
 Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 What do you get when you pay for it... done but need content explain free vs premium
 Ability to set how long a completed task is shown -  SCHEMA
-Katie: bypass registration by entering email and hit shift and pressing register (?)
 Build Unit Test Cases for Controllers and Services
 Update Stripe to use a real bank account and take it out of test mode...
 Register URL with Google and Others..
-Blog Content:  How to use the site..
+**** Blog Content:  How to use the site..
 Should BLOG Link be removed and replace it with direct links to sections within the blog
 
 MVP:  IMPORTANT
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
-Need more instructions around import
-Add Content on Login and Registration Page
-Change To Do to Todo.. redo screen shots..
+**** Need more instructions around import
+**** Add Content on Login and Registration Page
+**** Change To Do to Todo.. redo screen shots..
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
 
 MVP:  NEEDED
@@ -106,8 +105,8 @@ Registration: Add account periods:  Trial (Premium),  Free (1 Year)   8/5
 Forgot password process.... generate temp password & email  8/5
 Feedback form... or Forum...   8/6
 Eliminate all cases where data passed into PHP module are used before sanitizing... ADDED PREPARED STMTS  8/8
-Remove "Null" from the end of the account activation msg..
-
+Remove "Null" from the end of the account activation msg..    8/8
+++++ Katie: bypass registration by entering email and hit shift and pressing register (?)       8/8
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
