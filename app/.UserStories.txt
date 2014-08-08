@@ -7,7 +7,6 @@ Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' 
 What do you get when you pay for it... done but need content explain free vs premium
 Ability to set how long a completed task is shown -  SCHEMA
 Katie: bypass registration by entering email and hit shift and pressing register (?)
-Eliminate all cases where data passed into PHP module are used before sanitizing... OR implement PDO
 Build Unit Test Cases for Controllers and Services
 Update Stripe to use a real bank account and take it out of test mode...
 Register URL with Google and Others..
@@ -105,6 +104,7 @@ Registration confirmation email (to verify account)... Create unique hash, email
 Registration: Add account periods:  Trial (Premium),  Free (1 Year)   8/5
 Forgot password process.... generate temp password & email  8/5
 Feedback form... or Forum...   8/6
+Eliminate all cases where data passed into PHP module are used before sanitizing... ADDED PREPARED STMTS  8/8
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

@@ -23,14 +23,6 @@ function createDatabaseConnection(){
     }
 }
 
-function actionSql($dbh,$query){
-### use this for insert, update, delete
-      $result = mysqli_query($dbh,$query) or die('Query failed: '
-                  . mysqli_error($dbh));
-      $rows_affected = mysqli_affected_rows($dbh);
-      return $rows_affected;
-}
-
 
 ########################################################################
 function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
@@ -171,51 +163,61 @@ function  execSqlActionPREPARED($dbh, $query, $types, $params){
 
 }
 
-
-function insertData($dbh,$query){
-       mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));
-
-       //dont think this is needed
-       //mysqli_free_result($result);
-
-       return mysqli_affected_rows($dbh);
- }
-
-
- function deleteData($dbh,$query){
-       mysqli_query($dbh,$query) or die('Query failed: '
-                   . mysqli_error($dbh));
-
-       //dont think this is needed
-       //mysqli_free_result($result);
-
-       return mysqli_affected_rows($dbh);
- }
-
-
-
-
-function execSqlSingleRow($dbh,$query){
-      $result = mysqli_query($dbh,$query) or die('Query failed: '
-                  . mysqli_error($dbh));
-      $data=mysqli_fetch_array($result);
-      mysqli_free_result($result);
-      return $data;
-}
-
-function execSqlMultiRow($dbh, $query){
-      $data = array();
-
-      $result = mysqli_query($dbh,$query) or die('Query failed: '
-                  . mysqli_error($dbh));
-
-      while ($row = mysqli_fetch_assoc($result)){
-        array_push($data, $row);
-      }
-      mysqli_free_result($result);
-      return $data;
-}
-
-
+//fixme: delete these
+//
+//
+//function insertData($dbh,$query){
+//       mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));
+//
+//       //dont think this is needed
+//       //mysqli_free_result($result);
+//
+//       return mysqli_affected_rows($dbh);
+// }
+//
+//
+// function deleteData($dbh,$query){
+//       mysqli_query($dbh,$query) or die('Query failed: '
+//                   . mysqli_error($dbh));
+//
+//       //dont think this is needed
+//       //mysqli_free_result($result);
+//
+//       return mysqli_affected_rows($dbh);
+// }
+//
+//
+//
+//
+//function execSqlSingleRow($dbh,$query){
+//      $result = mysqli_query($dbh,$query) or die('Query failed: '
+//                  . mysqli_error($dbh));
+//      $data=mysqli_fetch_array($result);
+//      mysqli_free_result($result);
+//      return $data;
+//}
+//
+//function execSqlMultiRow($dbh, $query){
+//      $data = array();
+//
+//      $result = mysqli_query($dbh,$query) or die('Query failed: '
+//                  . mysqli_error($dbh));
+//
+//      while ($row = mysqli_fetch_assoc($result)){
+//        array_push($data, $row);
+//      }
+//      mysqli_free_result($result);
+//      return $data;
+//}
+//
+//
+//function actionSql($dbh,$query){
+//### use this for insert, update, delete
+//      $result = mysqli_query($dbh,$query) or die('Query failed: '
+//                  . mysqli_error($dbh));
+//      $rows_affected = mysqli_affected_rows($dbh);
+//      return $rows_affected;
+//}
+//
 
 ?>

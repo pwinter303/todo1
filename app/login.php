@@ -122,21 +122,34 @@ function addUser($dbh, $email, $password, $credential_status_cd, $guid){
     // Hash the password.  $hashedPassword will be a 60-character string.
     $hashedPassword = $hasher->HashPassword($password);
 
-    $query = "Insert into customer (email,          password,   credential_status_cd,   guid) VALUES
-                                 ('$email', '$hashedPassword', $credential_status_cd, '$guid'  )";
-    $rowsAffected = actionSql($dbh,$query);
+    $query = "Insert into customer (email,  password, credential_status_cd,   guid) VALUES
+                                 (      ?,         ?,                    ?,      ?)";
+    //$rowsAffected = actionSql($dbh,$query);
+    $types = 'ssis';  ## pass
+    $params = array($email, $hashedPassword, $credential_status_cd, $guid);
+    $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
     return $rowsAffected;
 }
 
 
 function  addTodoGroup($dbh, $customer_id){
-  $query = "INSERT INTO todo_group (group_name, Sort_Order,customer_id, active) VALUES
-    ('Home',1,$customer_id,1),
-    ('Work',2,$customer_id,0)
-    "
-  ;
+  $query = "INSERT INTO todo_group (group_name, sort_order, customer_id, active) VALUES (?,?,?,?)";
   #### add new group
-  $rowsInserted = insertData($dbh, $query);
+  //$rowsInserted = insertData($dbh, $query);
+  $types = 'siii';  ## pass
+
+  $group_name = 'Home';
+  $sort_order = 1;
+  $active = 1;
+  $params = array($group_name, $sort_order, $customer_id, $active);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+  $group_name = 'Work';
+  $sort_order = 2;
+  $active = 0;
+  $params = array($group_name, $sort_order, $customer_id, $active);
+    $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
 
 }
 
@@ -214,8 +227,11 @@ function setPassword($dbh, $customer_id, $password, $event_cd){
     // Hash the password.  $hashedPassword will be a 60-character string.
     $hashedPassword = $hasher->HashPassword($password);
 
-    $query = "update customer set password = '$hashedPassword' where customer_id = $customer_id";
-    $rowsAffected = actionSql($dbh,$query);
+    $query = "update customer set password = ? where customer_id = ?";
+    //$rowsAffected = actionSql($dbh,$query);
+    $types = 'si';  ## pass
+    $params = array($hashedPassword, $customer_id);
+    $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
     # addEvent
     addEvent($dbh, $customer_id, $event_cd, date('Y-m-d H:i:s') );
@@ -294,6 +310,7 @@ function processGet(){
              $result = Activate($dbh, $GUID);
              break;
        default:
+             echo "action:$action<----";
              echo "Error:Invalid Request:Action not set properly";
              break;
     }

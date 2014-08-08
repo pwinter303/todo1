@@ -127,41 +127,46 @@ function  updateTodo($dbh, $request_data, $customer_id){
   $priority_cd = $request_data->priority_cd;
   $frequency_cd = $request_data->frequency_cd;
   $status_cd = $request_data->status_cd;
-  $task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
-  $tags = mysqli_real_escape_string($dbh, $request_data->tags);
+  $task_name = $request_data->task_name;
+  $tags = $request_data->tags;
   $note = $request_data->note;
 
-  $done = $request_data->done;
-  if ('1' == $done){
-    $done_dt_sql = "done_dt = CURDATE()";
-  } else {
-    $done_dt_sql = "done_dt = NULL";
-  }
 
   $due_dt = $request_data->due_dt;
   if (strlen($due_dt)){
     $due_dt = doDateStuff($due_dt);
   }
 
-  // if it is still a valid date after the doDateStuff routine... then update
+// if it is still a valid date after the doDateStuff routine... then update
+//  if (strlen($due_dt)){
+//      //$due_dt_sql = "due_dt = STR_TO_DATE('$due_dt', '%Y-%m-%d'),";
+//      $due_dt_sql = "due_dt = STR_TO_DATE('$due_dt', '%m/%d/%Y'),";
+//  } else {
+//      $due_dt_sql = "due_dt = NULL,";
+//  }
+
+  $due_dt_final = NULL;
   if (strlen($due_dt)){
-      //$due_dt_sql = "due_dt = STR_TO_DATE('$due_dt', '%Y-%m-%d'),";
-      $due_dt_sql = "due_dt = STR_TO_DATE('$due_dt', '%m/%d/%Y'),";
-  } else {
-      $due_dt_sql = "due_dt = NULL,";
+    $due_dt_final = date('Y-m-d', strtotime($due_dt)  );
+    //echo "due_dt:$due_dt    and    due_dt_final:$due_dt_final";
   }
 
-  //fixme: $due_dt should be passed as paramater
+  $done_dt_final = NULL;
+  $done = $request_data->done;
+  if ('1' == $done){
+    $done_dt_final = date("Y-m-d");
+  }
+
   $query = "update todo set
   priority_cd = ? ,    frequency_cd = ?,    status_cd =  ?,        task_name =  ?,
-  $due_dt_sql          tags =  ?,                  note =  ?,                done = ?,
-  $done_dt_sql
+  due_dt = ?,         tags =  ?,           note =  ?,             done = ?,
+  done_dt = ?
   where customer_id = ? and todo_id = ?";
 
   //$rowsAffected = actionSql($dbh,$query);
 
-  $types = 'iiissssii';  ## pass
-  $params = array($priority_cd, $frequency_cd, $status_cd, $task_name, $tags, $note, $done, $customer_id, $todo_id);
+  $types = 'iiissssisii';  ## pass
+  $params = array($priority_cd, $frequency_cd, $status_cd, $task_name, $due_dt_final, $tags, $note, $done, $done_dt_final, $customer_id, $todo_id);
   $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
   $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
@@ -196,10 +201,14 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
           $frequency_cd = $request_data->frequency_cd;
         }
 
-        $due_dt = "NULL";
+        $done_dt = NULL;
+
+        //$due_dt = "NULL";
+        $due_dt = NULL;
         if (isset($request_data->due_dt)){
-          $due_dt = $request_data->due_dt;
-          $due_dt = "STR_TO_DATE('$due_dt', '%m/%d/%Y')";
+          //$due_dt = $request_data->due_dt;
+          //$due_dt = "STR_TO_DATE('$due_dt', '%m/%d/%Y')";
+          $due_dt = date('Y-m-d', strtotime($request_data->due_dt));
         }
 
         $tags = '';
@@ -207,7 +216,8 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
           $tags = $request_data->tags;
         }
 
-        $batch_id = "NULL";
+        //$batch_id = "NULL";
+        $batch_id = NULL;
         if ($batch_id_parm > 0){
           $batch_id = $batch_id_parm;
         }
@@ -220,13 +230,11 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
 
         $query = "INSERT INTO todo
         (  task_name,   due_dt, starred,  group_id, priority_cd, frequency_cd, status_cd, customer_id, Note,  done, done_dt,  batch_id,   tags)  VALUES
-        (          ?,        ?,       0,         ?,           ?,            ?,         ?,           ?,   '',     0,    NULL, $batch_id,      ?)";
+        (          ?,        ?,       0,         ?,           ?,            ?,         ?,           ?,   '',     0,       ?,         ?,      ?)";
 
-        //fixme: batch_id should be passed as a paramater... BUT.. how to define the type? You'd think i but the default is NULL... How to handdle Nulls
-        //       I tried to define it as i but got a FK constraint violation...
         //$rowsAffected = actionSql($dbh,$query);
-        $types = 'ssiiiiis';  ## pass
-        $params = array($task_name, $due_dt, $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, $tags );
+        $types = 'ssiiiiisis';  ## pass
+        $params = array($task_name, $due_dt, $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, $done_dt, $batch_id, $tags );
         $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
 
@@ -362,8 +370,7 @@ function  checkFreeGroupsThreshold($dbh, $customer_id){
 
 function  checkFreeTodoWithinGroupThreshold($dbh, $customer_id,$group_id){
     $query = "select count(*) as todo_count from todo where customer_id = $customer_id and done = 0 and group_id = $group_id";
-    $data = execSqlSingleRow($dbh, $query);
-
+    //$data = execSqlSingleRow($dbh, $query);
     $types = 'ii';  ## pass
     $params = array($customer_id, $group_id);
     $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
@@ -416,11 +423,17 @@ function  moveTodos($dbh, $request_data, $customer_id){
 
 ###################################
 function  updateGroup($dbh, $request_data, $customer_id){
-  $group_name = mysqli_real_escape_string($dbh, $request_data->group_name);
+  $group_name = $request_data->group_name;
   $group_id = $request_data->group_id;
-  $query = "update todo_group set group_name = '$group_name' where customer_id = $customer_id
+  $query = "update todo_group set group_name = ? where customer_id = ?
             and group_id = $group_id";
-  $rowsAffected = actionSql($dbh,$query);
+
+  //$rowsAffected = actionSql($dbh,$query);
+
+  $types = 'si';  ## pass
+  $params = array($group_name, $customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsUpdated'} = $rowsAffected;
   return $response;
 }
@@ -440,21 +453,32 @@ function  addGroup($dbh, $request_data, $customer_id){
     } else {
 
         #### set all groups to inactive
-        $query = "update todo_group set active = 0 where customer_id = $customer_id";
-        $rowsAffected = actionSql($dbh,$query);
+        $query = "update todo_group set active = 0 where customer_id = ?";
+        //$rowsAffected = actionSql($dbh,$query);
+        $types = 'i';  ## pass
+        $params = array($customer_id);
+        $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
 
         ### Get Max Sort_order
-        $query = "select max(sort_order) as max_order from todo_group where customer_id = $customer_id";
-        $data = execSqlSingleRow($dbh, $query);
-        #####var_dump($data);
+        $query = "select max(sort_order) as max_order from todo_group where customer_id = ?";
+        //$data = execSqlSingleRow($dbh, $query);
+        $types = 'i';  ## pass
+        $params = array($customer_id);
+        $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
         $max_sort_order = $data{'max_order'};
-        $max_sort_order = $max_sort_order + 1;
-        #####echo "max sort order: $max_sort_order";
+        $sort_order = $max_sort_order + 1;
 
         #### add new group
-        $groupName = mysqli_real_escape_string($dbh, $request_data->name);
-        $query = "insert into todo_group (customer_id, group_name, active, sort_order) VALUES ($customer_id, '$groupName', 1, $max_sort_order)";
-        $rowsAffected = actionSql($dbh,$query);
+        $groupName = $request_data->name;
+        $query = "insert into todo_group (customer_id, group_name, active, sort_order) VALUES
+                                                   (?,          ?,      1,          ?)";
+        //$rowsAffected = actionSql($dbh,$query);
+        $types = 'isi';  ## pass
+        $params = array($customer_id, $groupName, $sort_order);
+        $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
         // no need to return the group add since the controller does a full refresh of groups
         //$group_id = mysqli_insert_id($dbh);
         //$new_group = getGroup($dbh, $customer_id, $group_id);
@@ -475,12 +499,18 @@ function  setGroupToActive($dbh, $request_data, $customer_id){
   $group_id = $request_data->group_id;
 
   #### set all groups to inactive
-  $query = "update todo_group set active = 0 where customer_id = $customer_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "update todo_group set active = 0 where customer_id = ?";
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'i';  ## pass
+  $params = array($customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
   #### set selected group to active
-  $query = "update todo_group set active = 1 where customer_id = $customer_id and group_id = $group_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "update todo_group set active = 1 where customer_id = ? and group_id = ?";
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'ii';  ## pass
+  $params = array($customer_id, $group_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
   $response{'Status'} = 1;
 
@@ -492,8 +522,11 @@ function  setGroupToActive($dbh, $request_data, $customer_id){
 function  deleteGroup($dbh, $request_data, $customer_id){
   $group_id = $request_data->group_id;
 
-  $query = "select count(*) as count from todo_group where customer_id = $customer_id";
-  $data = execSqlSingleRow($dbh, $query);
+  $query = "select count(*) as count from todo_group where customer_id = ?";
+  //$data = execSqlSingleRow($dbh, $query);
+  $types = 'i';  ## pass
+  $params = array($customer_id);
+  $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
   $count = $data{'count'};
 
   if (1 == $count){
@@ -501,27 +534,43 @@ function  deleteGroup($dbh, $request_data, $customer_id){
       $response{'RowsDeleted'} = 0;
   } else {
       #### delete Todos associated with the group
-      $query = "delete from todo where group_id = $group_id and customer_id = $customer_id";
-      $rowsAffected = actionSql($dbh,$query);
+      $query = "delete from todo where group_id = ? and customer_id = ?";
+      //$rowsAffected = actionSql($dbh,$query);
+      $types = 'ii';  ## pass
+      $params = array($group_id, $customer_id);
+      $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
       #### delete the group
-      $query = "delete from todo_group where group_id = $group_id and customer_id = $customer_id";
-      $rowsAffected = actionSql($dbh,$query);
+      $query = "delete from todo_group where group_id = ? and customer_id = ?";
+      //$rowsAffected = actionSql($dbh,$query);
+      $types = 'ii';  ## pass
+      $params = array($group_id, $customer_id);
+      $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
       $response{'RowsDeleted'} = $rowsAffected;
 
       ### only try and fix actives if something was actually deleted....
       if ($rowsAffected){
           #### Count of actives
-          $query = "select count(*) from todo_group where customer_id = $customer_id and active = 1";
-          $data = execSqlSingleRow($dbh, $query);
+          $query = "select count(*) as count from todo_group where customer_id = ? and active = 1";
+          //$data = execSqlSingleRow($dbh, $query);
+          $types = 'i';  ## pass
+          $params = array($customer_id);
+          $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
+
           $count = $data{'count'};
           if (!$count){
-            $query = "select group_id, min(sort_order) from todo_group where customer_id = $customer_id";
-            $data = execSqlSingleRow($dbh, $query);
+            $query = "select group_id, min(sort_order) from todo_group where customer_id = ?";
+            //$data = execSqlSingleRow($dbh, $query);
+            $types = 'i';  ## pass
+            $params = array($customer_id);
+            $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
             $group_id = $data{'group_id'};
 
-            $query = "update todo_group set active = 1 where customer_id = $customer_id and group_id = $group_id";
-            $rowsAffected = actionSql($dbh,$query);
+            $query = "update todo_group set active = 1 where customer_id = ? and group_id = ?";
+            //$rowsAffected = actionSql($dbh,$query);
+            $types = 'ii';  ## pass
+            $params = array($customer_id, $group_id);
+            $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
           }
       }
   } ## end of the count on on groups
@@ -566,7 +615,6 @@ function doDateStuff($date_string){
 function readUploadedFileIntoArray(){
     $csv = array();
 
-    // FixMe: sanitize the data read from the file
     // check there are no errors
 
     //var_dump($_FILES);
@@ -605,8 +653,13 @@ function readUploadedFileIntoArray(){
 
 ################################################################################
 function addBatch($dbh, $file_name, $customer_id ){
-  $query = "insert into todo_batch (file_name, upload_dt, customer_id) values ('$file_name', CURTIME(), $customer_id)";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "insert into todo_batch (file_name, upload_dt, customer_id) values
+                                           (?, CURTIME(),           ?)";
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'si';  ## pass
+  $params = array($file_name, $customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $batch_id = mysqli_insert_id($dbh);
   $response{'RowsAdded'} = $rowsAffected;
   $response{'batch_id'} = $batch_id;
@@ -615,9 +668,17 @@ function addBatch($dbh, $file_name, $customer_id ){
 
 ################################################################################
 function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $skipped){
-  $query = "update todo_batch set  count_uploaded = $uploaded,   count_error_no_group = $errored,  count_error_above_limit = $skipped
-  where customer_id = $customer_id and batch_id = $batch_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "update todo_batch set
+          count_uploaded = ?,
+          count_error_no_group = ?,
+          count_error_above_limit = ?
+  where customer_id = ? and batch_id = ?";
+  //$rowsAffected = actionSql($dbh,$query);
+
+  $types = 'iiiii';  ## pass
+  $params = array($uploaded, $errored, $skipped, $customer_id, $batch_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsUpdated'} = $rowsAffected;
   return $response;
 }
@@ -625,10 +686,15 @@ function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $s
 ################################################################################
 function deleteBatch($dbh, $request, $customer_id){
   $batch_id = $request->batch_id;
-  // fixme: add delete of todos with matching batch_id... or... change table to do cascading delete
+  // There is a cascading delete setup... so delete of todo_batch will delete associated todos with the same batch_id
   if (!isset($batch_id)){die("cannot delete batch.. missing information in the request");}
-  $query = "delete from todo_batch where customer_id = $customer_id and batch_id = $batch_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "delete from todo_batch where customer_id = ? and batch_id = ?";
+  //$rowsAffected = actionSql($dbh,$query);
+
+  $types = 'ii';  ## pass
+  $params = array($customer_id, $batch_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsDeleted'} = $rowsAffected;
   return $response;
 }
@@ -638,7 +704,6 @@ function getBatches($dbh, $customer_id){
   $query = "select batch_id, file_name, upload_dt, count_uploaded, count_error_no_group, count_error_above_limit from todo_batch
   where customer_id = ? order by upload_dt desc";
   //$data = execSqlMultiRow($dbh, $query);
-
   $types = 'i';  ## pass
   $params = array($customer_id);
   $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
@@ -648,8 +713,14 @@ function getBatches($dbh, $customer_id){
 
 ################################################################################
 function addEvent($dbh, $customer_id, $event_cd, $dateTime){
-  $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES ($customer_id, '$dateTime', $event_cd)";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "INSERT INTO event (customer_id, create_dt, event_cd) VALUES
+                              (          ?,         ?,        ?)";
+  //$rowsAffected = actionSql($dbh,$query);
+
+  $types = 'isi';  ## pass
+  $params = array($customer_id, $dateTime, $event_cd);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsUpdated'} = $rowsAffected;
   $response{'LastInsertId'} = mysqli_insert_id($dbh);
   return $response;
@@ -658,8 +729,12 @@ function addEvent($dbh, $customer_id, $event_cd, $dateTime){
 ################################################################################
 function addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd, $event_id){
   $query = "INSERT INTO account_period (customer_id, begin_dt, end_dt, account_type_cd, account_period_status_cd, event_id) VALUES (
-    $customer_id, '$begin_dt', '$end_dt', $account_type_cd, $account_period_status_cd,$event_id)";
-  $rowsAffected = actionSql($dbh,$query);
+                                                  ?,        ?,      ?,               ?,                        ?,        ?)";
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'issiii';  ## pass
+  $params = array($customer_id, $begin_dt, $end_dt, $account_type_cd, $account_period_status_cd, $event_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsUpdated'} = $rowsAffected;
   $response{'LastInsertId'} = mysqli_insert_id($dbh);
   return $response;
@@ -726,8 +801,12 @@ mail($email, $subject, $body);
 
 ################################################################################
 function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
-  $query = "UPDATE customer set credential_cd = $credential_cd where customer_id = $customer_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "UPDATE customer set credential_cd = ? where customer_id = ?";
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'ii';  ## pass
+  $params = array($credential_cd, $customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsUpdated'} = $rowsAffected;
   return $response;
 }
@@ -736,7 +815,6 @@ function updateCustomerCredentialCd($dbh, $customer_id, $credential_cd){
 function getMaxPremiumDt($dbh, $customer_id){
     $query = "select max(end_dt) as end_dt from account_period where customer_id = ? and account_type_cd in (1,3)";  ### 3=Premium,  #1:Trial(Premium)
     //$data = execSqlSingleRow($dbh,$query);
-
     $types = 'i';  ## pass
     $params = array($customer_id);
     $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
@@ -751,9 +829,6 @@ function getAccountPeriod($dbh, $customer_id){
     and customer_id = ?
     order by begin_dt asc";   ### 1 = active
     //$data = execSqlMultiRow($dbh, $query);
-
-    //echo "doing getAccountPeriod\n";
-
     $types = 'i';  ## pass
     $params = array($customer_id);
     $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
@@ -764,8 +839,13 @@ function getAccountPeriod($dbh, $customer_id){
 ################################################################################
 function addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd, $pmt_dt){
   $query = "INSERT INTO payment (customer_id, payment_amt, event_id, payment_method_cd, payment_dt) VALUES
-  ($customer_id, $pmt_amt, $event_id, $payment_method_cd, '$pmt_dt')";
-  $rowsAffected = actionSql($dbh,$query);
+                                (          ?,           ?,        ?,                 ?,          ?)";
+
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'iiiis';  ## pass
+  $params = array($customer_id, $pmt_amt, $event_id, $payment_method_cd, $pmt_dt);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsUpdated'} = $rowsAffected;
   $response{'LastInsertId'} = mysqli_insert_id($dbh);
   return $response;
@@ -773,8 +853,12 @@ function addPayment($dbh, $customer_id, $pmt_amt, $event_id, $payment_method_cd,
 
 ################################################################################
 function setCustomerCredentialCd($dbh, $customer_id, $credential_status_cd){
-  $query = "UPDATE customer set credential_status_cd = $credential_status_cd where customer_id = $customer_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "UPDATE customer set credential_status_cd = ? where customer_id = ?";
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'ii';  ## pass
+  $params = array($credential_status_cd, $customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsUpdated'} = $rowsAffected;
   return $response;
 }
@@ -783,7 +867,6 @@ function setCustomerCredentialCd($dbh, $customer_id, $credential_status_cd){
 function getCustomerIdUsingGUID($dbh, $guid){
     $query = "SELECT customer_id FROM customer where guid = ? ";
     //$data = execSqlSingleRow($dbh, $query);
-
     $types = 's';  ## pass
     $params = array($guid);
     $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
@@ -796,7 +879,6 @@ function doesUserExist($dbh, $email){
     #### see if user already exists
     $query = "SELECT count(*) as theCount fROM customer where email = ? ";
     //$data = execSqlSingleRow($dbh, $query);
-
     $types = 's';  ## pass
     $params = array($email);
     $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
@@ -814,7 +896,6 @@ function doesUserExist($dbh, $email){
 function getCustomerId($dbh, $email){
     $query = "SELECT customer_id fROM customer where email = ?   ";
     //$data = execSqlSingleRow($dbh, $query);
-
     $types = 's';  ## pass
     $params = array($email);
     $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
@@ -830,7 +911,6 @@ function getCustomerId($dbh, $email){
 function getEmail($dbh, $customer_id){
 //    $query = "SELECT email fROM customer where customer_id = $customer_id  ";
 //    $data = execSqlSingleRow($dbh, $query);
-
     $query = "SELECT email fROM customer where customer_id = ?  ";
     $types = 'i';  ## pass
     $params = array($customer_id);
@@ -849,27 +929,41 @@ function generatePassword( $length = 8 ) {
 ################################################################################
 function setAccountPeriodToDone($dbh, $customer_id, $account_type_cd) {
     $query = "UPDATE account_period set account_period_status_cd = 2
-    where customer_id = $customer_id and account_period_status_cd = 1
-    and account_type_cd = $account_type_cd";
-    $rowsAffected = actionSql($dbh,$query);
+    where customer_id = ? and account_period_status_cd = 1
+    and account_type_cd = ?";
+    //$rowsAffected = actionSql($dbh,$query);
+    $types = 'ii';  ## pass
+    $params = array($customer_id, $account_type_cd);
+    $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
     $response{'RowsUpdated'} = $rowsAffected;
     return $response;
 }
 
 ################################################################################
 function setStripeCustomerId($dbh, $customer_id, $stripe_customer_id) {
-    $query = "UPDATE customer set stripe_customer_id = '$stripe_customer_id'
-    where customer_id = $customer_id";
-    $rowsAffected = actionSql($dbh,$query);
+    $query = "UPDATE customer set stripe_customer_id = ?
+    where customer_id = ?";
+    //$rowsAffected = actionSql($dbh,$query);
+    $types = 'si';  ## pass
+    $params = array($stripe_customer_id, $customer_id);
+    $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
     $response{'RowsUpdated'} = $rowsAffected;
     return $response;
 }
 
 ################################################################################
 function updateCustomerName($dbh, $customer_id, $first_name, $last_name) {
-    $query = "UPDATE customer set first_name = '$first_name', last_name = '$last_name'
-    where customer_id = $customer_id";
-    $rowsAffected = actionSql($dbh,$query);
+    $query = "UPDATE customer set
+        first_name = ?,
+        last_name  = ?
+    where customer_id = ?";
+    //$rowsAffected = actionSql($dbh,$query);
+    $types = 'ssi';  ## pass
+    $params = array($first_name, $last_name , $customer_id);
+    $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
     $response{'RowsUpdated'} = $rowsAffected;
     return $response;
 }
@@ -881,7 +975,10 @@ function setAcctPeriodsForPayment($dbh, $customer_id, $event_id){
     $response = getMaxPremiumDt($dbh, $customer_id);
     //var_dump($response);
     $maxdt = $response{'end_dt'};
-    #fixme: check for null in the response and default to current date....
+
+    if (NULL == $maxdt){
+      $maxdt = date("Y-m-d");
+    }
 
     #deactivate any free rows
     setAccountPeriodToDone($dbh, $customer_id, 2); #2:Free
@@ -903,7 +1000,7 @@ function setAcctPeriodsForPayment($dbh, $customer_id, $event_id){
 function setAcctPeriodsForRegistration($dbh, $customer_id, $event_id){
 
     #add Trial (Premium)
-    $begin_dt = $currentDate = date("Y-m-d");
+    $begin_dt = date("Y-m-d");
     $end_dt =date('Y-m-d', strtotime('+25 day', strtotime($begin_dt)) ); #add 1 year to begin date
     addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, 1, 1, $event_id); #1:Trial(Premium) ;  1:Active
 

@@ -46,7 +46,6 @@ function processRequest(){
         $header = $fields;
       } else {
         // fixme: Add reject if the number of items exceeds  xxxxx
-        // fixme: Capture stats: # Uploaded, # Errors, Skipped etc
 
         // Note: Only process item if the Todo name is populated....
         if (strlen($fields[1])){
