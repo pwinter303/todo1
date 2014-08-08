@@ -551,13 +551,18 @@ function  deleteGroup($dbh, $request_data, $customer_id){
       ### only try and fix actives if something was actually deleted....
       if ($rowsAffected){
           #### Count of actives
-          $query = "select count(*) as count from todo_group where customer_id = ? and active = 1";
+          $query = "select count(*) as TheCount from todo_group where customer_id = ? and active = 1";
           //$data = execSqlSingleRow($dbh, $query);
           $types = 'i';  ## pass
           $params = array($customer_id);
           $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
 
-          $count = $data{'count'};
+          $count = 0;
+          if (isset($data{'TheCount'}){
+            $count = $data{'TheCount'};
+          }
+
+          // if there are zero ACTIVE groups... need to fix it....
           if (!$count){
             $query = "select group_id, min(sort_order) from todo_group where customer_id = ?";
             //$data = execSqlSingleRow($dbh, $query);
