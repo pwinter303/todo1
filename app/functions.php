@@ -151,14 +151,18 @@ function  updateTodo($dbh, $request_data, $customer_id){
       $due_dt_sql = "due_dt = NULL,";
   }
 
+  //fixme: $due_dt should be passed as paramater
   $query = "update todo set
-  priority_cd = $priority_cd,    frequency_cd = $frequency_cd,    status_cd = $status_cd,        task_name = '$task_name',
-  $due_dt_sql                    tags = '$tags',                  note = '$note',                done = '$done',
+  priority_cd = ? ,    frequency_cd = ?,    status_cd =  ?,        task_name =  ?,
+  $due_dt_sql          tags =  ?,                  note =  ?,                done = ?,
   $done_dt_sql
-  where customer_id = $customer_id and todo_id = $todo_id";
+  where customer_id = ? and todo_id = ?";
 
-  #####echo "$query       ENDOFQUERY";
-  $rowsAffected = actionSql($dbh,$query);
+  //$rowsAffected = actionSql($dbh,$query);
+
+  $types = 'iiissssii';  ## pass
+  $params = array($priority_cd, $frequency_cd, $status_cd, $task_name, $tags, $note, $done, $customer_id, $todo_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
   $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
   return $new_todo_data;
@@ -209,13 +213,23 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
         }
         $status_cd = 1;
 
-        $task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
+        //echo "batch_id:$batch_id\n\n";
+
+        //$task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
+        $task_name = $request_data->task_name;
 
         $query = "INSERT INTO todo
-        (  task_name,   due_dt  , starred,  group_id,   priority_cd,  frequency_cd,  status_cd,  customer_id, Note, done, done_dt, batch_id,   tags)  VALUES
-        ('$task_name',  $due_dt , 0      , $group_id,  $priority_cd, $frequency_cd, $status_cd, $customer_id, '',      0, NULL   , $batch_id, '$tags')";
+        (  task_name,   due_dt, starred,  group_id, priority_cd, frequency_cd, status_cd, customer_id, Note,  done, done_dt,  batch_id,   tags)  VALUES
+        (          ?,        ?,       0,         ?,           ?,            ?,         ?,           ?,   '',     0,    NULL, $batch_id,      ?)";
 
-        $rowsAffected = actionSql($dbh,$query);
+        //fixme: batch_id should be passed as a paramater... BUT.. how to define the type? You'd think i but the default is NULL... How to handdle Nulls
+        //       I tried to define it as i but got a FK constraint violation...
+        //$rowsAffected = actionSql($dbh,$query);
+        $types = 'ssiiiiis';  ## pass
+        $params = array($task_name, $due_dt, $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, $tags );
+        $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
+
         $todo_id = mysqli_insert_id($dbh);
         $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
 
@@ -366,8 +380,14 @@ function  checkFreeTodoWithinGroupThreshold($dbh, $customer_id,$group_id){
 ###################################
 function deleteTodo($dbh, $request, $customer_id){
   $todo_id = $request->todo_id;
-  $query = "delete from todo where customer_id = $customer_id and todo_id = $todo_id";
-  $rowsAffected = actionSql($dbh,$query);
+  $query = "delete from todo where customer_id = ? and todo_id = ?  ";
+
+  //$rowsAffected = actionSql($dbh,$query);
+
+  $types = 'ii';  ## pass
+  $params = array($customer_id, $todo_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   $response{'RowsDeleted'} = $rowsAffected;
   return $response;
 }
@@ -377,13 +397,18 @@ function  moveTodos($dbh, $request_data, $customer_id){
   $from_group_id = $request_data->fromGroup;
   $to_group_id = $request_data->toGroup;
 
-  $query = "update todo todo set group_id = $to_group_id where customer_id = $customer_id and group_id = $from_group_id";
+  $query = "update todo todo set group_id = ?  where customer_id = ? and group_id = ?    ";
 
-  $rowsAffected = actionSql($dbh,$query);
+  //$rowsAffected = actionSql($dbh,$query);
+
+  $types = 'iii';  ## pass
+  $params = array($to_group_id, $customer_id, $from_group_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
   if ($rowsAffected) {
-    $response{'msg'} = "$rowsAffected todo(s) moved!";
+    $response{'msg'} = "$rowsAffected Todo(s) moved!";
   } else {
-    $response{'error'} = "no todos moved";
+    $response{'error'} = "No Todos moved";
   }
 
   return $response;

@@ -14,7 +14,6 @@ function closeDatabaseConnection($dbh){
 function createDatabaseConnection(){
     // Create connection - Using Configuration Data...
     $dbh = mysqli_connect(DBSRVR,DBUSER,DBPWRD,DBNAME);
-    ####$dbh = mysqli_connect('localhost',DBUSER,DBPWRD,DBNAME);
 
     // Check connection
     if (mysqli_connect_errno()){
@@ -22,14 +21,6 @@ function createDatabaseConnection(){
     } else {
       return $dbh;
     }
-}
-
-function execSqlSingleRow($dbh,$query){
-      $result = mysqli_query($dbh,$query) or die('Query failed: '
-                  . mysqli_error($dbh));
-      $data=mysqli_fetch_array($result);
-      mysqli_free_result($result);
-      return $data;
 }
 
 function actionSql($dbh,$query){
@@ -40,18 +31,6 @@ function actionSql($dbh,$query){
       return $rows_affected;
 }
 
-function execSqlMultiRow($dbh, $query){
-      $data = array();
-
-      $result = mysqli_query($dbh,$query) or die('Query failed: '
-                  . mysqli_error($dbh));
-
-      while ($row = mysqli_fetch_assoc($result)){
-        array_push($data, $row);
-      }
-      mysqli_free_result($result);
-      return $data;
-}
 
 ########################################################################
 function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
@@ -104,6 +83,7 @@ function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
 
 }
 
+########################################################################
 function  execSqlSingleRowPREPARED($dbh, $query, $types, $params){
 
   if (!($stmt = $dbh->prepare($query))) {
@@ -123,7 +103,6 @@ function  execSqlSingleRowPREPARED($dbh, $query, $types, $params){
       $return = call_user_func_array(array($stmt,'bind_param'),$bind_names);
 
       if (!($return)){
-        echo "query troubles:$query\n\n\n\n";
       }
   }
 
@@ -157,6 +136,41 @@ function  execSqlSingleRowPREPARED($dbh, $query, $types, $params){
 
 }
 
+########################################################################
+function  execSqlActionPREPARED($dbh, $query, $types, $params){
+
+  if (!($stmt = $dbh->prepare($query))) {
+       echo "Prepare failed: (" . $dbh->errno . ") " . $dbh->error;
+  }
+
+  if($types&&$params){
+      $bind_names[] = $types;
+      for ($i=0; $i<count($params);$i++)
+      {
+          $bind_name = 'bind' . $i;
+          $$bind_name = $params[$i];
+          $bind_names[] = &$$bind_name;
+      }
+      $return = call_user_func_array(array($stmt,'bind_param'),$bind_names);
+
+      if (!($return)){
+      }
+  }
+
+  /* execute query */
+  if (!$stmt->execute()) {
+      echo "Execute failed: (" . $dbh->errno . ") " . $dbh->error;
+  }
+
+  $rows_affected = $stmt->affected_rows;
+
+  # close statement
+  $stmt->close();
+
+  return $rows_affected;
+
+}
+
 
 function insertData($dbh,$query){
        mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));
@@ -177,5 +191,31 @@ function insertData($dbh,$query){
 
        return mysqli_affected_rows($dbh);
  }
+
+
+
+
+function execSqlSingleRow($dbh,$query){
+      $result = mysqli_query($dbh,$query) or die('Query failed: '
+                  . mysqli_error($dbh));
+      $data=mysqli_fetch_array($result);
+      mysqli_free_result($result);
+      return $data;
+}
+
+function execSqlMultiRow($dbh, $query){
+      $data = array();
+
+      $result = mysqli_query($dbh,$query) or die('Query failed: '
+                  . mysqli_error($dbh));
+
+      while ($row = mysqli_fetch_assoc($result)){
+        array_push($data, $row);
+      }
+      mysqli_free_result($result);
+      return $data;
+}
+
+
 
 ?>
