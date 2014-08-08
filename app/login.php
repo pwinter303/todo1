@@ -28,7 +28,11 @@ function processRequest(){
 
     $json = json_encode($result);
     ######echo $json;
-    return $json;
+    if ('Activate' == ($_GET["action"])){
+      //this is a hack... Activate sends a message direct to page without angular so we dont want to pass JSON
+    } else {
+      return $json;
+    }
 }
 
 
@@ -327,7 +331,7 @@ function Activate($dbh, $GUID){
 
     if ($customer_id){
       $response = setCustomerCredentialCd($dbh, $customer_id, 0); #0:Legitimate
-      echo "Thank you for activating your account";
+      echo "Thank you for activating your account!";
     } else {
       echo "Hmmm... Could not find a matching record.";
     }

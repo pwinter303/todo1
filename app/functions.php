@@ -558,7 +558,7 @@ function  deleteGroup($dbh, $request_data, $customer_id){
           $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
 
           $count = 0;
-          if (isset($data{'TheCount'}){
+          if (isset($data{'TheCount'})){
             $count = $data{'TheCount'};
           }
 
@@ -794,13 +794,18 @@ function eMailForgotPassword($email, $password){
 }
 
 ################################################################################
-function eMailSend($email, $subject, $body, $wordWrap = 1){
+function eMailSend($email, $subject, $body, $wordWrap = 1, $headers){
 // In case any of our lines are larger than 70 characters, we should use wordwrap()
 if ($wordWrap){
   $body = wordwrap($body, 70, "\r\n");
 }
+
+$headers = 'From: paul@todogiant.com' . "\r\n" .
+ 'Reply-To: paul@todogiant.com' . "\r\n" .
+ 'X-Mailer: PHP/' . phpversion();
+
 // Send
-mail($email, $subject, $body);
+mail($email, $subject, $body, $headers);
 
 }
 
