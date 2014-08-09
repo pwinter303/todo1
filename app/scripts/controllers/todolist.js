@@ -21,11 +21,13 @@ angular.module('todoApp')
           });
         };
 
-        //fixme: On page refresh... there is a race condition where todoauthenticate.js is being done after todolist.js
-        if ($scope.loggedIn){
+        //fixme: Want to only call this when logged in to prevent multiple error message when the page is accessed and
+       // the session has expired... but the loggedIn check was returning false when the person was really logged in
+       // because it was executing before todoauthenticate checkloginstatus
+        //if ($scope.loggedIn){
           $scope.priorities();
           $scope.frequencies();
-        }
+        //}
 
         $scope.addTodo = function (newTodo){
           /* following comment turns off camelcase check for this function.. so it'll be ignored */

@@ -9,7 +9,7 @@ angular.module('todoApp')
         $scope.getLoginStatus = function() {
           authentication.getLoginStatus().then(function (data) {
               if (data.login){
-                $scope.loggedIn = data.login;
+                $scope.loggedIn = Number(data.login);
                 $scope.$broadcast('LoggedIn', []);
               }
             }, function(error) {

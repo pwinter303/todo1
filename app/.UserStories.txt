@@ -2,7 +2,6 @@
 IN PROGRESS:
 Forgot password.... Force password change when using temp password
 
-
 MVP:  CRITICAL
 Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 What do you get when you pay for it... done but need content explain free vs premium
@@ -16,7 +15,6 @@ Should BLOG Link be removed and replace it with direct links to sections within 
 MVP:  IMPORTANT
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
 **** Add Content on Login and Registration Page
-**** Change To Do to Todo.. redo screen shots..
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
 
 MVP:  NEEDED
@@ -107,7 +105,7 @@ Eliminate all cases where data passed into PHP module are used before sanitizing
 Remove "Null" from the end of the account activation msg..    8/8
 Katie: bypass registration by entering email and hit shift and pressing register (?)       8/8
 Need more instructions around import   8/9
-
+Change To Do to Todo.. redo screen shots..   8/9
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

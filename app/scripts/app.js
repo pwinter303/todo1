@@ -10,7 +10,6 @@ angular.module('todoApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {templateUrl: 'views/main.html',  controller: 'MainCtrl'})
-      .when('/todolist', {templateUrl: 'views/todolist.html',  controller: 'TodolistCtrl' })
       .when('/account', {templateUrl: 'views/account.html', controller: 'AcctdetailCtrl'})
       .when('/groups', {templateUrl: 'views/groups.html'})//No need for controller.. defined in Index.Html
       .when('/login', {templateUrl: 'views/login.html'})
@@ -18,6 +17,7 @@ angular.module('todoApp', [
       .when('/forgotpassword', {templateUrl: 'views/forgotpassword.html'})
       .when('/register', {templateUrl: 'views/register.html'})
       .when('/import', {templateUrl: 'views/import.html',controller: 'FileUploadCtrl'})
+      .when('/todolist', {templateUrl: 'views/todolist.html',  controller: 'TodolistCtrl' })
       .otherwise({redirectTo: '/'});
   })
 
