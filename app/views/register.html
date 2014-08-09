@@ -1,15 +1,25 @@
-<form>
-    <p><input type="email" class="span3" name="email" data-ng-model="user.email" required placeholder="Enter Email">
-        <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
-        <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
-    </p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <form data-ng-submit="registerMe(user)" form-autofill-fix>
+                <p><input type="email" class="span3" name="email" data-ng-model="user.email" required placeholder="Enter Email">
+                    <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
+                    <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
+                </p>
 
-    <p><input type="password" class="span3" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
-        <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
-        <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
-    </p>
-    <p><input type="password" class="span3" name="password" data-ng-model="user.repassword" required placeholder="Re-enter Password" data-ng-minlength="3">
-    </p>
-    <p><button type="submit" class="btn btn-success" data-ng-click="registerMe(user)">Register</button>
-</form>
-<span>{{errormsg}}</span>
+                <p><input type="password" class="span3" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
+                    <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
+                    <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
+                </p>
+                <p><input type="password" class="span3" name="password" data-ng-model="user.repassword" required placeholder="Re-enter Password" data-ng-minlength="3">
+                </p>
+                <p><button type="submit" class="btn btn-success">Register</button>
+            </form>
+            <span>{{errormsg}}</span>
+        </div>
+        <div class="col-md-10">
+            <h4>One More Step :-)</h4>
+                Just enter your email and selected password and you are done! </br>
+        </div>
+    </div>
+</div>

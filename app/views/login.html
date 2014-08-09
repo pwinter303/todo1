@@ -1,14 +1,24 @@
-<form data-ng-submit="logIn(user)" form-autofill-fix>
-    <p><input type="email" class="span3" name="email" data-ng-model="user.email" required placeholder="Enter Email">
-        <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
-        <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
-    </p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">
+            <form data-ng-submit="logIn(user)" form-autofill-fix>
+                <p><input type="email" class="span3" name="email" data-ng-model="user.email" required placeholder="Enter Email">
+                    <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
+                    <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
+                </p>
 
-    <p><input type="password" class="span3" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
-        <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
-        <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
-    </p>
-    <p><button type="submit" class="btn btn-success">Sign in</button>
-        <a href="#/forgotpassword">Forgot Password</a></p>
-</form>
-<span>{{loginmsg}}</span>
+                <p><input type="password" class="span3" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
+                    <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
+                    <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
+                </p>
+                <p><button type="submit" class="btn btn-success">Sign in</button>
+                    <a href="#/forgotpassword">Forgot Password</a></p>
+            </form>
+            <span>{{loginmsg}}</span>
+        </div>
+        <div class="col-md-10">
+            <h4>Welcome Back :-)</h4>
+            Enter your credentials and continue to get organized! </br>
+        </div>
+    </div>
+</div>
