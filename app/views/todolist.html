@@ -1,4 +1,10 @@
 <div class="row">
+    <div class="col-xs-4 col-md-4 small">Add Todo: Type and hit Enter</div>
+    <div class="col-xs-4 col-md-4 small">Search by Todo: Type Name</div>
+    <div class="col-xs-4 col-md-4 small">Search by Category: Type Category</div>
+</div>
+
+<div class="row">
     <div class="col-xs-4 col-md-4">
         <form data-ng-submit="addTodo(newTodo)">
             <input type="text" class="form-control tight_input" data-ng-model="newTodo.task" placeholder="Add Todo.. "/>
@@ -6,11 +12,11 @@
         </form>
     </div>
     <div class="col-xs-4 col-md-4">
-        <input type="text" data-ng-model="taskFilter" class="form-control tight_input" placeholder="by Todo Name">
+        <input type="text" data-ng-model="taskFilter" class="form-control tight_input" placeholder="Search">
         <span class="glyphicon glyphicon-search"></span>
     </div>
     <div class="col-xs-4 col-md-4">
-        <input type="text" data-ng-model="tagFilter" class="form-control tight_input" placeholder="by Category">
+        <input type="text" data-ng-model="tagFilter" class="form-control tight_input" placeholder="Search">
         <span class="glyphicon glyphicon-search"></span>
     </div>
 </div>

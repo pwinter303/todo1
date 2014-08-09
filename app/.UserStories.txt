@@ -14,12 +14,9 @@ Should BLOG Link be removed and replace it with direct links to sections within 
 
 MVP:  IMPORTANT
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
-**** Add Content on Login and Registration Page
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
 
 MVP:  NEEDED
-When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
-Katie: Confusing to say "By Category" in the search/filter boxes
 Print formatting
 Payment/Donation for usage using PayPal
 Show completed items... is this going to be a performance problem?  Should they be protected?
@@ -46,7 +43,6 @@ Kudos for completing most todos
 Android App
 IOS App
 Move session handling to dynamoDB on AWS
-Add the ability to specify priority (maybe: Tags, DueDate, Frequency) in quick add (for example... New Todo|03/31/2014|Once)
 Forum?
 Ability to share todo lists... have two people log into the same list (change to data model, security (ie - which todo group do you want to share), etc)
 Ellen wants the ability to move 1 todo between group
@@ -106,6 +102,10 @@ Remove "Null" from the end of the account activation msg..    8/8
 Katie: bypass registration by entering email and hit shift and pressing register (?)       8/8
 Need more instructions around import   8/9
 Change To Do to Todo.. redo screen shots..   8/9
+Add Content on Login and Registration Page
+Add the ability to specify priority (maybe: Tags, DueDate, Frequency) in quick add (for example... New Todo|03/31/2014|Once)  8/9
+When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
+Katie: Confusing to say "By Category" in the search/filter boxes
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
