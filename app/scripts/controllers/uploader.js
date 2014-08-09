@@ -34,9 +34,7 @@ angular.module('todoApp')
           $rootScope.$broadcast('fileAdded', file.files[0].name);
         },
         clear: function () {
-
-          // FixMe: remove comment
-          //_files = [];
+          _files = [];
         },
         files: function () {
           var fileNames = [];

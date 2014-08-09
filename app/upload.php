@@ -6,7 +6,7 @@ include 'functions.php';
 
 if(isset($_SESSION['authenticated'])){
     $total_added = processRequest();
-    $result->msg = "$total_added Todos were uploaded!";
+    $result{'msg'} = "$total_added Todo(s) were uploaded!";
 } else {
     ### must be logged in to use this...
     header('HTTP/1.1 401 Unauthorized');
@@ -34,7 +34,8 @@ function processRequest(){
   $frequencies = getFrequencies($dbh);
   $priorities = getPriorities($dbh);
 
-  $batch_id = addBatch($dbh, $file_name, $customer_id);
+  $response = addBatch($dbh, $file_name, $customer_id);
+  $batch_id = $response{'batch_id'};
 
   $header = NULL;
   $total_added = 0;
@@ -68,6 +69,7 @@ function processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $f
     // Add the item if the name exists and the group could be decoded
     $todo_added = 0;
     $todo_err = 0;
+    $request_data = new stdClass();
     if (($ok) ){
       $request_data->activegroup = $group_id;
       $request_data->task_name = $fields[1];

@@ -235,6 +235,7 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
         //$rowsAffected = actionSql($dbh,$query);
         $types = 'ssiiiiisis';  ## pass
         $params = array($task_name, $due_dt, $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, $done_dt, $batch_id, $tags );
+        //var_dump($params);
         $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
 
@@ -658,11 +659,13 @@ function readUploadedFileIntoArray(){
 
 ################################################################################
 function addBatch($dbh, $file_name, $customer_id ){
+
+  $upload_dt = date('Y-m-d H:i:s');
   $query = "insert into todo_batch (file_name, upload_dt, customer_id) values
-                                           (?, CURTIME(),           ?)";
+                                           (?,         ?,           ?)";
   //$rowsAffected = actionSql($dbh,$query);
-  $types = 'si';  ## pass
-  $params = array($file_name, $customer_id);
+  $types = 'ssi';  ## pass
+  $params = array($file_name, $upload_dt, $customer_id);
   $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
   $batch_id = mysqli_insert_id($dbh);

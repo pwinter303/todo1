@@ -15,7 +15,6 @@ Should BLOG Link be removed and replace it with direct links to sections within 
 
 MVP:  IMPORTANT
 Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
-**** Need more instructions around import
 **** Add Content on Login and Registration Page
 **** Change To Do to Todo.. redo screen shots..
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
@@ -106,7 +105,9 @@ Forgot password process.... generate temp password & email  8/5
 Feedback form... or Forum...   8/6
 Eliminate all cases where data passed into PHP module are used before sanitizing... ADDED PREPARED STMTS  8/8
 Remove "Null" from the end of the account activation msg..    8/8
-++++ Katie: bypass registration by entering email and hit shift and pressing register (?)       8/8
+Katie: bypass registration by entering email and hit shift and pressing register (?)       8/8
+Need more instructions around import   8/9
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

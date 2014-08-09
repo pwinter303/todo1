@@ -27,12 +27,12 @@ function processRequest(){
     }
 
     $json = json_encode($result);
-    ######echo $json;
-    if ('Activate' == ($_GET["action"])){
-      //this is a hack... Activate sends a message direct to page without angular so we dont want to pass JSON
+    if ('null' == $json){
+      //dont pass back junk
     } else {
       return $json;
     }
+
 }
 
 
