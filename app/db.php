@@ -163,31 +163,30 @@ function  execSqlActionPREPARED($dbh, $query, $types, $params){
 
 }
 
+//this is used in dbRefreshTables.php
+function deleteData($dbh,$query){
+       mysqli_query($dbh,$query) or die('Query failed: '
+                   . mysqli_error($dbh));
+
+       //dont think this is needed
+       //mysqli_free_result($result);
+
+       return mysqli_affected_rows($dbh);
+}
+
+//this is used in dbRefreshTables.php
+function insertData($dbh,$query){
+       mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));
+
+       //dont think this is needed
+       //mysqli_free_result($result);
+
+       return mysqli_affected_rows($dbh);
+}
+
+
+
 //fixme: delete these
-//
-//
-//function insertData($dbh,$query){
-//       mysqli_query($dbh,$query) or die('Query failed: ' . mysqli_error($dbh));
-//
-//       //dont think this is needed
-//       //mysqli_free_result($result);
-//
-//       return mysqli_affected_rows($dbh);
-// }
-//
-//
-// function deleteData($dbh,$query){
-//       mysqli_query($dbh,$query) or die('Query failed: '
-//                   . mysqli_error($dbh));
-//
-//       //dont think this is needed
-//       //mysqli_free_result($result);
-//
-//       return mysqli_affected_rows($dbh);
-// }
-//
-//
-//
 //
 //function execSqlSingleRow($dbh,$query){
 //      $result = mysqli_query($dbh,$query) or die('Query failed: '
