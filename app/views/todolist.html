@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-xs-4 col-md-4">
         <form data-ng-submit="addTodo(newTodo)">
-            <input type="text" class="form-control tight_input" data-ng-model="newTodo.task" placeholder="Add Todo.. type + hit enter"/>
+            <input type="text" class="form-control tight_input" data-ng-model="newTodo.task" placeholder="Add Todo.. "/>
             <span class="glyphicon glyphicon-plus" ng-click="addTodo(newTodo)"></span>
         </form>
     </div>
@@ -20,11 +20,13 @@
 <div class="row">
     <div class="col-md-7 col-xs-9 col-sm-9 small">Todo Name </div>
     <div class="col-md-5 col-xs-3 col-sm-3 small text-center">
-        <div class="col-md-4 hidden-sm hidden-xs small text-center">Category</div>
-        <div class="col-md-3 hidden-sm hidden-xs small text-center">Due Date</div>
-        <div class="col-md-2 col-sm-12 col-xs-12 small text-center">Priority</div>
-        <div class="col-md-2 hidden-sm hidden-xs small text-center">Frequency</div>
-        <div class="col-md-1 hidden-sm hidden-xs small text-center">Delete</div>
+        <div class="col-md-3 hidden-sm hidden-xs small text-center">Category</div>
+        <div class="col-md-9 col-xs-9 col-sm-9 small text-center">
+            <div class="col-md-4 hidden-sm hidden-xs small text-center">Due Date</div>
+            <div class="col-md-3 col-sm-12 col-xs-12 small text-center">Priority</div>
+            <div class="col-md-4 hidden-sm hidden-xs small text-center">Frequency</div>
+            <div class="col-md-1 hidden-sm hidden-xs small text-center">Delete</div>
+        </div>
     </div>
 </div>
 
@@ -49,26 +51,28 @@
         </div>
         <div class="col-md-5 col-xs-3 col-sm-3">
 
-            <div class="col-md-4 hidden-xs hidden-sm">
+            <div class="col-md-3 hidden-xs hidden-sm">
                 <input type="text" class="form-control" data-ng-model="todo.tags" data-ng-enter="updateTask(todo)">
                 <!--{{todo.tags}}-->
             </div>
-            <div class="col-md-3 hidden-xs hidden-sm">
-                <input type="text" class="form-control" data-ng-model="todo.due_dt" data-ng-enter="updateTask(todo)">
-                <!--{{todo.due_dt}}-->
-            </div>
-            <div class="col-md-2 col-xs-12 col-sm-12">
-                <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.priority_cd" data-ng-options="priority.cd as priority.name for priority in priorities">
-                </select>
-                <!--{{todo.priority_cd}}-->
-            </div>
-            <div class="col-md-2 hidden-xs hidden-sm">
-                <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.frequency_cd" data-ng-options="frequency.cd as frequency.name for frequency in frequencies">
-                </select>
-                <!--{{todo.frequency_cd}}-->
-            </div>
-            <div class="col-md-1 hidden-xs hidden-sm">
-            <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo)" style="padding-top: 25%"></span>
+            <div class="col-md-9 col-xs-12 col-sm-12 small text-center">
+                <div class="col-md-4 hidden-xs hidden-sm">
+                    <input type="text" class="form-control" data-ng-model="todo.due_dt" data-ng-enter="updateTask(todo)">
+                    <!--{{todo.due_dt}}-->
+                </div>
+                <div class="col-md-3 col-xs-12 col-sm-12">
+                    <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.priority_cd" data-ng-options="priority.cd as priority.name for priority in priorities">
+                    </select>
+                    <!--{{todo.priority_cd}}-->
+                </div>
+                <div class="col-md-4 hidden-xs hidden-sm">
+                    <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.frequency_cd" data-ng-options="frequency.cd as frequency.name for frequency in frequencies">
+                    </select>
+                    <!--{{todo.frequency_cd}}-->
+                </div>
+                <div class="col-md-1 hidden-xs hidden-sm">
+                    <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo)" style="padding-top: 25%"></span>
+                </div>
             </div>
         </div>
     </div>
