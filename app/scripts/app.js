@@ -10,6 +10,7 @@ angular.module('todoApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {templateUrl: 'views/main.html',  controller: 'MainCtrl'})
+      .when('/todolist', {templateUrl: 'views/todolist.html',  controller: 'TodolistCtrl' })
       .when('/account', {templateUrl: 'views/account.html', controller: 'AcctdetailCtrl'})
       .when('/groups', {templateUrl: 'views/groups.html'})//No need for controller.. defined in Index.Html
       .when('/login', {templateUrl: 'views/login.html'})
@@ -17,11 +18,10 @@ angular.module('todoApp', [
       .when('/forgotpassword', {templateUrl: 'views/forgotpassword.html'})
       .when('/register', {templateUrl: 'views/register.html'})
       .when('/import', {templateUrl: 'views/import.html',controller: 'FileUploadCtrl'})
-      .when('/todolist', {templateUrl: 'views/todolist.html',  controller: 'TodolistCtrl' })
       .otherwise({redirectTo: '/'});
   })
 
-  .factory('authHttpResponseInterceptor',['$q','$location',function($q,$location){
+  .factory('authHttpResponseInterceptor',['$q','$location','$rootScope', function($q,$location, $rootScope){
     return {
       response: function(response){
         if (response.status === 401) {
@@ -34,6 +34,8 @@ angular.module('todoApp', [
           console.log('Response Error 401',rejection);
           //$location.path('/').search('returnTo', $location.path());
           $location.path('/');
+          $rootScope.loggedIn = 0;
+          $rootScope.$broadcast('LogOut', []);
           // cant access the factory from here.
           //todoFactory.msgError('Please Login or Register');
           toastr.error('Please Login or Register');

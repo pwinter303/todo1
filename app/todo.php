@@ -5,13 +5,13 @@ session_start();
 include 'db.php';
 include 'functions.php';
 
-
 if(isset($_SESSION['authenticated'])){
     $result = processRequest();
 } else {
     ### must be logged in to use this...
     header('HTTP/1.1 401 Unauthorized');
-    return;
+    $response{'StatusCd'} = 401;
+    return $response;
 }
 
 $json = json_encode($result);

@@ -3,7 +3,7 @@
 angular.module('todoApp')
   .controller('TodolistCtrl', ['$scope', 'todoFactory', '$rootScope', function ($scope, todoFactory, $rootScope ) {
 
-        $scope.frequencies = function (){
+        $scope.getfrequencies = function (){
           todoFactory.getfrequencies().then(function (data) {
             $scope.frequencies = data;
           }, function(error) {
@@ -12,7 +12,7 @@ angular.module('todoApp')
           });
         };
 
-        $scope.priorities = function (){
+        $scope.getpriorities = function (){
           todoFactory.getpriorities().then(function (data) {
             $scope.priorities = data;
           }, function(error) {
@@ -24,10 +24,11 @@ angular.module('todoApp')
         //fixme: Want to only call this when logged in to prevent multiple error message when the page is accessed and
        // the session has expired... but the loggedIn check was returning false when the person was really logged in
        // because it was executing before todoauthenticate checkloginstatus
-        //if ($scope.loggedIn){
-          $scope.priorities();
-          $scope.frequencies();
-        //}
+        if ($rootScope.loggedIn){
+          $scope.getpriorities();
+          $scope.getfrequencies();
+        }
+
 
         $scope.addTodo = function (newTodo){
           /* following comment turns off camelcase check for this function.. so it'll be ignored */

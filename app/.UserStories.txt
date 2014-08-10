@@ -30,7 +30,7 @@ Track Twitter/Facebook posts and give Premium access for x weeks...
 Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Export Todos - Should this be part of premium?   MVP?
-
+Extend Premium Date Function
 
 ========== Nice to Have ============
 Dynamic congratulations messages for completed tasks... integrated with Tostr

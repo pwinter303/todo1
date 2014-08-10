@@ -1,20 +1,20 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('todoAuthenticateCtrl', ['$scope', 'authentication', 'todoFactory', '$location', function($scope, authentication, todoFactory, $location){
+  .controller('todoAuthenticateCtrl', ['$rootScope', '$scope', 'authentication', 'todoFactory', '$location', function($rootScope, $scope, authentication, todoFactory, $location){
 
         $scope.pwd = {};
-        $scope.loggedIn = 0;
+        $rootScope.loggedIn = 0;
         //================================================================================
         $scope.getLoginStatus = function() {
           authentication.getLoginStatus().then(function (data) {
               if (data.login){
-                $scope.loggedIn = Number(data.login);
+                $rootScope.loggedIn = Number(data.login);
                 $scope.$broadcast('LoggedIn', []);
               }
             }, function(error) {
               // promise rejected, could be because server returned 404, 500 error...
-              $scope.loggedIn = 0;
+              $rootScope.loggedIn = 0;
               todoFactory.msgError(error);
             });
         };
@@ -24,8 +24,8 @@ angular.module('todoApp')
         $scope.logIn = function (user){
           $scope.loginmsg='';
           authentication.login(user).then(function (data) {
-            $scope.loggedIn = Number(data.login);
-            if ($scope.loggedIn) {
+            $rootScope.loggedIn = Number(data.login);
+            if ($rootScope.loggedIn) {
               $scope.$broadcast('LoggedIn', []);
               $location.path( '/todolist' );
             } else {
@@ -41,7 +41,7 @@ angular.module('todoApp')
         $scope.logMeOut = function(){
           authentication.logOut().then(function () {
             $scope.$broadcast('LogOut', []);
-            $scope.loggedIn = 0;
+            $rootScope.loggedIn = 0;
             $location.path( '/' );
             todoFactory.msgSuccess('You have logged out. Thanks');
           }, function(error) {
@@ -89,7 +89,7 @@ angular.module('todoApp')
               todoFactory.msgError(data.errMsg);
             }
             if (data.login){
-              $scope.loggedIn = 1;
+              $rootScope.loggedIn = 1;
               $scope.$broadcast('LoggedIn', []);
               todoFactory.msgSuccess(data.msg);
               $location.path( '/todolist' );
