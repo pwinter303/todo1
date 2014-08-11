@@ -26,7 +26,9 @@ angular.module('todoApp')
           });
         }])
 
-    .factory('uploadManager', function ($rootScope) {
+    .factory('uploadManager',
+    ['$rootScope',
+      function ($rootScope)  {
       var _files = [];
       return {
         add: function (file) {
@@ -53,7 +55,7 @@ angular.module('todoApp')
           $rootScope.$broadcast('uploadProgress', percentage);
         }
       };
-    })
+    }])
 
     .directive('upload', ['uploadManager', function  factory(uploadManager) {
       return {
