@@ -24,8 +24,8 @@ switch ($patch) {
     case 'ALL':
         process_all($dbh);
         break;
-    case 'DB.20140805':
-        process_patchDB_20140805($dbh);
+    case 'DB.20140727':
+        process_patchDB_20140727($dbh);
         break;
     case 'BASE':
         process_base($dbh);
@@ -95,9 +95,9 @@ insertTodos($dbh);
 }
 
 
-function process_patchDB_20140805($dbh){
+function process_patchDB_20140727($dbh){
 
-echo "processing....process_patchDB_20140805";
+echo "processing....process_patchDB_20140727";
 
 insert_credential_status($dbh);
 insert_payment_method($dbh);

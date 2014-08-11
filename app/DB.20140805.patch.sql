@@ -5,7 +5,8 @@
 -- Apply To: localhost/aws
 --
 
-ALTER DATABASE `db508430361Test` COLLATE=latin1_general_ci;
+ALTER DATABASE `db508430361` COLLATE=latin1_general_ci;
+
 CREATE TABLE `account_period_status` ( `account_period_status_cd` tinyint(4) NOT NULL, `description` varchar(45) COLLATE latin1_general_ci DEFAULT NULL, PRIMARY KEY (`account_period_status_cd`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 CREATE TABLE `account_type` ( `account_type_cd` tinyint(4) NOT NULL, `description` varchar(45) COLLATE latin1_general_ci DEFAULT NULL, PRIMARY KEY (`account_type_cd`)) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 

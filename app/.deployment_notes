@@ -1,9 +1,19 @@
+2014-08-11 Deployment. Steps:
+  1) upload files
+  2) run deploy.sh
+  3) patch database:  mysql -uroot -p db508430361 <DB.20140805.patch.sql
+  4) run patch for data:   php dbRefreshTables.php DB.20140805
+  5) manually added event and account_period records
+
+
+
+
 php extensions needed for stripe: curl, multibyte, openssl
 uncomment in the php.ini file (for windows)
   extension=php_openssl.dll
   extension=php_mbstring.dll
   extension=php_curl.dll
-may need to install on linux
+On AWS:  sudo yum install php-mbstring
 http://www.knowledgebase-script.com/kb/article/how-to-enable-mbstring-in-php-46.html
 install json_decode
 
