@@ -5,7 +5,8 @@
 
 angular.module('todoApp', [
   'ngSanitize',
-  'ngRoute'
+  'ngRoute',
+  'angularytics'
 ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -48,3 +49,9 @@ angular.module('todoApp', [
     //Http Intercpetor to check auth failures for xhr requests
     $httpProvider.interceptors.push('authHttpResponseInterceptor');
   }]);
+
+//  .config(function(AngularyticsProvider) {
+//    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
+//  }).run(function(Angularytics) {
+//    Angularytics.init();
+//  });

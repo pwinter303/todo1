@@ -1,6 +1,8 @@
 ========== MVP ============
 IN PROGRESS:
 Forgot password.... Force password change when using temp password
+Enable GoogleAnalytics.. Use: bower install angularytics... http://ngmodules.org/modules/angularytics
+
 
 MVP:  CRITICAL
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
