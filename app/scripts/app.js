@@ -48,10 +48,10 @@ angular.module('todoApp', [
   .config(['$httpProvider',function($httpProvider) {
     //Http Intercpetor to check auth failures for xhr requests
     $httpProvider.interceptors.push('authHttpResponseInterceptor');
-  }]);
+  }])
 
-//  .config(function(AngularyticsProvider) {
-//    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
-//  }).run(function(Angularytics) {
-//    Angularytics.init();
-//  });
+  .config(['AngularyticsProvider', function(AngularyticsProvider) {
+    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
+  }]).run(['Angularytics',function(Angularytics) {
+    Angularytics.init();
+  }]);
