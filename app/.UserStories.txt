@@ -3,6 +3,7 @@ IN PROGRESS:
 Forgot password.... Force password change when using temp password
 
 MVP:  CRITICAL
+Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
 Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 What do you get when you pay for it... done but need content explain free vs premium
 Ability to set how long a completed task is shown -  SCHEMA
@@ -13,7 +14,10 @@ Register URL with Google and Others..
 Should BLOG Link be removed and replace it with direct links to sections within the blog
 
 MVP:  IMPORTANT
-Social Media Links.. Share on Twitter, FaceBook, "Like us" on Facebook... Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"
+Social Media Links..
+Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"...
+Share on Twitter https://dev.twitter.com/docs/tweet-button
+FaceBook, "Like us" on Facebook...
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another
 
 MVP:  NEEDED
