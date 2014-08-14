@@ -170,9 +170,90 @@ function  updateTodo($dbh, $request_data, $customer_id){
   $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
   $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
+
+  //if todo is done and frequency is something other than 1 (which is Once).. then do processing to replicate todo
+  if (('1' == $done)  and (!(1 == $frequency_cd))  ){
+    doFrequencyProcessing($dbh, $customer_id, $new_todo_data);
+  }
+
   return $new_todo_data;
   //return $rowsAffected;
 }
+
+
+
+###################################
+function doFrequencyProcessing($dbh, $customer_id, $new_todo_data){
+  #check to see if another task already exists with a parent_todo_id equal to the todo_id.. if it does exist, no need to continue
+
+  $data = doesTodoExistWithThisParentTodoId($dbh, $customer_id, $new_todo_data{'todo_id'});
+
+  if ($data{'MyCount'}){
+    //The row has already been created... no need to continue....
+  } else {
+    $done_dt = $new_todo_data{'done_dt'};
+    $due_dt = $new_todo_data{'due_dt'};
+    $frequency_cd = $new_todo_data{'frequency_cd'};
+
+    switch ($frequency_cd) {
+       case 2:  //Weekly
+             $nbr = "+7 ";
+             $period = 'day';
+             break;
+       case 3:  //Monthly
+             $nbr = "+1 ";
+             $period = 'month';
+             break;
+       case 4:  //Quarterly
+             $nbr = "+3 ";
+             $period = 'month';
+             break;
+       case 5:  //Yearly
+             $nbr = "+1 ";
+             $period = 'year';
+             break;
+       default:
+             echo "Error:Invalid Request";
+             break;
+    }
+
+    //echo "this is due_dt:$due_dt";
+    if (NULL == $due_dt){
+      $new_due_dt =date('m/d/Y', strtotime("$nbr $period", strtotime($done_dt)) );
+    } else {
+      $new_due_dt =date('m/d/Y', strtotime("$nbr $period", strtotime($due_dt)) );
+    }
+
+    #clean up fields
+    ### Done should be 0
+    $new_todo_data{'done'} = 0;
+    ### Done_Dt should be null
+    $new_todo_data{'done_dt'} = 'null';
+    ### Due_Dt should be what was calculated above
+    $new_todo_data{'due_dt'} = $new_due_dt;
+    $new_todo_data{'activegroup'} = $new_todo_data{'group_id'};
+    $new_todo_data{'parent_todo_id'} = $new_todo_data{'todo_id'};
+
+    #call addTodo
+    $result = json_encode($new_todo_data);
+    $resultFinal = json_decode($result);
+    addTodo($dbh, $resultFinal, $customer_id);
+  }
+}
+
+###################################
+function doesTodoExistWithThisParentTodoId($dbh, $customer_id, $parent_todo_id){
+
+  $query = "select count(*) as MyCount from todo where customer_id = ? and parent_todo_id = ?";
+
+  $types = 'ii';  ## pass
+  $params = array($customer_id, $parent_todo_id);
+  $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
+  return $data;
+
+}
+
 
 ###################################
 function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
@@ -180,8 +261,9 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
   if (0 == strlen($request_data->task_name)){
       $response{'err'}=1;
       $response{'errMsg'}="Todo name is blank. Nothing was added";
-      return $response;
+        return $response;
   } else {
+
     $group_id = $request_data->activegroup;
     $response = checkFreeTodoThresholds($dbh, $customer_id, $group_id);
 
@@ -200,6 +282,7 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
         if (isset($request_data->frequency_cd)){
           $frequency_cd = $request_data->frequency_cd;
         }
+
 
         $done_dt = NULL;
 
@@ -223,18 +306,19 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
         }
         $status_cd = 1;
 
-        //echo "batch_id:$batch_id\n\n";
-
-        //$task_name = mysqli_real_escape_string($dbh, $request_data->task_name);
+        $parent_todo_id = NULL;
+        if (isset($request_data->parent_todo_id)){
+          $parent_todo_id = $request_data->parent_todo_id;
+        }
         $task_name = $request_data->task_name;
 
         $query = "INSERT INTO todo
-        (  task_name,   due_dt, starred,  group_id, priority_cd, frequency_cd, status_cd, customer_id, Note,  done, done_dt,  batch_id,   tags)  VALUES
-        (          ?,        ?,       0,         ?,           ?,            ?,         ?,           ?,   '',     0,       ?,         ?,      ?)";
+        (  task_name,   due_dt, starred,  group_id, priority_cd, frequency_cd, status_cd, customer_id, Note,  done, done_dt,  batch_id,   tags, parent_todo_id)  VALUES
+        (          ?,        ?,       0,         ?,           ?,            ?,         ?,           ?,   '',     0,       ?,         ?,      ?,              ?)";
 
         //$rowsAffected = actionSql($dbh,$query);
-        $types = 'ssiiiiisis';  ## pass
-        $params = array($task_name, $due_dt, $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, $done_dt, $batch_id, $tags );
+        $types = 'ssiiiiisisi';  ## pass
+        $params = array($task_name, $due_dt, $group_id, $priority_cd, $frequency_cd, $status_cd, $customer_id, $done_dt, $batch_id, $tags, $parent_todo_id);
         //var_dump($params);
         $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
@@ -1014,7 +1098,7 @@ function setAcctPeriodsForRegistration($dbh, $customer_id, $event_id){
 
     #add Trial (Premium)
     $begin_dt = date("Y-m-d");
-    $end_dt =date('Y-m-d', strtotime('+25 day', strtotime($begin_dt)) ); #add 1 year to begin date
+    $end_dt =date('Y-m-d', strtotime('+25 day', strtotime($begin_dt)) ); #add 25 days to begin date for premium trial
     addAccountPeriod($dbh, $customer_id, $begin_dt, $end_dt, 1, 1, $event_id); #1:Trial(Premium) ;  1:Active
 
     #add free period

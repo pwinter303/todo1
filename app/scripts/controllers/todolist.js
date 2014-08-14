@@ -73,6 +73,8 @@ angular.module('todoApp')
                 if (data){
                   if (todo.done){
                     todoFactory.msgSuccess('Well Done!');
+                    //Call getTodos because a new todo may have been generated (eg: completed a Monthly task)
+                    $scope.getTodos();
                   }
                 }
               }, function(error) {
