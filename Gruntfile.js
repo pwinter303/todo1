@@ -272,7 +272,8 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>',
         dest: '<%= yeoman.dist %>',
         //copy php and sql files from app to dist.. exclude config file
-        src: ['*.php', '*.sql','!config.php', '!dbRefreshTables.php']
+        // exclude DB patch and revert files from base code..
+        src: ['*.php', '*.sql','!config.php', '!dbRefreshTables.php', '!DB*.sql']
       }
     },
 
