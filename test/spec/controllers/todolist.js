@@ -12,9 +12,13 @@ describe('Controller: TodolistCtrl', function () {
   beforeEach(function (){
     // Create a "spy object" for our Service.
     /*global jasmine */
+
     todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getTodos', 'addTodo', 'deleteTodo', 'msgSuccess', 'msgError']);
     module('todoApp');
-    inject(function($rootScope, $controller, $q, _$timeout_) {
+    inject(function($httpBackend, $rootScope, $controller, $q, _$timeout_) {
+      //needed since angulartics kicks off another unexpected call to main.html and you get the error. Error: Unexpected request: GET views/main.html
+      $httpBackend.whenGET('views/main.html').respond([]);
+
       $scope = $rootScope.$new();
       ROOTScope = $rootScope;
       // $q.when creates a resolved promise... values in When are what the service should return...

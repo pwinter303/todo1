@@ -12,7 +12,9 @@ describe('Test of Controller: todoAuthenticateCtrl', function () {
   //mock Application to allow us to inject our own dependencies
   beforeEach(angular.mock.module('todoApp'));
   //mock the controller for the same reason and include $rootScope and $controller
-  beforeEach(angular.mock.inject(function($q, $controller, $rootScope) {
+  beforeEach(angular.mock.inject(function($httpBackend, $q, $controller, $rootScope) {
+    //needed since angulartics kicks off another unexpected call to main.html and you get the error. Error: Unexpected request: GET views/main.html
+    $httpBackend.whenGET('views/main.html').respond([]);
 
     //scope = $rootScope;
     scope = $rootScope.$new();

@@ -10,7 +10,9 @@ describe('Controller: AcctdetailCtrl ', function () {
       /*global jasmine */
       todoFactoryMOCK = jasmine.createSpyObj('todoFactory', ['getAccountPeriod','getEmail']);
       module('todoApp');
-      inject(function($rootScope, $controller, $q, _$timeout_) {
+      inject(function($httpBackend, $rootScope, $controller, $q, _$timeout_) {
+        //needed since angulartics kicks off another unexpected call to main.html and you get the error. Error: Unexpected request: GET views/main.html
+        $httpBackend.whenGET('views/main.html').respond([]);
         $scope = $rootScope.$new();
         /* following comment turns off camelcase check for this function.. so it'll be ignored */
         /* jshint camelcase: false */
