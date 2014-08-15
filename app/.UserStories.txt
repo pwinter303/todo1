@@ -1,7 +1,10 @@
 ========== MVP ============
 IN PROGRESS:
-Forgot password.... Force password change when using temp password
-Enable GoogleAnalytics.. Use: bower install angularytics... http://ngmodules.org/modules/angularytics
+Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year
+Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"...
+Share on Twitter https://dev.twitter.com/docs/tweet-button
+FaceBook, "Like us" on Facebook...
+Track referrals and give Premium access for x weeks...  SCHEMA.. Add referral to the register page. Add to Customer Record
 
 
 MVP:  CRITICAL
@@ -13,14 +16,11 @@ Build Unit Test Cases for Controllers and Services
 Update Stripe to use a real bank account and take it out of test mode...
 Register URL with Google and Others..
 **** Blog Content:  How to use the site..
-Should BLOG Link be removed and replace it with direct links to sections within the blog
+Should BLOG Link be removed and replace it with direct links to sections within the blog... Direct links from home page will help SEO
+Size tables to be able to handle 1M rows
 
 MVP:  IMPORTANT
-Social Media Links..
-Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"...
-Share on Twitter https://dev.twitter.com/docs/tweet-button
-FaceBook, "Like us" on Facebook...
-Frequency logic.... For example, when completing a "Monthly" tasks do we add another
+
 
 MVP:  NEEDED
 Print formatting
@@ -29,21 +29,21 @@ Show completed items... is this going to be a performance problem?  Should they 
 BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!
 Add Selenium test to grunt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
+Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed..
+Forgot password.... Force password change when using temp password
+
 
 MVP:  ON THE BUBBLE...
-Track referrals and give Premium access for x weeks...
-Track Twitter/Facebook posts and give Premium access for x weeks...
 Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Export Todos - Should this be part of premium?   MVP?
-Extend Premium Date Function
+Dashboard.. Showing Todos by Week, Month, Relation to Others, etc
 
 ========== Nice to Have ============
 Dynamic congratulations messages for completed tasks... integrated with Tostr
 Change order of group tabs   (SETTINGS)
 Ability to add Note with long text.....
 Move Login/Register/AddGroup to Directives?
-Config setting at user level (ie - show completed items for X days)
 Add todo by sending email
 Kudos for completing most todos
 Android App
@@ -112,6 +112,9 @@ Add Content on Login and Registration Page
 Add the ability to specify priority (maybe: Tags, DueDate, Frequency) in quick add (for example... New Todo|03/31/2014|Once)  8/9
 When you enter a todo, or update one it is not clear how to add it.... should leaving the field update it?  add recommendation? should + sign call add function
 Katie: Confusing to say "By Category" in the search/filter boxes
+Enable GoogleAnalytics.. Use: bower install Angulartics... works great.. http://luisfarzati.github.io/angulartics/.. easy setup works out of the box   8/14
+Frequency logic.... For example, when completing a "Monthly" tasks do we add another  8/14
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
