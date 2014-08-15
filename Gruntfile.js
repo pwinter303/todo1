@@ -280,7 +280,7 @@ module.exports = function (grunt) {
         cwd: '<%= yeoman.app %>/images',
         dest: '<%= yeoman.dist %>/images',
         //only want to copy certain images...
-        src: ['desktop_screenshot*.png', 'Giant.png']
+        src: ['desktop_screenshot*.png', 'Giant*.png']
       }
     },
 
