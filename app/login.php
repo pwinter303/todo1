@@ -172,37 +172,19 @@ function  addTodoGroup($dbh, $customer_id){
 
 ##
 function loginUser($dbh, $email, $password){
-    //fixme: instead of duplicate code have this call validate password (?)
 
-    // Initialize the hasher without portable hashes (this is more secure)
-    $hasher = new PasswordHash(8, false);
-
-    $query = "SELECT customer_id, password fROM customer where email = ? ";
-    //$data = execSqlSingleRow($dbh, $query);
-
-    $types = 's';  ## pass
-    $params = array($email);
-    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
-
-    $customer_id = $data['customer_id'];
-    $hashedPassword = $data['password'];
-
-    //echo "pwd: $hashedPassword";
-
-    $valid = $hasher->CheckPassword($password, $hashedPassword); // true
-
-    if (($valid) and ($customer_id)) {
-    //if ($customer_id){
-      $response{'login'} = 1;
-      $_SESSION['authenticated'] = 1;
-      $_SESSION['customer_id'] = $customer_id;
-      addEvent($dbh, $customer_id, 2, date('Y-m-d H:i:s') );  # 2 = Login
-    } else {
-      $response{'login'} = 0;
+    $valid=0;
+    $response{'login'} = 0; //default is invalid and no login
+    if (doesUserExist($dbh, $email)){
+        $customer_id = getCustomerId($dbh, $email);
+        $valid = validatePassword($dbh, $customer_id, $password);
+        if ($valid) {
+          $response{'login'} = 1;
+          $_SESSION['authenticated'] = 1;
+          $_SESSION['customer_id'] = $customer_id;
+          addEvent($dbh, $customer_id, 2, date('Y-m-d H:i:s') );  # 2 = Login
+        }
     }
-    // dont close the connection... it is needed in registeruser for additional processing.....
-    //closeDatabaseConnection($dbh);
-
     return $response;
 }
 

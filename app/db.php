@@ -184,39 +184,4 @@ function insertData($dbh,$query){
        return mysqli_affected_rows($dbh);
 }
 
-
-
-//fixme: delete these
-//
-//function execSqlSingleRow($dbh,$query){
-//      $result = mysqli_query($dbh,$query) or die('Query failed: '
-//                  . mysqli_error($dbh));
-//      $data=mysqli_fetch_array($result);
-//      mysqli_free_result($result);
-//      return $data;
-//}
-//
-//function execSqlMultiRow($dbh, $query){
-//      $data = array();
-//
-//      $result = mysqli_query($dbh,$query) or die('Query failed: '
-//                  . mysqli_error($dbh));
-//
-//      while ($row = mysqli_fetch_assoc($result)){
-//        array_push($data, $row);
-//      }
-//      mysqli_free_result($result);
-//      return $data;
-//}
-//
-//
-//function actionSql($dbh,$query){
-//### use this for insert, update, delete
-//      $result = mysqli_query($dbh,$query) or die('Query failed: '
-//                  . mysqli_error($dbh));
-//      $rows_affected = mysqli_affected_rows($dbh);
-//      return $rows_affected;
-//}
-//
-
 ?>
