@@ -1,11 +1,9 @@
 ========== MVP ============
 IN PROGRESS:
-Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year
-Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"...
-Share on Twitter https://dev.twitter.com/docs/tweet-button
-FaceBook, "Like us" on Facebook....
-Track referrals and give Premium access for x weeks...  SCHEMA.. Add referral to the register page. Add to Customer Record
-
+Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
+add open graph tags for facebook
+add open graph tags for twitter
+determine the best process for desktop_screenshot.png... if its in images it's going to get renamed... copy it in grunt?  copy it deploy script? will update script in grunt fix open graph tag in index.html
 
 MVP:  CRITICAL
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
@@ -29,14 +27,14 @@ Show completed items... is this going to be a performance problem?  Should they 
 BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!
 Add Selenium test to grunt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
-Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed..
+Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
 Forgot password.... Force password change when using temp password
 
 
 MVP:  ON THE BUBBLE...
 Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
-Export Todos - Should this be part of premium?   MVP?
+Export Todos - Should this be part of premium?   Or... If the Completed Page Exists... People could Copy/Paste
 Dashboard.. Showing Todos by Week, Month, Relation to Others, etc
 
 ========== Nice to Have ============
@@ -114,7 +112,8 @@ When you enter a todo, or update one it is not clear how to add it.... should le
 Katie: Confusing to say "By Category" in the search/filter boxes
 Enable GoogleAnalytics.. Use: bower install Angulartics... works great.. http://luisfarzati.github.io/angulartics/.. easy setup works out of the box   8/14
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another  8/14
-
+Social: Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"...Share on Twitter https://dev.twitter.com/docs/tweet-button  8/15
+Social: FaceBook, "Like us" on Facebook....  8/15
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
