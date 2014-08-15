@@ -274,6 +274,13 @@ module.exports = function (grunt) {
         //copy php and sql files from app to dist.. exclude config file
         // exclude DB patch and revert files from base code..
         src: ['*.php', '*.sql','!config.php', '!dbRefreshTables.php', '!DB*.sql']
+      },
+      staticImage: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/images',
+        dest: '<%= yeoman.dist %>/images',
+        //only want to copy certain images...
+        src: ['desktop_screenshot*.png', 'Giant.png']
       }
     },
 
@@ -426,7 +433,8 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build',
-    'copy:otherfiles'
+    'copy:otherfiles',
+    'copy:staticImage'
   ]);
 
 };
