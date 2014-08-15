@@ -16,6 +16,7 @@ angular.module('todoApp')
     $scope.getAccountPeriod();
 
     //fixme: should this be done elsewhere?  login? is it needed in other places?
+    //fixme: should login return eMail and store it there
     $scope.getEmail = function (){
         todoFactory.getEmail().then(function (data) {
             if (data){
