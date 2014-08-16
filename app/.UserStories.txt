@@ -23,7 +23,7 @@ MVP:  NEEDED
 Print formatting
 Payment/Donation for usage using PayPal
 Show completed items... is this going to be a performance problem?  Should they be protected?
-BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!
+BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!   VideoPixie...    TodoPixie????
 Add Selenium test to grunt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
