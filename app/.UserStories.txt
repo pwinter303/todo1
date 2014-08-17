@@ -1,7 +1,6 @@
 ========== MVP ============
 IN PROGRESS:
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
-add open graph tags for twitter
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
 
 MVP:  CRITICAL
@@ -28,7 +27,8 @@ Add Selenium test to grunt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
 Forgot password.... Force password change when using temp password
-
+Add Expires headers (see YSlow)
+Add Entity Tags (see YSlow)
 
 MVP:  ON THE BUBBLE...
 Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
@@ -115,7 +115,7 @@ Social: Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"...Share 
 Social: FaceBook, "Like us" on Facebook....  8/15
 determine the best process for desktop_screenshot.png... if its in images it's going to get renamed... Soltn: Grunt  8/15
 add open graph tags for facebook... including fb.admin which is userId  8/15
-
+add open graph tags for twitter  8/16
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

@@ -4,7 +4,6 @@
 /*global toastr */
 
 angular.module('todoApp', [
-  'ngSanitize',
   'ngRoute',
   'angulartics',
   'angulartics.google.analytics'
