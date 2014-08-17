@@ -1,7 +1,7 @@
 ========== MVP ============
 IN PROGRESS:
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
-fix facebook image that is getting picked up in open graph tags.. is it truncated?
+fix facebook image that is getting picked up in open graph tags.. is it truncated? 
 
 MVP:  CRITICAL
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
