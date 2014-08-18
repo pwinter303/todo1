@@ -76,19 +76,6 @@ function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
 
 }
 
-//FixMe: Remove This....
-function execSqlMultiRow($dbh, $query){
-      $data = array();
-
-      $result = mysqli_query($dbh,$query) or die('Query failed: '
-                  . mysqli_error($dbh));
-
-      while ($row = mysqli_fetch_assoc($result)){
-        array_push($data, $row);
-      }
-      mysqli_free_result($result);
-      return $data;
-}
 
 ########################################################################
 function  execSqlSingleRowPREPARED($dbh, $query, $types, $params){
