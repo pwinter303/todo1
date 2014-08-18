@@ -65,7 +65,8 @@ function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
     foreach( $parameters as $key=>$value ){
         $row_tmb[ $key ] = $value;
     }
-    $data[] = $row_tmb;
+    //$data[] = $row_tmb;
+    array_push($data, $row_tmb);
   }
 
   # close statement
@@ -73,6 +74,20 @@ function  execSqlMultiRowPREPARED($dbh, $query, $types, $params){
 
   return $data;
 
+}
+
+//FixMe: Remove This....
+function execSqlMultiRow($dbh, $query){
+      $data = array();
+
+      $result = mysqli_query($dbh,$query) or die('Query failed: '
+                  . mysqli_error($dbh));
+
+      while ($row = mysqli_fetch_assoc($result)){
+        array_push($data, $row);
+      }
+      mysqli_free_result($result);
+      return $data;
 }
 
 ########################################################################
