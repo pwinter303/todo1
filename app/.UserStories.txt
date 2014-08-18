@@ -2,6 +2,7 @@
 IN PROGRESS:
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
 fix facebook image that is getting picked up in open graph tags.. is it truncated? 
+Better Name for: Blog: ???     Better Name for Settings: ???
 
 MVP:  CRITICAL
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
@@ -9,7 +10,6 @@ Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' 
 What do you get when you pay for it... done but need content explain free vs premium
 Ability to set how long a completed task is shown -  SCHEMA
 Build Unit Test Cases for Controllers and Services
-Update Stripe to use a real bank account and take it out of test mode...
 Register URL with Google and Others..
 **** Blog Content:  How to use the site..
 Should BLOG Link be removed and replace it with direct links to sections within the blog... Direct links from home page will help SEO
@@ -23,7 +23,6 @@ Print formatting
 Payment/Donation for usage using PayPal
 Show completed items... is this going to be a performance problem?  Should they be protected?
 BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!   VideoPixie...    TodoPixie????
-Add Selenium test to grunt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
 Forgot password.... Force password change when using temp password
@@ -35,6 +34,8 @@ Configuration Table:  Examples of what it'd be used for:  # Days of Premium for 
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Export Todos - Should this be part of premium?   Or... If the Completed Page Exists... People could Copy/Paste
 Dashboard.. Showing Todos by Week, Month, Relation to Others, etc
+Add Selenium test to grunt
+
 
 ========== Nice to Have ============
 Dynamic congratulations messages for completed tasks... integrated with Tostr
@@ -116,6 +117,8 @@ Social: FaceBook, "Like us" on Facebook....  8/15
 determine the best process for desktop_screenshot.png... if its in images it's going to get renamed... Soltn: Grunt  8/15
 add open graph tags for facebook... including fb.admin which is userId  8/15
 add open graph tags for twitter  8/16
+Update Stripe to use a real bank account and take it out of test mode...  8/16
+Add DigiCert seal to account page  8/17
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

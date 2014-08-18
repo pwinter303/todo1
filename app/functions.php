@@ -8,6 +8,7 @@ function  getTodo($dbh, $customer_id, $todo_id){
   $types = 'ii';  ## pass
   $params = array($customer_id, $todo_id);
   $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+  $data = convertToBooleanSingle($data);
 
   return $data;
 }
@@ -100,6 +101,21 @@ function convertToBoolean($mainArray){
         }
       }
     }
+  }
+  return $mainArray;
+}
+
+###################################
+function convertToBooleanSingle($mainArray){
+  foreach ($mainArray as $fieldKey => $value){
+
+      if (("done" == $fieldKey) or ("active" == $fieldKey)){
+        if (1 == $value){
+          $mainArray{$fieldKey} = true;
+        } else {
+          $mainArray{$fieldKey} = false;
+        }
+      }
   }
   return $mainArray;
 }
