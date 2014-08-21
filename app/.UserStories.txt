@@ -3,6 +3,8 @@ IN PROGRESS:
 
 
 MVP:  CRITICAL
+Frequency and Priority Occasionally go Blank in the page...
+OrderBy in Todo List should take DueDate into account...
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
 Better Name for: Blog: ???     Better Name for Settings: ???
 What do you get when you pay for it... done but need content explain free vs premium
