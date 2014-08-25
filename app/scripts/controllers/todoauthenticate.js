@@ -5,12 +5,38 @@ angular.module('todoApp')
 
         $scope.pwd = {};
         $rootScope.loggedIn = 0;
-        //================================================================================
+
+
+    //================================================================================
+    $scope.getfrequencies = function (){
+      todoFactory.getfrequencies().then(function (data) {
+        $scope.frequencies = data;
+      }, function(error) {
+        // promise rejected, could be because server returned 404, 500 error...
+        todoFactory.msgError('Error Getting Frequencies:' + error);
+      });
+    };
+
+    //================================================================================
+    $scope.getpriorities = function (){
+      todoFactory.getpriorities().then(function (data) {
+        $scope.priorities = data;
+      }, function(error) {
+        // promise rejected, could be because server returned 404, 500 error...
+        todoFactory.msgError('Error Getting Priorities:' + error);
+      });
+    };
+
+
+    //================================================================================
         $scope.getLoginStatus = function() {
           authentication.getLoginStatus().then(function (data) {
               if (data.login){
                 $rootScope.loggedIn = Number(data.login);
                 $scope.$broadcast('LoggedIn', []);
+                //fixme: is this where this belongs? It was in todolist but there were cases when login wasnt set so these werent called
+                $scope.getpriorities();
+                $scope.getfrequencies();
               }
             }, function(error) {
               // promise rejected, could be because server returned 404, 500 error...
@@ -20,6 +46,11 @@ angular.module('todoApp')
         };
         $scope.getLoginStatus();
 
+//        if ($rootScope.loggedIn){
+//          $scope.getpriorities();
+//          $scope.getfrequencies();
+//        }
+
         //================================================================================
         $scope.logIn = function (user){
           $scope.loginmsg='';
@@ -27,6 +58,9 @@ angular.module('todoApp')
             $rootScope.loggedIn = Number(data.login);
             if ($rootScope.loggedIn) {
               $scope.$broadcast('LoggedIn', []);
+              //fixme: is this where this belongs? It was in todolist but there were cases when login wasnt set so these werent called
+              $scope.getpriorities();
+              $scope.getfrequencies();
               $location.path( '/todolist' );
             } else {
               $scope.loginmsg = 'ERROR - Invalid email/password combination';

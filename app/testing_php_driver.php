@@ -1,7 +1,8 @@
 <?php
 
 
-$baseURL = 'http://localhost/todo/app/';
+//$baseURL = 'http://localhost/todo/app/';
+$baseURL = 'http://localhost:8083/todo/app/';
 
 ## SESSION
 ### TO SET THIS.... Get into Chrome/FireFox... login.. then inspect headers and grab this value....
@@ -121,6 +122,12 @@ $expected = '{"email":"fakeuser@yahoo.com"}';
 $result = getEmail($dbh, 1);
 $result = json_encode($result);
 testDriverDirect('cust', 'getEmail', $result, $expected);
+
+###################
+$expected = "glyphicon-exclamation-sign red1";
+$result = setGlyphForDueDate('08/21/2014');
+testDriverDirect('dates', 'setGlyphForDueDate', $result, $expected);
+
 
 //$result = setAcctPeriodsForPayment($dbh, 1, 77);
 

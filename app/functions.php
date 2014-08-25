@@ -9,6 +9,7 @@ function  getTodo($dbh, $customer_id, $todo_id){
   $params = array($customer_id, $todo_id);
   $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
   $data = convertToBooleanSingle($data);
+  $data = convertNullSingle($data);
 
   return $data;
 }
@@ -26,6 +27,7 @@ function  getTodos($dbh, $customer_id){
   $params = array($customer_id);
   $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
   $data = convertToBoolean($data);
+  $data = convertNull($data);
 
   return $data;
 }
@@ -121,6 +123,50 @@ function convertToBooleanSingle($mainArray){
 }
 
 ###################################
+function convertNull($mainArray){
+  foreach ($mainArray as $primaryKey => $fieldValuePairs){
+    foreach ($fieldValuePairs as $fieldKey => $value){
+      if ("due_dt" == $fieldKey) {
+        if (null == $value){
+          $mainArray{$primaryKey}{'due_dt_sort'} = '12/31/9999';
+          $mainArray{$primaryKey}{'glyph'} = 'glyphicon-none';
+        } else {
+          $mainArray{$primaryKey}{'due_dt_sort'} = $value;
+          $mainArray{$primaryKey}{'glyph'} = setGlyphForDueDate($value);
+        }
+        //Remove icons for done items
+        if ($mainArray{$primaryKey}{'done'}){
+          $mainArray{$primaryKey}{'glyph'} = 'glyphicon-none';
+        }
+      }
+    }
+  }
+  return $mainArray;
+}
+
+###################################
+function convertNullSingle($mainArray){
+  foreach ($mainArray as $fieldKey => $value){
+
+      if ("due_dt" == $fieldKey){
+        if (null == $value){
+          $mainArray{'due_dt_sort'} = '12/31/9999';
+          $mainArray{'glyph'} = 'glyphicon-none';
+        } else {
+          $mainArray{'due_dt_sort'} = $value;
+          $mainArray{'glyph'} = setGlyphForDueDate($value);
+        }
+        //Remove icons for done items
+        if ($mainArray{'done'}){
+          $mainArray{'glyph'} = 'glyphicon-none';
+        }
+      }
+  }
+  return $mainArray;
+}
+
+
+###################################
 function convertFromBoolean($mainArray){
     foreach ($mainArray as $fieldKey => $value){
       if ("done" == $fieldKey){
@@ -135,6 +181,44 @@ function convertFromBoolean($mainArray){
 }
 
 
+function setGlyphForDueDate($due_date){
+
+date_default_timezone_set('UTC');
+
+$today = date("Y-m-d"); //today
+
+$result = "glyphicon-none";
+$one_week_ago = date('m/d/Y', strtotime("-1 week") );
+$three_days_ago = date('m/d/Y', strtotime("-3 day") );
+
+$one_week_away = date('m/d/Y', strtotime("+1 week") );
+$two_weeks_away = date('m/d/Y', strtotime("+2 week") );
+
+if (strtotime($two_weeks_away) < strtotime($due_date) ){
+  $result = "glyphicon-none";  // More than 2 weeks away
+}
+
+if (strtotime($one_week_away) < strtotime($due_date) ){
+  $result = "glyphicon-none";  // More than 1 week away
+}else {
+  $result = "glyphicon-none";  // Less than a week away (or maybe late.. will be overridden below)
+}
+
+if (strtotime($today) > strtotime($due_date) ){
+  $result = "glyphicon-exclamation-sign red1";  // late
+}
+
+if (strtotime($three_days_ago) > strtotime($due_date) ){
+  $result = "glyphicon-exclamation-sign red2";  // more than 3 days late
+}
+
+if (strtotime($one_week_ago) > strtotime($due_date) ){
+  $result = "glyphicon-exclamation-sign red3";  // more than a week late
+}
+
+return $result;
+
+}
 
 ###################################
 function  updateTodo($dbh, $request_data, $customer_id){
@@ -187,12 +271,14 @@ function  updateTodo($dbh, $request_data, $customer_id){
   $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
 
   //if todo is done and frequency is something other than 1 (which is Once).. then do processing to replicate todo
+  //fixme: re-evaluate this... seems like it'll cause problems to sometimes return an array... sometimes not
   if (('1' == $done)  and (!(1 == $frequency_cd))  ){
-    doFrequencyProcessing($dbh, $customer_id, $new_todo_data);
+    $add_todo_data = doFrequencyProcessing($dbh, $customer_id, $new_todo_data);
+    $final = array($new_todo_data, $add_todo_data);
+    return $final;
+  } else {
+    return $new_todo_data;
   }
-
-  return $new_todo_data;
-  //return $rowsAffected;
 }
 
 
@@ -252,7 +338,8 @@ function doFrequencyProcessing($dbh, $customer_id, $new_todo_data){
     #call addTodo
     $result = json_encode($new_todo_data);
     $resultFinal = json_decode($result);
-    addTodo($dbh, $resultFinal, $customer_id);
+    $new_todo_data = addTodo($dbh, $resultFinal, $customer_id);
+    return $new_todo_data;
   }
 }
 

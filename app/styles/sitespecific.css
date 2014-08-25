@@ -27,6 +27,17 @@
     color: #fff;
 }
 
+.red3 {
+    color: #FF0000;
+}
+.red2 {
+    color: #FF9900;
+}
+.red1 {
+    color: #FFFF33;
+}
+
+
 .dotted {
     border-top: 1px dotted rgb(204, 204, 204);
     border-bottom: 1px dotted rgb(204, 204, 204);
@@ -84,4 +95,29 @@
     margin-bottom: -15px;
     margin-top: -15px;
     margin-right: 5px;
+}
+
+
+/* Start Code to Push Footer to Bottom of Page*/
+* {
+    margin: 0;
+}
+html, body {
+    height: 100%;
+}
+.wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -2em;
+}
+.footer, .push {
+    height: 2em;
+}
+/* End Code to Push Footer to Bottom of Page*/
+
+
+.glyphicon-none:before {
+    content: "\2122";
+    color: transparent !important;
 }

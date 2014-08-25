@@ -49,7 +49,9 @@ function processPost(){
             $email = $request->email;
             $pass = $request->password;
             $pass2 = $request->repassword;
-            $result = registerUser($dbh, $email, $pass, $pass2);
+            $firstName = $request->firstName;
+            $lastName = $request->lastName;
+            $result = registerUser($dbh, $email, $pass, $pass2, $firstName, $lastName);
             break;
        case 'loginUser':
             $email = $request->email;
@@ -78,7 +80,7 @@ function processPost(){
 }
 
 #####
-function registerUser($dbh, $email, $password, $password2){
+function registerUser($dbh, $email, $password, $password2, $firstName, $lastName){
   if (   (0 == strlen($password))   or   (0 == strlen($email)) ) {
       $response{'error'}=1;
       if (0 == strlen($password)) {
@@ -95,10 +97,11 @@ function registerUser($dbh, $email, $password, $password2){
     } else {
       $exists = doesUserExist($dbh, $email);
       if ($exists){
-              $response{'error'} = "ERROR - eMail already registered";
+              $response{'error'}=1;
+              $response{'errMsg'} = "ERROR - eMail already registered";
       } else {
         $guid = createGUID();
-        $return_status = addUser($dbh, $email, $password, 1, $guid); #1:Awaiting Confirmation eMail return
+        $return_status = addUser($dbh, $email, $password, 1, $guid, $firstName, $lastName); #1:Awaiting Confirmation eMail return
         if ($return_status){
           eMailActivation($email, $guid);
           $response{'msg'} = "Successful Registration";
@@ -112,8 +115,7 @@ function registerUser($dbh, $email, $password, $password2){
               $addEventResponse = addEvent($dbh, $customer_id, 1, date('Y-m-d H:i:s') );  # 1 = Registration
               $event_id = $addEventResponse{'LastInsertId'};
 
-              #Add Account Period - Trial (Premium)
-              #Add Account Period - Free
+              #Add Account Periods - Trial (Premium) & Free
               setAcctPeriodsForRegistration($dbh, $customer_id, $event_id);
             }
           }
@@ -127,7 +129,7 @@ function registerUser($dbh, $email, $password, $password2){
 }
 
 
-function addUser($dbh, $email, $password, $credential_status_cd, $guid){
+function addUser($dbh, $email, $password, $credential_status_cd, $guid, $firstName, $lastName){
 
     //considered doing createGUID within this function... or even letting MySQL create it... but
     //since the guid is needed in the calling function (eg: email it).. kept the creation outside of this
@@ -138,11 +140,11 @@ function addUser($dbh, $email, $password, $credential_status_cd, $guid){
     // Hash the password.  $hashedPassword will be a 60-character string.
     $hashedPassword = $hasher->HashPassword($password);
 
-    $query = "Insert into customer (email,  password, credential_status_cd,   guid) VALUES
-                                 (      ?,         ?,                    ?,      ?)";
+    $query = "Insert into customer (email,  password, credential_status_cd,   guid, first_name, last_name) VALUES
+                                 (      ?,         ?,                    ?,      ?,          ?,         ?)";
     //$rowsAffected = actionSql($dbh,$query);
-    $types = 'ssis';  ## pass
-    $params = array($email, $hashedPassword, $credential_status_cd, $guid);
+    $types = 'ssisss';  ## pass
+    $params = array($email, $hashedPassword, $credential_status_cd, $guid, $firstName, $lastName);
     $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
     return $rowsAffected;
@@ -155,16 +157,17 @@ function  addTodoGroup($dbh, $customer_id){
   //$rowsInserted = insertData($dbh, $query);
   $types = 'siii';  ## pass
 
-  $group_name = 'Home';
+  $group_name = 'My To Dos';
   $sort_order = 1;
   $active = 1;
   $params = array($group_name, $sort_order, $customer_id, $active);
   $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
-  $group_name = 'Work';
-  $sort_order = 2;
-  $active = 0;
-  $params = array($group_name, $sort_order, $customer_id, $active);
-    $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
+//  $group_name = 'Work';
+//  $sort_order = 2;
+//  $active = 0;
+//  $params = array($group_name, $sort_order, $customer_id, $active);
+//  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
 
 }

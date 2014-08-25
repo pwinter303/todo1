@@ -1,25 +1,61 @@
+<h1 class="text-center">Register</h1>
+<h3 class="text-center">One Step Away from Becoming Organized! :-)</h3>
+
+</br>
 <div class="container">
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-4 col-md-offset-4   ">
             <form data-ng-submit="registerMe(user)" form-autofill-fix>
-                <p><input type="email" class="span3" name="email" data-ng-model="user.email" required placeholder="Enter Email">
-                    <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
-                    <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
-                </p>
 
-                <p><input type="password" class="span3" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
-                    <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
-                    <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
-                </p>
-                <p><input type="password" class="span3" name="password" data-ng-model="user.repassword" required placeholder="Re-enter Password" data-ng-minlength="3">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6 col-sm-6">
+                            <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" class="form-control" data-ng-model="user.firstName" value="" required placeholder="Enter First Name">
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-6 col-sm-6">
+                            <input type="text" class="form-control" data-ng-model="user.lastName" value="" required placeholder="Enter Last Name">
+                        </div>
+                    </div>
+
+                </br>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <input type="email" class="form-control" name="email" data-ng-model="user.email" required placeholder="Enter Email">
+                            <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
+                            <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
+                            <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
+                            <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
+                        </div>
+                    </div>
+                </div>
+                </br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control" name="password" data-ng-model="user.repassword" required placeholder="Re-enter Password" data-ng-minlength="3">
+                        </div>
+                    </div>
+                </div>
+                </br>
                 </p>
                 <p><button type="submit" class="btn btn-success">Register</button>
             </form>
             <span>{{errormsg}}</span>
-        </div>
-        <div class="col-md-10">
-            <h4>One Step Closer to being Organized! :-)</h4>
-                Just enter your email and selected password and you are done! </br>
         </div>
     </div>
 </div>

@@ -3,29 +3,6 @@
 angular.module('todoApp')
   .controller('TodolistCtrl', ['$scope', 'todoFactory', '$rootScope', function ($scope, todoFactory, $rootScope ) {
 
-        $scope.getfrequencies = function (){
-          todoFactory.getfrequencies().then(function (data) {
-            $scope.frequencies = data;
-          }, function(error) {
-            // promise rejected, could be because server returned 404, 500 error...
-            todoFactory.msgError('Error Getting Frequencies:' + error);
-          });
-        };
-
-        $scope.getpriorities = function (){
-          todoFactory.getpriorities().then(function (data) {
-            $scope.priorities = data;
-          }, function(error) {
-            // promise rejected, could be because server returned 404, 500 error...
-            todoFactory.msgError('Error Getting Priorities:' + error);
-          });
-        };
-
-        if ($rootScope.loggedIn){
-          $scope.getpriorities();
-          $scope.getfrequencies();
-        }
-
         $scope.addTodo = function (newTodo){
           /* following comment turns off camelcase check for this function.. so it'll be ignored */
           /* jshint camelcase: false */
@@ -70,7 +47,15 @@ angular.module('todoApp')
                   if (todo.done){
                     todoFactory.msgSuccess('Well Done!');
                     //Call getTodos because a new todo may have been generated (eg: completed a Monthly task)
-                    $scope.getTodos();
+                      for(var i=0; i< data.length;i++){
+                        if (todo.todo_id == data[i].todo_id){
+                          //skip it...
+                        } else {
+                          $scope.todos.push(data[i]);
+                        }
+                      }
+                    //previously called getTodos but now update is returning the newly added
+                    //$scope.getTodos();
                   }
                 }
               }, function(error) {
@@ -89,6 +74,7 @@ angular.module('todoApp')
               for(var i=0;i<$scope.todos.length;i++){
                 if($scope.todos[i].todo_id === data.todo_id){
                   $scope.todos[i].due_dt = data.due_dt;
+                  $scope.todos[i].glyph = data.glyph;
                 }
               }
             }

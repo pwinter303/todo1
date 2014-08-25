@@ -32,7 +32,9 @@
 
       <!--BOOTSTRAP CSS-->
       <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-      <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">
+      <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">-->
+      <!--NOTE: Bootstrap Version Has Been Customized (H1.. H5 Font Sizes).. Do NOT use CDN-->
+      <link rel="stylesheet" href="styles/bootstrap.min.css">
 
       <!--CSS BUILD-->
       <!-- build:css({.tmp,app}) styles/main.css -->
@@ -51,7 +53,8 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-    <div data-ng-controller="todoAuthenticateCtrl">
+
+    <div class="wrapper" data-ng-controller="todoAuthenticateCtrl">
         <div data-ng-controller="TodoGroupCtrl">
             <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
                 <div class="container">
@@ -106,7 +109,9 @@
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
    </div>
-</div>
+
+        <div class="push"></div>
+    </div>
 
 
 
@@ -181,11 +186,21 @@
     <script src="scripts/controllers/social.js"></script>
     <!-- endbuild -->
 
+  <div class="footer navbar-inverse text-center">
+    <div class="col-md-2">
+        <a href="#contact">Contact Us</a>
+    </div>
 
-  <!--<footer>-->
-      <!--<nav class="navbar navbar-inverse" role="navigation">-->
-      <!--</nav>-->
-  <!--</footer>-->
+    <div class="col-md-2">
+        <a href="#social">Social: Help Your Friends!</a>
+    </div>
 
-</body>
+    <div class="col-md-2">
+        <a href="/blog">Blog</a>
+    </div>
+  </div>
+
+
+  </body>
+
 </html>

@@ -1,10 +1,8 @@
 ========== MVP ============
 IN PROGRESS:
 
-
 MVP:  CRITICAL
-Frequency and Priority Occasionally go Blank in the page...
-OrderBy in Todo List should take DueDate into account...
+Suzy thought search box was tied to the add of a a todo... So did Ellen
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
 Better Name for: Blog: ???     Better Name for Settings: ???
 What do you get when you pay for it... done but need content explain free vs premium
@@ -13,6 +11,8 @@ Blog Content:  How to use the site..
 Should BLOG Link be removed and replace it with direct links to sections within the blog... Direct links from home page will help SEO
 
 MVP:  IMPORTANT
+Predefined Lists: Wedding, Going to College, Holiday (Thanksgiving),
+Katie Idea: give tokens for completing todos... get 20 done and we'll send you a T-Shirt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
@@ -121,6 +121,13 @@ add open graph tags for facebook... including fb.admin which is userId  8/15
 add open graph tags for twitter  8/16
 Update Stripe to use a real bank account and take it out of test mode...  8/16
 Add DigiCert seal to account page  8/17
+OrderBy in Todo List should take DueDate into account  8/22
+Reduce Header Sizes (H1..H5).. Customized boostrap (http://getbootstrap.com/customize) 8/23
+When an Item is done.. eliminate the glyphicon.   8/24
+On Register... Do Not Have "HOME" Confusing.. Just have MyTodos... Suzy thought Home was home Page  8/24
+Frequency and Priority Occasionally go Blank in the page... 8/23 (moved to authentication)
+Color/Icon for Items that are late  8/24
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
