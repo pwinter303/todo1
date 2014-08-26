@@ -47,13 +47,21 @@ angular.module('todoApp')
                   if (todo.done){
                     todoFactory.msgSuccess('Well Done!');
                     //Call getTodos because a new todo may have been generated (eg: completed a Monthly task)
-                      for(var i=0; i< data.length;i++){
-                        if (todo.todo_id == data[i].todo_id){
-                          //skip it...
-                        } else {
-                          $scope.todos.push(data[i]);
+                    /* following comment turns off camelcase check for this function.. so it'll be ignored */
+                    /* jshint camelcase: false */
+                    for(var iData=0; iData< data.length;iData++){
+                      if (todo.todo_id === data[iData].todo_id){
+                        //FixMe: Instead of looping through all the TodoS... Can JSON be Keyed..
+                        for(var i=0;i<$scope.todos.length;i++){
+                          if($scope.todos[i].todo_id === data[iData].todo_id){
+                            $scope.todos[i].due_dt = data[iData].due_dt;
+                            $scope.todos[i].glyph = data[iData].glyph;
+                          }
                         }
+                      } else {
+                        $scope.todos.push(data[iData]);
                       }
+                    }
                     //previously called getTodos but now update is returning the newly added
                     //$scope.getTodos();
                   }

@@ -121,7 +121,7 @@ function emptyTable($dbh, $table){
 
   //$query = "TRUNCATE TABLE $table";
   $rowsDeleted = deleteData($dbh, $query);
-  echo "$table deleted:" . $rowsDeleted . "</br>";
+  echo "$table deleted:" . $rowsDeleted . "<br>";
 
 
 }
@@ -135,7 +135,7 @@ function insert_credential_status($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "credential_status: rows inserted:" . $rowsInserted . "</br>";
+    echo "credential_status: rows inserted:" . $rowsInserted . "<br>";
 
 }
 
@@ -159,7 +159,7 @@ function insertCustomer($dbh){
     ( 2, 'fakeuser2@yahoo.com', '$hashedPassword2','$guid2')";
 
   $rowsInserted = insertData($dbh, $query);
-  echo "Customer inserted:" . $rowsInserted . "</br>";
+  echo "Customer inserted:" . $rowsInserted . "<br>";
 
 }
 function insertFrequencies($dbh){
@@ -172,7 +172,7 @@ function insertFrequencies($dbh){
     ( '5','Yearly')"  ;
 
   $rowsInserted = insertData($dbh, $query);
-  echo "Frequencies inserted:" . $rowsInserted . "</br>";
+  echo "Frequencies inserted:" . $rowsInserted . "<br>";
 
 }
 
@@ -191,7 +191,7 @@ function insertPriorities($dbh){
   ;
 
   $rowsInserted = insertData($dbh, $query);
-  echo "priorities inserted:" . $rowsInserted . "</br>";
+  echo "priorities inserted:" . $rowsInserted . "<br>";
 
 }
 
@@ -205,7 +205,7 @@ function insertStatuses($dbh){
   ;
 
   $rowsInserted = insertData($dbh, $query);
-  echo "statuses inserted:" . $rowsInserted . "</br>";
+  echo "statuses inserted:" . $rowsInserted . "<br>";
 
 }
 
@@ -221,7 +221,7 @@ function insertTodos($dbh){
     ('Get Todo Giant', '2014-9-09 00:00:00', '0', '1', '3', '2', '2',1, 'my note', 0, '',6)";
 
   $rowsInserted = insertData($dbh, $query);
-  echo "todos inserted:" . $rowsInserted . "</br>";
+  echo "todos inserted:" . $rowsInserted . "<br>";
 
 }
 
@@ -236,7 +236,7 @@ function insertTodoGroups($dbh){
   ;
 
   $rowsInserted = insertData($dbh, $query);
-  echo "todoGroups inserted:" . $rowsInserted . "</br>";
+  echo "todoGroups inserted:" . $rowsInserted . "<br>";
 
 }
 
@@ -247,7 +247,7 @@ function insert_payment_method($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "payment_method inserted:" . $rowsInserted . "</br>";
+    echo "payment_method inserted:" . $rowsInserted . "<br>";
 
 }
 
@@ -267,7 +267,7 @@ function insert_event_description($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "event_description inserted:" . $rowsInserted . "</br>";
+    echo "event_description inserted:" . $rowsInserted . "<br>";
 };
 
 
@@ -279,7 +279,7 @@ function insert_account_period_status($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "account_period_status inserted:" . $rowsInserted . "</br>";
+    echo "account_period_status inserted:" . $rowsInserted . "<br>";
 };
 
 
@@ -292,7 +292,7 @@ function insert_account_type($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "account_type inserted:" . $rowsInserted . "</br>";
+    echo "account_type inserted:" . $rowsInserted . "<br>";
 };
 
 
@@ -303,7 +303,7 @@ function insert_event($dbh){
     ";
 
     $rowsInserted = insertData($dbh, $query);
-    echo "event inserted:" . $rowsInserted . "</br>";
+    echo "event inserted:" . $rowsInserted . "<br>";
 };
 
 
@@ -323,6 +323,6 @@ function insert_account_period($dbh){
     //(1, CURDATE(), CURDATE() + INTERVAL 31 DAY, 1, 1, 1,1),
 
     $rowsInserted = insertData($dbh, $query);
-    echo "account_period inserted:" . $rowsInserted . "</br>";
+    echo "account_period inserted:" . $rowsInserted . "<br>";
 
 }

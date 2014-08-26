@@ -116,8 +116,9 @@ html, body {
 }
 /* End Code to Push Footer to Bottom of Page*/
 
-
+/* http://brajeshwar.github.io/entities/ this site shows all the characters and the codes */
+/*e101 is the exclamation sign... must match the glyphicon that is being used in the app so the spacing is the same */
 .glyphicon-none:before {
-    content: "\2122";
+    content: "\e101";
     color: transparent !important;
 }

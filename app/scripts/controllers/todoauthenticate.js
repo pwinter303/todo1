@@ -7,28 +7,28 @@ angular.module('todoApp')
         $rootScope.loggedIn = 0;
 
 
-    //================================================================================
-    $scope.getfrequencies = function (){
-      todoFactory.getfrequencies().then(function (data) {
-        $scope.frequencies = data;
-      }, function(error) {
-        // promise rejected, could be because server returned 404, 500 error...
-        todoFactory.msgError('Error Getting Frequencies:' + error);
-      });
-    };
+        //================================================================================
+        $scope.getfrequencies = function (){
+          todoFactory.getfrequencies().then(function (data) {
+            $scope.frequencies = data;
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Getting Frequencies:' + error);
+          });
+        };
 
-    //================================================================================
-    $scope.getpriorities = function (){
-      todoFactory.getpriorities().then(function (data) {
-        $scope.priorities = data;
-      }, function(error) {
-        // promise rejected, could be because server returned 404, 500 error...
-        todoFactory.msgError('Error Getting Priorities:' + error);
-      });
-    };
+        //================================================================================
+        $scope.getpriorities = function (){
+          todoFactory.getpriorities().then(function (data) {
+            $scope.priorities = data;
+          }, function(error) {
+            // promise rejected, could be because server returned 404, 500 error...
+            todoFactory.msgError('Error Getting Priorities:' + error);
+          });
+        };
 
 
-    //================================================================================
+        //================================================================================
         $scope.getLoginStatus = function() {
           authentication.getLoginStatus().then(function (data) {
               if (data.login){

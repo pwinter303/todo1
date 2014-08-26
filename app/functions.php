@@ -236,14 +236,6 @@ function  updateTodo($dbh, $request_data, $customer_id){
     $due_dt = doDateStuff($due_dt);
   }
 
-// if it is still a valid date after the doDateStuff routine... then update
-//  if (strlen($due_dt)){
-//      //$due_dt_sql = "due_dt = STR_TO_DATE('$due_dt', '%Y-%m-%d'),";
-//      $due_dt_sql = "due_dt = STR_TO_DATE('$due_dt', '%m/%d/%Y'),";
-//  } else {
-//      $due_dt_sql = "due_dt = NULL,";
-//  }
-
   $due_dt_final = NULL;
   if (strlen($due_dt)){
     $due_dt_final = date('Y-m-d', strtotime($due_dt)  );
