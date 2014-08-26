@@ -1,20 +1,20 @@
 <div class="row">
     <div class="col-md-6">
-        <h4>Add a Todo Group</h4>
+        <h4>Add a To Do Group</h4>
         <form role="form">
             <input type="text" class="form-control" data-ng-model="newGroup.name" placeholder="enter group name here">
             <button class="btn btn-primary" data-ng-click="addGroup(newGroup)">Add Group</button>
         </form>
     </div>
     <div class="col-md-6">
-        <h4>Delete Todo Group </h4>
+        <h4>Delete To Do Group </h4>
         <form role="form">
             <select class="form-control" data-ng-model="group.group_id" data-ng-options="group.group_id as group.group_name for group in groups">
             </select>
             <button  class="btn btn-danger" data-ng-click="deleteGroup(group)">Delete Group</button>
         </form>
-        NOTE: all the Todos (active or complete) associated with this group will be deleted! <br>
-        Use the Move Todos Between Group function before deleting any groups!
+        NOTE: all the To Dos (active or complete) associated with this group will be deleted! <br>
+        Use the Move To Dos Between Group function before deleting any groups!
     </div>
 </div>
 
@@ -22,9 +22,9 @@
 <br><br>
 <div class="row">
     <div class="col-md-6">
-        <h4>Move Todos Between Groups</h4>
+        <h4>Move To Dos Between Groups</h4>
         <form role="form">
-            <div class="col-md-5">Move Todos from this group:</div>
+            <div class="col-md-5">Move To Dos from this group:</div>
             <div class="col-md-7">
                 <select class="form-control" data-ng-model="moveGroup.fromGroup" data-ng-options="group.group_id as group.group_name for group in groups">
                 </select>
@@ -34,11 +34,11 @@
                 <select class="form-control" data-ng-model="moveGroup.toGroup" data-ng-options="group.group_id as group.group_name for group in groups">
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary" data-ng-click="moveTodos(moveGroup)">Move the Todos</button>
+            <button type="submit" class="btn btn-primary" data-ng-click="moveTodos(moveGroup)">Move the To Dos</button>
         </form>
     </div>
     <div class="col-md-6">
-        <h4>Update Todo Group Names</h4>
+        <h4>Update To Do Group Names</h4>
         <div data-ng-repeat="group in groups">
             <input type="text" class="form-control input" data-ng-model="group.group_name" data-ng-enter="updateGroup(group)">
         </div>
