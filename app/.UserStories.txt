@@ -1,5 +1,6 @@
 ========== MVP ============
 IN PROGRESS:
+Solution for the image in the blog (which is in wp-content/themes/twenty fourteen-child/header.php
 
 MVP:  CRITICAL
 Suzy thought search box was tied to the add of a a todo... So did Ellen
@@ -11,6 +12,8 @@ Blog Content:  How to use the site..
 Should BLOG Link be removed and replace it with direct links to sections within the blog... Direct links from home page will help SEO
 
 MVP:  IMPORTANT
+Put Images on the main page into devices.. Apple Laptop and iPhone...
+Change colors in the exclamation point... remove the yellow one...
 Predefined Lists: Wedding, Going to College, Holiday (Thanksgiving),
 Katie Idea: give tokens for completing todos... get 20 done and we'll send you a T-Shirt
 Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
@@ -18,9 +21,7 @@ Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 p
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
 Payment/Donation for usage using PayPal
 BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!   VideoPixie...    TodoPixie????
-Add Expires headers (see YSlow)
 Add Entity Tags (see YSlow)
-Size tables to be able to handle 1M rows
 
 MVP:  NEEDED
 Ability to set how long a completed task is shown -  SCHEMA
@@ -30,6 +31,7 @@ Print formatting
 Show completed items... is this going to be a performance problem?  Should they be protected?
 Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
 Forgot password.... Force password change when using temp password
+Size tables to be able to handle 1M rows
 
 MVP:  ON THE BUBBLE...
 Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
@@ -127,7 +129,8 @@ When an Item is done.. eliminate the glyphicon.   8/24
 On Register... Do Not Have "HOME" Confusing.. Just have MyTodos... Suzy thought Home was home Page  8/24
 Frequency and Priority Occasionally go Blank in the page... 8/23 (moved to authentication)
 Color/Icon for Items that are late  8/24
-
+Add Expires headers (see YSlow) 8/26
+Change:   Todo to To Do...  Remaining: Logo image must be split...  8/26
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
