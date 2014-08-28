@@ -4,6 +4,7 @@ Solution for the image in the blog (which is in wp-content/themes/twenty fourtee
 
 MVP:  CRITICAL
 Add Create Date and Update Date to all the tables
+Add Frequency decode as part of AddTodo Explode..
 Suzy thought search box was tied to the add of a a todo... So did Ellen
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
 Better Name for: Blog: ???     Better Name for Settings: ???
