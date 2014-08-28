@@ -1,6 +1,7 @@
 ========== MVP ============
 IN PROGRESS:
 Solution for the image in the blog (which is in wp-content/themes/twenty fourteen-child/header.php
+Debugging... Turn off debugging by replacing the php.ini with the backup
 
 MVP:  CRITICAL
 Add Create Date and Update Date to all the tables
@@ -133,6 +134,7 @@ Frequency and Priority Occasionally go Blank in the page... 8/23 (moved to authe
 Color/Icon for Items that are late  8/24
 Add Expires headers (see YSlow) 8/26
 Change:   Todo to To Do...  Remaining: Logo image must be split...  8/26
+Fix 404 error for permalink setting to pretty links in wordpress...   8/28/  http://stackoverflow.com/questions/19400749/wordpress-permalinks-not-working-htaccess-seems-ok-but-getting-404-error-on-pa
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
