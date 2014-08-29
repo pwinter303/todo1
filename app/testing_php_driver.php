@@ -129,6 +129,13 @@ $result = setGlyphForDueDate('08/21/2014');
 testDriverDirect('dates', 'setGlyphForDueDate', $result, $expected);
 
 
+###################
+$expected = "????";
+$result = getfrequencies($dbh);
+var_dump($result);
+testDriverDirect('ref', 'getfrequencies', $result, $expected);
+
+
 //$result = setAcctPeriodsForPayment($dbh, 1, 77);
 
 

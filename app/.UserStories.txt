@@ -1,11 +1,9 @@
 ========== MVP ============
 IN PROGRESS:
-Solution for the image in the blog (which is in wp-content/themes/twenty fourteen-child/header.php
 Debugging... Turn off debugging by replacing the php.ini with the backup
+MySQL EC2: Review where data is stored.. Believe the default is on the disk which is transient. Store on /mnt (?). Read: http://dev.mysql.com/doc/refman/5.6/en/ha-vm-aws-setup.html
 
 MVP:  CRITICAL
-Add Create Date and Update Date to all the tables
-Add Frequency decode as part of AddTodo Explode..
 Suzy thought search box was tied to the add of a a todo... So did Ellen
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
 Better Name for: Blog: ???     Better Name for Settings: ???
@@ -15,7 +13,6 @@ Blog Content:  How to use the site..
 Should BLOG Link be removed and replace it with direct links to sections within the blog... Direct links from home page will help SEO
 
 MVP:  IMPORTANT
-Put Images on the main page into devices.. Apple Laptop and iPhone...
 Change colors in the exclamation point... remove the yellow one...
 Predefined Lists: Wedding, Going to College, Holiday (Thanksgiving),
 Katie Idea: give tokens for completing todos... get 20 done and we'll send you a T-Shirt
@@ -135,6 +132,10 @@ Color/Icon for Items that are late  8/24
 Add Expires headers (see YSlow) 8/26
 Change:   Todo to To Do...  Remaining: Logo image must be split...  8/26
 Fix 404 error for permalink setting to pretty links in wordpress...   8/28/  http://stackoverflow.com/questions/19400749/wordpress-permalinks-not-working-htaccess-seems-ok-but-getting-404-error-on-pa
+Add Create Date and Update Date to all the tables  8/29 - DB.20140828 patch
+Add Frequency decode as part of AddTodo Explode.. Leverage Import   8/29
+Solution for the image in the blog (which is in wp-content/themes/twenty fourteen-child/header.php  8/29 - Pointed to Image Stored in the Root Directory of the BLOG directory
+Put Images on the main page into devices.. Apple Laptop and iPhone...  8/29
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

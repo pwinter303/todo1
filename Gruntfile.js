@@ -309,31 +309,35 @@ module.exports = function (grunt) {
     },
 
     // start of S3
-    aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
+    //aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
+    aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
+    //aws: grunt.file.readJSON('/home/pwinter303/grunt-aws.json'),
     //aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
     /* following comment turns off camelcase check for this function.. so it'll be ignored */
     /* jshint camelcase: false */
-    aws_s3: {
-      options: {
-        accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
-        secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
-        uploadConcurrency: 5, // 5 simultaneous uploads
-        downloadConcurrency: 5 // 5 simultaneous downloads
-      },
-      source_code: {
-        options: {
-          bucket: 'storage-plw'
-        },
-        files: [
-          {action: 'upload',
-            expand: true,
-            cwd: 'dist/js',
-            dest: 'source-code/aaa',
-            src: ['**']
-          }
-        ]
-      }
-    },
+
+//    NOT USING THIS VERSION... USING s3 (below)
+//    aws_s3: {
+//      options: {
+//        accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
+//        secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
+//        uploadConcurrency: 5, // 5 simultaneous uploads
+//        downloadConcurrency: 5 // 5 simultaneous downloads
+//      },
+//      source_code: {
+//        options: {
+//          bucket: 'storage-plw'
+//        },
+//        files: [
+//          {action: 'upload',
+//            expand: true,
+//            cwd: 'dist/js',
+//            dest: 'source-code/aaa',
+//            src: ['**']
+//          }
+//        ]
+//      }
+//    },
 
     s3: {
       options: {

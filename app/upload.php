@@ -89,55 +89,7 @@ function processUploadedTodo($dbh, $fields, $customer_id, $batch_id, $groups, $f
 
 }
 
-#################################################################
-function getGroupIdUsingName($groupName, $groups){
-    $groupId = 0;
-    $groupName = trim($groupName);
-    foreach ($groups as $fields){
-      $groupNmFromDB = $fields{'group_name'};
-      $groupNmFromDB = trim($groupNmFromDB);
-      if(strtolower($groupName) == strtolower($groupNmFromDB)) {
-          $groupId = $fields{'group_id'};
-      }
-    }
-    $ok = 0;
-    $err = "Group Not Found";
-    if ($groupId){
-      $ok = 1;
-      $err = "";
-    }
-    return array($ok, $err, $groupId);
-}
 
-function getFrequencyCdUsingName($frequency, $frequencies){
-  $frequency_cd = 1;
-  $frequency = trim($frequency);
-  foreach ($frequencies as $fields){
-    $frequencyNmFromDB = $fields{'name'};
-    $frequencyNmFromDB = trim($frequencyNmFromDB);
-    if(strtolower($frequency) == strtolower($frequencyNmFromDB)) {
-        $frequency_cd = $fields{'cd'};
-    }
-    ############echo "matching $frequency to $frequencyNmFromDB....frequency_cd is $frequency_cd\n";
-
-  }
-  return $frequency_cd;
-}
-
-
-function getPriorityCdUsingName($priority, $priorities){
-    $priority_cd = 5;
-    $priority = trim($priority);
-    foreach ($priorities as $fields){
-      $priorityNmFromDB = $fields{'name'};
-      $pattern = "/$priority/";
-      if (preg_match("$pattern",$priorityNmFromDB)){
-          $priority_cd = $fields{'cd'};
-      }
-    }
-    ############echo "matching $priority to $priorityNmFromDB....priority_cd is $priority_cd\n";
-    return $priority_cd;
-}
 
 
 ?>

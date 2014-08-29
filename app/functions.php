@@ -366,7 +366,7 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
       return $response;
     } else {
 
-        $request_data = explodeTodoName($request_data);
+        $request_data = explodeTodoName($request_data, $dbh);
 
         $priority_cd = 5;
         if (isset($request_data->priority_cd)){
@@ -425,17 +425,31 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
   }
 }
 
-function  explodeTodoName($request){
+function  explodeTodoName($request, $dbh){
 
   //var_dump($request);
 
   $task_name = $request->task_name;
 
-  $daysOfWeek = array('Sunday', 'Sun', 'Monday', 'Mon', 'Tuesday', 'Tue', 'Wednesday', 'Wed', 'Thursday',
-   'Thu', 'Friday', 'Fri', 'Saturday', 'Sat'
-   );
 
   if (preg_match('/|/', $task_name)) {
+
+      $daysOfWeek = array('Sunday', 'Sun', 'Monday', 'Mon', 'Tuesday', 'Tue', 'Wednesday', 'Wed', 'Thursday',
+       'Thu', 'Friday', 'Fri', 'Saturday', 'Sat'
+       );
+
+//       //fixme: may be better to get from database but didnt want to take the hit
+//       $frequencies = array(
+//           1 => once,
+//           2 => weekly,
+//           3 => monthly,
+//           4 => quarterly,
+//           5 => yearly
+//       );
+
+      //fixme: may want to get this from memory... memcache (?)
+      $frequencies = getFrequencies($dbh);
+
       $fields = explode('|',$task_name);
       $request->task_name = $fields[0];
       unset($fields[0]);     # remove the task name
@@ -444,6 +458,7 @@ function  explodeTodoName($request){
       foreach ($fields as $value) {
           $foundPriorityMatch = 0;
           $foundDueDtMatch = 0;
+          $foundFrequencyMatch = 0;
 
           if(preg_match('/^\d+$/',$value)){
             $request->priority_cd= $value;
@@ -465,7 +480,14 @@ function  explodeTodoName($request){
             }
           }
 
-          if ((0 == $foundPriorityMatch) and (0 == $foundDueDtMatch)){
+          $temp_freq_cd = getFrequencyCdUsingName($value, $frequencies, 0);
+          if ($temp_freq_cd){
+            $request->frequency_cd = $temp_freq_cd;
+            $foundFrequencyMatch = 1;
+          }
+
+          //if the field being processed didnt match ANYTHING... then treat it as a tag/category
+          if ((0 == $foundPriorityMatch) and (0 == $foundDueDtMatch) and (0 == $foundFrequencyMatch)){
             $request->tags = $value;
           }
 
@@ -476,6 +498,55 @@ function  explodeTodoName($request){
   return $request;
 }
 
+#################################################################
+function getGroupIdUsingName($groupName, $groups){
+    $groupId = 0;
+    $groupName = trim($groupName);
+    foreach ($groups as $fields){
+      $groupNmFromDB = $fields{'group_name'};
+      $groupNmFromDB = trim($groupNmFromDB);
+      if(strtolower($groupName) == strtolower($groupNmFromDB)) {
+          $groupId = $fields{'group_id'};
+      }
+    }
+    $ok = 0;
+    $err = "Group Not Found";
+    if ($groupId){
+      $ok = 1;
+      $err = "";
+    }
+    return array($ok, $err, $groupId);
+}
+
+function getFrequencyCdUsingName($frequency, $frequencies, $doDefault=1){
+  //there are cases when you dont want to default to 1.... eg: explode since the tag will be passed
+  if ($doDefault){
+    $frequency_cd = 1;  #default to 1:Once
+  }
+  $frequency = trim($frequency);
+  foreach ($frequencies as $fields){
+    $frequencyNmFromDB = $fields{'name'};
+    $frequencyNmFromDB = trim($frequencyNmFromDB);
+    if(strtolower($frequency) == strtolower($frequencyNmFromDB)) {
+        $frequency_cd = $fields{'cd'};
+    }
+  }
+  return $frequency_cd;
+}
+
+
+function getPriorityCdUsingName($priority, $priorities){
+    $priority_cd = 5;
+    $priority = trim($priority);
+    foreach ($priorities as $fields){
+      $priorityNmFromDB = $fields{'name'};
+      $pattern = "/$priority/";
+      if (preg_match("$pattern",$priorityNmFromDB)){
+          $priority_cd = $fields{'cd'};
+      }
+    }
+    return $priority_cd;
+}
 
 function  isPremiumAccount($dbh, $customer_id){
     $query = "select count(*) as TrueInd from account_period where customer_id = ? and
