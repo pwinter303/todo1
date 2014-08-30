@@ -619,7 +619,7 @@ function  checkFreeGroupsThreshold($dbh, $customer_id){
 }
 
 function  checkFreeTodoWithinGroupThreshold($dbh, $customer_id,$group_id){
-    $query = "select count(*) as todo_count from todo where customer_id = $customer_id and done = 0 and group_id = $group_id";
+    $query = "select count(*) as todo_count from todo where customer_id = ? and done = 0 and group_id = ?";
     //$data = execSqlSingleRow($dbh, $query);
     $types = 'ii';  ## pass
     $params = array($customer_id, $group_id);
