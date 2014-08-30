@@ -818,7 +818,7 @@ function  deleteGroup($dbh, $request_data, $customer_id){
             //$data = execSqlSingleRow($dbh, $query);
             $types = 'i';  ## pass
             $params = array($customer_id);
-            $data = execSqlMultiRowPREPARED($dbh, $query, $types, $params);
+            $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
             $group_id = $data{'group_id'};
 
             $query = "update todo_group set active = 1 where customer_id = ? and group_id = ?";
