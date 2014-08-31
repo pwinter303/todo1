@@ -1,45 +1,40 @@
 ========== MVP ============
 IN PROGRESS:
-Debugging... Turn off debugging by replacing the php.ini with the backup
-
+Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
+fix facebook image that is getting picked up in open graph tags.. is it truncated?
 
 MVP:  CRITICAL
-Suzy thought search box was tied to the add of a a todo... So did Ellen
-fix facebook image that is getting picked up in open graph tags.. is it truncated?
-Better Name for: Blog: ???     Better Name for Settings: ???
+Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
+Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 What do you get when you pay for it... done but need content explain free vs premium
+Ability to set how long a completed task is shown -  SCHEMA
+Build Unit Test Cases for Controllers and Services
+Update Stripe to use a real bank account and take it out of test mode...
 Register URL with Google and Others..
-Blog Content:  How to use the site..
+**** Blog Content:  How to use the site..
 Should BLOG Link be removed and replace it with direct links to sections within the blog... Direct links from home page will help SEO
+Size tables to be able to handle 1M rows
 
 MVP:  IMPORTANT
-Change colors in the exclamation point... remove the yellow one...
-Predefined Lists: Wedding, Going to College, Holiday (Thanksgiving),
-Katie Idea: give tokens for completing todos... get 20 done and we'll send you a T-Shirt
-Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
-Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
-Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?).. Table to give Demo UserIDs
-Payment/Donation for usage using PayPal
-BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!   VideoPixie...    TodoPixie????
-Add Entity Tags (see YSlow)
+
 
 MVP:  NEEDED
-Ability to set how long a completed task is shown -  SCHEMA
-Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
-Build Unit Test Cases for Controllers and Services
 Print formatting
+Payment/Donation for usage using PayPal
 Show completed items... is this going to be a performance problem?  Should they be protected?
+BIZ STUFF - Terms and Conditions?   Privacy Agreement? I think they're needed...    Bank Account for STRIPE!   VideoPixie...    TodoPixie????
+Add Selenium test to grunt
+Test functionality in different browsers: IE, FF, Safari, including Mobile, Tablet
 Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
 Forgot password.... Force password change when using temp password
-Size tables to be able to handle 1M rows
+Add Expires headers (see YSlow)
+Add Entity Tags (see YSlow)
 
 MVP:  ON THE BUBBLE...
 Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Export Todos - Should this be part of premium?   Or... If the Completed Page Exists... People could Copy/Paste
 Dashboard.. Showing Todos by Week, Month, Relation to Others, etc
-Add Selenium test to grunt
-
 
 ========== Nice to Have ============
 Dynamic congratulations messages for completed tasks... integrated with Tostr
@@ -121,26 +116,6 @@ Social: FaceBook, "Like us" on Facebook....  8/15
 determine the best process for desktop_screenshot.png... if its in images it's going to get renamed... Soltn: Grunt  8/15
 add open graph tags for facebook... including fb.admin which is userId  8/15
 add open graph tags for twitter  8/16
-Update Stripe to use a real bank account and take it out of test mode...  8/16
-Add DigiCert seal to account page  8/17
-OrderBy in Todo List should take DueDate into account  8/22
-Reduce Header Sizes (H1..H5).. Customized boostrap (http://getbootstrap.com/customize) 8/23
-When an Item is done.. eliminate the glyphicon.   8/24
-On Register... Do Not Have "HOME" Confusing.. Just have MyTodos... Suzy thought Home was home Page  8/24
-Frequency and Priority Occasionally go Blank in the page... 8/23 (moved to authentication)
-Color/Icon for Items that are late  8/24
-Add Expires headers (see YSlow) 8/26
-Change:   Todo to To Do...  Remaining: Logo image must be split...  8/26
-Fix 404 error for permalink setting to pretty links in wordpress...   8/28/  http://stackoverflow.com/questions/19400749/wordpress-permalinks-not-working-htaccess-seems-ok-but-getting-404-error-on-pa
-Add Create Date and Update Date to all the tables  8/29 - DB.20140828 patch
-Add Frequency decode as part of AddTodo Explode.. Leverage Import   8/29
-Solution for the image in the blog (which is in wp-content/themes/twenty fourteen-child/header.php  8/29 - Pointed to Image Stored in the Root Directory of the BLOG directory
-Put Images on the main page into devices.. Apple Laptop and iPhone...  8/29
-MySQL EC2: Review where data is stored..  Read: http://dev.mysql.com/doc/refman/5.6/en/ha-vm-aws-setup.html... 8/30... OK... EBS Root means all data is on EBS
-20px of Padding to the right doesnt extend page to edge of viewport... makes it possible to slide page on iPhone  8/30 (fixed by putting container around row)
-
-
-
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
