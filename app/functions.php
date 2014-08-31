@@ -520,6 +520,7 @@ function getGroupIdUsingName($groupName, $groups){
 
 function getFrequencyCdUsingName($frequency, $frequencies, $doDefault=1){
   //there are cases when you dont want to default to 1.... eg: explode since the tag will be passed
+  $frequency_cd = 0;
   if ($doDefault){
     $frequency_cd = 1;  #default to 1:Once
   }
