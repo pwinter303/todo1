@@ -113,7 +113,7 @@ Enable GoogleAnalytics.. Use: bower install Angulartics... works great.. http://
 Frequency logic.... For example, when completing a "Monthly" tasks do we add another  8/14
 Social: Tweet on Twitter ex:  "I'm getting organized on todogiant.com!"...Share on Twitter https://dev.twitter.com/docs/tweet-button  8/15
 Social: FaceBook, "Like us" on Facebook....  8/15
-determine the best process for desktop_screenshot.png... if its in images it's going to get renamed... Soltn: Grunt  8/15
+determine the best process for desktop screenshot.png... if its in images it's going to get renamed... Soltn: Grunt  8/15
 add open graph tags for facebook... including fb.admin which is userId  8/15
 add open graph tags for twitter  8/16
 
