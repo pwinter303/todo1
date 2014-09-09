@@ -7,7 +7,6 @@ MVP:  CRITICAL
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
 Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 What do you get when you pay for it... done but need content explain free vs premium
-Ability to set how long a completed task is shown -  SCHEMA
 Build Unit Test Cases for Controllers and Services
 Register URL with Google and Others..
 **** Blog Content:  How to use the site..
@@ -15,7 +14,7 @@ Should BLOG Link be removed and replace it with direct links to sections within 
 Size tables to be able to handle 1M rows
 
 MVP:  IMPORTANT
-
+Ability to set how long a completed task is shown -  SCHEMA
 
 MVP:  NEEDED
 Print formatting
@@ -116,7 +115,7 @@ add open graph tags for facebook... including fb.admin which is userId  8/15
 add open graph tags for twitter  8/16
 Update Stripe to use a real bank account and take it out of test mode...   9/4
 Add Expires headers (see YSlow)  9/4
-
+Get Giant Logo:  http://www.clipartpal.com/clipart_pd/cartoon/mythology_10279.html
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
