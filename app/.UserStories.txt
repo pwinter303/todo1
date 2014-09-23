@@ -4,8 +4,8 @@ Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 p
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
 
 MVP:  CRITICAL
+Add BiWeekly to Frequency DropDown.. and take it into account when closing an item
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
-Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 What do you get when you pay for it... done but need content explain free vs premium
 Build Unit Test Cases for Controllers and Services
 Register URL with Google and Others..
@@ -15,6 +15,7 @@ Size tables to be able to handle 1M rows
 
 MVP:  IMPORTANT
 Ability to set how long a completed task is shown -  SCHEMA
+Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 
 MVP:  NEEDED
 Print formatting
