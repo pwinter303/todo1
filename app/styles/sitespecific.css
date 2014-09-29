@@ -37,7 +37,6 @@
     color: #FFFF33;
 }
 
-
 .dotted {
     border-top: 1px dotted rgb(204, 204, 204);
     border-bottom: 1px dotted rgb(204, 204, 204);
@@ -121,4 +120,8 @@ html, body {
 .glyphicon-none:before {
     content: "\e101";
     color: transparent !important;
+}
+
+.foo {
+    outline: 1px solid orange;
 }

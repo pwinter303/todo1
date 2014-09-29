@@ -35,6 +35,9 @@
       <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">-->
       <!--NOTE: Bootstrap Version Has Been Customized (H1.. H5 Font Sizes).. Do NOT use CDN-->
       <link rel="stylesheet" href="styles/bootstrap.min.v320.css">
+      <link rel="stylesheet" href="styles/animate/animate.css">
+      <link rel="stylesheet" href="styles/style.css">
+      <link rel="stylesheet" href="styles/fontawesome/font-awesome.css">
 
       <!--CSS BUILD-->
       <!-- build:css({.tmp,app}) styles/main.css -->
@@ -57,6 +60,7 @@
     <div class="wrapper" data-ng-controller="todoAuthenticateCtrl">
         <div data-ng-controller="TodoGroupCtrl">
             <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <!--<nav class="navbar navbar-static-top" role="navigation">-->
                 <div class="container">
 
                     <div class="navbar-header">
@@ -88,7 +92,7 @@
                             <!-- Single button -->
                             <div class="btn-group" data-ng-show="loggedIn">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    Settings <span class="caret"></span>
+                                    SETTINGS <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#contact">Contact Us</a></li>
@@ -108,7 +112,8 @@
             </nav>
 
             <!-- Add your site or application content here -->
-            <div class="container" ng-view=""></div>
+            <!--<div class="container" ng-view=""></div>-->
+            <div ng-view=""></div>
         </div>
         <div class="push"></div>
     </div>
