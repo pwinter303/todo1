@@ -39,6 +39,10 @@
       <link rel="stylesheet" href="styles/style.css">
       <link rel="stylesheet" href="styles/fontawesome/font-awesome.css">
 
+      <!-- Owl Carousel -->
+      <link href="styles/owl-carousel/owl.carousel.css" rel="stylesheet">
+      <link href="styles/owl-carousel/owl.theme.css" rel="stylesheet">
+
       <!--CSS BUILD-->
       <!-- build:css({.tmp,app}) styles/main.css -->
       <link rel="stylesheet" href="bower_components/toastr/toastr.min.css">
@@ -46,8 +50,9 @@
       <!-- endbuild -->
 
 </head>
-  <body ng-app="todoApp">
-    <!--[if lt IE 7]>
+    <body ng-app="todoApp">
+
+<!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
@@ -56,9 +61,11 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
+<div style="height: 100%" data-ng-controller="todoAuthenticateCtrl">
+    <div style="height: 100%" data-ng-controller="TodoGroupCtrl">
 
-    <div class="wrapper" data-ng-controller="todoAuthenticateCtrl">
-        <div data-ng-controller="TodoGroupCtrl">
+    <!--<div style="height: 100%">-->
+        <!--<div style="height: 100%">-->
             <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
             <!--<nav class="navbar navbar-static-top" role="navigation">-->
                 <div class="container">
@@ -112,14 +119,10 @@
             </nav>
 
             <!-- Add your site or application content here -->
-            <!--<div class="container" ng-view=""></div>-->
-            <div ng-view=""></div>
+            <div style="height: 100%" ng-view=""></div>
+
         </div>
-        <div class="push"></div>
     </div>
-
-
-
 
     <!-- Google Analytics -->
     <script>
@@ -173,6 +176,8 @@
     <!--ANGULARTICS-->
     <script src="bower_components/angulartics/dist/angulartics.min.js"></script>
     <script src="bower_components/angulartics/dist/angulartics-ga.min.js"></script>
+    <!-- owl carousel -->
+    <script src="bower_components/owl-carousel/owl.carousel.min.js"></script>
     <!-- endbuild -->
 
     <!--BUILD.... SCRIPTS...-->
@@ -191,6 +196,9 @@
     <script src="scripts/controllers/social.js"></script>
     <!-- endbuild -->
 
+    <!-- custom -->
+    <script src="scripts/custom.js"></script>
+
     <div class="footer">
         <div class="navbar-inverse text-center">
             <div class="container">
@@ -200,7 +208,7 @@
                     </div>
 
                     <div class="col-md-4 col-xs-4">
-                        <a href="#social">Social: Help Your Friends!</a>
+                        <a href="#social">Social: Help Your Friends!</a><p>
                     </div>
 
                     <div class="col-md-4 col-xs-4">

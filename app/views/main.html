@@ -1,183 +1,257 @@
-<div>
+<!-- intro -->
+<section    id="intro">
 
-    <!-- Preloader -->
-    <!--<div class="preloader">-->
-        <!--<div class="loader-item">-->
-            <!--<img src="img/loading.gif" alt="loader">-->
-        <!--</div>-->
-    <!--</div>-->
+    <!-- Carousel -->
+    <div id="home-slider" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#home-slider" data-slide-to="0" class="active"></li>
+            <li data-target="#home-slider" data-slide-to="1"></li>
+        </ol>
 
-    <!-- navigation -->
-    <!--<div class="navigation">-->
-        <!--<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">-->
-            <!--<div class="container">-->
-                <!--<div class="navbar-header page-scroll">-->
-                    <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">-->
-                        <!--<i class="fa fa-bars"></i>-->
-                    <!--</button>-->
-                    <!--<a class="navbar-brand" href="index.html">-->
-                        <!--<img src="img/logo.png" alt="logo">-->
-                    <!--</a>-->
-                <!--</div>-->
+        <div class="carousel-inner main-slider main-color">
+            <!-- Slide #1 -->
+            <div class="item active" id="carousel-page-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h1 class="first-child animated slideInDown delay-2">RESPONSIVE RETINA READY THEME</h1>
+                            <p class="animated slideInLeft delay-4">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.
+                            </p>
+                            <a href="#" class="btn btn-lg btn-purchase animated fadeInUpBig delay-5">Purchase Now</a>
+                        </div>
+                        <div class="col-sm-6 hidden-xs">
+                            <img src="images/slider-1.png" class="img-responsive animated fadeInLeft delay-1" alt="">
+                        </div>
+                    </div> <!-- / .row -->
+                </div> <!-- / .container -->
+            </div> <!-- / .item -->
+            <!-- Slide #2 -->
+            <div class="item" id="carousel-page-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h1 class="first-child animated slideInUp delay-2">FLAT DESIGN</h1>
+                            <p class="animated slideInUp delay-4">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.
+                            </p>
+                            <a href="#" class="btn btn-lg btn-purchase animated fadeInUpBig delay-5">Purchase Now</a>
+                        </div>
+                        <div class="col-sm-4 hidden-xs col-sm-offset-2">
 
-                <!--&lt;!&ndash; Collect the nav links, forms, and other content for toggling &ndash;&gt;-->
-                <!--<div class="collapse navbar-collapse navbar-right navbar-main-collapse">-->
-                    <!--<ul class="nav navbar-nav">-->
-                        <!--&lt;!&ndash; Hidden li included to remove active class from about link when scrolled up past about section &ndash;&gt;-->
-                        <!--<li class="hidden">-->
-                            <!--<a href="#page-top"></a>-->
-                        <!--</li>-->
-                        <!--<li class="page-scroll">-->
-                            <!--<a href="#services">services</a>-->
-                        <!--</li>-->
-                        <!--<li class="page-scroll">-->
-                            <!--<a href="#works">works</a>-->
-                        <!--</li>-->
-                        <!--<li class="page-scroll">-->
-                            <!--<a href="#about">about us</a>-->
-                        <!--</li>-->
-                        <!--<li class="page-scroll">-->
-                            <!--<a href="#pricing">pricing</a>-->
-                        <!--</li>-->
-                        <!--<li class="page-scroll">-->
-                            <!--<a href="#blog">blog</a>-->
-                        <!--</li>-->
-                        <!--<li class="page-scroll">-->
-                            <!--<a href="#contact">contact</a>-->
-                        <!--</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--&lt;!&ndash; /.navbar-collapse &ndash;&gt;-->
-            <!--</div>-->
-            <!--&lt;!&ndash; /.container &ndash;&gt;-->
-        <!--</nav>-->
-    <!--</div>-->
-    <!-- ./navigation -->
+                            <img src="images/slider-2.png" class="img-responsive animated fadeInRight delay-2" alt="">
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div> <!-- / .container -->
+            </div> <!-- / .item -->
+
+        </div> <!-- / .carousel -->
+
+    </div>
 
 
+    <div>
+        <a ng-click="scrollTo('services')" class="btn btn-square">
+        <!--<a href="#services" class="btn btn-square">-->
+            <i class="fa fa-angle-down"></i>
+        </a>
+    </div>
 
-    <!-- intro -->
-    <section    id="intro">
 
-        <!-- Carousel -->
-        <div id="home-slider" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-                <li data-target="#home-slider" data-slide-to="0" class="active"></li>
-                <li data-target="#home-slider" data-slide-to="1"></li>
-            </ol>
+</section>
+<!-- ./intro -->
 
-            <div class="carousel-inner main-slider main-color">
-                <!-- Slide #1 -->
-                <div class="item active" id="carousel-page-1">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h1 class="first-child animated slideInDown delay-2">RESPONSIVE RETINA READY THEME</h1>
-                                <p class="animated slideInLeft delay-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.
-                                </p>
-                                <a href="#" class="btn btn-lg btn-purchase animated fadeInUpBig delay-5">Purchase Now</a>
-                            </div>
-                            <div class="col-sm-6 hidden-xs">
-                                <img src="images/slider-1.png" class="img-responsive animated fadeInLeft delay-1" alt="">
-                            </div>
-                        </div> <!-- / .row -->
-                    </div> <!-- / .container -->
-                </div> <!-- / .item -->
-                <!-- Slide #2 -->
-                <div class="item" id="carousel-page-2">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h1 class="first-child animated slideInUp delay-2">FLAT DESIGN</h1>
-                                <p class="animated slideInUp delay-4">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.
-                                </p>
-                                <a href="#" class="btn btn-lg btn-purchase animated fadeInUpBig delay-5">Purchase Now</a>
-                            </div>
-                            <div class="col-sm-4 hidden-xs col-sm-offset-2">
 
-                                <img src="images/slider-2.png" class="img-responsive animated fadeInRight delay-2" alt="">
 
-                            </div>
-                        </div> <!-- / .row -->
-                    </div> <!-- / .container -->
-                </div> <!-- / .item -->
+<!-- services -->
+<section id="services" class="section">
+    <div class="container">
 
-            </div> <!-- / .carousel -->
-
+        <div class="section-header">
+            <h1>How We Can Help</h1>
+            <div class="divider-light"></div>
+            <p>Creating a To Do List will instantly make you feel more in control and eliminate that feeling of being overwhelmed. It will allow you to stay focused on the important items.
         </div>
 
-
-        <div>
-            <a ng-click="scrollTo('services')" class="btn btn-square">
-            <!--<a href="#services" class="btn btn-square">-->
-                <i class="fa fa-angle-down"></i>
-            </a>
-        </div>
-
-
-    </section>
-    <!-- ./intro -->
-
-
-
-    <!-- services -->
-    <section id="services" class="section">
-        <div class="container">
-
-            <div class="section-header">
-                <h1>How We Can Help</h1>
-                <div class="divider-light"></div>
-                <p>Creating a To Do List will instantly make you feel more in control and eliminate that feeling of being overwhelmed. It will allow you to stay focused on the important items.
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-                    <div class="icon-box-primary wow fadeInUp showdelay2">
-                        <div class="icon-box-icon">
-                            <i class="fa fa-mobile"></i>
-                        </div>
-                        <div class="icon-box-info">
-                            <h4>Fully Responsive</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
-                        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="icon-box-primary wow fadeInUp showdelay2">
+                    <div class="icon-box-icon">
+                        <i class="fa fa-mobile"></i>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="icon-box-primary wow fadeInUp showdelay2">
-                        <div class="icon-box-icon">
-                            <i class="fa fa-cogs"></i>
-                        </div>
-                        <div class="icon-box-info">
-                            <h4>Easy To Customize</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4">
-                    <div class="icon-box-primary wow fadeInUp showdelay2">
-                        <div class="icon-box-icon">
-                            <i class="fa fa-heart"></i>
-                        </div>
-                        <div class="icon-box-info">
-                            <h4>Love This Template</h4>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
-                        </div>
+                    <div class="icon-box-info">
+                        <h4>Fully Responsive</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="icon-box-primary wow fadeInUp showdelay2">
+                    <div class="icon-box-icon">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <div class="icon-box-info">
+                        <h4>Easy To Customize</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="icon-box-primary wow fadeInUp showdelay2">
+                    <div class="icon-box-icon">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="icon-box-info">
+                        <h4>Love This Template</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- ./services -->
+
+<!-- testimonials -->
+<section id="testimonials" class="section dark-bg">
+    <div class="section-header">
+        <h1>What People Are Saying</h1>
+        <div class="divider-light"></div>
+    </div>
+
+    <div class="container">
+        <div id="testimonial-list" class="owl-carousel  wow fadeInUp showdelay2">
+        <!--<div id="testimonial-list" class="owl-carousel">-->
+            <div class="item">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+            </div>
+            <div class="item">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+            </div>
+            <div class="item">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+            </div>
+            <div class="item">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+            </div>
+            <div class="item">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+            </div>
 
         </div>
-    </section>
-    <!-- ./services -->
+    </div>
+</section>
+<!-- ./testimonials -->
+
+<script>
+    $(document).ready(function() {
+        $("#testimonial-list").owlCarousel({
+            items : 1,
+            lazyLoad : true,
+            navigation : false
+        })
+    });
+</script>
+
+<!-- about -->
+<section id="about" class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <h1>about us</h1>
+            <div class="divider-light"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+        </div>
+
+    </div>
+</section>
+<!-- ./about -->
 
 
+<!-- pricing -->
+<section id="pricing" class="section dark-bg">
+    <div class="container">
+
+        <div class="section-header">
+            <h1>pricing</h1>
+            <div class="divider-light"></div>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-4">
+                <div class="price-box wow fadeInUp showdelay2">
+                    <div class="price-header">
+                        <span class="price-title">free</span>
+                        <span class="price-amount">$ 0</span>
+                        <span class="price-month">/ Month</span>
+                    </div>
+                    <div class="price-content">
+                        <ul>
+                            <li>unlimited data</li>
+                            <li>2 emails</li>
+                            <li>2 tickets</li>
+                            <li>0 Support</li>
+                            <li>50mb bandwith</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <a href="#" class="btn-theme">sign up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="price-box active  wow fadeInUp showdelay2">
+                    <div class="price-header">
+                        <span class="price-title">basic</span>
+                        <span class="price-amount">$ 20</span>
+                        <span class="price-month">/ Month</span>
+                    </div>
+                    <div class="price-content">
+                        <ul>
+                            <li>unlimited data</li>
+                            <li>20 emails</li>
+                            <li>20 tickets</li>
+                            <li>20 Support</li>
+                            <li>550mb bandwith</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <a href="#" class="btn-theme">sign up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="price-box  wow fadeInUp showdelay2">
+                    <div class="price-header">
+                        <span class="price-title">pro</span>
+                        <span class="price-amount">$ 99</span>
+                        <span class="price-month">/ Month</span>
+                    </div>
+                    <div class="price-content">
+                        <ul>
+                            <li>unlimited data</li>
+                            <li>unlimited emails</li>
+                            <li>unlimited tickets</li>
+                            <li>unlimited Support</li>
+                            <li>unlimited bandwith</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <a href="#" class="btn-theme">sign up</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
 
-
-
-</div>
-
-
+    </div>
+</section>
+<!-- ./pricing -->

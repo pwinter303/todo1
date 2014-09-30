@@ -44,7 +44,7 @@ h6 {
 }
 
 a {
-    color: #a7ce30;
+    /*color: #a7ce30;*/
 	
     -webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
@@ -297,14 +297,14 @@ a:active {
 .divider-light {
 	width: 229px;
 	height: 18px;
-	background: url(../img/divider_light.png) no-repeat top left;
+	background: url(../images/divider_light.png) no-repeat top left;
 	margin: 0 auto;
 }
 
 .divider-dark {
 	width: 229px;
 	height: 18px;
-	background: url(../img/divider_dark.png) no-repeat top left;
+	background: url(../images/divider_dark.png) no-repeat top left;
 	margin: 0 auto;
 }
 
@@ -441,7 +441,7 @@ a:active {
     width: 100%;
     height: 100%;
     /*PLW Adjustment   */
-    padding: 50px 0;
+    padding: 100px 0;
     /*padding: 100px 0;*/
     text-align: center;
     color: #fff;
@@ -455,7 +455,7 @@ a:active {
 #intro2 {
     padding: 170px 0 100px;
     color: #fff;
-    background:#000 url(../img/demo/blur1.jpg) no-repeat bottom center scroll;
+    background:#000 url(../images/blur1.jpg) no-repeat bottom center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
@@ -807,7 +807,7 @@ a:active {
 
 #testimonials {
 	position:relative;
-	background:#424242 url(../img/demo/blur2.jpg) no-repeat repeat top left;
+	background:#424242 url(../images/blur2.jpg) no-repeat repeat top left;
 	background-size:cover;
 }
 
@@ -859,7 +859,7 @@ a:active {
 
 #achivements {
 	position:relative;
-	background:#424242 url(../img/demo/blur2.jpg) no-repeat repeat top left;
+	background:#424242 url(../images/blur2.jpg) no-repeat repeat top left;
 	background-size:cover;
 }
 
@@ -1077,7 +1077,7 @@ a:active {
 
 #pricing {
 	position:relative;
-	background:#424242 url(../img/demo/blur2.jpg) no-repeat repeat top left;
+	background:#424242 url(../images/blur2.jpg) no-repeat repeat top left;
 	background-size:cover;
 }
 
@@ -1145,7 +1145,7 @@ a:active {
 
 #contact {
 	position:relative;
-	background:#424242 url(../img/demo/blur2.jpg) no-repeat repeat top left;
+	background:#424242 url(../images/blur2.jpg) no-repeat repeat top left;
 	background-size:cover;
 }
 
@@ -1577,7 +1577,7 @@ li.comment ol.comment_sub {
 ====================================================*/
 
 #countdown {
-	background:#424242 url(../img/demo/blur1.jpg) repeat top left;
+	background:#424242 url(../images/blur1.jpg) repeat top left;
 	background-size:cover;
 	min-height:100%;
 	width:100%;
