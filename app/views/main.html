@@ -1,6 +1,13 @@
 <!-- intro -->
 <section    id="intro">
 
+    <ul class="list-inline">
+        <li><a ng-click="scrollTo('services')">How We Help</a></li> |
+        <li><a ng-click="scrollTo('testimonials')">Testimonials</a></li> |
+        <li><a ng-click="scrollTo('about')">About Us</a></li> |
+        <li><a ng-click="scrollTo('pricing')">Pricing</a></li>
+    </ul>
+
     <!-- Carousel -->
     <div id="home-slider" class="carousel slide" data-ride="carousel">
         <!-- Indicators -->
@@ -51,13 +58,13 @@
 
     </div>
 
-
-    <div>
-        <a ng-click="scrollTo('services')" class="btn btn-square">
-        <!--<a href="#services" class="btn btn-square">-->
-            <i class="fa fa-angle-down"></i>
-        </a>
-    </div>
+<!--Removed Scroll Down Button in favor of links -->
+    <!--<div>-->
+        <!--<a ng-click="scrollTo('services')" class="btn btn-square">-->
+        <!--&lt;!&ndash;<a href="#services" class="btn btn-square">&ndash;&gt;-->
+            <!--<i class="fa fa-angle-down"></i>-->
+        <!--</a>-->
+    <!--</div>-->
 
 
 </section>
@@ -70,9 +77,9 @@
     <div class="container">
 
         <div class="section-header">
-            <h1>How We Can Help</h1>
+            <h1>How We Help</h1>
             <div class="divider-light"></div>
-            <p>Creating a To Do List will instantly make you feel more in control and eliminate that feeling of being overwhelmed. It will allow you to stay focused on the important items.
+            <p>Creating a To Do List will instantly make you feel more in control and eliminate that feeling of being overwhelmed. Plus, it'll allow you to focus on the important stuff!
         </div>
 
         <div class="row">
@@ -178,7 +185,7 @@
         <div class="section-header">
             <h1>pricing</h1>
             <div class="divider-light"></div>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit. Quisque rutrum pellentesque imperdiet.</p>
+            <p>Unlock our best features for pennies a day!  Sign-up now and get a free trial of our Basic package.</p>
         </div>
 
         <div class="row">
@@ -186,17 +193,14 @@
             <div class="col-md-4 col-sm-4">
                 <div class="price-box wow fadeInUp showdelay2">
                     <div class="price-header">
-                        <span class="price-title">free</span>
-                        <span class="price-amount">$ 0</span>
-                        <span class="price-month">/ Month</span>
+                        <span class="price-title">Free</span>
+                        <span class="price-amount">$0</span>
+                        <span class="price-month">/ Year</span>
                     </div>
                     <div class="price-content">
                         <ul>
-                            <li>unlimited data</li>
-                            <li>2 emails</li>
-                            <li>2 tickets</li>
-                            <li>0 Support</li>
-                            <li>50mb bandwith</li>
+                            <li>1 group</li>
+                            <li>15 Active To Dos</li>
                         </ul>
                     </div>
                     <div class="price-footer">
@@ -209,16 +213,13 @@
                 <div class="price-box active  wow fadeInUp showdelay2">
                     <div class="price-header">
                         <span class="price-title">basic</span>
-                        <span class="price-amount">$ 20</span>
-                        <span class="price-month">/ Month</span>
+                        <span class="price-amount">$ 10</span>
+                        <span class="price-month">/ Year</span>
                     </div>
                     <div class="price-content">
                         <ul>
-                            <li>unlimited data</li>
-                            <li>20 emails</li>
-                            <li>20 tickets</li>
-                            <li>20 Support</li>
-                            <li>550mb bandwith</li>
+                            <li>3 Groups</li>
+                            <li>50 Active To Dos in each group</li>
                         </ul>
                     </div>
                     <div class="price-footer">
@@ -230,17 +231,14 @@
             <div class="col-md-4 col-sm-4">
                 <div class="price-box  wow fadeInUp showdelay2">
                     <div class="price-header">
-                        <span class="price-title">pro</span>
-                        <span class="price-amount">$ 99</span>
-                        <span class="price-month">/ Month</span>
+                        <span class="price-title">Pro</span>
+                        <span class="price-amount">$15</span>
+                        <span class="price-month">/ Year</span>
                     </div>
                     <div class="price-content">
                         <ul>
-                            <li>unlimited data</li>
-                            <li>unlimited emails</li>
-                            <li>unlimited tickets</li>
-                            <li>unlimited Support</li>
-                            <li>unlimited bandwith</li>
+                            <li>5 Groups</li>
+                            <li>75 Active To Dos in each group</li>
                         </ul>
                     </div>
                     <div class="price-footer">

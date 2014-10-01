@@ -31,12 +31,11 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
       <!--BOOTSTRAP CSS-->
-      <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">-->
-      <!--<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/css/bootstrap.min.css">-->
       <!--NOTE: Bootstrap Version Has Been Customized (H1.. H5 Font Sizes).. Do NOT use CDN-->
       <link rel="stylesheet" href="styles/bootstrap.min.v320.css">
       <link rel="stylesheet" href="styles/animate/animate.css">
       <link rel="stylesheet" href="styles/style.css">
+      <link rel="stylesheet" href="styles/blue.css">
       <link rel="stylesheet" href="styles/fontawesome/font-awesome.css">
 
       <!-- Owl Carousel -->
@@ -50,10 +49,11 @@
       <!-- endbuild -->
 
 </head>
-    <body ng-app="todoApp">
 
-<!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<body ng-app="todoApp">
+
+    <!--[if lt IE 7]>
+         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!--[if lt IE 9]>
@@ -61,13 +61,12 @@
       <script src="bower_components/json3/lib/json3.min.js"></script>
     <![endif]-->
 
-<div style="height: 100%" data-ng-controller="todoAuthenticateCtrl">
-    <div style="height: 100%" data-ng-controller="TodoGroupCtrl">
+    <div class="wrapper" data-ng-controller="todoAuthenticateCtrl">
+        <div class="fullheight" data-ng-controller="TodoGroupCtrl">
 
-    <!--<div style="height: 100%">-->
-        <!--<div style="height: 100%">-->
-            <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
-            <!--<nav class="navbar navbar-static-top" role="navigation">-->
+            <!--<nav class="navbar navbar-inverse navbar-static-top" role="navigation">-->
+            <nav class="navbar navbar-static-top" role="navigation">
+
                 <div class="container">
 
                     <div class="navbar-header">
@@ -119,10 +118,34 @@
             </nav>
 
             <!-- Add your site or application content here -->
-            <div style="height: 100%" ng-view=""></div>
+            <div  class="fullheight" ng-view=""></div>
 
         </div>
+
+        <div class="push"></div>
+
     </div>
+
+    <div class="footer">
+        <div class="navbar-inverse text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-xs-4">
+                        <a href="#contact">Contact Us</a>
+                    </div>
+
+                    <div class="col-md-4 col-xs-4">
+                        <a href="#social">Social: Help Your Friends!</a><p>
+                    </div>
+
+                    <div class="col-md-4 col-xs-4">
+                        <a href="/blog">Blog</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <!-- Google Analytics -->
     <script>
@@ -137,35 +160,27 @@
     </script>
 
     <!--JQUERY Version 1 supports older browsers... 2x drops support for older browsers -->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
     <!--ANGULAR-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>-->
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.20/angular.min.js"></script>
 
     <!--ANGULAR ROUTE-->
-    <!--<script src="bower_components/angular-route/angular-route.min.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular-route.min.js"></script>
 
     <!--TOASTR-->
-    <!--<script src="bower_components/toastr/toastr.min.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.2/js/toastr.min.js"></script>
 
     <!--STRIPE-->
     <script src="https://checkout.stripe.com/checkout.js"></script>
 
-
     <!--BOOTSTRAP-->
-    <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <!-- added to fix navbar not collapsing-->
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.10.0/ui-bootstrap-tpls.min.js"></script>
 
-
     <!--JQUERY UI-->
-    <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>-->
     <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
 
     <!--FILE UPLOAD -->
@@ -199,27 +214,6 @@
     <!-- custom -->
     <script src="scripts/custom.js"></script>
 
-    <div class="footer">
-        <div class="navbar-inverse text-center">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4 col-xs-4">
-                        <a href="#contact">Contact Us</a>
-                    </div>
-
-                    <div class="col-md-4 col-xs-4">
-                        <a href="#social">Social: Help Your Friends!</a><p>
-                    </div>
-
-                    <div class="col-md-4 col-xs-4">
-                        <a href="/blog">Blog</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-  </body>
+</body>
 
 </html>
