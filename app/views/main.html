@@ -1,46 +1,263 @@
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-           <h1>Welcome to To Do Giant!</h1>
-        </div>
+<!-- intro -->
+<section    id="intro">
+
+    <ul class="list-inline">
+        <li><a ng-click="scrollTo('services')">How We Help</a></li> |
+        <li><a ng-click="scrollTo('testimonials')">Testimonials</a></li> |
+        <li><a ng-click="scrollTo('about')">About Us</a></li> |
+        <li><a ng-click="scrollTo('pricing')">Pricing</a></li>
+    </ul>
+
+    <!-- Carousel -->
+    <div id="home-slider" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#home-slider" data-slide-to="0" class="active"></li>
+            <li data-target="#home-slider" data-slide-to="1"></li>
+        </ol>
+
+        <div class="carousel-inner main-slider main-color">
+            <!-- Slide #1 -->
+            <div class="item active" id="carousel-page-1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h1 class="first-child animated slideInDown delay-2">RESPONSIVE RETINA READY THEME</h1>
+                            <p class="animated slideInLeft delay-4">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.
+                            </p>
+                            <a href="#" class="btn btn-lg btn-purchase animated fadeInUpBig delay-5">Purchase Now</a>
+                        </div>
+                        <div class="col-sm-6 hidden-xs">
+                            <img src="images/slider-1.png" class="img-responsive animated fadeInLeft delay-1" alt="">
+                        </div>
+                    </div> <!-- / .row -->
+                </div> <!-- / .container -->
+            </div> <!-- / .item -->
+            <!-- Slide #2 -->
+            <div class="item" id="carousel-page-2">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h1 class="first-child animated slideInUp delay-2">FLAT DESIGN</h1>
+                            <p class="animated slideInUp delay-4">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas metus nulla, commodo a sodales sed, dignissim pretium nunc. Nam et lacus neque. Ut enim massa, sodales tempor convallis et, iaculis ac massa.
+                            </p>
+                            <a href="#" class="btn btn-lg btn-purchase animated fadeInUpBig delay-5">Purchase Now</a>
+                        </div>
+                        <div class="col-sm-4 hidden-xs col-sm-offset-2">
+
+                            <img src="images/slider-2.png" class="img-responsive animated fadeInRight delay-2" alt="">
+
+                        </div>
+                    </div> <!-- / .row -->
+                </div> <!-- / .container -->
+            </div> <!-- / .item -->
+
+        </div> <!-- / .carousel -->
+
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h2>How will this help me?</h2>
-            A To Do list is one of the simplest steps you can take to becoming more organized and productive.  It focuses you on the key tasks that you need to accomplish and keeps track of when they're due.
-            <h2>Access it anywhere!</h2>
-            This means you can access your To Do list via any device or computer. iPhone, iPad, Droid Phones, Tablets, Computers, Laptops, you name it and you can access your list. So, whether you're in a meeting, sitting on the bus, working outside, it's always possible to add a To Do or get the next one on the list.
-            <h2>Key features:</h2>
-            <ul>
-                <li>Quick Add - Enter the To Do, hit enter.. you're done!</li>
-                <li>Define Priorities so you only focus on the important stuff</li>
-                <li>Add Categories keep track of the ones you delegated, or to link related items</li>
-                <li>Easy Filter allows you to quickly pinpoint matching item(s), or filter by Category</li>
-                <li>Specify a Frequency to allow items to repeat (ie - weekly To Do)</li>
-                <li>Groups allow you to keep Work & Home lists separate. Have as few or as many groups as you like!</li>
-            </ul>
-            <h2>Great, how do I get started?</h2>
-            Just click the "Register" link in the upper right hand corner.
-            <h2>How much will this cost?</h2>
-            There is a free version and a premium version for $10 a year which allows us to cover some of the hosting charges. Imagine all this for a <u>whole year</u> for the price of a cup of Starbucks
+
+<!--Removed Scroll Down Button in favor of links -->
+    <!--<div>-->
+        <!--<a ng-click="scrollTo('services')" class="btn btn-square">-->
+        <!--&lt;!&ndash;<a href="#services" class="btn btn-square">&ndash;&gt;-->
+            <!--<i class="fa fa-angle-down"></i>-->
+        <!--</a>-->
+    <!--</div>-->
+
+
+</section>
+<!-- ./intro -->
+
+
+
+<!-- services -->
+<section id="services" class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <h1>How We Help</h1>
+            <div class="divider-light"></div>
+            <p>Creating a To Do List will instantly make you feel more in control and eliminate that feeling of being overwhelmed. Plus, it'll allow you to focus on the important stuff!
         </div>
 
-        <div class="col-md-6">
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="images/screenshot_macair.png" class="img-thumbnail">
+        <div class="row">
+            <div class="col-md-4 col-sm-4">
+                <div class="icon-box-primary wow fadeInUp showdelay2">
+                    <div class="icon-box-icon">
+                        <i class="fa fa-mobile"></i>
+                    </div>
+                    <div class="icon-box-info">
+                        <h4>Fully Responsive</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
+                    </div>
                 </div>
             </div>
-            <br>
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="images/screenshot_iphone.png" class="img-thumbnail">
+            <div class="col-md-4 col-sm-4">
+                <div class="icon-box-primary wow fadeInUp showdelay2">
+                    <div class="icon-box-icon">
+                        <i class="fa fa-cogs"></i>
+                    </div>
+                    <div class="icon-box-info">
+                        <h4>Easy To Customize</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
+                    </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <div class="icon-box-primary wow fadeInUp showdelay2">
+                    <div class="icon-box-icon">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="icon-box-info">
+                        <h4>Love This Template</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing metus elit Quisque rutrum pellentesque.</p>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
-</div>
+</section>
+<!-- ./services -->
+
+<!-- testimonials -->
+<section id="testimonials" class="section dark-bg">
+    <div class="section-header">
+        <h1>What People Are Saying</h1>
+        <div class="divider-light"></div>
+    </div>
+
+    <div class="container">
+        <div id="testimonial-list" class="owl-carousel  wow fadeInUp showdelay2">
+        <!--<div id="testimonial-list" class="owl-carousel">-->
+            <div class="item">
+                <p>Thanks to your site, I am more organized, more focused and getting more and more done every day. Thanks!</p>
+            </div>
+            <div class="item">
+                <p>You've changed the way I approach work. Focusing on the priorities has made a huge difference!</p>
+            </div>
+            <div class="item">
+                <p>My boss just complimented me (first time ever) on how organized I've become. All thanks to you!</p>
+            </div>
+            <div class="item">
+                <p>Well done To Do Giant! You've made a big difference in my life. I'm feeling more at ease and less overwhelmed. Thanks!</p>
+            </div>
+            <div class="item">
+                <p>You are the best! Thanks so much for creating this site!</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ./testimonials -->
+
+<script>
+    $(document).ready(function() {
+        $("#testimonial-list").owlCarousel({
+            items : 1,
+            lazyLoad : true,
+            navigation : false,
+            <!--added to start the slide show on page load.. PLW-->
+            autoPlay: true
+        })
+    });
+</script>
+
+<!-- about -->
+<section id="about" class="section">
+    <div class="container">
+
+        <div class="section-header">
+            <h1>about us</h1>
+            <div class="divider-light"></div>
+            <p>We are a small company based in a small New England town.
+               We started To Do Giant because we couldn't find the right site to manage our To Do lists.
+               It felt a little like the story of Goldilocks and the Three Bears.
+               We found some sites that were so complicated it felt like you needed and engineering degree to get them to work.
+               We found other sites that were so simple that they wouldn't allow you to complete even the easiest task.
+               We created To Do Giant to be "just right".
+               Hopefully you agree!</p>
+        </div>
+
+    </div>
+</section>
+<!-- ./about -->
 
 
+<!-- pricing -->
+<section id="pricing" class="section dark-bg">
+    <div class="container">
+
+        <div class="section-header">
+            <h1>pricing</h1>
+            <div class="divider-light"></div>
+            <p>Unlock our best features for pennies a day!  Sign-up now and get a free trial of our Basic package.</p>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-4">
+                <div class="price-box wow fadeInUp showdelay2">
+                    <div class="price-header">
+                        <span class="price-title">Free</span>
+                        <span class="price-amount">$0</span>
+                        <span class="price-month">/ Year</span>
+                    </div>
+                    <div class="price-content">
+                        <ul>
+                            <li>1 group</li>
+                            <li>15 Active To Dos</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <a href="#" class="btn-theme">sign up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="price-box active  wow fadeInUp showdelay2">
+                    <div class="price-header">
+                        <span class="price-title">basic</span>
+                        <span class="price-amount">$ 10</span>
+                        <span class="price-month">/ Year</span>
+                    </div>
+                    <div class="price-content">
+                        <ul>
+                            <li>3 Groups</li>
+                            <li>50 Active To Dos in each group</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <a href="#" class="btn-theme">sign up</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-4">
+                <div class="price-box  wow fadeInUp showdelay2">
+                    <div class="price-header">
+                        <span class="price-title">Pro</span>
+                        <span class="price-amount">$15</span>
+                        <span class="price-month">/ Year</span>
+                    </div>
+                    <div class="price-content">
+                        <ul>
+                            <li>5 Groups</li>
+                            <li>75 Active To Dos in each group</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer">
+                        <a href="#" class="btn-theme">sign up</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+<!-- ./pricing -->

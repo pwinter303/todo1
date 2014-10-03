@@ -37,7 +37,6 @@
     color: #FFFF33;
 }
 
-
 .dotted {
     border-top: 1px dotted rgb(204, 204, 204);
     border-bottom: 1px dotted rgb(204, 204, 204);
@@ -97,6 +96,13 @@
     margin-right: 5px;
 }
 
+.navbar {
+    background-color: rgb(45, 178, 234);
+}
+
+.fullHeight{
+    height: 100%;
+}
 
 /* Start Code to Push Footer to Bottom of Page*/
 * {
@@ -121,4 +127,17 @@ html, body {
 .glyphicon-none:before {
     content: "\e101";
     color: transparent !important;
+}
+
+.navbar .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {
+    background-color: #ffffff;
+    color: black;
+    font-weight:700;
+}
+.navbar a {
+    color:white;
+}
+
+#groupAdmin .panel-default {
+    min-height: 250px;
 }

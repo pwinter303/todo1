@@ -1,87 +1,88 @@
-<div class="row">
-    <div class="col-xs-4 col-md-4 small">Add To Do: Type and hit Enter</div>
-    <div class="col-xs-4 col-md-4 small">Search by To Do: Type Name</div>
-    <div class="col-xs-4 col-md-4 small">Search by Category: Type Category</div>
-</div>
-
-<div class="row">
-    <div class="col-xs-4 col-md-4">
-        <form data-ng-submit="addTodo(newTodo)">
-            <input type="text" class="form-control tight_input" data-ng-model="newTodo.task" placeholder="Add To Do "/>
-            <span class="glyphicon glyphicon-plus" ng-click="addTodo(newTodo)"></span>
-        </form>
-    </div>
-    <div class="col-xs-4 col-md-4">
-        <input type="text" data-ng-model="taskFilter" class="form-control tight_input" placeholder="Search">
-        <span class="glyphicon glyphicon-search"></span>
-    </div>
-    <div class="col-xs-4 col-md-4">
-        <input type="text" data-ng-model="tagFilter" class="form-control tight_input" placeholder="Search">
-        <span class="glyphicon glyphicon-search"></span>
-    </div>
-</div>
-
-
-<!--suppress HtmlFormInputWithoutLabel -->
-<div class="row">
-    <div class="col-md-7 col-xs-9 col-sm-9 small">To Do Name </div>
-    <div class="col-md-5 col-xs-3 col-sm-3 small text-center">
-        <div class="col-md-3 hidden-sm hidden-xs small text-center">Category</div>
-        <div class="col-md-9 col-xs-9 col-sm-9 small text-center">
-            <div class="col-md-3 col-sm-12 col-xs-12 small text-center">Priority</div>
-            <div class="col-md-4 hidden-sm hidden-xs small text-center">Due Date</div>
-            <div class="col-md-4 hidden-sm hidden-xs small text-center">Frequency</div>
-            <div class="col-md-1 hidden-sm hidden-xs small text-center">Delete</div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
-
-
-<div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter, group_id:activegroup} | orderBy:['done','priority_cd','due_dt_sort']">
-    <!--<div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter } | limitTo:10 | orderBy:['done','priority_cd','due_dt']">-->
-    <!--<div class="row dotted">-->
+<div class="container-fluid">
     <div class="row">
-        <div class="col-md-7 col-xs-9 col-sm-9">
-            <div class="input-group">
-                <span class="input-group-addon">
-                    <input type="checkbox" data-ng-model="todo.done" data-ng-change="updateDone(todo)">
-                    <i class="glyphicon {{todo.glyph}} "></i>
-                    <!--<i class="glyphicon glyphicon-none"></i>-->
-                    <!--<i class="glyphicon glyphicon-warning-sign"></i>-->
-                </span>
-                <input type="text" class="form-control" data-ng-model="todo.task_name" data-ng-enter="updateTask(todo)">
-                <!--{{todo.task_name}}-->
-            </div><!-- /input-group -->
-        </div>
-        <div class="col-md-5 col-xs-3 col-sm-3">
+        <div class="col-xs-4 col-md-4 small">Add To Do: Type and hit Enter</div>
+        <div class="col-xs-4 col-md-4 small">Search by To Do: Type Name</div>
+        <div class="col-xs-4 col-md-4 small">Search by Category: Type Category</div>
+    </div>
 
-            <div class="col-md-3 hidden-xs hidden-sm">
-                <input type="text" class="form-control" data-ng-model="todo.tags" data-ng-enter="updateTask(todo)">
+    <div class="row">
+        <div class="col-xs-4 col-md-4">
+            <form data-ng-submit="addTodo(newTodo)">
+                <input type="text" class="form-control tight_input" data-ng-model="newTodo.task" placeholder="Add To Do "/>
+                <span class="glyphicon glyphicon-plus" ng-click="addTodo(newTodo)"></span>
+            </form>
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <input type="text" data-ng-model="taskFilter" class="form-control tight_input" placeholder="Search">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <input type="text" data-ng-model="tagFilter" class="form-control tight_input" placeholder="Search">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
+    </div>
+
+
+    <!--suppress HtmlFormInputWithoutLabel -->
+    <div class="row">
+        <div class="col-md-7 col-xs-9 col-sm-9 small">To Do Name </div>
+        <div class="col-md-5 col-xs-3 col-sm-3 small text-center">
+            <div class="col-md-3 hidden-sm hidden-xs small text-center">Category</div>
+            <div class="col-md-9 col-xs-9 col-sm-9 small text-center">
+                <div class="col-md-3 col-sm-12 col-xs-12 small text-center">Priority</div>
+                <div class="col-md-4 hidden-sm hidden-xs small text-center">Due Date</div>
+                <div class="col-md-4 hidden-sm hidden-xs small text-center">Frequency</div>
+                <div class="col-md-1 hidden-sm hidden-xs small text-center">Delete</div>
             </div>
-            <div class="col-md-9 col-xs-12 col-sm-12 small text-center">
-                <div class="col-md-3 col-xs-12 col-sm-12">
-                    <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.priority_cd" data-ng-options="priority.cd as priority.name for priority in priorities">
-                    </select>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter, group_id:activegroup} | orderBy:['done','priority_cd','due_dt_sort']">
+        <!--<div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter } | limitTo:10 | orderBy:['done','priority_cd','due_dt']">-->
+        <!--<div class="row dotted">-->
+        <div class="row">
+            <div class="col-md-7 col-xs-9 col-sm-9">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="checkbox" data-ng-model="todo.done" data-ng-change="updateDone(todo)">
+                        <i class="glyphicon {{todo.glyph}} "></i>
+                        <!--<i class="glyphicon glyphicon-none"></i>-->
+                        <!--<i class="glyphicon glyphicon-warning-sign"></i>-->
+                    </span>
+                    <input type="text" class="form-control" data-ng-model="todo.task_name" data-ng-enter="updateTask(todo)">
+                    <!--{{todo.task_name}}-->
+                </div><!-- /input-group -->
+            </div>
+            <div class="col-md-5 col-xs-3 col-sm-3">
+
+                <div class="col-md-3 hidden-xs hidden-sm">
+                    <input type="text" class="form-control" data-ng-model="todo.tags" data-ng-enter="updateTask(todo)">
                 </div>
-                <div class="col-md-4 hidden-xs hidden-sm">
-                    <input type="text" class="form-control" data-ng-model="todo.due_dt" data-ng-enter="updateTask(todo)">
-                </div>
-                <div class="col-md-4 hidden-xs hidden-sm">
-                    <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.frequency_cd" data-ng-options="frequency.cd as frequency.name for frequency in frequencies">
-                    </select>
-                </div>
-                <div class="col-md-1 hidden-xs hidden-sm">
-                    <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo)" style="padding-top: 25%"></span>
+                <div class="col-md-9 col-xs-12 col-sm-12 small text-center">
+                    <div class="col-md-3 col-xs-12 col-sm-12">
+                        <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.priority_cd" data-ng-options="priority.cd as priority.name for priority in priorities">
+                        </select>
+                    </div>
+                    <div class="col-md-4 hidden-xs hidden-sm">
+                        <input type="text" class="form-control" data-ng-model="todo.due_dt" data-ng-enter="updateTask(todo)">
+                    </div>
+                    <div class="col-md-4 hidden-xs hidden-sm">
+                        <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.frequency_cd" data-ng-options="frequency.cd as frequency.name for frequency in frequencies">
+                        </select>
+                    </div>
+                    <div class="col-md-1 hidden-xs hidden-sm">
+                        <span class="glyphicon glyphicon-remove" ng-click="deleteTodo(todo)" style="padding-top: 25%"></span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
 </div>
-
-
-
