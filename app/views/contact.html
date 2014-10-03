@@ -1,13 +1,16 @@
-<h1 class="text-center">Contact Us</h1>
-<h3 class="text-center">We can't wait to hear from you! :-)</h3>
+<section    id="contactUs">
 
+    <br>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3   ">
-            <form name="contactForm" data-ng-submit="contactSubmit(contact)">
+    <div class="container-fluid">
 
-                    <div class="row">
+        <div class="col-md-8 col-md-offset-2 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Contact Us</h3></div>
+                <div class="panel-body">
+                    <h3 class="text-center">We can't wait to hear from you! :-)</h3>
+                    <form name="contactForm" data-ng-submit="contactSubmit(contact)">
+
                         <div class="col-md-6 col-xs-6 col-sm-6">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -17,10 +20,8 @@
                         <div class="col-md-6 col-xs-6 col-sm-6">
                             <input type="text" class="form-control" data-ng-model="contact.lastName" value="" required placeholder="Enter Last Name">
                         </div>
-                    </div>
 
-                    <br>
-                    <div class="row">
+                        <br><br>
                        <div class="col-md-12">
                            <select name="subjectCD" class="form-control"
                                    ng-model="contact.contactType"
@@ -28,15 +29,15 @@
                                    <option value="">-- chose Subject --</option>
                            </select>
                         </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-12">Message</div>
-                        <textarea name="message" id="message" required  class="col-md-12 form-control" ng-model="contact.message"  rows="9"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary pull-left" >Send</button>
+                        <br>
 
-            </form>
+                        <div class="col-md-12">Message</div>
+                        <textarea name="message" id="message" required  class="col-md-12 form-control" ng-model="contact.message"  rows="6"></textarea>
+                        <button type="submit" class="btn btn-primary pull-left" >Send</button>
+
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
-</form>
+</section>

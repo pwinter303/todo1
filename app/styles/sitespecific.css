@@ -134,10 +134,10 @@ html, body {
     color: black;
     font-weight:700;
 }
-/*.GGG {*/
-    /*outline: 10px solid orange;*/
-/*}*/
-
 .navbar a {
     color:white;
+}
+
+#groupAdmin .panel-default {
+    min-height: 250px;
 }
