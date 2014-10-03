@@ -1,71 +1,79 @@
-<div class="row">
-    <div class="col-md-6">
-        <h4>Password Change</h4>
+<div class="container-fluid">
+    <div class="row">
+        <!--AcctdetailCtrl is defined in app.js so not needed here-->
+        <!--<div id="myDiv" ng-controller="AcctdetailCtrl" class="col-md-6">-->
+        <div id="myDiv" class="col-md-6 col-md-offset-3   ">
+            <h2>Account Details</h2>
 
-        <form role="form">
-            <input type="text" class="form-control input-sm" data-ng-model="pwd.old"
-                   placeholder="enter current password">
-            <input type="text" class="form-control input-sm" data-ng-model="pwd.new1" placeholder="enter new password">
-            <input type="text" class="form-control input-sm" data-ng-model="pwd.new2"
-                   placeholder="re-enter new password">
-            <button type="submit" class="btn btn-success" data-ng-click="changePassword(pwd)">Change Password</button>
-        </form>
-    </div>
-    <!--AcctdetailCtrl is defined in app.js so not needed here-->
-    <!--<div id="myDiv" ng-controller="AcctdetailCtrl" class="col-md-6">-->
-    <div id="myDiv" class="col-md-6">
-        <h4>Account Details</h4>
+            <div class="col-md-6">Membership Type:</div>
+            <div class="col-md-3">Begin Date</div>
+            <div class="col-md-3">End Date</div>
 
-        <div class="col-md-6">Membership Type:</div>
-        <div class="col-md-3">Begin Date</div>
-        <div class="col-md-3">End Date</div>
+            <div data-ng-repeat="accountPeriod in accountPeriods">
+                <div class="col-md-6">{{accountPeriod.description}}</div>
+                <div class="col-md-3">{{accountPeriod.begin_dt}}</div>
+                <div class="col-md-3">{{accountPeriod.end_dt}}</div>
+            </div>
 
-        <div data-ng-repeat="accountPeriod in accountPeriods">
-            <div class="col-md-6">{{accountPeriod.description}}</div>
-            <div class="col-md-3">{{accountPeriod.begin_dt}}</div>
-            <div class="col-md-3">{{accountPeriod.end_dt}}</div>
-        </div>
-
-        <button id="customButton" class="btn btn-success">Purchase 12 Months of Premium $10</button>
+            <button id="customButton" class="btn btn-success">Purchase 12 Months of Premium $10</button>
 
 
-        <script>
-            var handler = StripeCheckout.configure({
-                key: 'pk_live_6SDaxbWa2pc332HnnAToN8bN',
-                image: 'images/Giant1.png',
-                token: function (token) {
-                    // Use the token to create the charge with a server-side script.
-                    // You can access the token ID with `token.id`
+            <script>
+                var handler = StripeCheckout.configure({
+                    key: 'pk_live_6SDaxbWa2pc332HnnAToN8bN',
+                    image: 'images/Giant1.png',
+                    token: function (token) {
+                        // Use the token to create the charge with a server-side script.
+                        // You can access the token ID with `token.id`
 
-                    //var microappscope = angular.element($("#myDiv")).scope();
-                    //microappscope.stripepurchase(token);
-                    // must specify DOM element that hold controller in order to access scope and method/function
-                    angular.element($("#myDiv")).scope().processPayment(token);
-                }
-            });
-
-            document.getElementById('customButton').addEventListener('click', function (e) {
-                // Open Checkout with further options
-                handler.open({
-                    name: 'To Do Giant',
-                    description: '12 Months: Premium Membership',
-                    amount: 1000,
-                    email: angular.element($("#myDiv")).scope().email
+                        //var microappscope = angular.element($("#myDiv")).scope();
+                        //microappscope.stripepurchase(token);
+                        // must specify DOM element that hold controller in order to access scope and method/function
+                        angular.element($("#myDiv")).scope().processPayment(token);
+                    }
                 });
-                e.preventDefault();
-            });
-        </script>
 
-        <br><br>
-        <!-- Begin DigiCert site seal HTML and JavaScript -->
-        <div class="pull-left" id="DigiCertClickID_tPwpUf7S" data-language="en_US">
-            <a href="https://www.digicert.com/ev-ssl-certification.htm"></a>
+                document.getElementById('customButton').addEventListener('click', function (e) {
+                    // Open Checkout with further options
+                    handler.open({
+                        name: 'To Do Giant',
+                        description: '12 Months: Premium Membership',
+                        amount: 1000,
+                        email: angular.element($("#myDiv")).scope().email
+                    });
+                    e.preventDefault();
+                });
+            </script>
+
+            <br><br>
+            <!-- Begin DigiCert site seal HTML and JavaScript -->
+            <div class="pull-left" id="DigiCertClickID_tPwpUf7S" data-language="en_US">
+                <a href="https://www.digicert.com/ev-ssl-certification.htm"></a>
+            </div>
+            <script type="text/javascript">
+                var __dcid = __dcid || [];__dcid.push(["DigiCertClickID_tPwpUf7S", "13", "m", "black", "tPwpUf7S"]);(function(){var cid=document.createElement("script");cid.async=true;cid.src="//seal.digicert.com/seals/cascade/seal.min.js";var s = document.getElementsByTagName("script");var ls = s[(s.length - 1)];ls.parentNode.insertBefore(cid, ls.nextSibling);}());
+            </script>
+            <!-- End DigiCert site seal HTML and JavaScript -->
+
         </div>
-        <script type="text/javascript">
-            var __dcid = __dcid || [];__dcid.push(["DigiCertClickID_tPwpUf7S", "13", "m", "black", "tPwpUf7S"]);(function(){var cid=document.createElement("script");cid.async=true;cid.src="//seal.digicert.com/seals/cascade/seal.min.js";var s = document.getElementsByTagName("script");var ls = s[(s.length - 1)];ls.parentNode.insertBefore(cid, ls.nextSibling);}());
-        </script>
-        <!-- End DigiCert site seal HTML and JavaScript -->
-
     </div>
+    <br><br>
+    
+    <div class="row">
+        <div class="col-md-6  col-md-offset-3  ">
+            <h2>Password Change</h2>
+
+            <form role="form">
+                <input type="text" class="form-control input-sm" data-ng-model="pwd.old"
+                       placeholder="enter current password">
+                <input type="text" class="form-control input-sm" data-ng-model="pwd.new1" placeholder="enter new password">
+                <input type="text" class="form-control input-sm" data-ng-model="pwd.new2"
+                       placeholder="re-enter new password">
+                <button type="submit" class="btn btn-success" data-ng-click="changePassword(pwd)">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+
 </div>
 
