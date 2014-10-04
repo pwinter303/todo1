@@ -1,11 +1,15 @@
+'use strict';
+
+/*global $ */
+
 // ***********************************
 // pageloader
 // ***********************************
 $(window).load(function(){
-	if($(".preloader").length > 0){
+	if($('.preloader').length > 0){
 		$('.preloader').fadeOut(1000); // set duration in brackets
 	}
-});		
+});
 
 
 // ***********************************
@@ -24,10 +28,10 @@ $(window).load(function(){
 // **************************************
 
 $(window).scroll(function() {
-	if ($(".navbar").offset().top > 50) {
-		$(".navbar-fixed-top").addClass("top-nav-collapse");
+	if ($('.navbar').offset().top > 50) {
+		$('.navbar-fixed-top').addClass('top-nav-collapse');
 	} else {
-		$(".navbar-fixed-top").removeClass("top-nav-collapse");
+		$('.navbar-fixed-top').removeClass('top-nav-collapse');
 	}
 });
 
@@ -139,7 +143,7 @@ $(document).ready(function() {
 // ****************************************************************
 
 $(document).ready(function( $ ) {
-	if($("span.count").length > 0){	
+  if($('span.count').length > 0){
 		$('span.count').counterUp({
 			delay: 10, // the delay time in ms
 			time: 1000 // the speed time in ms
@@ -226,7 +230,7 @@ $(document).ready(function( $ ) {
 /*When clicking on Full hide fail/success boxes */
 $('#name').focus(function() {
     $('#success').html('');
-});
+  });
 			
 			
 			

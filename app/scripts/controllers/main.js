@@ -12,6 +12,5 @@ angular.module('todoApp')
     $scope.scrollTo = function(id) {
       $location.hash(id);
       $anchorScroll();
-    }
-
+    };
   });

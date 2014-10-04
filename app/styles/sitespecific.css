@@ -70,6 +70,14 @@
     position: relative;
 }
 
+/* used in the registration box*/
+#firstName {
+    padding-left: 0px;
+}
+#lastName {
+    padding-right: 0px;
+}
+
 .border-it {
     border: 1px solid #ccc;
 }
@@ -139,5 +147,14 @@ html, body {
 }
 
 #groupAdmin .panel-default {
-    min-height: 250px;
+    min-height: 230px;
+}
+
+
+.panel-heading h3 {
+    margin: 0 0 0px;
+}
+
+#import .panel-body h3 {
+    margin: 0 0 0px;
 }

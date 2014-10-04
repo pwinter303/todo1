@@ -10,37 +10,34 @@
                 <div class="panel-body">
                     <h3 class="text-center">Welcome Back :-)</h3>
                         <div class="text-center">
-                            <br>
                             Enter your credentials and continue to get organized! <br>
                         </div>
                         <form data-ng-submit="logIn(user)" form-autofill-fix>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                        <input type="email" class="form-control" name="email" data-ng-model="user.email" required placeholder="Enter Email">
-                                        <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
-                                        <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
-                                    </div>
+                            <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="email" class="form-control" name="email" data-ng-model="user.email" required placeholder="Enter Email">
+                                    <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
+                                    <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
                                 </div>
                             </div>
-                            <br>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input type="password" class="form-control" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
-                                        <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
-                                        <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <br>
-                            <p><button type="submit" class="btn btn-success">Sign in</button>
                             <br><br>
-                            <a href="#/forgotpassword">Forgot Password</a></p>
-                            <a href="#/register">Not a member? Register Now</a></p>
+                            <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <input type="password" class="form-control" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
+                                    <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
+                                    <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
+                                </div>
+                            </div>
+                            <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                                <br>
+                                <p><button type="submit" class="btn btn-success">Sign in</button>
+                                <br>
+                                <a href="#/forgotpassword">Forgot Password</a></p>
+                                <a href="#/register">Not a member? Register Now</a></p>
+                            </div>
                         </form>
                         <span>{{loginmsg}}</span>
                     </div>
