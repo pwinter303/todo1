@@ -349,7 +349,8 @@ a:active {
 .navbar {
     margin-bottom: 0;
     border-bottom: 1px solid rgba(255,255,255,.3);
-    text-transform: uppercase;
+   /* PLW Removed this..*/
+    /*text-transform: uppercase;*/
     font-family: 'Open Sans', sans-serif;
 /* commented out... ugly lime green*/
     /*background-color: #a7ce30;*/

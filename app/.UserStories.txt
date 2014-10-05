@@ -2,8 +2,14 @@
 IN PROGRESS:
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
+Main Page: Replace Images with ToDoGiant pics, Add content to the top page,
+Main Page: Pricing. Get in synch.. Either have 3 Free, Base, Pro (and have site support)... or just have Free, Pro
+Main Page: Finish "How We Help" Section
+Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
+Main Page: Incorporate content from the original page into this new one..
 
 MVP:  CRITICAL
+Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
 Add BiWeekly to Frequency DropDown.. and take it into account when closing an item
 Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
 What do you get when you pay for it... done but need content explain free vs premium
