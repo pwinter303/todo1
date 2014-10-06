@@ -27,6 +27,9 @@ switch ($patch) {
     case 'DB.20140727':
         process_patchDB_20140727($dbh);
         break;
+    case 'DB.20141006':
+        process_patchDB_20141006($dbh);
+        break;
     case 'BASE':
         process_base($dbh);
         break;
@@ -114,6 +117,14 @@ insert_account_period($dbh);
 }
 
 
+function process_patchDB_20141006($dbh){
+
+echo "processing....process_patchDB_20141006";
+fix_frequency($dbh);
+}
+
+
+
 
 function emptyTable($dbh, $table){
 
@@ -165,11 +176,12 @@ function insertCustomer($dbh){
 function insertFrequencies($dbh){
 
   $query = "INSERT INTO todo_frequency (frequency_cd ,frequency_name) VALUES
-    ( '1','Once'),
-    ( '2','Weekly'),
-    ( '3','Monthly'),
-    ( '4','Quarterly'),
-    ( '5','Yearly')"  ;
+    ( '10','Once'),
+    ( '20','Weekly'),
+    ( '30','BiWeekly'),
+    ( '40','Monthly'),
+    ( '50','Quarterly'),
+    ( '60','Yearly')"  ;
 
   $rowsInserted = insertData($dbh, $query);
   echo "Frequencies inserted:" . $rowsInserted . "<br>";
@@ -213,35 +225,35 @@ function insertTodos($dbh){
 
   $query = "INSERT INTO todo (
       task_name,                                      due_dt, starred, group_id, priority_cd,  frequency_cd, status_cd, customer_id, Note, done, tags, todo_id)  VALUES
-    ('Buy Milk',                       '2014-07-05 00:00:00',     '1',      '1',         '1',           '1',       '1',    1,  'my note',    0,  '',   1),
-    ('Fertilize the lawn',             '2014-07-06 00:00:00',     '0',      '1',         '2',           '2',       '2',    1,  'my note',    0,  '',   2),
-    ('Plan Vacation',                  '2014-07-07 00:00:00',     '1',      '1',         '3',           '3',       '1',    1,  'my note',    0,  '',   3),
-    ('Study for math exam',            '2014-08-02 00:00:00',     '0',      '1',         '1',           '2',       '2',    1,  'my note',    0,  '',   4),
-    ('Plant Fall flowers',             '2014-09-03 00:00:00',     '1',      '1',         '2',           '3',       '1',    1,  'my note',    0,  '',   5),
-    ('Get To Do Giant!',               '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   6),
-    ('Presentation for the Boss',      '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  'Boss',   7),
-    ('Buy Gift for Dad',               '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   8),
-    ('Flowers for Anniversary ',       '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   9),
-    ('Exercise Training for Marathon', '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   10),
-    ('Ideas for starting a business',  '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   11),
-    ('Create Will',                    '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   12),
-    ('Create Financial Budget',        '2014-09-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   13),
+    ('Buy Milk',                       '2014-10-05 00:00:00',     '1',      '1',         '1',           '1',       '1',    1,  'my note',    0,  '',   1),
+    ('Fertilize the lawn',             '2014-10-06 00:00:00',     '0',      '1',         '2',           '2',       '2',    1,  'my note',    0,  '',   2),
+    ('Plan Vacation',                  '2014-10-07 00:00:00',     '1',      '1',         '3',           '3',       '1',    1,  'my note',    0,  '',   3),
+    ('Study for math exam',            '2014-11-02 00:00:00',     '0',      '1',         '1',           '2',       '2',    1,  'my note',    0,  '',   4),
+    ('Plant Fall flowers',             '2014-12-03 00:00:00',     '1',      '1',         '2',           '3',       '1',    1,  'my note',    0,  '',   5),
+    ('Get To Do Giant!',               '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   6),
+    ('Presentation for the Boss',      '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  'Boss',   7),
+    ('Buy Gift for Dad',               '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   8),
+    ('Flowers for Anniversary ',       '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   9),
+    ('Exercise Training for Marathon', '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   10),
+    ('Ideas for starting a business',  '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   11),
+    ('Create Will',                    '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   12),
+    ('Create Financial Budget',        '2014-12-09 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   13),
     ('Do Taxes',                       '2015-03-14 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   14),
     ('Make Vet Appointment',           '2015-03-14 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   15),
     ('Take out Trash',                 '2015-03-14 00:00:00',     '0',      '1',         '3',           '2',       '2',    1,  'my note',    0,  '',   16),
-    ('Buy Milk',                       '2014-07-05 00:00:00',     '1',      '3',         '1',           '1',       '1',    2,  'my note',    0,  '',   17),
-    ('Fertilize the lawn',             '2014-07-06 00:00:00',     '0',      '3',         '2',           '2',       '2',    2,  'my note',    0,  '',   18),
-    ('Plan Vacation',                  '2014-07-07 00:00:00',     '1',      '3',         '3',           '3',       '1',    2,  'my note',    0,  '',   19),
-    ('Study for math exam',            '2014-08-02 00:00:00',     '0',      '3',         '1',           '2',       '2',    2,  'my note',    0,  '',   20),
-    ('Plant Fall flowers',             '2014-09-03 00:00:00',     '1',      '3',         '2',           '3',       '1',    2,  'my note',    0,  '',   21),
-    ('Get To Do Giant!',               '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   22),
-    ('Presentation for the Boss',      '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  'Boss',   23),
-    ('Buy Gift for Dad',               '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   24),
-    ('Flowers for Anniversary ',       '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   25),
-    ('Exercise Training for Marathon', '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   26),
-    ('Ideas for starting a business',  '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   27),
-    ('Create Will',                    '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   28),
-    ('Create Financial Budget',        '2014-09-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   29),
+    ('Buy Milk',                       '2014-10-05 00:00:00',     '1',      '3',         '1',           '1',       '1',    2,  'my note',    0,  '',   17),
+    ('Fertilize the lawn',             '2014-10-06 00:00:00',     '0',      '3',         '2',           '2',       '2',    2,  'my note',    0,  '',   18),
+    ('Plan Vacation',                  '2014-10-07 00:00:00',     '1',      '3',         '3',           '3',       '1',    2,  'my note',    0,  '',   19),
+    ('Study for math exam',            '2014-11-02 00:00:00',     '0',      '3',         '1',           '2',       '2',    2,  'my note',    0,  '',   20),
+    ('Plant Fall flowers',             '2014-12-03 00:00:00',     '1',      '3',         '2',           '3',       '1',    2,  'my note',    0,  '',   21),
+    ('Get To Do Giant!',               '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   22),
+    ('Presentation for the Boss',      '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  'Boss',   23),
+    ('Buy Gift for Dad',               '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   24),
+    ('Flowers for Anniversary ',       '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   25),
+    ('Exercise Training for Marathon', '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   26),
+    ('Ideas for starting a business',  '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   27),
+    ('Create Will',                    '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   28),
+    ('Create Financial Budget',        '2014-12-09 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   29),
     ('Do Taxes',                       '2015-03-14 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   30),
     ('Make Vet Appointment',           '2015-03-14 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   31),
     ('Take out Trash',                 '2015-03-14 00:00:00',     '0',      '3',         '3',           '2',       '2',    2,  'my note',    0,  '',   32)
@@ -350,5 +362,44 @@ function insert_account_period($dbh){
 
     $rowsInserted = insertData($dbh, $query);
     echo "account_period inserted:" . $rowsInserted . "<br>";
+
+}
+
+
+function fix_frequency($dbh){
+  $query = "INSERT INTO todo_frequency (frequency_cd ,frequency_name) VALUES
+    ( '10','Once'),
+    ( '20','Weekly'),
+    ( '30','BiWeekly'),
+    ( '40','Monthly'),
+    ( '50','Quarterly'),
+    ( '60','Yearly')"  ;
+
+  $rowsInserted = insertData($dbh, $query);
+  echo "Frequencies inserted:" . $rowsInserted . "<br>";
+
+  $query = "UPDATE todo set frequency_cd = 10 where frequency_cd = 1";
+  $rowsUpdated = insertData($dbh, $query);
+  echo "Updated 1 to 10. This many rows changed :" . $rowsUpdated . "<br>";
+
+  $query = "UPDATE todo set frequency_cd = 20 where frequency_cd = 2";
+  $rowsUpdated = insertData($dbh, $query);
+  echo "Updated 2 to 20. This many rows changed :" . $rowsUpdated . "<br>";
+
+  $query = "UPDATE todo set frequency_cd = 40 where frequency_cd = 3";
+  $rowsUpdated = insertData($dbh, $query);
+  echo "Updated 3 to 40. This many rows changed :" . $rowsUpdated . "<br>";
+
+  $query = "UPDATE todo set frequency_cd = 50 where frequency_cd = 4";
+  $rowsUpdated = insertData($dbh, $query);
+  echo "Updated 4 to 50. This many rows changed :" . $rowsUpdated . "<br>";
+
+  $query = "UPDATE todo set frequency_cd = 60 where frequency_cd = 5";
+  $rowsUpdated = insertData($dbh, $query);
+  echo "Updated 5 to 60. This many rows changed :" . $rowsUpdated . "<br>";
+
+  $query = "delete from todo_frequency where frequency_cd in (1, 2, 3, 4, 5)";
+  $rowsUpdated = insertData($dbh, $query);
+  echo "Deleted old values. This many rows deleted:" . $rowsUpdated . "<br>";
 
 }

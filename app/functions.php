@@ -289,19 +289,23 @@ function doFrequencyProcessing($dbh, $customer_id, $new_todo_data){
     $frequency_cd = $new_todo_data{'frequency_cd'};
 
     switch ($frequency_cd) {
-       case 2:  //Weekly
+       case 20:  //Weekly
              $nbr = "+7 ";
              $period = 'day';
              break;
-       case 3:  //Monthly
+       case 30:  //BiWeekly
+             $nbr = "+14 ";
+             $period = 'day';
+             break;
+       case 40:  //Monthly
              $nbr = "+1 ";
              $period = 'month';
              break;
-       case 4:  //Quarterly
+       case 50:  //Quarterly
              $nbr = "+3 ";
              $period = 'month';
              break;
-       case 5:  //Yearly
+       case 60:  //Yearly
              $nbr = "+1 ";
              $period = 'year';
              break;
