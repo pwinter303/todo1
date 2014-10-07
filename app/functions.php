@@ -789,6 +789,18 @@ function  setGroupToActive($dbh, $request_data, $customer_id){
 }
 
 ###################################
+function  resetCustomer($dbh, $customer_id){
+  #### delete the groups
+  $response = deleteAllGroups($dbh, $customer_id);
+  #### delete batches
+  deleteAllBatches($dbh, $customer_id);
+  #### add Base Groups
+  $response = addBaseGroups($dbh, $customer_id);
+  return $response;
+}
+
+
+###################################
 function  deleteAllGroups($dbh, $customer_id){
   #### delete the group
   $query = "delete from todo_group where customer_id = ?";
@@ -971,6 +983,18 @@ function updateBatchStats($dbh, $customer_id, $batch_id, $uploaded, $errored, $s
   $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
   $response{'RowsUpdated'} = $rowsAffected;
+  return $response;
+}
+
+################################################################################
+function deleteAllBatches($dbh, $customer_id){
+  $query = "delete from todo_batch where customer_id = ? ";
+
+  $types = 'i';  ## pass
+  $params = array($customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
+  $response{'RowsDeleted'} = $rowsAffected;
   return $response;
 }
 

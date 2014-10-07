@@ -30,6 +30,9 @@ switch ($patch) {
     case 'DB.20141006':
         process_patchDB_20141006($dbh);
         break;
+    case 'DB.20141007':
+        process_patchDB_20141007($dbh);
+        break;
     case 'BASE':
         process_base($dbh);
         break;
