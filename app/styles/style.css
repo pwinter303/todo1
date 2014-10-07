@@ -723,7 +723,9 @@ a:active {
     background-size: cover;
 }
 .main-slider .item{
-    padding-top: 40px;
+    /*PLW Changed*/
+    /*padding-top: 40px;*/
+    padding-top: 20px;
 }
 
 /*end slider*/

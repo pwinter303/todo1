@@ -262,9 +262,12 @@ function  updateTodo($dbh, $request_data, $customer_id){
 
   $new_todo_data = getTodo($dbh, $customer_id, $todo_id);
 
-  //if todo is done and frequency is something other than 1 (which is Once).. then do processing to replicate todo
+  //if todo is done and frequency is something other than 10 (which is Once).. then do processing to replicate todo
   //fixme: re-evaluate this... seems like it'll cause problems to sometimes return an array... sometimes not
-  if (('1' == $done)  and (!(1 == $frequency_cd))  ){
+
+  ## change to frequency_cd
+  //  if (('1' == $done)  and (!(1 == $frequency_cd))  ){
+  if (('1' == $done)  and (!(10 == $frequency_cd))  ){
     $add_todo_data = doFrequencyProcessing($dbh, $customer_id, $new_todo_data);
     $final = array($new_todo_data, $add_todo_data);
     return $final;
@@ -376,7 +379,10 @@ function  addTodo($dbh, $request_data, $customer_id, $batch_id_parm = 0){
         if (isset($request_data->priority_cd)){
           $priority_cd = $request_data->priority_cd;
         }
-        $frequency_cd = 1;
+
+        ## Update frequency_cd
+        //        $frequency_cd = 1;
+        $frequency_cd = 10;
         if (isset($request_data->frequency_cd)){
           $frequency_cd = $request_data->frequency_cd;
         }
@@ -441,15 +447,6 @@ function  explodeTodoName($request, $dbh){
       $daysOfWeek = array('Sunday', 'Sun', 'Monday', 'Mon', 'Tuesday', 'Tue', 'Wednesday', 'Wed', 'Thursday',
        'Thu', 'Friday', 'Fri', 'Saturday', 'Sat'
        );
-
-//       //fixme: may be better to get from database but didnt want to take the hit
-//       $frequencies = array(
-//           1 => once,
-//           2 => weekly,
-//           3 => monthly,
-//           4 => quarterly,
-//           5 => yearly
-//       );
 
       //fixme: may want to get this from memory... memcache (?)
       $frequencies = getFrequencies($dbh);
@@ -523,10 +520,10 @@ function getGroupIdUsingName($groupName, $groups){
 }
 
 function getFrequencyCdUsingName($frequency, $frequencies, $doDefault=1){
-  //there are cases when you dont want to default to 1.... eg: explode since the tag will be passed
+  //there are cases when you dont want to default to 10.... eg: explode since the tag will be passed
   $frequency_cd = 0;
   if ($doDefault){
-    $frequency_cd = 1;  #default to 1:Once
+    $frequency_cd = 10;  #default to 10:Once
   }
   $frequency = trim($frequency);
   foreach ($frequencies as $fields){
@@ -693,6 +690,24 @@ function  updateGroup($dbh, $request_data, $customer_id){
   return $response;
 }
 
+
+###################################
+function  addBaseGroups($dbh, $customer_id){
+
+  $query = "INSERT INTO todo_group (group_name, sort_order, customer_id, active) VALUES (?,?,?,?)";
+  #### add new group
+  //$rowsInserted = insertData($dbh, $query);
+  $types = 'siii';  ## pass
+
+  $group_name = 'My To Dos';
+  $sort_order = 1;
+  $active = 1;
+  $params = array($group_name, $sort_order, $customer_id, $active);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
+}
+
+
 ###################################
 function  addGroup($dbh, $request_data, $customer_id){
 
@@ -772,6 +787,20 @@ function  setGroupToActive($dbh, $request_data, $customer_id){
   return $response;
 
 }
+
+###################################
+function  deleteAllGroups($dbh, $customer_id){
+  #### delete the group
+  $query = "delete from todo_group where customer_id = ?";
+  //$rowsAffected = actionSql($dbh,$query);
+  $types = 'i';  ## pass
+  $params = array($customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+  $response{'RowsDeleted'} = $rowsAffected;
+  return $response;
+}
+
+
 
 ###################################
 function  deleteGroup($dbh, $request_data, $customer_id){

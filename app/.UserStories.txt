@@ -2,15 +2,14 @@
 IN PROGRESS:
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year.. SCHEMA.. Add referral to the register page. Add to Customer Record
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
-Main Page: Add content to the top page,
 Main Page: Pricing. Get in synch.. Either have 3 Free, Base, Pro (and have site support)... or just have Free, Pro
 Main Page: Finish "How We Help" Section
 Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
 Main Page: Incorporate content from the original page into the new one..
+Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)... Add LINKs to
 
 MVP:  CRITICAL
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
-Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)
 What do you get when you pay for it... done but need content explain free vs premium
 Build Unit Test Cases for Controllers and Services
 Register URL with Google and Others..
@@ -124,7 +123,7 @@ Add Expires headers (see YSlow)  9/4
 Get Giant Logo:  http://www.clipartpal.com/clipart_pd/cartoon/mythology_10279.html
 Main Page: Replace Images with ToDoGiant pics    10/6
 Add BiWeekly to Frequency DropDown.. and take it into account when closing an item    10/6
-
+Main Page: Add content to the top page  10/6
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

@@ -111,7 +111,7 @@ function registerUser($dbh, $email, $password, $password2, $firstName, $lastName
             ##### Add Todo_Group and Create Event, account_period, and xref.....
             if (isset($_SESSION['customer_id'])) {
               $customer_id = $_SESSION['customer_id'];
-              addTodoGroup($dbh, $customer_id);
+              addBaseGroups($dbh, $customer_id);
               $addEventResponse = addEvent($dbh, $customer_id, 1, date('Y-m-d H:i:s') );  # 1 = Registration
               $event_id = $addEventResponse{'LastInsertId'};
 
@@ -150,27 +150,6 @@ function addUser($dbh, $email, $password, $credential_status_cd, $guid, $firstNa
     return $rowsAffected;
 }
 
-
-function  addTodoGroup($dbh, $customer_id){
-  $query = "INSERT INTO todo_group (group_name, sort_order, customer_id, active) VALUES (?,?,?,?)";
-  #### add new group
-  //$rowsInserted = insertData($dbh, $query);
-  $types = 'siii';  ## pass
-
-  $group_name = 'My To Dos';
-  $sort_order = 1;
-  $active = 1;
-  $params = array($group_name, $sort_order, $customer_id, $active);
-  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
-
-//  $group_name = 'Work';
-//  $sort_order = 2;
-//  $active = 0;
-//  $params = array($group_name, $sort_order, $customer_id, $active);
-//  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
-
-
-}
 
 
 ##
