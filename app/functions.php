@@ -1240,6 +1240,17 @@ function getEmail($dbh, $customer_id){
 }
 
 ################################################################################
+function getDemoUser($dbh){
+
+    $request_data = new stdClass();
+    $request_data->email = 'jjjj@yahoo.com';
+    $request_data->password = 'junk';
+
+    return $request_data;
+}
+
+
+################################################################################
 function generatePassword( $length = 8 ) {
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
     $password = substr( str_shuffle( $chars ), 0, $length );

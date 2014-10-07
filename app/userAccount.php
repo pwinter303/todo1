@@ -10,18 +10,12 @@ echo $json;
 
 function processRequest(){
 
-  if (isset($_SESSION['customer_id'])) {
-    $customer_id = $_SESSION['customer_id'];
-  }   else  {
-     die ('invalid customer id');
-  }
-
     switch ($_SERVER['REQUEST_METHOD']) {
        case 'POST':
-             $result = processPost($customer_id);
+             $result = processPost();
              break;
        case 'GET':
-             $result = processGet($customer_id);
+             $result = processGet();
              break;
        default:
              echo "Error:Invalid Request";
@@ -37,13 +31,23 @@ function  processGet($customer_id){
 
     $dbh = createDatabaseConnection();
 
+    $customer_id = 0;
+    if (isset($_SESSION['customer_id'])) {
+      $customer_id = $_SESSION['customer_id'];
+    }
+
     $action = htmlspecialchars($_GET["action"]);
     switch ($action) {
        case 'getAccountPeriod':
+             if (0 == $customer_id){die ('invalid customer id');};
              $result = getAccountPeriod($dbh, $customer_id);
              break;
        case 'getEmail':
+             if (0 == $customer_id){die ('invalid customer id');};
              $result = getEmail($dbh, $customer_id);
+             break;
+       case 'getDemoUser':
+             $result = getDemoUser($dbh);
              break;
        default:
              echo "Error:Invalid Request:Action not set properly";
@@ -55,7 +59,14 @@ function  processGet($customer_id){
 
 
 ####################  POSTs ################################
-function  processPost($customer_id){
+function  processPost(){
+
+
+    if (isset($_SESSION['customer_id'])) {
+      $customer_id = $_SESSION['customer_id'];
+    }   else  {
+       die ('invalid customer id');
+    }
 
     $dbh = createDatabaseConnection();
 

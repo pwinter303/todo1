@@ -20,6 +20,7 @@ angular.module('todoApp', [
       .when('/register', {templateUrl: 'views/register.html'})
       .when('/import', {templateUrl: 'views/import.html',controller: 'FileUploadCtrl'})
       .when('/social', {templateUrl: 'views/social.html',controller: 'SocialCtrl'})
+      .when('/demouser', {templateUrl: 'views/demouser.html', controller: 'DemoUserCtrl'})
       .otherwise({redirectTo: '/'});
   })
 
