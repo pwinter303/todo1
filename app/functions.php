@@ -17,10 +17,13 @@ function  getTodo($dbh, $customer_id, $todo_id){
 ###################################
 function  getTodos($dbh, $customer_id){
 
+  //FixMe: pull in the interval from customer..
+  $days = getDisplayDaysForDone($dbh, $customer_id);
+
   $query = "select todo_id, group_id, task_name, DATE_FORMAT(due_dt,'%m/%d/%Y') AS due_dt, starred, priority_cd,
   frequency_cd, status_cd, note, done, tags, done_dt from todo
   where customer_id = ? and
-  ((done_dt is NULL) or (done_dt >= CURDATE() - INTERVAL 1 DAY))
+  ((done_dt is NULL) or (done_dt >= CURDATE() - INTERVAL $days DAY))
   order by priority_cd desc";
 
   $types = 'i';  ## pass
@@ -31,6 +34,26 @@ function  getTodos($dbh, $customer_id){
 
   return $data;
 }
+
+###################################
+function  getDisplayDaysForDone($dbh, $customer_id){
+
+    $query = "select display_days_done_todos as theDays from customer where customer_id = ? ";
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+
+    $displayDays = 1;
+
+    if ($data{'theDays'}){
+        $displayDays = $data{'theDays'};
+    }
+
+    return $displayDays;
+
+}
+
+
 ###################################
 function  getGroups($dbh, $customer_id){
 
