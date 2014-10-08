@@ -1,0 +1,62 @@
+<section    id="login">
+
+    <br>
+
+
+    <div class="container-fluid">
+
+        <div class="col-lg-4 col-lg-offset-4  col-md-6 col-md-offset-3 col-xs-12">
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3>Login for Demo User</h3></div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        Hi, Here are your temporary credentials which can be used to access the site. Please note that all the groups and to dos will be deleted in the next 4 hours. You can use the same credentials to access the site from your mobile device or tablet.
+
+                        <br>
+
+                        <div>Demo eMail:{{user.email}}</div>
+                        <div>Demo password:{{user.password}}</div>
+
+                    </div>
+                    <form data-ng-submit="logIn(user)" form-autofill-fix>
+
+                        <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="email" class="form-control" name="email" data-ng-model="user.email" required >
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" class="form-control" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
+                            </div>
+                        </div>
+                        <div class="col-md-offset-1 col-md-10 col-md-offset-1">
+                            <br>
+                            <p><button type="submit" class="btn btn-success">Sign in</button>
+                        </div>
+                    </form>
+                    <span>{{loginmsg}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <div class="col-lg-8 col-lg-offset-2  col-md-8 col-md-offset-2 col-xs-12">
+        <div class="text-center">
+            When you log in you'll see the page below.  We've included some notes so you can hit the ground running.
+            <img src="images/demouserscreenshot.jpg" class="img-responsive animated fadeInLeft delay-1" alt="">
+        </div>
+
+
+    </div>
+
+
+</section>
+
