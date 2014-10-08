@@ -17,7 +17,6 @@ function  getTodo($dbh, $customer_id, $todo_id){
 ###################################
 function  getTodos($dbh, $customer_id){
 
-  //FixMe: pull in the interval from customer..
   $days = getDisplayDaysForDone($dbh, $customer_id);
 
   $query = "select todo_id, group_id, task_name, DATE_FORMAT(due_dt,'%m/%d/%Y') AS due_dt, starred, priority_cd,
@@ -48,9 +47,7 @@ function  getDisplayDaysForDone($dbh, $customer_id){
     if ($data{'theDays'}){
         $displayDays = $data{'theDays'};
     }
-
     return $displayDays;
-
 }
 
 
