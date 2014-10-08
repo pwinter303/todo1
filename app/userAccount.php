@@ -47,7 +47,7 @@ function  processGet($customer_id){
              $result = getEmail($dbh, $customer_id);
              break;
        case 'getDemoUser':
-             $result = getDemoUser($dbh);
+             $result = getDemoCustomer($dbh);   ### called getDemoUser in Javascript since viewable.. demoCustomer in PHP to align with table
              break;
        default:
              echo "Error:Invalid Request:Action not set properly";

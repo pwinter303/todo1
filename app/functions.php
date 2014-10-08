@@ -789,7 +789,7 @@ function  setGroupToActive($dbh, $request_data, $customer_id){
 }
 
 ###################################
-function  resetCustomer($dbh, $customer_id){
+function  resetDemoCustomer($dbh, $customer_id){
   #### delete the groups
   $response = deleteAllGroups($dbh, $customer_id);
   #### delete batches
@@ -1240,13 +1240,35 @@ function getEmail($dbh, $customer_id){
 }
 
 ################################################################################
-function getDemoUser($dbh){
+function getDemoCustomer($dbh){
 
-    $request_data = new stdClass();
-    $request_data->email = 'jjjj@yahoo.com';
-    $request_data->password = 'junk';
+  $query = "select customer_id from demo_customers order by last_used_ts asc  limit 1";
+  //NOTE: Binding to $dummy was done to use the PREPARED mssql_free_statement
+  $dummy=1;
+  $types = 'i';  ## pass
+  $params = array($dummy);
+  $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+  $customer_id = $data{"customer_id"};
 
-    return $request_data;
+
+  $query = "update demo_customers set last_used_ts = current_timestamp where customer_id = ?";
+  $types = 'i';  ## pass
+  $params = array($customer_id);
+  $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
+
+
+  $query = "select email from customer where customer_id = ?";
+  $types = 'i';  ## pass
+  $params = array($customer_id);  //retrieved above...
+  $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+  $email = $data{"email"};
+
+
+  $request_data = new stdClass();
+  $request_data->email = $email;
+  $request_data->password = 'demopassword';  //all the demo passwords are the same..
+
+  return $request_data;
 }
 
 
