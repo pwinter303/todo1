@@ -5,8 +5,8 @@ fix facebook image that is getting picked up in open graph tags.. is it truncate
 Main Page: Pricing. Get in synch.. Either have 3 Free, Base, Pro (and have site support)... or just have Free, Pro
 Main Page: Finish "How We Help" Section
 Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
-Main Page: Incorporate content from the original page into the new one..
-Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)... Add LINKs to
+DemoUser: cron job to run resetDemoCustomer every 4 hours..
+
 
 MVP:  CRITICAL
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
@@ -31,12 +31,15 @@ Test functionality in different browsers: IE, FF, Safari, including Mobile, Tabl
 Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
 Forgot password.... Force password change when using temp password
 Add Entity Tags (see YSlow)
+Concept: Pull in todo lists: Wedding, Exercise, Have People Create Lists to Shares
+
 
 MVP:  ON THE BUBBLE...
 Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Export Todos - Should this be part of premium?   Or... If the Completed Page Exists... People could Copy/Paste
 Dashboard.. Showing Todos by Week, Month, Relation to Others, etc
+
 
 ========== Nice to Have ============
 Dynamic congratulations messages for completed tasks... integrated with Tostr
@@ -124,6 +127,9 @@ Get Giant Logo:  http://www.clipartpal.com/clipart_pd/cartoon/mythology_10279.ht
 Main Page: Replace Images with ToDoGiant pics    10/6
 Add BiWeekly to Frequency DropDown.. and take it into account when closing an item    10/6
 Main Page: Add content to the top page  10/6
+Create dummy userId and Password and a script to wipe out Todos, Groups, Batches every 10 min. Restrict PWD changes (?)... Add LINKs to it  10/8
+Main Page: Incorporate content from the original page into the new one..  10/8
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

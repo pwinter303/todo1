@@ -172,35 +172,55 @@ function loginUser($dbh, $email, $password){
 
 function changePassword($dbh, $oldPassword, $password, $password2){
 
+    //FixMe: add check on demo_customers.. it exists.. cant be changed
+    if (isset($_SESSION['customer_id'])) {
+        $customer_id = $_SESSION['customer_id'];
+    } else {
+      $response{'error'} = "ERROR - Password could not be updated. CustomerID Unavailable.";
+      return $response;
+    }
+
     if ($password <> $password2){
       $response{'error'} = "ERROR - Re-entered password does not match";
-    } else {
-        if ($oldPassword === $password2){
-          $response{'error'} = "ERROR - New password cannot equal old";
-        } else {
-            if (isset($_SESSION['customer_id'])) {
-                $customer_id = $_SESSION['customer_id'];
-                $valid = validatePassword($dbh, $customer_id, $oldPassword);
+      return $response;
+    }
 
-                if ($valid){
-                    $rowsAffected = setPassword($dbh, $customer_id, $password, 6);  # 6 = Password Change
-                    if ($rowsAffected){
-                      $response{'msg'} = "Password Changed";
-                    } else {
-                      $response{'error'} = "ERROR - Password could not be updated.";
-                    }
-                } else {
-                    $response{'error'} = "ERROR - Current password is invalid";
-                }
-            } else {
-              $response{'error'} = "ERROR - Password could not be updated. CustomerID Unavailable.";
-            }
+    if ($oldPassword === $password2){
+      $response{'error'} = "ERROR - New password cannot equal old";
+      return $response;
+    }
+
+    $demo = isItDemoCustomer($dbh, $customer_id);
+    if ($demo){
+      $response{'error'} = "ERROR - Cannot change demo user passwords";
+      return $response;
+    }
+
+    $valid = validatePassword($dbh, $customer_id, $oldPassword);
+    if ($valid){
+        $rowsAffected = setPassword($dbh, $customer_id, $password, 6);  # 6 = Password Change
+        if ($rowsAffected){
+          $response{'msg'} = "Password Changed";
+        } else {
+          $response{'error'} = "ERROR - Password could not be updated.";
         }
+    } else {
+        $response{'error'} = "ERROR - Current password is invalid";
     }
     return $response;
 }
 
+#######################################################
+function isItDemoCustomer($dbh, $customer_id){
+      $query = "select count(*) as TrueInd from demo_customers where customer_id = ?";
+      $types = 'i';  ## pass
+      $params = array($customer_id);
+      $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
 
+      return $data{'TrueInd'};
+}
+
+#######################################################
 function setPassword($dbh, $customer_id, $password, $event_cd){
     // Initialize the hasher without portable hashes (this is more secure)
     $hasher = new PasswordHash(8, false);
