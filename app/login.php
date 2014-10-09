@@ -51,7 +51,13 @@ function processPost(){
             $pass2 = $request->repassword;
             $firstName = $request->firstName;
             $lastName = $request->lastName;
-            $result = registerUser($dbh, $email, $pass, $pass2, $firstName, $lastName);
+
+            if ($request->referralemail){
+                $referralemail = $request->referralemail;
+            } else {
+                $referralemail = NULL;
+            }
+            $result = registerUser($dbh, $email, $pass, $pass2, $firstName, $lastName, $referralemail);
             break;
        case 'loginUser':
             $email = $request->email;
@@ -80,7 +86,7 @@ function processPost(){
 }
 
 #####
-function registerUser($dbh, $email, $password, $password2, $firstName, $lastName){
+function registerUser($dbh, $email, $password, $password2, $firstName, $lastName, $referralemail){
   if (   (0 == strlen($password))   or   (0 == strlen($email)) ) {
       $response{'error'}=1;
       if (0 == strlen($password)) {
@@ -101,7 +107,7 @@ function registerUser($dbh, $email, $password, $password2, $firstName, $lastName
               $response{'errMsg'} = "ERROR - eMail already registered";
       } else {
         $guid = createGUID();
-        $return_status = addUser($dbh, $email, $password, 1, $guid, $firstName, $lastName); #1:Awaiting Confirmation eMail return
+        $return_status = addUser($dbh, $email, $password, 1, $guid, $firstName, $lastName, $referralemail); #1:Awaiting Confirmation eMail return
         if ($return_status){
           eMailActivation($email, $guid);
           $response{'msg'} = "Successful Registration";
@@ -129,7 +135,7 @@ function registerUser($dbh, $email, $password, $password2, $firstName, $lastName
 }
 
 
-function addUser($dbh, $email, $password, $credential_status_cd, $guid, $firstName, $lastName){
+function addUser($dbh, $email, $password, $credential_status_cd, $guid, $firstName, $lastName, $referralemail){
 
     //considered doing createGUID within this function... or even letting MySQL create it... but
     //since the guid is needed in the calling function (eg: email it).. kept the creation outside of this
@@ -140,11 +146,11 @@ function addUser($dbh, $email, $password, $credential_status_cd, $guid, $firstNa
     // Hash the password.  $hashedPassword will be a 60-character string.
     $hashedPassword = $hasher->HashPassword($password);
 
-    $query = "Insert into customer (email,  password, credential_status_cd,   guid, first_name, last_name) VALUES
-                                 (      ?,         ?,                    ?,      ?,          ?,         ?)";
+    $query = "Insert into customer (email,  password, credential_status_cd,   guid, first_name, last_name, referral_email) VALUES
+                                 (      ?,         ?,                    ?,      ?,          ?,         ?,              ?)";
     //$rowsAffected = actionSql($dbh,$query);
-    $types = 'ssisss';  ## pass
-    $params = array($email, $hashedPassword, $credential_status_cd, $guid, $firstName, $lastName);
+    $types = 'ssissss';  ## pass
+    $params = array($email, $hashedPassword, $credential_status_cd, $guid, $firstName, $lastName, $referralemail);
     $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);
 
     return $rowsAffected;
@@ -172,7 +178,6 @@ function loginUser($dbh, $email, $password){
 
 function changePassword($dbh, $oldPassword, $password, $password2){
 
-    //FixMe: add check on demo_customers.. it exists.. cant be changed
     if (isset($_SESSION['customer_id'])) {
         $customer_id = $_SESSION['customer_id'];
     } else {
@@ -212,7 +217,7 @@ function changePassword($dbh, $oldPassword, $password, $password2){
 
 #######################################################
 function isItDemoCustomer($dbh, $customer_id){
-      $query = "select count(*) as TrueInd from demo_customers where customer_id = ?";
+      $query = "select count(*) as TrueInd from demo_customer where customer_id = ?";
       $types = 'i';  ## pass
       $params = array($customer_id);
       $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);

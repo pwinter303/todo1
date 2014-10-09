@@ -1262,7 +1262,7 @@ function getEmail($dbh, $customer_id){
 ################################################################################
 function getDemoCustomer($dbh){
 
-  $query = "select customer_id from demo_customers order by last_used_ts asc  limit 1";
+  $query = "select customer_id from demo_customer order by last_used_ts asc  limit 1";
   //NOTE: Binding to $dummy was done to use the PREPARED mssql_free_statement
   $dummy=1;
   $types = 'i';  ## pass
@@ -1271,7 +1271,7 @@ function getDemoCustomer($dbh){
   $customer_id = $data{"customer_id"};
 
 
-  $query = "update demo_customers set last_used_ts = current_timestamp where customer_id = ?";
+  $query = "update demo_customer set last_used_ts = current_timestamp where customer_id = ?";
   $types = 'i';  ## pass
   $params = array($customer_id);
   $rowsAffected = execSqlActionPREPARED($dbh, $query, $types, $params);

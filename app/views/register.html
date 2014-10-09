@@ -54,9 +54,17 @@
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <input type="password" class="form-control" name="password" data-ng-model="user.repassword" required placeholder="Re-enter Password" data-ng-minlength="3">
                                     </div>
+                            </div>
                             <br>
-
-                            <p><button type="submit" class="btn btn-success">Register</button>
+                            <br>
+                            <br>
+                            <div class="col-md-offset-1 col-md-10">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                    <input type="email" class="form-control" name="referralemail" data-ng-model="user.referralemail"  placeholder="Enter eMail of Person that Referred You (Optional)">
+                                </div>
+                                <br>
+                                <p><button type="submit" class="btn btn-success">Sign Up</button>
                             </div>
                         </form>
                         <span>{{errormsg}}</span>
