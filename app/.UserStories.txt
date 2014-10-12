@@ -1,8 +1,7 @@
 ========== MVP ============
 IN PROGRESS:
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
-Main Page: Pricing. Get in synch.. Either have 3 Free, Base, Pro (and have site support)... or just have Free, Pro
-Main Page: Finish "How We Help" Section
+Main Page: Finish "How We Help" Section.. Add Features.. Security/Encryption, No Spam,
 Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Referral: Add logic to track referrals and grant free premium access for every X referrals..
@@ -33,7 +32,9 @@ Test functionality in different browsers: IE, FF, Safari, including Mobile, Tabl
 Control Frequency Logic through Config... EG: do you want to generate new task when recurring tasks are completed.. SCHEMA
 Forgot password.... Force password change when using temp password
 Add Entity Tags (see YSlow)
-Concept: Pull in todo lists: Wedding, Exercise, Have People Create Lists to Shares
+Concept: Pull in todo lists: Wedding, Exercise, Have People Create Lists to Shares..
+  Create MASTER customer and then hang groups off of that... new page to list
+
 
 
 MVP:  ON THE BUBBLE...
@@ -134,7 +135,7 @@ Main Page: Incorporate content from the original page into the new one..  10/8
 SCHEMA.. Add referral to the register page. Add to Customer Record....   10/8
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year..    10/8
 What do you get when you pay for it... done but need content explain free vs premium   10/8
-
+Main Page: Pricing. Get in synch.. Either have 3 Free, Base, Pro (and have site support)... or just have Free, Pro
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

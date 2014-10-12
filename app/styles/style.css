@@ -393,8 +393,12 @@ a:active {
     background-color:transparent; 
 }
 
+.navbar-left li {
+    font-size: 12px;
+}
+
 .navbar-custom .nav li.active a{
-	font-weight:700;
+	/*font-weight:700;*/
 	color:#fff;
 }
 

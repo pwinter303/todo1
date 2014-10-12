@@ -92,14 +92,13 @@
                         </div>
 
                         <div class="pull-right"  ng-cloak  class="ng-cloak">
-                            <a class="btn btn-primary navbar-btn" a href="/blog">BLOG</a>
                             <a class="btn btn-success navbar-btn"   data-ng-hide="loggedIn" a href="#register">SIGN UP</a>
                             <a class="btn btn-success navbar-btn"  data-ng-hide="loggedIn" a href="#login">LOGIN</a>
                             <!--<a class="btn btn-primary  navbar-btn" data-ng-show="loggedIn" a href="#settings" >Settings</a>-->
                             <!-- Single button -->
                             <div class="btn-group" data-ng-show="loggedIn">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    SETTINGS <span class="caret"></span>
+                                    MENU <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#contact">Contact Us</a></li>
@@ -109,6 +108,8 @@
                                     <li class="divider"></li>
                                     <li><a href="#groups">Groups</a></li>
                                     <li><a href="#import">Import To Dos</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="/blog">Blog</a>
                                 </ul>
                             </div>
                             <a class="btn btn-primary  navbar-btn" data-ng-show="loggedIn" data-ng-click="logMeOut()" >LOGOUT</a>
