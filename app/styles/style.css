@@ -572,11 +572,13 @@ a:active {
 }
 
 .icon-box-primary .icon-box-icon i {
-	font-size: 36px;
+	/*Commented out Font Size so the fa can be sized*/
+	/*font-size: 36px;*/
 	/*PLW Commented Out Ugly Green*/
 	/*color:#a7ce30;*/
     color: rgb(45, 178, 234);
-	padding: 50px 0;
+	/* Commented out so the icon padding isnt so massive*/
+	/*padding: 50px 0;*/
 }
 
 
