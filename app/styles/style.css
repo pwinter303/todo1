@@ -554,15 +554,21 @@ a:active {
     /*color: #a7ce30;*/
     color: rgb(45, 178, 234);
 	display: inline-block;
-	line-height: 76px;
+	/*Fixed Spacing PLW*/
+	/*line-height: 76px;*/
+	line-height: 5px;
 	position: relative;
 	text-align: center;
 	background: transparent;
-	margin-bottom: 15px;
+	/*Fixed Spacing PLW*/
+	/*margin-bottom: 15px;*/
+	margin-bottom: 5px;
 }
 
 .icon-box-primary .icon-box-info {
 	text-align: center;
+    /*Fixed Spacing PLW*/
+    margin-bottom: 55px;
 }
 
 .icon-box-primary .icon-box-info h4 {
