@@ -20,6 +20,7 @@ MVP:  IMPORTANT
 Ability to set how long a completed task is shown -  SCHEMA... Schema Done.. Just need Update
 Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 Main Page: Should there be a page to enter eMail for updates for people that don't want to sign up/register but want to be kept up to date on changes?
+Priority = -10 are not shown (?)... how to get them back?
 
 
 MVP:  NEEDED
