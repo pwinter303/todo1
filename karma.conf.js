@@ -10,6 +10,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     // list of files / patterns to load in the browser
+    // Added jQuery
     files: [
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
@@ -18,6 +19,7 @@ module.exports = function(config) {
       'app/bower_components/toastr/toastr.js',
       'app/bower_components/angulartics/dist/angulartics.min.js',
       'app/bower_components/angulartics/dist/angulartics-ga.min.js',
+      'app/bower_components/jquery/jquery.min.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
       'test/mock/**/*.js',
