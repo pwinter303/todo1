@@ -696,21 +696,22 @@ a:active {
     font-size: 40px;
 }
 
-#home-slider .btn-lg,#header-image .btn-lg,#bg-parallax .btn-lg{
-    border: 1px #FFF solid;
-    text-transform: uppercase;
-    border-radius: 0px;
-    -webkit-transition: all 0.2s ease-out;
-    -moz-transition: all 0.2s ease-out;
-    -ms-transition: all 0.2s ease-out;
-    -o-transition: all 0.2s ease-out;
-    transition: all 0.2s ease-out;
-    background:transparent;
-}
+/*PLW Removed 2014-10-24*/
+/*#home-slider .btn-lg,#header-image .btn-lg,#bg-parallax .btn-lg{*/
+    /*border: 1px #FFF solid;*/
+    /*text-transform: uppercase;*/
+    /*border-radius: 0px;*/
+    /*-webkit-transition: all 0.2s ease-out;*/
+    /*-moz-transition: all 0.2s ease-out;*/
+    /*-ms-transition: all 0.2s ease-out;*/
+    /*-o-transition: all 0.2s ease-out;*/
+    /*transition: all 0.2s ease-out;*/
+    /*background:transparent;*/
+/*}*/
 
-#home-slider .btn-lg:hover{
-    background:rgba(0,0,0,0.5);
-}
+/*#home-slider .btn-lg:hover{*/
+    /*background:rgba(0,0,0,0.5);*/
+/*}*/
 
 #home-slider .slider-video{
     -moz-box-shadow: 5px 5px 50px #000;

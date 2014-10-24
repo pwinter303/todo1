@@ -26,9 +26,9 @@
                             <form role="form">
                                 <select class="form-control" data-ng-model="group.group_id" data-ng-options="group.group_id as group.group_name for group in groups">
                                 </select>
-                                <button  class="btn btn-danger" data-ng-click="deleteGroup(group)">Delete Group</button>
+                                <button  class="btn btn-primary" data-ng-click="deleteGroup(group)">Delete Group</button>
                             </form>
-                            <p> NOTE: All the To Dos (active or complete) associated with this group will be deleted!
+                            <i class="fa fa-warning fa-2x" style="margin-top:5px;color:red"></i> All the To Dos (active or complete) under this group will be deleted!
                             Use "Move To Dos Between Groups" (below) before deleting any groups! </p>
                     </div>
                 </div>

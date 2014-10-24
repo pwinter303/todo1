@@ -14,7 +14,7 @@ ADD CONSTRAINT `fk_todo_todoGroup1`
 
 CREATE TABLE IF NOT EXISTS `db508430361`.`demo_customer` (
   `customer_id` INT(11) NOT NULL,
-  `last_used_ts` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `last_used_ts` TIMESTAMP NULL,
   `last_reset_ts` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   INDEX `fk_demo_customer_customer1_idx` (`customer_id` ASC),
   PRIMARY KEY (`customer_id`),
@@ -26,6 +26,7 @@ CREATE TABLE IF NOT EXISTS `db508430361`.`demo_customer` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = latin1
 COLLATE = latin1_general_ci;
+CREATE TRIGGER demo_customer_inserts BEFORE INSERT ON demo_customer FOR EACH ROW SET NEW.last_used_ts = CURRENT_TIMESTAMP;
 
 
 ALTER TABLE `db508430361`.`customer`
