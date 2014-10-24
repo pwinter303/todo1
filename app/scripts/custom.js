@@ -126,8 +126,8 @@ $(document).ready(function() {
 // ****************************************************************	
 
 //PLW Commented out..
-// $(document).ready(function(){
-//	wow = new WOW(
+//$(document).ready(function(){
+//	var wow = new WOW(
 //	  {
 //		animateClass: 'animated',
 //		offset:       150
