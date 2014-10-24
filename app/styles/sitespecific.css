@@ -124,6 +124,9 @@ html, body {
     height: auto !important;
     height: 100%;
     margin: 0 auto -2em;
+    /* Added 2014-10-24*/
+    /*background:rgba(142, 215, 231, 0.3);*/
+    background:rgba(102, 205, 255, 0.4);
 }
 .footer, .push {
     height: 2em;
@@ -158,4 +161,12 @@ html, body {
 
 #import .panel-body h3 {
     margin: 0 0 0px;
+}
+
+#services, #about {
+    background:white;
+}
+
+#todolist .row {
+    margin-bottom: 5px;
 }

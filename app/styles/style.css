@@ -367,9 +367,14 @@ a:active {
     padding:15px;
 }
 
-.navbar-brand < .logo img {
-    padding:15px;
-}
+/*Corrected PLW 2014-10-24*/
+/*.navbar-brand < .logo img {*/
+    /*padding:15px;*/
+/*}*/
+
+.navbar-brand  .logo img {
+                    padding:15px;
+                }
 
 .navbar-brand:focus {
     outline: 0;

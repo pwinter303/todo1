@@ -37,52 +37,49 @@
         </div>
     </div>
 
+    <section id="todolist">
 
-
-
-
-
-
-    <div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter, group_id:activegroup} | orderBy:['done','priority_cd','due_dt_sort']">
-        <!--<div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter } | limitTo:10 | orderBy:['done','priority_cd','due_dt']">-->
-        <!--<div class="row dotted">-->
-        <div class="row">
-            <div class="col-md-7 col-xs-9 col-sm-9">
-                <div class="input-group">
-                    <span class="input-group-addon">
-                        <input type="checkbox" data-ng-model="todo.done" data-ng-change="updateDone(todo)">
-                        <i class="glyphicon {{todo.glyph}} "></i>
-                        <!--<i class="glyphicon glyphicon-none"></i>-->
-                        <!--<i class="glyphicon glyphicon-warning-sign"></i>-->
-                    </span>
-                    <input type="text" class="form-control" data-ng-model="todo.task_name" data-ng-enter="updateTask(todo)">
-                    <!--{{todo.task_name}}-->
-                </div><!-- /input-group -->
-            </div>
-            <div class="col-md-5 col-xs-3 col-sm-3">
-
-                <div class="col-md-3 hidden-xs hidden-sm">
-                    <input type="text" class="form-control" data-ng-model="todo.tags" data-ng-enter="updateTask(todo)">
+        <div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter, group_id:activegroup} | orderBy:['done','priority_cd','due_dt_sort']">
+            <!--<div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter } | limitTo:10 | orderBy:['done','priority_cd','due_dt']">-->
+            <!--<div class="row dotted">-->
+            <div class="row">
+                <div class="col-md-7 col-xs-9 col-sm-9">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input type="checkbox" data-ng-model="todo.done" data-ng-change="updateDone(todo)">
+                            <i class="glyphicon {{todo.glyph}} "></i>
+                            <!--<i class="glyphicon glyphicon-none"></i>-->
+                            <!--<i class="glyphicon glyphicon-warning-sign"></i>-->
+                        </span>
+                        <input type="text" class="form-control" data-ng-model="todo.task_name" data-ng-enter="updateTask(todo)">
+                        <!--{{todo.task_name}}-->
+                    </div><!-- /input-group -->
                 </div>
-                <div class="col-md-9 col-xs-12 col-sm-12 small text-center">
-                    <div class="col-md-3 col-xs-12 col-sm-12">
-                        <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.priority_cd" data-ng-options="priority.cd as priority.name for priority in priorities">
-                        </select>
+                <div class="col-md-5 col-xs-3 col-sm-3">
+
+                    <div class="col-md-3 hidden-xs hidden-sm">
+                        <input type="text" class="form-control" data-ng-model="todo.tags" data-ng-enter="updateTask(todo)">
                     </div>
-                    <div class="col-md-4 hidden-xs hidden-sm">
-                        <input type="text" class="form-control" data-ng-model="todo.due_dt" data-ng-enter="updateTask(todo)">
-                    </div>
-                    <div class="col-md-4 hidden-xs hidden-sm">
-                        <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.frequency_cd" data-ng-options="frequency.cd as frequency.name for frequency in frequencies">
-                        </select>
-                    </div>
-                    <div class="col-md-1 hidden-xs hidden-sm">
-                        <span class="glyphicon glyphicon-trash" ng-click="deleteTodo(todo)" style="padding-top: 25%"></span>
+                    <div class="col-md-9 col-xs-12 col-sm-12 small text-center">
+                        <div class="col-md-3 col-xs-12 col-sm-12">
+                            <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.priority_cd" data-ng-options="priority.cd as priority.name for priority in priorities">
+                            </select>
+                        </div>
+                        <div class="col-md-4 hidden-xs hidden-sm">
+                            <input type="text" class="form-control" data-ng-model="todo.due_dt" data-ng-enter="updateTask(todo)">
+                        </div>
+                        <div class="col-md-4 hidden-xs hidden-sm">
+                            <select class="form-control tight_select" data-ng-change="updateTask(todo)" data-ng-model="todo.frequency_cd" data-ng-options="frequency.cd as frequency.name for frequency in frequencies">
+                            </select>
+                        </div>
+                        <div class="col-md-1 hidden-xs hidden-sm">
+                            <span class="glyphicon glyphicon-trash" ng-click="deleteTodo(todo)" style="padding-top: 25%"></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </section>
 
 </div>
