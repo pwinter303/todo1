@@ -5,6 +5,7 @@ Main Page: Finish "How We Help" Section.. Add Features.. Security/Encryption, No
 Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Referral: Add logic to track referrals and grant free premium access for every X referrals..
+Update deploy.sh script to take into account new libraries (eg. owl-carousel)
 
 MVP:  CRITICAL
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
