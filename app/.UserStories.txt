@@ -8,6 +8,13 @@ Referral: Add logic to track referrals and grant free premium access for every X
 Update deploy.sh script to take into account new libraries (eg. owl-carousel)
 Fix images in the CSS... the images are renamed but the image tag in the css are not updated... eg: banner.jpg
 
+Ellen: Feedback:  On Account Profile - Show difference between free & premium
+Ellen: Feedback:  Add FAQ page  (explanations)
+
+
+
+
+
 MVP:  CRITICAL
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
 Build Unit Test Cases for Controllers and Services
