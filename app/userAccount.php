@@ -27,7 +27,7 @@ function processRequest(){
 }
 
 ####################  GETs ################################
-function  processGet($customer_id){
+function  processGet(){
 
     $dbh = createDatabaseConnection();
 

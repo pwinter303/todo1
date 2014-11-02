@@ -6,6 +6,7 @@ Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgra
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Referral: Add logic to track referrals and grant free premium access for every X referrals..
 Update deploy.sh script to take into account new libraries (eg. owl-carousel)
+Fix images in the CSS... the images are renamed but the image tag in the css are not updated... eg: banner.jpg
 
 MVP:  CRITICAL
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)

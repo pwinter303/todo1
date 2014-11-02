@@ -171,7 +171,9 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       options: {
-        assetsDirs: ['<%= yeoman.dist %>']
+        assetsDirs: ['<%= yeoman.dist %>',
+          '<%= yeoman.dist %>/any_name_is_ok'  // Fix relative path issue.
+         ]
       }
     },
 
@@ -275,6 +277,12 @@ module.exports = function (grunt) {
         // exclude DB patch and revert files from base code..
         src: ['*.php', '*.sql','!config.php', '!dbRefreshTables.php', '!DB*.sql']
       },
+      bootstrap: {
+        expand: true,
+        cwd: '<%= yeoman.app %>/styles',
+        dest: '<%= yeoman.dist %>/styles',
+        src: ['bootstrap.min*.css']
+      },
       staticImage: {
         expand: true,
         cwd: '<%= yeoman.app %>/images',
@@ -309,31 +317,35 @@ module.exports = function (grunt) {
     },
 
     // start of S3
-    //aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
-    aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
+    aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
+    //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
+    //aws: grunt.file.readJSON('/home/pwinter303/grunt-aws.json'),
+    //aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
     /* following comment turns off camelcase check for this function.. so it'll be ignored */
     /* jshint camelcase: false */
-    aws_s3: {
-      options: {
-        accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
-        secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
-        uploadConcurrency: 5, // 5 simultaneous uploads
-        downloadConcurrency: 5 // 5 simultaneous downloads
-      },
-      source_code: {
-        options: {
-          bucket: 'storage-plw'
-        },
-        files: [
-          {action: 'upload',
-            expand: true,
-            cwd: 'dist/js',
-            dest: 'source-code/aaa',
-            src: ['**']
-          }
-        ]
-      }
-    },
+
+//    NOT USING THIS VERSION... USING s3 (below)
+//    aws_s3: {
+//      options: {
+//        accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
+//        secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
+//        uploadConcurrency: 5, // 5 simultaneous uploads
+//        downloadConcurrency: 5 // 5 simultaneous downloads
+//      },
+//      source_code: {
+//        options: {
+//          bucket: 'storage-plw'
+//        },
+//        files: [
+//          {action: 'upload',
+//            expand: true,
+//            cwd: 'dist/js',
+//            dest: 'source-code/aaa',
+//            src: ['**']
+//          }
+//        ]
+//      }
+//    },
 
     s3: {
       options: {
@@ -434,6 +446,7 @@ module.exports = function (grunt) {
     'test',
     'build',
     'copy:otherfiles',
+    'copy:bootstrap',
     'copy:staticImage'
   ]);
 

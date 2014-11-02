@@ -120,10 +120,9 @@ insert_account_period($dbh);
 }
 
 
-function process_patchDB_20141006($dbh){
-
-echo "processing....process_patchDB_20141006";
-fix_frequency($dbh);
+function process_patchDB_20141007($dbh){
+  echo "processing....process_patchDB_20141007";
+  fix_frequency($dbh);
 }
 
 

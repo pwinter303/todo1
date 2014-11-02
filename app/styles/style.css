@@ -459,6 +459,8 @@ a:active {
     /*padding: 100px 0;*/
     text-align: center;
     color: #fff;
+    /* Changed to try and fix usemin issue*/
+    /*background:#000 url(../images/banner.jpg) no-repeat bottom center scroll;*/
     background:#000 url(../images/banner.jpg) no-repeat bottom center scroll;
     -webkit-background-size: cover;
     -moz-background-size: cover;
