@@ -99,18 +99,20 @@
                             <a class="btn btn-success navbar-btn"  data-ng-hide="loggedIn" a href="#login">LOGIN</a>
                             <!--<a class="btn btn-primary  navbar-btn" data-ng-show="loggedIn" a href="#settings" >Settings</a>-->
                             <!-- Single button -->
-                            <div class="btn-group" data-ng-show="loggedIn">
+
+                            <!--<div class="btn-group" data-ng-show="loggedIn">-->
+                            <div class="btn-group">
                                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                                     MENU <span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
                                     <li><a href="#contact">Contact Us</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="#account">Account/Profile</a></li>
+                                    <li  data-ng-show="loggedIn"><a href="#account">Account/Profile</a></li>
                                     <li><a href="#social">Social</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="#groups">Groups</a></li>
-                                    <li><a href="#import">Import To Dos</a></li>
+                                    <li  data-ng-show="loggedIn" class="divider"></li>
+                                    <li data-ng-show="loggedIn"><a href="#groups">Groups</a></li>
+                                    <li data-ng-show="loggedIn"><a href="#import">Import To Dos</a></li>
                                     <li class="divider"></li>
                                     <li><a href="/blog">Blog</a>
                                 </ul>

@@ -4,6 +4,11 @@
 */
 
 
+/*Change links in Intro Section (within the main page) to white */
+#intro a {
+    color:white;
+}
+
 a {
 	color:#2db2ea;
 }

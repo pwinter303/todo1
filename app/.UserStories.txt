@@ -1,19 +1,16 @@
 ========== MVP ============
 IN PROGRESS:
-
-
-
+Add more stuff to pricing boxes (eg: quick add, search, etc)
 
 MVP:  CRITICAL
+Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..
 fix facebook image that is getting picked up in open graph tags.. is it truncated?
 Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Referral: Add logic to track referrals and grant free premium access for every X referrals..
-Refresh Images to account for the new styles....
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
 Ellen: Feedback:  On Account Profile - Show difference between free & premium
 Ellen: Feedback:  Add FAQ page  (explanations)
-
 Build Unit Test Cases for Controllers and Services
 Register URL with Google and Others..
 **** Blog Content:  How to use the site:   QuickAdd, How to Use Groups,  How to Use Tags/Categories,  Importing Data,
@@ -23,7 +20,7 @@ Should getToDos only pull back ToDos for the current group????? PROBABLY!
 
 
 MVP:  IMPORTANT
-Ability to set how long a completed task is shown -  SCHEMA... Schema Done.. Just need Update
+Ability to set how long a completed task is shown -  SCHEMA... Schema Done.. Just need Update on config
 Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 Main Page: Should there be a page to enter eMail for updates for people that don't want to sign up/register but want to be kept up to date on changes?
 Priority = -10 are not shown (?)... how to get them back?
@@ -146,7 +143,9 @@ Main Page: Pricing. Get in synch.. Either have 3 Free, Base, Pro (and have site 
 Fix images in the CSS... the images are renamed but the image tag in the css are not updated... eg: banner.jpg   11/2/14
 Main Page: Finish "How We Help" Section.. Add Features.. Security/Encryption, No Spam,   11/2/14
 Update deploy.sh script to take into account new libraries (eg. owl-carousel)   11/2/14
-
+Menu Button on Main Page: Show when not logged in and have entries like contact us.. are shown..   11/5
+Refresh Images to account for the new styles....   11/5/14
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
+Add 401 error to group php... Hmmm.. This is interesting... GetGroups isnt even fired until login and that is what returns 401.  But if you call the page directly.. it'll display with no data... but you dont get an error because getGroups hasnt been called.
