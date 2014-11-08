@@ -145,6 +145,7 @@ Main Page: Finish "How We Help" Section.. Add Features.. Security/Encryption, No
 Update deploy.sh script to take into account new libraries (eg. owl-carousel)   11/2/14
 Menu Button on Main Page: Show when not logged in and have entries like contact us.. are shown..   11/5
 Refresh Images to account for the new styles....   11/5/14
+After sucessful registration... route to welcome page... which quick start graphic.  11/8/14
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

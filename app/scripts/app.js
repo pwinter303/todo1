@@ -21,6 +21,7 @@ angular.module('todoApp', [
       .when('/import', {templateUrl: 'views/import.html',controller: 'FileUploadCtrl'})
       .when('/social', {templateUrl: 'views/social.html',controller: 'SocialCtrl'})
       .when('/demouser', {templateUrl: 'views/demouser.html', controller: 'DemoUserCtrl'})
+      .when('/welcome', {templateUrl: 'views/welcome.html',  controller: 'WelcomeCtrl'})
       .otherwise({redirectTo: '/'});
   })
 

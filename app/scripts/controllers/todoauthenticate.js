@@ -126,7 +126,7 @@ angular.module('todoApp')
               $rootScope.loggedIn = 1;
               $scope.$broadcast('LoggedIn', []);
               todoFactory.msgSuccess(data.msg);
-              $location.path( '/todolist' );
+              $location.path( '/welcome' );
             }
           }, function(error) {
             // promise rejected, could be because server returned 404, 500 error...
