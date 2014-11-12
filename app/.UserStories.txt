@@ -4,7 +4,7 @@ Add more stuff to pricing boxes (eg: quick add, search, etc)
 
 MVP:  CRITICAL
 Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..
-fix facebook image that is getting picked up in open graph tags.. is it truncated?
+Fix facebook image that is getting picked up in open graph tags.. is it truncated?
 Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Referral: Add logic to track referrals and grant free premium access for every X referrals..

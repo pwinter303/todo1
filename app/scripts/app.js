@@ -22,6 +22,7 @@ angular.module('todoApp', [
       .when('/social', {templateUrl: 'views/social.html',controller: 'SocialCtrl'})
       .when('/demouser', {templateUrl: 'views/demouser.html', controller: 'DemoUserCtrl'})
       .when('/welcome', {templateUrl: 'views/welcome.html',  controller: 'WelcomeCtrl'})
+      .when('/faq', {templateUrl: 'views/faq.html',  controller: 'FaqCtrl'})
       .otherwise({redirectTo: '/'});
   })
 
