@@ -2,7 +2,7 @@
 
 describe('Controller: FaqCtrl', function () {
 
-  // load the controller's module
+  // load the controller's module 
   beforeEach(module('todoApp'));
 
   var FaqCtrl,
