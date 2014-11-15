@@ -1248,6 +1248,15 @@ function getCustomerId($dbh, $email){
 }
 
 ################################################################################
+function getCustomerInfo($dbh, $customer_id){
+    $query = "SELECT first_name, last_name, email fROM customer where customer_id = ?   ";
+    //$data = execSqlSingleRow($dbh, $query);
+    $types = 'i';  ## pass
+    $params = array($customer_id);
+    $data = execSqlSingleRowPREPARED($dbh, $query, $types, $params);
+    return $data;
+}
+################################################################################
 function getEmail($dbh, $customer_id){
 //    $query = "SELECT email fROM customer where customer_id = $customer_id  ";
 //    $data = execSqlSingleRow($dbh, $query);

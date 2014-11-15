@@ -11,17 +11,31 @@
                     <h3 class="text-center">We can't wait to hear from you! :-)</h3>
                     <form name="contactForm" data-ng-submit="contactSubmit(contact)">
 
-                        <div class="col-md-6 col-xs-6 col-sm-6">
+                        <div data-ng-hide="loggedIn"  class="col-md-12">
                             <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <input type="text" class="form-control" data-ng-model="contact.firstName" value="" required placeholder="Enter First Name">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="email" class="form-control" name="email" data-ng-model="user.email" required placeholder="Enter Email">
+                                <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
+                                <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-xs-6 col-sm-6">
-                            <input type="text" class="form-control" data-ng-model="contact.lastName" value="" required placeholder="Enter Last Name">
+                            <br>
                         </div>
 
-                        <br><br>
+                        <div data-ng-hide="loggedIn"  class="col-md-6 col-xs-6 col-sm-6">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                <input type="text" class="form-control" data-ng-model="user.firstName" value="" required placeholder="Enter First Name">
+                            </div>
+                        </div>
+                        <div data-ng-hide="loggedIn"  class="col-md-6 col-xs-6 col-sm-6">
+                            <input type="text" class="form-control" data-ng-model="user.lastName" value="" required placeholder="Enter Last Name">
+                            <br>
+                        </div>
+
+                        <div data-ng-hide="loggedIn">
+                             <br><br>
+                        </div>
+
                        <div class="col-md-12">
                            <select name="subjectCD" class="form-control"
                                    ng-model="contact.contactType"
@@ -29,7 +43,7 @@
                                    <option value="">-- chose Subject --</option>
                            </select>
                         </div>
-                        <br>
+                        <br><br>
 
                         <div class="col-md-12">Message</div>
                         <textarea name="message" id="message" required  class="col-md-12 form-control" ng-model="contact.message"  rows="6"></textarea>

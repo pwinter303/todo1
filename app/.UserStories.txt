@@ -1,20 +1,18 @@
 ========== MVP ============
 IN PROGRESS:
 Add more stuff to pricing boxes (eg: quick add, search, etc)
+Fix facebook image that is getting picked up in open graph tags.. is it truncated?  Fixed Links but Minify isn't fixing the link
 
 MVP:  CRITICAL
-Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..
-Fix facebook image that is getting picked up in open graph tags.. is it truncated?
+Create SiteMap and upload it to google.  Bing?
 Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Referral: Add logic to track referrals and grant free premium access for every X referrals..
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
 Ellen: Feedback:  On Account Profile - Show difference between free & premium
-Ellen: Feedback:  Add FAQ page  (explanations)
 Build Unit Test Cases for Controllers and Services
 Register URL with Google and Others..
 **** Blog Content:  How to use the site:   QuickAdd, How to Use Groups,  How to Use Tags/Categories,  Importing Data,
-Should BLOG Link be removed and replace it with direct links to sections within the blog... Direct links from home page will help SEO
 Size tables to be able to handle 1M rows
 Should getToDos only pull back ToDos for the current group????? PROBABLY!
 
@@ -145,7 +143,10 @@ Main Page: Finish "How We Help" Section.. Add Features.. Security/Encryption, No
 Update deploy.sh script to take into account new libraries (eg. owl-carousel)   11/2/14
 Menu Button on Main Page: Show when not logged in and have entries like contact us.. are shown..   11/5
 Refresh Images to account for the new styles....   11/5/14
-After sucessful registration... route to welcome page... which quick start graphic.  11/8/14
+After successful registration... route to welcome page... which quick start graphic.  11/8/14
+Ellen: Feedback:  Add FAQ page  (explanations)   11/15/14
+Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..   11/15/14
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

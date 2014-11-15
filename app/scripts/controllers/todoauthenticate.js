@@ -57,6 +57,10 @@ angular.module('todoApp')
           authentication.login(user).then(function (data) {
             $rootScope.loggedIn = Number(data.login);
             if ($rootScope.loggedIn) {
+              $scope.user = [];
+              $scope.user.firstName = data.first_name;
+              $scope.user.lastName = data.last_name;
+              $scope.user.email = data.email;
               $scope.$broadcast('LoggedIn', []);
               //fixme: is this where this belongs? It was in todolist but there were cases when login wasnt set so these werent called
               $scope.getpriorities();

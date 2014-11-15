@@ -61,13 +61,6 @@ function  processGet(){
 ####################  POSTs ################################
 function  processPost(){
 
-
-    if (isset($_SESSION['customer_id'])) {
-      $customer_id = $_SESSION['customer_id'];
-    }   else  {
-       die ('invalid customer id');
-    }
-
     $dbh = createDatabaseConnection();
 
     $postdata = file_get_contents("php://input");
@@ -79,9 +72,11 @@ function  processPost(){
     $action = $request->action;
     switch ($action) {
        case 'processPayment':
+             $customer_id = getCustomerIdOrDie();
              $result = processPayment($dbh, $customer_id, $request);
              break;
        case 'contactSubmit':
+             $customer_id = getCustomerIdIfAvailable();
              $result = contactSubmit($dbh, $customer_id, $request);
              break;
        default:
@@ -95,8 +90,32 @@ function  processPost(){
 
 ####################  FUNCTIONS ################################
 
+######################################################
+function  getCustomerIdOrDie(){
 
-####################  FUNCTIONS ################################
+    if (isset($_SESSION['customer_id'])) {
+      $customer_id = $_SESSION['customer_id'];
+    }   else  {
+       die ('invalid customer id');
+    }
+
+    return $customer_id;
+}
+
+######################################################
+function  getCustomerIdIfAvailable(){
+
+    $customer_id = 0;
+    if (isset($_SESSION['customer_id'])) {
+      $customer_id = $_SESSION['customer_id'];
+    }
+
+    return $customer_id;
+}
+
+
+
+######################################################
 function  processPayment($dbh, $customer_id, $request){
 
   $basepath = dirname(dirname($_SERVER['SCRIPT_FILENAME']));
@@ -155,25 +174,45 @@ function  processPayment($dbh, $customer_id, $request){
 }
 
 
-####################  FUNCTIONS ################################
+######################################################
 function contactSubmit($dbh, $customer_id, $request){
+  if ($customer_id){
+    //valid customer... get info...
+    $data = getCustomerInfo($dbh, $customer_id);
+    $first_name = $data{'first_name'};
+    $last_name = $data{'last_name'};;
+    $email = $data{'email'};
+  } else {
+    //not logged in... must pass all the data...
+      if ( (!isset($request->email))
+        or (!isset($request->firstName))
+        or (!isset($request->lastName))   ){
+          $response{'err'} = 1;
+          $response{'msg'} = 'Please enter data in all of the fields.';
+          return $response;
+        } else {
+            $first_name = $request->firstName;
+            $last_name = $request->lastName;
+            $email = $request->email;
+        }
+
+  }
+
+  //if we got this far we have data..
+
+
   //The HTML form has required paramaters so the form cant be submitted.. This is just extra insurance
   if ( (!isset($request->contactType->name))
-    or (!isset($request->firstName))
-    or (!isset($request->lastName))
     or (!isset($request->message))  ){
       $response{'err'} = 1;
       $response{'msg'} = 'Please enter data in all of the fields.';
       return $response;
   } else {
     $subject = $request->contactType->name;
-
-    # store first and last name
-    $first_name = $request->firstName;
-    $last_name = $request->lastName;
-    updateCustomerName($dbh, $customer_id, $first_name, $last_name);
-
-    $body = $request->message;
+    $body = 'email is:'. $email . '\n' . $request->message;
+    // store first and last name
+    //not necessary... when customer is added they have these fields
+    ///updateCustomerName($dbh, $customer_id, $first_name, $last_name);
 
     $email = 'paul@todogiant.com';
 

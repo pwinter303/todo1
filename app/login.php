@@ -167,6 +167,11 @@ function loginUser($dbh, $email, $password){
         $customer_id = getCustomerId($dbh, $email);
         $valid = validatePassword($dbh, $customer_id, $password);
         if ($valid) {
+          $data = getCustomerInfo($dbh, $customer_id);
+          $response{'email'} = $data{'email'};
+          $response{'first_name'} = $data{'first_name'};
+          $response{'last_name'} = $data{'last_name'};
+
           $response{'login'} = 1;
           $_SESSION['authenticated'] = 1;
           $_SESSION['customer_id'] = $customer_id;
