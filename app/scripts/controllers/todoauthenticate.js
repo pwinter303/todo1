@@ -52,6 +52,7 @@ angular.module('todoApp')
 //        }
 
         //================================================================================
+        /* jshint camelcase: false */
         $scope.logIn = function (user){
           $scope.loginmsg='';
           authentication.login(user).then(function (data) {

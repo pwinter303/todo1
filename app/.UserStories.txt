@@ -137,7 +137,6 @@ Main Page: Incorporate content from the original page into the new one..  10/8
 SCHEMA.. Add referral to the register page. Add to Customer Record....   10/8
 Social Media Links..  Create SOCIAL PAGE... 10 referrals... 6 free months... 5 paying customers.. 1 free year..    10/8
 What do you get when you pay for it... done but need content explain free vs premium   10/8
-Main Page: Pricing. Get in synch.. Either have 3 Free, Base, Pro (and have site support)... or just have Free, Pro
 Fix images in the CSS... the images are renamed but the image tag in the css are not updated... eg: banner.jpg   11/2/14
 Main Page: Finish "How We Help" Section.. Add Features.. Security/Encryption, No Spam,   11/2/14
 Update deploy.sh script to take into account new libraries (eg. owl-carousel)   11/2/14
@@ -151,3 +150,4 @@ Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..   11/
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
 Add 401 error to group php... Hmmm.. This is interesting... GetGroups isnt even fired until login and that is what returns 401.  But if you call the page directly.. it'll display with no data... but you dont get an error because getGroups hasnt been called.
+Main Page: Pricing. Should there be 3 tiers? Free, Base, Premium or just have Free, Premium??   11/15/14

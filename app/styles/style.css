@@ -1770,7 +1770,10 @@ li.comment ol.comment_sub {
 	background: #ed413e;
 }
 
-
+/*PLW Add*/
+.price-box .price-header {
+     color:#fff;
+}
 
 
 
