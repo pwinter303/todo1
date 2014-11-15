@@ -23,6 +23,7 @@ angular.module('todoApp', [
       .when('/demouser', {templateUrl: 'views/demouser.html', controller: 'DemoUserCtrl'})
       .when('/welcome', {templateUrl: 'views/welcome.html',  controller: 'WelcomeCtrl'})
       .when('/faq', {templateUrl: 'views/faq.html',   controller: 'FaqCtrl'})
+      .when('/faq_accordian', {templateUrl: 'views/faq_accordian.html', controller: 'FaqAccordianCtrl'})
       .otherwise({redirectTo: '/'});
   })
 
