@@ -1,6 +1,5 @@
 ========== MVP ============
 IN PROGRESS:
-Add more stuff to pricing boxes (eg: quick add, search, etc)
 Fix facebook image that is getting picked up in open graph tags.. is it truncated?  Fixed Links but Minify isn't fixing the link
 
 MVP:  CRITICAL
@@ -145,7 +144,7 @@ Refresh Images to account for the new styles....   11/5/14
 After successful registration... route to welcome page... which quick start graphic.  11/8/14
 Ellen: Feedback:  Add FAQ page  (explanations)   11/15/14
 Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..   11/15/14
-
+Add more stuff to pricing boxes (eg: quick add, search, etc)   11/16/14
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
