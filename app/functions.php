@@ -1395,4 +1395,34 @@ function setAcctPeriodsForRegistration($dbh, $customer_id, $event_id){
 }
 
 
+######################################################
+function  getCustomerIdOrDie(){
+
+    if (isset($_SESSION['customer_id'])) {
+      $customer_id = $_SESSION['customer_id'];
+    }   else  {
+          ### must be logged in to use this...
+          header('HTTP/1.1 401 Unauthorized');
+          $response{'StatusCd'} = 401;
+          $json = json_encode($response);
+          die ($json);
+    }
+
+    return $customer_id;
+}
+
+######################################################
+function  getCustomerIdIfAvailable(){
+
+    $customer_id = 0;
+    if (isset($_SESSION['customer_id'])) {
+      $customer_id = $_SESSION['customer_id'];
+    }
+
+    return $customer_id;
+}
+
+
+
+
 ?>

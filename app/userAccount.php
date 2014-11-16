@@ -31,19 +31,25 @@ function  processGet(){
 
     $dbh = createDatabaseConnection();
 
-    $customer_id = 0;
-    if (isset($_SESSION['customer_id'])) {
-      $customer_id = $_SESSION['customer_id'];
-    }
+    ### refactor
+
+    ### $customer_id = 0;
+    ### if (isset($_SESSION['customer_id'])) {
+    ###  $customer_id = $_SESSION['customer_id'];
+    ### }
 
     $action = htmlspecialchars($_GET["action"]);
     switch ($action) {
        case 'getAccountPeriod':
-             if (0 == $customer_id){die ('invalid customer id');};
+             ### refactor
+             ### if (0 == $customer_id){die ('invalid customer id');};
+             $customer_id = getCustomerIdOrDie();
              $result = getAccountPeriod($dbh, $customer_id);
              break;
        case 'getEmail':
-             if (0 == $customer_id){die ('invalid customer id');};
+             ### refactor
+             ### if (0 == $customer_id){die ('invalid customer id');};
+             $customer_id = getCustomerIdOrDie();
              $result = getEmail($dbh, $customer_id);
              break;
        case 'getDemoUser':
@@ -89,29 +95,6 @@ function  processPost(){
 
 
 ####################  FUNCTIONS ################################
-
-######################################################
-function  getCustomerIdOrDie(){
-
-    if (isset($_SESSION['customer_id'])) {
-      $customer_id = $_SESSION['customer_id'];
-    }   else  {
-       die ('invalid customer id');
-    }
-
-    return $customer_id;
-}
-
-######################################################
-function  getCustomerIdIfAvailable(){
-
-    $customer_id = 0;
-    if (isset($_SESSION['customer_id'])) {
-      $customer_id = $_SESSION['customer_id'];
-    }
-
-    return $customer_id;
-}
 
 
 
