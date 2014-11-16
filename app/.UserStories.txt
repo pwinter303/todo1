@@ -6,7 +6,10 @@ MVP:  CRITICAL
 Create SiteMap and upload it to google.  Bing?
 Register URL with Google and Others..
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
-
+Update FaceBook Cover Photo and Profile Photo on TodoGiant
+Create separate accounts in (zoho.net) todogiant.com (eg: SignUps, Payments,
+Update Twitter Home Page
+Test upgrading of the server... Clone AMI.. install on larger box... Does https certificate need to be redone? how to repoint?
 
 MVP:  IMPORTANT
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
@@ -15,7 +18,7 @@ Should getToDos only pull back ToDos for the current group????? PROBABLY!
 Ability to set how long a completed task is shown -  SCHEMA... Schema Done.. Just need Update on config
 Main Page: Should there be a page to enter eMail for updates for people that don't want to sign up/register but want to be kept up to date on changes?
 Referral: Add logic to track referrals and grant free premium access for every X referrals..
-Fix Image Rename UseMin so that og:image are updated correctly... 
+Fix Image Rename UseMin so that og:image are updated correctly...
 
 
 MVP:  NEEDED
