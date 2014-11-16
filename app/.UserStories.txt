@@ -1,29 +1,30 @@
 ========== MVP ============
 IN PROGRESS:
-Fix facebook image that is getting picked up in open graph tags.. is it truncated?  Fixed Links but Minify isn't fixing the link
+
 
 MVP:  CRITICAL
 Create SiteMap and upload it to google.  Bing?
-Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
-DemoUser: cron job to run resetDemoCustomer every 4 hours..
-Referral: Add logic to track referrals and grant free premium access for every X referrals..
-Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
-Ellen: Feedback:  On Account Profile - Show difference between free & premium
-Build Unit Test Cases for Controllers and Services
 Register URL with Google and Others..
-**** Blog Content:  How to use the site:   QuickAdd, How to Use Groups,  How to Use Tags/Categories,  Importing Data,
-Size tables to be able to handle 1M rows
-Should getToDos only pull back ToDos for the current group????? PROBABLY!
+DemoUser: cron job to run resetDemoCustomer every 4 hours..
 
 
 MVP:  IMPORTANT
+Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
+Build Unit Test Cases for Controllers and Services
+Should getToDos only pull back ToDos for the current group????? PROBABLY!
 Ability to set how long a completed task is shown -  SCHEMA... Schema Done.. Just need Update on config
-Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
 Main Page: Should there be a page to enter eMail for updates for people that don't want to sign up/register but want to be kept up to date on changes?
-Priority = -10 are not shown (?)... how to get them back?
+Referral: Add logic to track referrals and grant free premium access for every X referrals..
+Fix Image Rename UseMin so that og:image are updated correctly... 
 
 
 MVP:  NEEDED
+**** Blog Content:  How to use the site:   QuickAdd, How to Use Groups,  How to Use Tags/Categories,  Importing Data,
+Size tables to be able to handle 1M rows
+Main Page: Control the SignUp buttons.. eg: if you are logged in change to Upgrade
+Priority = -10 are not shown (?)... how to get them back?
+Make response consistent... eg: for problems:  pass err=1 and pass errMsg='xxx' for good: pass  XYZ... today its a mix...
+Upon login... pass back type of account... Free/Premium.. Also pass back Days to Expiration.... Messaging to Renew
 Print formatting
 Payment/Donation for usage using PayPal
 Show completed items... is this going to be a performance problem?  Should they be protected?
@@ -145,6 +146,9 @@ After successful registration... route to welcome page... which quick start grap
 Ellen: Feedback:  Add FAQ page  (explanations)   11/15/14
 Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..   11/15/14
 Add more stuff to pricing boxes (eg: quick add, search, etc)   11/16/14
+Ellen: Feedback:  On Account Profile - Show difference between free & premium  11/16/14
+Fix facebook image that is getting picked up in open graph tags.. is it truncated?  Fixed Links but Minify isn't fixing the link.... FIXED upgraded usemin to versin 2.6.2   11/16/14
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
