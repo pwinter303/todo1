@@ -12,6 +12,7 @@ Update Twitter Home Page
 Test upgrading of the server... Clone AMI.. install on larger box... Does https certificate need to be redone? how to repoint?
 
 MVP:  IMPORTANT
+BB: Placeholder Text Not Disappearing
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
 Build Unit Test Cases for Controllers and Services
 Should getToDos only pull back ToDos for the current group????? PROBABLY!
@@ -151,7 +152,7 @@ Contact Us: PreFill with Name and eMail if Available...  Add eMail Field..   11/
 Add more stuff to pricing boxes (eg: quick add, search, etc)   11/16/14
 Ellen: Feedback:  On Account Profile - Show difference between free & premium  11/16/14
 Fix facebook image that is getting picked up in open graph tags.. is it truncated?  Fixed Links but Minify isn't fixing the link.... FIXED upgraded usemin to versin 2.6.2   11/16/14
-
+Hamburger in Navbar is Missing: Fixed.. had to add background-color to sitespecific.css 11/16/14
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

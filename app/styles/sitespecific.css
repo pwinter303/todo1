@@ -172,3 +172,7 @@ html, body {
 #todolist .row {
     margin-bottom: 5px;
 }
+
+.icon-bar {
+    background-color: #ffffff;
+}
