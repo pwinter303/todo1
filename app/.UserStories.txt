@@ -6,10 +6,10 @@ MVP:  CRITICAL
 Create SiteMap and upload it to google.  Bing?
 Register URL with Google and Others..
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
-Update FaceBook Cover Photo and Profile Photo on TodoGiant
-Create separate accounts in (zoho.net) todogiant.com (eg: SignUps, Payments,
-Update Twitter Home Page
+Create separate accounts in (zoho.net) todogiant.com (eg: SignUps, Payments, support)
+Route Contacts in TodoGiant to correct Zoho account:
 Test upgrading of the server... Clone AMI.. install on larger box... Does https certificate need to be redone? how to repoint?
+
 
 MVP:  IMPORTANT
 BB: Placeholder Text Not Disappearing
@@ -44,6 +44,7 @@ Concept: Pull in todo lists: Wedding, Exercise, Have People Create Lists to Shar
 
 
 MVP:  ON THE BUBBLE...
+Refactor Contact Page... Have 2 Pages.. Authorized, Not Authorized...  Different Routing.. Different Fields...  Dont like how the submit is passing "user" instead of "contact"
 System Configuration Table:  Examples of what it'd be used for:  # Days of Premium for Registration,  # of total Todos Available for Free
 Date updates.... should these be considered valid???  8/31/14 (2 digit year),  7.31.14 (periods), etc
 Export Todos - Should this be part of premium?   Or... If the Completed Page Exists... People could Copy/Paste
@@ -153,6 +154,9 @@ Add more stuff to pricing boxes (eg: quick add, search, etc)   11/16/14
 Ellen: Feedback:  On Account Profile - Show difference between free & premium  11/16/14
 Fix facebook image that is getting picked up in open graph tags.. is it truncated?  Fixed Links but Minify isn't fixing the link.... FIXED upgraded usemin to versin 2.6.2   11/16/14
 Hamburger in Navbar is Missing: Fixed.. had to add background-color to sitespecific.css 11/16/14
+Update Twitter Home Page   11/17/14
+Update FaceBook Cover Photo and Profile Photo on TodoGiant   11/17/14
+Fix Contact Page: Submit needs to route to TodoList or Main page depending if you're logged in.   11/17/14
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular

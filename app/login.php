@@ -110,6 +110,9 @@ function registerUser($dbh, $email, $password, $password2, $firstName, $lastName
         $return_status = addUser($dbh, $email, $password, 1, $guid, $firstName, $lastName, $referralemail); #1:Awaiting Confirmation eMail return
         if ($return_status){
           eMailActivation($email, $guid);
+
+          eMailGoodNews('paul@todogiant.com', 'Registration Processed');
+
           $response{'msg'} = "Successful Registration";
           $call_response = loginUser($dbh, $email, $password);
           $response{'login'} = $call_response{'login'};

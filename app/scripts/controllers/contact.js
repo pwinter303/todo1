@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('todoApp')
-  .controller('ContactCtrl', ['$scope', 'todoFactory', '$location', function ($scope, todoFactory, $location) {
+  .controller('ContactCtrl', ['$scope', 'todoFactory', '$location', '$rootScope', function ($scope, todoFactory, $location, $rootScope) {
 
     $scope.getContactTypes = function (){
       $scope.contactTypes = [
@@ -22,7 +22,11 @@ angular.module('todoApp')
           } else {
             if (data.msg){
               todoFactory.msgSuccess(data.msg);
-              $location.path( '/todolist' );
+              if ($rootScope.loggedIn) {
+                $location.path( '/todolist' );
+              } else {
+                $location.path( '/' );
+              }
             }
           }
         }

@@ -197,7 +197,7 @@ function contactSubmit($dbh, $customer_id, $request){
     //not necessary... when customer is added they have these fields
     ///updateCustomerName($dbh, $customer_id, $first_name, $last_name);
 
-    $email = 'paul@todogiant.com';
+    $email = 'support@todogiant.com';
 
     # Send eMail
     eMailSend($email, $subject, $body, 1); #1: WordWrap

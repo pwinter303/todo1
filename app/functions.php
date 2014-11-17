@@ -1124,6 +1124,13 @@ function eMailForgotPassword($email, $password){
 }
 
 ################################################################################
+function eMailGoodNews($email, $subject){
+  $body = "Good News!";
+  eMailSend($email, $subject, $body, 0);  #0: No word wrap
+
+}
+
+################################################################################
 function eMailSend($email, $subject, $body, $wordWrap = 1){
 // In case any of our lines are larger than 70 characters, we should use wordwrap()
 if ($wordWrap){

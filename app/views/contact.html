@@ -9,7 +9,7 @@
                 <div class="panel-heading"><h3>Contact Us</h3></div>
                 <div class="panel-body">
                     <h3 class="text-center">We can't wait to hear from you! :-)</h3>
-                    <form name="contactForm" data-ng-submit="contactSubmit(contact)">
+                    <form name="contactForm" data-ng-submit="contactSubmit(user)">
 
                         <div data-ng-hide="loggedIn"  class="col-md-12">
                             <div class="input-group">
@@ -38,7 +38,7 @@
 
                        <div class="col-md-12">
                            <select name="subjectCD" class="form-control"
-                                   ng-model="contact.contactType"
+                                   ng-model="user.contactType"
                                    ng-options="contactType.name for contactType in contactTypes" required>
                                    <option value="">-- chose Subject --</option>
                            </select>
@@ -46,7 +46,7 @@
                         <br><br>
 
                         <div class="col-md-12">Message</div>
-                        <textarea name="message" id="message" required  class="col-md-12 form-control" ng-model="contact.message"  rows="6"></textarea>
+                        <textarea name="message" id="message" required  class="col-md-12 form-control" ng-model="user.message"  rows="6"></textarea>
                         <button type="submit" class="btn btn-primary pull-left" >Send</button>
 
                     </form>
