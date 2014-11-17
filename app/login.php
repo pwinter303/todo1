@@ -111,7 +111,7 @@ function registerUser($dbh, $email, $password, $password2, $firstName, $lastName
         if ($return_status){
           eMailActivation($email, $guid);
 
-          eMailGoodNews('paul@todogiant.com', 'Registration Processed');
+          eMailGoodNews('goodnews@todogiant.com', 'Registration Processed');
 
           $response{'msg'} = "Successful Registration";
           $call_response = loginUser($dbh, $email, $password);
