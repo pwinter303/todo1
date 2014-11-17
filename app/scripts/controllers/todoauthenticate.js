@@ -53,9 +53,9 @@ angular.module('todoApp')
 
         //================================================================================
         /* jshint camelcase: false */
-        $scope.logIn = function (user){
+        $scope.logIn = function (logInData){
           $scope.loginmsg='';
-          authentication.login(user).then(function (data) {
+          authentication.login(logInData).then(function (data) {
             $rootScope.loggedIn = Number(data.login);
             if ($rootScope.loggedIn) {
               $scope.user = [];

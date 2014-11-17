@@ -12,12 +12,12 @@
                         <div class="text-center">
                             Enter your credentials and continue to get organized! <br>
                         </div>
-                        <form data-ng-submit="logIn(user)" form-autofill-fix>
+                        <form data-ng-submit="logIn(logInData)" form-autofill-fix>
 
                             <div class="col-md-offset-1 col-md-10 col-md-offset-1">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                    <input type="email" class="form-control" name="email" data-ng-model="user.email" required placeholder="Enter Email">
+                                    <input type="email" class="form-control" name="email" data-ng-model="logInData.email" required placeholder="Enter Email">
                                     <span class="error" data-ng-show="loginForm.email.$error.required">Required</span>
                                     <span class="error" data-ng-show="loginForm.email.$error.email">Not valid email</span>
                                 </div>
@@ -26,7 +26,7 @@
                             <div class="col-md-offset-1 col-md-10 col-md-offset-1">
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input type="password" class="form-control" name="password" data-ng-model="user.password" required placeholder="Enter Password" data-ng-minlength="3">
+                                    <input type="password" class="form-control" name="password" data-ng-model="logInData.password" required placeholder="Enter Password" data-ng-minlength="3">
                                     <span class="error" data-ng-show="loginForm.password.$error.required">Required</span>
                                     <span class="error" data-ng-show="loginForm.password.$error.minlength">Must be 3 characters</span>
                                 </div>

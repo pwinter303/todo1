@@ -63,6 +63,8 @@ emptyTable($dbh,'event_description');
 
 emptyTable($dbh,'account_type');
 
+emptyTable($dbh,'demo_customer');
+
 emptyTable($dbh,'customer');
 
 # must be after customer since customer has FK to this:
