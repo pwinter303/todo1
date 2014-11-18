@@ -15,6 +15,8 @@ describe('Controller: ContactCtrl', function () {
     inject(function($httpBackend, $rootScope, $controller, $q, _$timeout_) {
       //needed since angulartics kicks off another unexpected call to main.html and you get the error. Error: Unexpected request: GET views/main.html
       $httpBackend.whenGET('views/todolist.html').respond([]);
+      //added this since contactSubmit can go to two places depending on if the users is logged in...
+      $httpBackend.whenGET('views/main.html').respond([]);
 
       $scope = $rootScope.$new();
       ROOTScope = $rootScope;

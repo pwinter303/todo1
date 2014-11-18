@@ -1,6 +1,5 @@
 ========== MVP ============
 IN PROGRESS:
-Fix Login Error... Action Not Set Properly...
 
 MVP:  CRITICAL
 Create SiteMap and upload it to google.  Bing?
@@ -157,6 +156,7 @@ Hamburger in Navbar is Missing: Fixed.. had to add background-color to sitespeci
 Update Twitter Home Page   11/17/14
 Update FaceBook Cover Photo and Profile Photo on TodoGiant   11/17/14
 Fix Contact Page: Submit needs to route to TodoList or Main page depending if you're logged in.   11/17/14
+Fix Login Error... Action Not Set Properly... Done.. User object populated during login was getting used on next Login.. - 11/18/14
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
