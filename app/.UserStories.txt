@@ -1,6 +1,6 @@
 ========== MVP ============
 IN PROGRESS:
-Fix Login Error... Action Not Set Properly....
+Fix Login Error... Action Not Set Properly...
 
 MVP:  CRITICAL
 Create SiteMap and upload it to google.  Bing?
