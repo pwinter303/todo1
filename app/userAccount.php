@@ -192,7 +192,11 @@ function contactSubmit($dbh, $customer_id, $request){
       return $response;
   } else {
     $subject = $request->contactType->name;
-    $body = 'email is:'. $email . '\n' . $request->message;
+
+    //$body = 'email is:'. $email . '\r\n' . $request->message;
+
+    $body = "User eMail is:$email\n\n" . $request->message;
+
     // store first and last name
     //not necessary... when customer is added they have these fields
     ///updateCustomerName($dbh, $customer_id, $first_name, $last_name);
