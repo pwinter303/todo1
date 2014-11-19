@@ -1,5 +1,7 @@
 2014-11-16 Deployment. Steps:
 * Must MANUALLY update the images in meta og:image in index.html to point to the renamed image names!
+* Must MANUALLY add back in the sitemap.xml
+* Must MANUALLY add back the google verification file!
 
 
 2014-08-11 Deployment. Steps:
