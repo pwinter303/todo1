@@ -33,7 +33,9 @@
     "karma-ng-html2js-preprocessor": "~0.1.0",
     "grunt-s3": "~0.2.0-alpha.3",
     "karma-jasmine": "~0.1.5",
-    "karma-firefox-launcher": "~0.1.3"
+    "karma-firefox-launcher": "~0.1.3",
+    "grunt-html-snapshot": "~0.6.1",
+    "grunt-html-snapshots": "~0.3.0"
   },
   "engines": {
     "node": ">=0.8.0"

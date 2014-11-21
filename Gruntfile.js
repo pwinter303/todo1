@@ -316,37 +316,57 @@ module.exports = function (grunt) {
       }
     },
 
+    // htmlSnapshot settings
+//    NEVER got this to work...
+    htmlSnapshot: {
+      debug: {
+        options: {
+          snapshotPath: 'snapshots/',
+//          sitePath: 'http://127.0.0.1:9000/',
+          sitePath: 'https://todogiant.com/',
+          msWaitForPages: 6000,
+          urls: [
+            '/',
+            '/main',
+            '/faq'
+          ]
+        }
+      },
+      prod: {
+        options: {}
+      }
+    },
+    html_snapshots: {
+      // options for all targets
+      options: {
+        input: "sitemap",
+        source: "C:/Users/paul-winter/Downloads/sitemap-test.todogiant.xml",
+        hostname: "https://todogiant.com",
+//        selector: { "__default": "#dynamic-content", "/": "#home-content" },
+        outputDirClean: "false"
+      },
+      // the debug target
+      debug: {
+        options: {
+//          outputDir: "./snapshots/debug"
+          outputDir: "C:/Users/paul-winter/WebSites/todo/app/snapshots"
+        }
+      },
+      // the release target
+      release: {
+        options: {
+          outputDir: "./snapshots/release"
+        }
+      }
+    },
+
     // start of S3
-    aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
+    //aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
     //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
     //aws: grunt.file.readJSON('/home/pwinter303/grunt-aws.json'),
-    //aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
+    aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
     /* following comment turns off camelcase check for this function.. so it'll be ignored */
     /* jshint camelcase: false */
-
-//    NOT USING THIS VERSION... USING s3 (below)
-//    aws_s3: {
-//      options: {
-//        accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
-//        secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
-//        uploadConcurrency: 5, // 5 simultaneous uploads
-//        downloadConcurrency: 5 // 5 simultaneous downloads
-//      },
-//      source_code: {
-//        options: {
-//          bucket: 'storage-plw'
-//        },
-//        files: [
-//          {action: 'upload',
-//            expand: true,
-//            cwd: 'dist/js',
-//            dest: 'source-code/aaa',
-//            src: ['**']
-//          }
-//        ]
-//      }
-//    },
-
     s3: {
       options: {
         key: '<%= aws.AWSAccessKeyId %>',
