@@ -3,12 +3,14 @@
 // prevent toastr is not defined error in grunt/jshint
 /*global toastr */
 
+
+
 angular.module('todoApp', [
   'ngRoute',
   'angulartics',
   'angulartics.google.analytics'
 ])
-  .config(function ($routeProvider) {
+  .config(function ($routeProvider, $locationProvider) {
     $routeProvider
       .when('/', {templateUrl: 'views/main.html',  controller: 'MainCtrl'})
       .when('/todolist', {templateUrl: 'views/todolist.html',  controller: 'TodolistCtrl' })
@@ -25,8 +27,8 @@ angular.module('todoApp', [
       .when('/faq', {templateUrl: 'views/faq.html',   controller: 'FaqCtrl'})
       .when('/faq_accordian', {templateUrl: 'views/faq_accordian.html', controller: 'FaqAccordianCtrl'})
       .otherwise({redirectTo: '/'});
+        $locationProvider.html5Mode(false).hashPrefix('!');
   })
-
   .factory('authHttpResponseInterceptor',['$q','$location','$rootScope', function($q,$location, $rootScope){
     return {
       response: function(response){
@@ -55,8 +57,12 @@ angular.module('todoApp', [
     $httpProvider.interceptors.push('authHttpResponseInterceptor');
   }]);
 
+
 //  .config(['AngularyticsProvider', function(AngularyticsProvider) {
 //    AngularyticsProvider.setEventHandlers(['Console', 'GoogleUniversal']);
 //  }]).run(['Angularytics',function(Angularytics) {
 //    Angularytics.init();
 //  }]);
+
+
+

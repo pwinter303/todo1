@@ -322,13 +322,13 @@ module.exports = function (grunt) {
       debug: {
         options: {
           snapshotPath: 'snapshots/',
-//          sitePath: 'http://127.0.0.1:9000/',
-          sitePath: 'https://todogiant.com/',
+          sitePath: 'http://localhost/todo1/app/',
           msWaitForPages: 6000,
           urls: [
-            '/',
-            '/main',
-            '/faq'
+            '#/contact',
+            '#/login',
+            '#/faq',
+            '#/main'
           ]
         }
       },
@@ -339,17 +339,17 @@ module.exports = function (grunt) {
     html_snapshots: {
       // options for all targets
       options: {
-        input: "sitemap",
-        source: "C:/Users/paul-winter/Downloads/sitemap-test.todogiant.xml",
-        hostname: "https://todogiant.com",
+        input: "array",
+        source: ["http://localhost/todo1/app/#/faq","http://localhost/todo1/app/#/main"],
+        hostname: "http://localhost",
 //        selector: { "__default": "#dynamic-content", "/": "#home-content" },
-        outputDirClean: "false"
+        outputDirClean: "true"
       },
       // the debug target
       debug: {
         options: {
-//          outputDir: "./snapshots/debug"
-          outputDir: "C:/Users/paul-winter/WebSites/todo/app/snapshots"
+          outputDir: "./snapshots/debug"
+//          outputDir: "C:/Users/paul-winter/WebSites/todo/app/snapshots"
         }
       },
       // the release target
@@ -362,9 +362,9 @@ module.exports = function (grunt) {
 
     // start of S3
     //aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
-    //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
+    aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
     //aws: grunt.file.readJSON('/home/pwinter303/grunt-aws.json'),
-    aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
+    //aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
     /* following comment turns off camelcase check for this function.. so it'll be ignored */
     /* jshint camelcase: false */
     s3: {
