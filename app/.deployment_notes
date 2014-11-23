@@ -13,7 +13,21 @@
 
 
 2014-11-16 System Configuration Changes Needed for SEO... Redirect to Fragments
-*
+* Make sure site points to app folder in project directory (cant enter todo/app in browser or redirects will not work)
+** above is done in http.conf in /etc on the mac.    000-default.conf in /etc/apache2/sites-available on LinuxMint
+* npm update to install packages in package.json (eg: htmlSnapshot)
+* Enable Rewrite
+** LinuxMint:  sudo a2enmod rewrite       then     sudo service apache2
+** Mac:  Uncomment mod_rewrite module in httpd.conf    then sudo apachectl restart
+* Setup rewrite condition.. On Mac:  in httpd.conf...    On Linux Mint:  000-detault.conf
+        #PLW
+        RewriteEngine On
+        LogLevel alert rewrite:trace8
+        RewriteCond %{REQUEST_URI}  ^/$
+        RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*)$
+        RewriteRule ^(.*)$ /snapshots/%1? [NC,L]
+* On Mac also had to change 1 other line change... something about OVERRIDE ALL.. Double Check!
+* install curl to test...  curl http://localhost/?_escaped_fragment_=/faq
 
 
 
