@@ -1,5 +1,6 @@
 ========== MVP ============
 IN PROGRESS:
+SEO (Fix Snapshot Names or Account for it in the Redirect... probably good to keep names).. Change S3 script to upload Snapshots
 
 MVP:  CRITICAL
 Create SiteMap and upload it to google.  Bing?

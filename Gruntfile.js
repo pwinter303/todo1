@@ -322,6 +322,7 @@ module.exports = function (grunt) {
       debug: {
         options: {
           snapshotPath: 'snapshots/',
+          fileNamePrefix: '',
           sitePath: 'http://localhost',
           msWaitForPages: 6000,
           urls: [
