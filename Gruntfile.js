@@ -322,14 +322,22 @@ module.exports = function (grunt) {
       debug: {
         options: {
           snapshotPath: 'snapshots/',
-          fileNamePrefix: '',
-          sitePath: 'http://localhost',
+          fileNamePrefix: 'snapshot_',
+          // LinuxMint: sitePath: 'http://localhost',
+          // Win7: sitePath: 'http://localhost:8083/#!/',
+          sitePath: 'http://localhost:8083/#!/',
           msWaitForPages: 6000,
           urls: [
-            '#!/contact',
-            '#!/login',
-            '#!/faq',
-            '#!/main'
+            'contact',
+            'demouser',
+            'faq',
+            'faq_accordian',
+            'forgot_password',
+            'login',
+            'main',
+            'register',
+            'social',
+            'welcome'
           ]
         }
       },
@@ -337,35 +345,18 @@ module.exports = function (grunt) {
         options: {}
       }
     },
-    html_snapshots: {
-      // options for all targets
-      options: {
-        input: "array",
-        source: ["http://localhost/todo1/app/#/faq","http://localhost/todo1/app/#/main"],
-        hostname: "http://localhost",
-//        selector: { "__default": "#dynamic-content", "/": "#home-content" },
-        outputDirClean: "true"
-      },
-      // the debug target
-      debug: {
-        options: {
-          outputDir: "./snapshots/debug"
-//          outputDir: "C:/Users/paul-winter/WebSites/todo/app/snapshots"
-        }
-      },
-      // the release target
-      release: {
-        options: {
-          outputDir: "./snapshots/release"
-        }
+    sitemap: {
+      dist: {
+        siteRoot: './app/views',
+        homepage: 'https://todogiant.com/#!'
       }
     },
 
     // start of S3
-    aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
+    //aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
     //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
     //aws: grunt.file.readJSON('/home/pwinter303/grunt-aws.json'),
-    //aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
+    aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
     /* following comment turns off camelcase check for this function.. so it'll be ignored */
     /* jshint camelcase: false */
     s3: {

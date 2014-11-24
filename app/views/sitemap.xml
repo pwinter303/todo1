@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+	xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+  <loc>https://todogiant.com/#!/account.html</loc>
+  <lastmod>2014-11-24T15:32:01.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/contact.html</loc>
+  <lastmod>2014-11-17T20:41:13.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/demouser.html</loc>
+  <lastmod>2014-11-05T22:08:25.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/faq.html</loc>
+  <lastmod>2014-11-17T14:18:20.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/faq_accordian.html</loc>
+  <lastmod>2014-11-17T14:18:20.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/forgotpassword.html</loc>
+  <lastmod>2014-10-04T14:18:44.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/groups.html</loc>
+  <lastmod>2014-11-03T21:53:39.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/import.html</loc>
+  <lastmod>2014-10-04T15:22:16.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/login.html</loc>
+  <lastmod>2014-11-24T15:32:01.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/main.html</loc>
+  <lastmod>2014-11-24T15:32:01.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/register.html</loc>
+  <lastmod>2014-11-03T21:53:39.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/social.html</loc>
+  <lastmod>2014-10-04T15:12:35.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/todolist.html</loc>
+  <lastmod>2014-11-03T21:53:39.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://todogiant.com/#!/welcome.html</loc>
+  <lastmod>2014-11-12T22:43:27.000Z</lastmod>
+  <changefreq>daily</changefreq>
+  <priority>0.5</priority>
+</url>
+</urlset>

@@ -27,7 +27,7 @@ angular.module('todoApp', [
       .when('/faq', {templateUrl: 'views/faq.html',   controller: 'FaqCtrl'})
       .when('/faq_accordian', {templateUrl: 'views/faq_accordian.html', controller: 'FaqAccordianCtrl'})
       .otherwise({redirectTo: '/'});
-        $locationProvider.html5Mode(false).hashPrefix('!');
+    $locationProvider.html5Mode(false).hashPrefix('!');
   })
   .factory('authHttpResponseInterceptor',['$q','$location','$rootScope', function($q,$location, $rootScope){
     return {
