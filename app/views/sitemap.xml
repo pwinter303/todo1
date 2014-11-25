@@ -61,4 +61,29 @@
   <changefreq>daily</changefreq>
   <priority>0.5</priority>
 </url>
+<url>
+    <loc>https://todogiant.com/blog/</loc>
+    <priority>0.80</priority>
+</url>
+<url>
+    <loc>https://todogiant.com/blog/gettingstarted_quickstart/</loc>
+    <priority>0.64</priority>
+</url>
+<url>
+    <loc>https://todogiant.com/blog/author/paultodogiant-com/</loc>
+    <priority>0.64</priority>
+</url>
+<url>
+    <loc>https://todogiant.com/blog/2014/08/</loc>
+    <priority>0.64</priority>
+</url>
+<url>
+    <loc>https://todogiant.com/blog/category/getting-started/</loc>
+    <priority>0.64</priority>
+</url>
+<url>
+    <loc>https://todogiant.com/blog/feed/</loc>
+    <lastmod>2014-08-28T20:39:07+00:00</lastmod>
+    <priority>0.64</priority>
+</url>
 </urlset>
