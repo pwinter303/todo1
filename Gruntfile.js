@@ -325,7 +325,8 @@ module.exports = function (grunt) {
           fileNamePrefix: 'snapshot_',
           // LinuxMint: sitePath: 'http://localhost',
           // Win7: sitePath: 'http://localhost:8083/#!/',
-          sitePath: 'http://localhost:8083/#!/',
+          // Prod sitePath: 'https://todogiant.com/#!/',
+          sitePath: 'https://todogiant.com/#!/',
           msWaitForPages: 6000,
           urls: [
             'contact',
@@ -353,10 +354,10 @@ module.exports = function (grunt) {
     },
 
     // start of S3
-    //aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
+    aws: grunt.file.readJSON('/home/paul-winter/grunt-aws.json'),
     //aws: grunt.file.readJSON('/Users/pwinter303/grunt-aws.json'),
     //aws: grunt.file.readJSON('/home/pwinter303/grunt-aws.json'),
-    aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
+    //aws: grunt.file.readJSON('C:/Users/paul-winter/grunt-aws.json'),
     /* following comment turns off camelcase check for this function.. so it'll be ignored */
     /* jshint camelcase: false */
     s3: {
