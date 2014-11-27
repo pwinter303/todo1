@@ -1,10 +1,21 @@
 2014-11-16 Deployment. Steps:
 X Must MANUALLY flip flop index.html to pull from CDN instead of local bower...
 X Must MANUALLY update the images in meta og:image in index.html to point to the renamed image names! (get names from main.html
-* Must MANUALLY add back the google verification file!
 X Generate SiteMap --->  grunt sitemap       Manually Delete Pages that are no good.
-* Must MANUALLY add back in the sitemap.xml
+X 1) grunt s3
+X 2) ./creFolder.sh
+X 3) ./deploy.sh
+X 4) do any database patching
+X 5) test on test.todogiant.com
+X 6) link prod to src
+X Must MANUALLY add back in the sitemap.xml
+X Must MANUALLY add back the google verification file!
+* htmlSnapshot MUST be run against the production site AFTER deployment.. then publish the snapshot_* files.. Needed to point to correct image/css etc
 
+IMPORTANT NOTE...
+* Found that #!/demouser was not getting converted to escape_fragment by google... but #!demouser was (notice slash)
+* then found once I corrected the above that google had error   /?_escaped_fragment_=/demouser.html  was not found 4040
+* I was adding HTML to it so it was becoming demouser.html.html...    apparently google adds the .html automatically
 
 2014-08-11 Deployment. Steps:
   1) upload files
@@ -24,14 +35,19 @@ X Generate SiteMap --->  grunt sitemap       Manually Delete Pages that are no g
 ** Win7: Uncomment mod_rewrite module in httpd.conf    then Admin/Services/Apache Restart
 ** AWS:
 * Setup rewrite condition.. On Mac:  in httpd.conf...    On Linux Mint:  000-detault.conf
-        ####THIS HAS TO GO IN http.conf and ssl.conf
+        ####THIS HAS TO GO IN http.conf AND ssl.conf
 
-        #PLW
-        RewriteEngine On
-        Options +FollowSymLinks
+        ##PLW strip www.
+        RewriteCond %{HTTP_HOST} !^todogiant.com$ [NC]
+        RewriteRule ^(.*)$ https://todogiant.com/$1 [L,R=301]
+
+        ## convert googlebot escape_fragment to the name of the snapshot
         RewriteCond %{REQUEST_URI}  ^/$
         RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*)$
-        RewriteRule ^(.*)$ /snapshot_%1.html? [NC,L]
+        ##found google adds the .html extension
+        ##RewriteRule ^(.*)$ /snapshot_%1.html? [NC,L]
+        RewriteRule ^(.*)$ /snapshot_%1? [NC,L]
+
 
 * On Mac & Win7 also had to change 1 other line change in httpd.conf
 ** Change AllowOverride none              to    ---->> AllowOverride All
