@@ -1,4 +1,4 @@
-2014-11-16 Deployment. Steps:
+Deployment Steps (Used Dec 5th, ):
 * 01) grunt
 * 02) Must MANUALLY update the images in meta og:image in index.html to point to the renamed image names! (get names from main.html
 * 03) grunt s3
@@ -7,8 +7,8 @@
 * 06) do any database patching
 * 07) run Selenium Tests on test.todogiant.com
 * 08) link prod to src
-X 11) htmlSnapshot MUST be run (on LINUX) against the production site AFTER deployment.. then publish the snapshot_* files..
-X 12) upload snapshots
+* 11) htmlSnapshot MUST be run (on LinuxMint) against the production site AFTER deployment.. then publish the snapshot_* files.. (Required so it points to the correct files (eg: minified images)
+* 12) upload snapshots
 
 OPTIONAL
 X If New/Chg Pages:  Generate SiteMap --->  grunt sitemap       Manually Delete Pages that are no good.
