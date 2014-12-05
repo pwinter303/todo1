@@ -1,16 +1,17 @@
 2014-11-16 Deployment. Steps:
-X Must MANUALLY flip flop index.html to pull from CDN instead of local bower...
-X Must MANUALLY update the images in meta og:image in index.html to point to the renamed image names! (get names from main.html
-X Generate SiteMap --->  grunt sitemap       Manually Delete Pages that are no good.
-X 1) grunt s3
-X 2) ./creFolder.sh
-X 3) ./deploy.sh
-X 4) do any database patching
-X 5) test on test.todogiant.com
-X 6) link prod to src
-X Must MANUALLY add back in the sitemap.xml
-X Must MANUALLY add back the google verification file!
-* htmlSnapshot MUST be run against the production site AFTER deployment.. then publish the snapshot_* files.. Needed to point to correct image/css etc
+* 01) grunt
+* 02) Must MANUALLY update the images in meta og:image in index.html to point to the renamed image names! (get names from main.html
+* 03) grunt s3
+* 04) sudo ./creFolder.sh
+* 05) ./deploy.sh
+* 06) do any database patching
+* 07) run Selenium Tests on test.todogiant.com
+* 08) link prod to src
+X 11) htmlSnapshot MUST be run (on LINUX) against the production site AFTER deployment.. then publish the snapshot_* files..
+X 12) upload snapshots
+
+OPTIONAL
+X If New/Chg Pages:  Generate SiteMap --->  grunt sitemap       Manually Delete Pages that are no good.
 
 IMPORTANT NOTE...
 * Found that #!/demouser was not getting converted to escape_fragment by google... but #!demouser was (notice slash)

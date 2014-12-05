@@ -1,17 +1,19 @@
 ========== MVP ============
 IN PROGRESS:
-SEO (Fix Snapshot Names or Account for it in the Redirect... probably good to keep names).. Change S3 script to upload Snapshots
+Fix Deployment to copy over sitemap, google code,
+
 
 MVP:  CRITICAL
-Create SiteMap and upload it to google.  Bing?
-Register URL with Google and Others..
+Fix RewriteRule to account for .html being passed (sometimes) in escaped_fragment
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Create separate accounts in (zoho.net) todogiant.com (eg: SignUps, Payments, support)
 Route Contacts in TodoGiant to correct Zoho account:
 Test upgrading of the server... Clone AMI.. install on larger box... Does https certificate need to be redone? how to repoint?
+Update Facebook Profile Image, Twitter Too?
 
 
 MVP:  IMPORTANT
+Remove Import from SiteMap (since it's a protected page)
 BB: Placeholder Text Not Disappearing
 Ellen's Idea: Have a Consolidate Page showing Critical or Overdue items (config)
 Build Unit Test Cases for Controllers and Services
@@ -158,6 +160,10 @@ Update Twitter Home Page   11/17/14
 Update FaceBook Cover Photo and Profile Photo on TodoGiant   11/17/14
 Fix Contact Page: Submit needs to route to TodoList or Main page depending if you're logged in.   11/17/14
 Fix Login Error... Action Not Set Properly... Done.. User object populated during login was getting used on next Login.. - 11/18/14
+Create SiteMap and upload it to google.  Bing?  12/1/14
+SEO (Fix Snapshot Names or Account for it in the Redirect... probably good to keep names).. Change S3 script to upload Snapshots  12/3
+Register URL with Google and Others..  12/3
+Change certificate to remove www.  12/3 - This actually fixed the issue with Chrome (it wasnt able to access site when @ work)
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
