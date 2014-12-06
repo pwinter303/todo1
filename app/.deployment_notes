@@ -43,17 +43,23 @@ IMPORTANT NOTE...
         RewriteRule ^(.*)$ https://todogiant.com/$1 [L,R=301]
 
         ## convert googlebot escape_fragment to the name of the snapshot
+        ## found that bots sometimes use .html extension other times it is left off
+        ## this block is useD IF the html extension exists...
+        RewriteCond %{REQUEST_URI}  ^/$
+        RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*).html$
+        ## since .html is outside of the parens above it isnt in %1 so add it..
+        RewriteRule ^(.*)$ /snapshot_%1.html? [NC,L]
+
+        ## convert googlebot escape_fragment to the name of the snapshot
+        ## IF the html extension exists... it'll get trapped above..
+        ##     so anything that reached here will NOT have extension.. so add it..
         RewriteCond %{REQUEST_URI}  ^/$
         RewriteCond %{QUERY_STRING} ^_escaped_fragment_=/?(.*)$
-        ##found google adds the .html extension
-        ##RewriteRule ^(.*)$ /snapshot_%1.html? [NC,L]
-        RewriteRule ^(.*)$ /snapshot_%1? [NC,L]
-
+        RewriteRule ^(.*)$ /snapshot_%1.html? [NC,L]
 
 * On Mac & Win7 also had to change 1 other line change in httpd.conf
 ** Change AllowOverride none              to    ---->> AllowOverride All
 * install curl to test...  curl http://localhost/?_escaped_fragment_=/faq
-
 
 
 php extensions needed for stripe: curl, multibyte, openssl
