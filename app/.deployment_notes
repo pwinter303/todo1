@@ -67,7 +67,7 @@ uncomment in the php.ini file (for windows)
   extension=php_openssl.dll
   extension=php_mbstring.dll
   extension=php_curl.dll
-On AWS:  sudo yum install php-mbstring
+On AWS:  sudo yum install php-mbstring  (I think this is the only one that needs to be installed)
 http://www.knowledgebase-script.com/kb/article/how-to-enable-mbstring-in-php-46.html
 install json_decode
 
