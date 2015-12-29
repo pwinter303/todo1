@@ -9,7 +9,8 @@
                 <div class="panel-heading"><h3>Contact Us</h3></div>
                 <div class="panel-body">
                     <h3 class="text-center">We can't wait to hear from you! :-)</h3>
-                    <form name="contactForm" data-ng-submit="contactSubmit(user)">
+                    <!--Added novalidate to correct Chrome JS error 2015-12-29 -->
+                    <form name="contactForm" novalidate data-ng-submit="contactSubmit(user)">
 
                         <div data-ng-hide="loggedIn"  class="col-md-12">
                             <div class="input-group">

@@ -1,10 +1,8 @@
 ========== MVP ============
 IN PROGRESS:
-Fix Deployment to copy over sitemap, google code,
 
 
 MVP:  CRITICAL
-Fix RewriteRule to account for .html being passed (sometimes) in escaped_fragment
 DemoUser: cron job to run resetDemoCustomer every 4 hours..
 Create separate accounts in (zoho.net) todogiant.com (eg: SignUps, Payments, support)
 Route Contacts in TodoGiant to correct Zoho account:
@@ -164,6 +162,9 @@ Create SiteMap and upload it to google.  Bing?  12/1/14
 SEO (Fix Snapshot Names or Account for it in the Redirect... probably good to keep names).. Change S3 script to upload Snapshots  12/3
 Register URL with Google and Others..  12/3
 Change certificate to remove www.  12/3 - This actually fixed the issue with Chrome (it wasnt able to access site when @ work)
+Fix Deployment to copy over sitemap, google code,    12/5/14
+Fix RewriteRule to account for .html being passed (sometimes) in escaped_fragment   12/5/14
+
 
 ========== CANCELED ============
 DatePicker for DueDate - HORRIBLE performance with long lists and angular
