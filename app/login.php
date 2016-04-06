@@ -8,6 +8,8 @@ include 'functions.php';
 // Include the phpass library
 require_once('bower_components/phpass-0.3/PasswordHash.php');
 
+//PLW Added 2016-04-06
+date_default_timezone_set('America/New_York');
 
 $json = processRequest();
 echo $json;
@@ -177,6 +179,7 @@ function loginUser($dbh, $email, $password){
           $response{'login'} = 1;
           $_SESSION['authenticated'] = 1;
           $_SESSION['customer_id'] = $customer_id;
+
           addEvent($dbh, $customer_id, 2, date('Y-m-d H:i:s') );  # 2 = Login
         }
     }

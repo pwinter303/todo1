@@ -5,6 +5,10 @@ session_start();
 include 'db.php';
 include 'functions.php';
 
+//PLW Added 2016-04-06
+date_default_timezone_set('America/New_York');
+
+
 if(isset($_SESSION['authenticated'])){
     $result = processRequest();
 } else {

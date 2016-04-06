@@ -107,6 +107,33 @@ angular.module('todoApp')
       }]);
 
 
+
+angular.module('todoApp')
+  .filter('todoListFilter', function () {
+    return function (items, searchString, groupID) {
+      var filtered = [];
+
+      //if the array has at least 1 item in it, then process it.
+      // Added this because angular was calling the filter BEFORE 'items' was populated
+      if (typeof items != 'undefined'){
+        for (var i = 0; i < items.length; i++) {
+          var item = items[i];
+          if ( (groupID == null ||
+              item.group_id === groupID) &&
+            ( searchString == null ||
+              searchString.length == 0 ||
+              item.task_name.toUpperCase().indexOf(searchString.toUpperCase()) > -1 ||
+              item.tags.toUpperCase().indexOf(searchString.toUpperCase()) > -1
+              )
+          )
+          //if Group_id matches AND one of the other fields match (or search is empty) return it
+          {filtered.push(item);}
+        }
+      }
+      return filtered;
+    };
+  });
+
 angular.module('todoApp')
   .directive('ngEnter', function() {
   return function(scope, element, attrs) {

@@ -1,31 +1,41 @@
 <div class="container-fluid">
+    <!--<div class="row">-->
+        <!--<div class="col-xs-4 col-md-4 small">Add To Do: Type and hit Enter</div>-->
+        <!--<div class="col-xs-4 col-md-4 small">Search by To Do: Type Name</div>-->
+        <!--<div class="col-xs-4 col-md-4 small">Search by Category: Type Category</div>-->
+    <!--</div>-->
+
     <div class="row">
-        <div class="col-xs-4 col-md-4 small">Add To Do: Type and hit Enter</div>
-        <div class="col-xs-4 col-md-4 small">Search by To Do: Type Name</div>
-        <div class="col-xs-4 col-md-4 small">Search by Category: Type Category</div>
+        <div class="col-xs-1 col-md-1">
+            Search:
+        </div>
+        <div class="col-xs-4 col-md-4">
+            <input type="text" data-ng-model="taskFilter" class="form-control tight_input" placeholder="Search">
+            <span class="glyphicon glyphicon-search"></span>
+        </div>
     </div>
 
     <div class="row">
+        <div class="col-xs-1 col-md-1">
+            Add item:
+        </div>
         <div class="col-xs-4 col-md-4">
             <form data-ng-submit="addTodo(newTodo)">
                 <input type="text" class="form-control tight_input" data-ng-model="newTodo.task" placeholder="Add To Do "/>
                 <span class="glyphicon glyphicon-plus" ng-click="addTodo(newTodo)"></span>
             </form>
         </div>
-        <div class="col-xs-4 col-md-4">
-            <input type="text" data-ng-model="taskFilter" class="form-control tight_input" placeholder="Search">
-            <span class="glyphicon glyphicon-search"></span>
-        </div>
-        <div class="col-xs-4 col-md-4">
-            <input type="text" data-ng-model="tagFilter" class="form-control tight_input" placeholder="Search">
-            <span class="glyphicon glyphicon-search"></span>
-        </div>
+    </div>
+        <!--<div class="col-xs-4 col-md-4">-->
+            <!--<input type="text" data-ng-model="tagFilter" class="form-control tight_input" placeholder="Search">-->
+            <!--<span class="glyphicon glyphicon-search"></span>-->
+        <!--</div>-->
     </div>
 
 
     <!--suppress HtmlFormInputWithoutLabel -->
     <div class="row">
-        <div class="col-md-7 col-xs-9 col-sm-9 small">To Do Name </div>
+        <div class="col-md-offset-1 col-md-6 col-xs-offset-1 col-xs-8 col-sm-offset-1 col-sm-8 small">To Do Name </div>
         <div class="col-md-5 col-xs-3 col-sm-3 small text-center">
             <div class="col-md-3 hidden-sm hidden-xs small text-center">Category</div>
             <div class="col-md-9 col-xs-9 col-sm-9 small text-center">
@@ -39,7 +49,8 @@
 
     <section id="todolist">
 
-        <div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter, group_id:activegroup} | orderBy:['done','priority_cd','due_dt_sort']">
+        <!--<div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter, group_id:activegroup} | orderBy:['done','priority_cd','due_dt_sort']">-->
+        <div data-ng-repeat="todo in todos | todoListFilter:taskFilter:activegroup | orderBy:['done','priority_cd','due_dt_sort']">
             <!--<div data-ng-repeat="todo in todos | filter:{task_name:taskFilter, tags:tagFilter } | limitTo:10 | orderBy:['done','priority_cd','due_dt']">-->
             <!--<div class="row dotted">-->
             <div class="row">
